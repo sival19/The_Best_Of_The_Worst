@@ -1,0 +1,44 @@
+<mxfile host="app.diagrams.net" modified="2021-03-22T13:47:18.814Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36" etag="Sw9FkZZHoMee3VHu523o" version="14.4.8" type="github">
+  <diagram id="_6Tq-XeZvSKddnlyyH0c" name="Page-1">
+    <mxGraphModel dx="383" dy="653" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="dl25uGS8C5hMMQ-BOkqI-9" value="" style="shape=umlLifeline;participant=umlActor;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;spacingTop=36;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="580" width="20" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="dl25uGS8C5hMMQ-BOkqI-10" value=":Object" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="480" y="580" width="100" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="dl25uGS8C5hMMQ-BOkqI-11" value=":Besøgende" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="550" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="dl25uGS8C5hMMQ-BOkqI-12" value="" style="endArrow=block;endFill=1;html=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=top;" edge="1" parent="1">
+          <mxGeometry x="-1" relative="1" as="geometry">
+            <mxPoint x="390" y="660" as="sourcePoint" />
+            <mxPoint x="530" y="660" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dl25uGS8C5hMMQ-BOkqI-14" value="ligIKurv()" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="640" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="dl25uGS8C5hMMQ-BOkqI-16" value="Produkter lagt i kurv" style="endArrow=open;endSize=12;dashed=1;html=1;" edge="1" parent="1">
+          <mxGeometry y="-13" width="160" relative="1" as="geometry">
+            <mxPoint x="529.75" y="700" as="sourcePoint" />
+            <mxPoint x="390.25" y="700" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="490.25" y="700" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dl25uGS8C5hMMQ-BOkqI-19" value="&lt;br&gt;" style="shape=umlFrame;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="325" y="510" width="270" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="dl25uGS8C5hMMQ-BOkqI-20" value="Læg produkt i kurv: System Interaction diagram" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="490" width="270" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
