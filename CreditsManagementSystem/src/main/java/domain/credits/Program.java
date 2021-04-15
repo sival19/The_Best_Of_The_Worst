@@ -11,7 +11,7 @@ public class Program {
 
     private Date udgivelsesDato;
 
-    private Enum programType;
+    private ProgramType programType;
 
     private String genre;
 
@@ -19,7 +19,7 @@ public class Program {
 
     private int listeAfCredits;
 
-    public void Program(String programNavn, String produktionsID, String udgivelsesDato, Enum programType, String genre, double længde, List<Credit> listeAfCredits) {
+    public Program(String programNavn, String produktionsID, String udgivelsesDato, ProgramType programType, String genre, double længde, List<Credit> listeAfCredits) {
 
     }
 

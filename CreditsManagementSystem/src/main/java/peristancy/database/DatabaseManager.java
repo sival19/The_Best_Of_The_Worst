@@ -1,6 +1,6 @@
 package peristancy.database;
 
-import domain.CreditManagement.CatalogObject;
+import domain.creditManagement.CatalogObject;
 
 public class DatabaseManager {
 

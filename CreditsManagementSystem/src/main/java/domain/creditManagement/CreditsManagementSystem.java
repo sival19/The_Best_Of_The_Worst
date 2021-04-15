@@ -1,15 +1,20 @@
 package domain.creditManagement;
 
+import domain.ICreditsManagementSystem;
 import domain.credits.Program;
+import domain.credits.ProgramType;
 import domain.credits.Rolle;
+import domain.logIn.Rettighed;
+import domain.logIn.UserManager;
 
 import java.util.Date;
 
-public class CreditsManagementSystem {
+public class CreditsManagementSystem implements ICreditsManagementSystem {
+    private UserManager userManager;
+    private Catalog catalog;
 
-    private Program program;
 
-    public void CreditsManagementSystem() {
+    public CreditsManagementSystem() {
 
     }
 
@@ -25,11 +30,7 @@ public class CreditsManagementSystem {
         return null;
     }
 
-    public String opretProgram(String programNavn, int produktionsID, Date udgivelsesDato, Enum programType, String genre, double længde) {
-        return null;
-    }
-
-    public String opretBruger(String brugernavn, String kodeord, String email, boolean isAdmin, int brugerID, String navn) {
+    public String opretProgram(String programNavn, int produktionsID, Date udgivelsesDato, ProgramType programType, String genre, double længde) {
         return null;
     }
 
@@ -49,4 +50,18 @@ public class CreditsManagementSystem {
         return null;
     }
 
+    @Override
+    public boolean isAdmin() {
+        return userManager.isAdmin();
+    }
+
+    @Override
+    public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed) {
+        return userManager.opretBruger(brugernavn, adgangskode, email, rettighed);
+    }
+
+    @Override
+    public String login(String brugernavn, String adgangskode) {
+        return userManager.validereBruger(brugernavn, adgangskode);
+    }
 }

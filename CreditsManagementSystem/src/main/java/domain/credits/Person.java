@@ -12,7 +12,7 @@ public class Person {
 
     private int personID;
 
-    public void Person(String navn, Date fødselsdato, String nationalitet, int personID) {
+    public Person(String navn, Date fødselsdato, String nationalitet, int personID) {
 
     }
 
