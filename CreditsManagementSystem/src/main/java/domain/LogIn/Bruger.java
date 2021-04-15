@@ -1,4 +1,4 @@
-package Domain.LogIn;
+package domain.LogIn;
 
 public class Bruger {
 
@@ -14,7 +14,7 @@ public class Bruger {
 
     private String navn;
 
-    public void Bruger(String brugernavn, String adgangskode, String email, boolean isAdmin, int brugerID, String navn) {
+    public Bruger(String brugernavn, String adgangskode, String email, boolean isAdmin, int brugerID, String navn) {
 
     }
 

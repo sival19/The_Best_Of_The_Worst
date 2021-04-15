@@ -1,4 +1,4 @@
-package Domain.LogIn;
+package domain.LogIn;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ public class UserManager {
 
     private List<Bruger> listeAfBrugere;
 
-    public void UserManager() {
+    public UserManager() {
 
     }
 

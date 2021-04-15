@@ -1,15 +1,16 @@
-package Domain.CreditManagement;
+package domain.CreditManagement;
 
-import Domain.Credits.Program;
-import Domain.Credits.Rolle;
+import domain.Credits.Program;
+import domain.Credits.Rolle;
+import domain.ICreditManagementSystem;
 
 import java.util.Date;
 
-public class CreditsManagementSystem {
+public class CreditsManagementSystem implements ICreditManagementSystem {
 
     private Program program;
 
-    public void CreditsManagementSystem() {
+    public CreditsManagementSystem() {
 
     }
 

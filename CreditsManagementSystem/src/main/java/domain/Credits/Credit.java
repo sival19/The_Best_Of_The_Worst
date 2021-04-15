@@ -1,4 +1,4 @@
-package Domain.Credits;
+package domain.Credits;
 
 public class Credit {
 
@@ -8,7 +8,7 @@ public class Credit {
 
     private String beskrivelse;
 
-    public void Credit(Person person, Rolle rolle, String beskrivelse) {
+    public Credit(Person person, Rolle rolle, String beskrivelse) {
 
     }
 

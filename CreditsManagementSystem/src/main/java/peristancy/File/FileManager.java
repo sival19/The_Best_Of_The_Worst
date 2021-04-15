@@ -1,10 +1,10 @@
-package Peristancy.File;
+package peristancy.File;
 
-import Domain.CreditManagement.CatalogObject;
+import domain.CreditManagement.CatalogObject;
 
 public class FileManager {
 
-    public void FileManager() {
+    public FileManager() {
 
     }
 

@@ -1,14 +1,14 @@
-package Domain.CreditManagement;
+package domain.CreditManagement;
 
-import Domain.Credits.Person;
-import Domain.Credits.Program;
-import Domain.Credits.Rolle;
+import domain.Credits.Person;
+import domain.Credits.Program;
+import domain.Credits.Rolle;
 
 import java.util.Date;
 
 public class Catalog {
 
-    public void Catalog() {
+    public Catalog() {
 
     }
 

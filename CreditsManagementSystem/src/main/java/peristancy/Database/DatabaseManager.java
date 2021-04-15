@@ -1,10 +1,10 @@
-package Peristancy.Database;
+package peristancy.Database;
 
-import Domain.CreditManagement.CatalogObject;
+import domain.CreditManagement.CatalogObject;
 
 public class DatabaseManager {
 
-    public void DatabaseManager() {
+    public DatabaseManager() {
 
     }
 

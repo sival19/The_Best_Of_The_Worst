@@ -1,4 +1,4 @@
-package Peristancy;
+package peristancy;
 
 public interface IDatabaseManager {
 }

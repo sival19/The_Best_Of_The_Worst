@@ -1,4 +1,4 @@
-package Domain.Credits;
+package domain.Credits;
 
 public class Rolle {
 

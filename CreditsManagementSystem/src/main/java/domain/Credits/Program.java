@@ -1,4 +1,4 @@
-package Domain.Credits;
+package domain.Credits;
 
 import java.util.Date;
 import java.util.List;
@@ -19,7 +19,7 @@ public class Program {
 
     private int listeAfCredits;
 
-    public void Program(String programNavn, String produktionsID, String udgivelsesDato, Enum programType, String genre, double længde, List<Credit> listeAfCredits) {
+    public Program(String programNavn, String produktionsID, String udgivelsesDato, Enum programType, String genre, double længde, List<Credit> listeAfCredits) {
 
     }
 
