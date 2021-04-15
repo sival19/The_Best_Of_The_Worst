@@ -1,4 +1,4 @@
-package Domain.LogIn;
+package domain.logIn;
 
 public class Bruger {
 

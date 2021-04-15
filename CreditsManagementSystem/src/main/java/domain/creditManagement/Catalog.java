@@ -1,8 +1,8 @@
-package Domain.CreditManagement;
+package domain.creditManagement;
 
-import Domain.Credits.Person;
-import Domain.Credits.Program;
-import Domain.Credits.Rolle;
+import domain.credits.Person;
+import domain.credits.Program;
+import domain.credits.Rolle;
 
 import java.util.Date;
 

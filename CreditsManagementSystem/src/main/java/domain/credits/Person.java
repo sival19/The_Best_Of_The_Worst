@@ -1,4 +1,4 @@
-package Domain.Credits;
+package domain.credits;
 
 import java.util.Date;
 

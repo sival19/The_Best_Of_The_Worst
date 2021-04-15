@@ -1,7 +1,7 @@
-package Domain.CreditManagement;
+package domain.creditManagement;
 
-import Domain.Credits.Program;
-import Domain.Credits.Rolle;
+import domain.credits.Program;
+import domain.credits.Rolle;
 
 import java.util.Date;
 

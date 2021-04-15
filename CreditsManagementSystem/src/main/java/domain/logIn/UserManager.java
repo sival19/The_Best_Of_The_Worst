@@ -1,4 +1,4 @@
-package Domain.LogIn;
+package domain.logIn;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package Peristancy.File;
+package peristancy.file;
 
-import Domain.CreditManagement.CatalogObject;
+import domain.creditManagement.CatalogObject;
 
 public class FileManager {
 
