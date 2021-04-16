@@ -1,9 +1,9 @@
 package Factory;
 
-import domain.ICreditsManagementSystem;
+import Intefaces.ICreditsManagementSystem;
 import domain.creditManagement.CreditsManagementSystem;
-import peristancy.file.FileManager;
-import peristancy.file.IFileManager;
+import persistancy.file.FileManager;
+import Intefaces.IFileManager;
 
 public class CreditManagementSystemFactory {
     static ICreditsManagementSystem creditsManagementSystem;

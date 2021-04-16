@@ -1,7 +1,7 @@
 package domain.logIn;
 
 import Factory.CreditManagementSystemFactory;
-import peristancy.file.IFileManager;
+import Intefaces.IFileManager;
 
 public class UserManager {
 
@@ -27,7 +27,7 @@ public class UserManager {
             result = "Bruger eksister";
         }
 
-        else if(!fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed))){
+        else if(!fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,1))){
             result = "Kunne ikke gemmes";
         }
 
@@ -42,10 +42,10 @@ public class UserManager {
         if(bruger == null){
             result = "bruger eksister ikke";
         }
-        else if (!bruger.getAdgangsKode().equals(adgangskode)){
+        else if (!bruger.getAdgangskode().equals(adgangskode)){
             result = "adgangskode er forkert";
         }
-        else if (bruger.getAdgangsKode().equals(adgangskode)){
+        else if (bruger.getAdgangskode().equals(adgangskode)){
             result = "Welkommen!";
         }
         return result;

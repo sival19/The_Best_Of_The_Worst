@@ -1,7 +1,7 @@
 package presentation;
 
 import Factory.CreditManagementSystemFactory;
-import domain.ICreditsManagementSystem;
+import Intefaces.ICreditsManagementSystem;
 
 public class LoginController {
 

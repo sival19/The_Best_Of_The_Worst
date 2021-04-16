@@ -1,10 +1,8 @@
 package domain.creditManagement;
 
-import domain.ICreditsManagementSystem;
-import domain.credits.Program;
+import Intefaces.ICreditsManagementSystem;
 import domain.credits.ProgramType;
 import domain.credits.Rolle;
-import domain.logIn.Rettighed;
 import domain.logIn.UserManager;
 
 import java.util.Date;

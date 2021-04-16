@@ -1,8 +1,12 @@
 package domain.logIn;
 
-import peristancy.IDataBruger;
+import Intefaces.IDataBruger;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-public class Bruger implements IDataBruger {
+
+import java.io.Serializable;
+
+public class Bruger implements IDataBruger{
 
     private String brugernavn;
 
@@ -14,26 +18,25 @@ public class Bruger implements IDataBruger {
 
     private int brugerID;
 
-
-    public Bruger(String brugernavn, String adgangskode, String email, Rettighed rettighed) {
+    public Bruger(String brugernavn, String adgangskode, String email, Rettighed rettighed, int brugerID) {
         this.brugernavn = brugernavn;
         this.adgangskode = adgangskode;
         this.email = email;
         this.rettighed = rettighed;
+        this.brugerID = brugerID;
     }
     public Bruger(){}
 
-    @Override
-    public String getBrugerNavn() {
-        return null;
+    public String getBrugernavn() {
+        return brugernavn;
     }
 
     public void setBrugernavn(String brugernavn) {
         this.brugernavn = brugernavn;
     }
 
-    public String getAdgangsKode() {
-        return null;
+    public String getAdgangskode() {
+        return adgangskode;
     }
 
     public void setAdgangskode(String adgangskode) {
@@ -42,14 +45,14 @@ public class Bruger implements IDataBruger {
 
     @Override
     public String getEmail() {
-        return null;
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-
+    @Override
     public Rettighed getRettighed() {
         return rettighed;
     }
@@ -60,11 +63,10 @@ public class Bruger implements IDataBruger {
 
     @Override
     public int getBrugerID() {
-        return 0;
+        return brugerID;
     }
 
     public void setBrugerID(int brugerID) {
         this.brugerID = brugerID;
     }
-
 }

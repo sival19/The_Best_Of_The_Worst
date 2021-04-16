@@ -1,8 +1,7 @@
 package presentation;
 
 import Factory.CreditManagementSystemFactory;
-import domain.ICreditsManagementSystem;
-import domain.logIn.Rettighed;
+import Intefaces.ICreditsManagementSystem;
 
 public class UserController {
 

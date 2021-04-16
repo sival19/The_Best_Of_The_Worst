@@ -1,6 +1,4 @@
-package peristancy.file;
-
-import peristancy.IDataBruger;
+package Intefaces;
 
 public interface IFileManager {
     IDataBruger loadBruger(String brugerNavn);

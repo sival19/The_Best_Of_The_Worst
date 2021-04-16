@@ -1,4 +1,4 @@
-package domain;
+package Intefaces;
 
 import domain.logIn.Rettighed;
 

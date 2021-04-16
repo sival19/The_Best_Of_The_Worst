@@ -1,10 +1,10 @@
-package peristancy.database;
+package persistancy.database;
 
 import domain.creditManagement.CatalogObject;
 
 public class DatabaseManager {
 
-    public void DatabaseManager() {
+    public DatabaseManager() {
 
     }
 
