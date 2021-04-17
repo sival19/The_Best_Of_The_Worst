@@ -1,6 +1,7 @@
 package domain.credits;
 
 import Intefaces.IDataRolle;
+import javafx.scene.image.Image;
 
 public class Rolle implements IDataRolle {
 
@@ -8,11 +9,23 @@ public class Rolle implements IDataRolle {
 
     private int rolleID;
 
-    public Rolle(String rolletype, int rolleId) {
+    private String imagePath;
 
+    public Rolle(String rolletype, int rolleID) {
+        this.rolletype = rolletype;
+        this.rolleID = rolleID;
     }
 
-    public Rolle(){};
+
+    public Rolle(){}
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public String getRolletype() {
         return rolletype;
@@ -28,5 +41,13 @@ public class Rolle implements IDataRolle {
 
     public void setRolleID(int rolleID) {
         this.rolleID = rolleID;
+    }
+
+    @Override
+    public String toString() {
+        return "Rolle{" +
+                "rolletype='" + rolletype + '\'' +
+                ", rolleID=" + rolleID +
+                '}';
     }
 }

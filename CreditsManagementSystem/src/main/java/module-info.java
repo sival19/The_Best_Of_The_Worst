@@ -6,4 +6,5 @@ module org.example {
     requires com.fasterxml.jackson.databind;
     exports domain.logIn;
     exports domain.credits;
+    opens presentation to javafx.fxml;
 }

@@ -3,8 +3,7 @@ package persistancy.file;
 import Intefaces.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import domain.credits.Person;
-import domain.credits.Rolle;
+import domain.credits.*;
 import domain.logIn.Bruger;
 import domain.logIn.Rettighed;
 
@@ -56,44 +55,42 @@ public class FileManager implements IFileManager {
 
     @Override
     public boolean saveCatalogObject(ICatalogObject icatalogObject) {
-
-        IDataPerson person = new Person("Fuad",new Date(),"Danmark",1);
-        IDataPerson person1 = new Person("Simon",new Date(),"Tyskland",2);
-        IDataPerson person2 = new Person("Dennis",new Date(),"Oestrig",3);
-        IDataPerson person3 = new Person("Niels",new Date(),"Spanien",4);
-        List<IDataPerson> personList = new ArrayList<>();
-        personList.add(person);
-        personList.add(person1);
-        personList.add(person2);
-        personList.add(person3);
-
-
         ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            objectMapper.writeValue(personFile,personList);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         try {
             if(icatalogObject instanceof IDataPerson){
                 IDataPerson iDataPerson = (IDataPerson) icatalogObject;
-                List<IDataPerson> iDataPersonList = objectMapper.readValue(personFile, new TypeReference<List<IDataPerson>>(){});
+                List<IDataPerson> iDataPersonList = new ArrayList<>();
+                if(personFile.length() != 0){
+                    iDataPersonList = objectMapper.readValue(personFile, new TypeReference<List<IDataPerson>>(){});
+
+                }
                 iDataPersonList.add(iDataPerson);
                 objectMapper.writeValue(personFile,iDataPersonList);
             }
             else if(icatalogObject instanceof IDataProgram){
                 IDataProgram iDataProgram = (IDataProgram) icatalogObject;
-                List<IDataProgram> iDataProgramList = objectMapper.readValue(programFile, new TypeReference<List<IDataProgram>>(){});
+                List<IDataProgram> iDataProgramList = new ArrayList<>();
+
+                if(programFile.length() != 0){
+                    iDataProgramList = objectMapper.readValue(programFile, new TypeReference<List<IDataProgram>>(){});
+                }
+
                 iDataProgramList.add(iDataProgram);
+                System.out.println(iDataProgramList);
                 objectMapper.writeValue(programFile,iDataProgramList);
             }
             else if(icatalogObject instanceof IDataRolle){
                 IDataRolle iDataRolle = (IDataRolle) icatalogObject;
-                List<IDataRolle> iDataRolleList = objectMapper.readValue(rolleFile, new TypeReference<List<IDataRolle>>(){});
+                List<IDataRolle> iDataRolleList = new ArrayList<>();
+
+                if(rolleFile.length() != 0){
+                    iDataRolleList = objectMapper.readValue(rolleFile, new TypeReference<List<IDataRolle>>(){});
+                }
+
                 iDataRolleList.add(iDataRolle);
                 objectMapper.writeValue(rolleFile,iDataRolleList);
             }
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -112,7 +109,7 @@ public class FileManager implements IFileManager {
                 List<IDataPerson> iDataPersonList = objectMapper.readValue(personFile, new TypeReference<List<IDataPerson>>(){});
                 for(int i = 0; i<iDataPersonList.size(); i++){
                     if(iDataPersonList.get(i).getPersonID() == Integer.parseInt(key)){
-                        iDataPersonList.add(i,iDataPerson);
+                        iDataPersonList.set(i,iDataPerson);
                     }
                 }
                 objectMapper.writeValue(personFile,iDataPersonList);
@@ -120,13 +117,22 @@ public class FileManager implements IFileManager {
             else if(icatalogObject instanceof IDataProgram){
                 IDataProgram iDataProgram = (IDataProgram) icatalogObject;
                 List<IDataProgram> iDataProgramList = objectMapper.readValue(programFile, new TypeReference<List<IDataProgram>>(){});
-                iDataProgramList.add(iDataProgram);
+                for (int i = 0; i<iDataProgramList.size(); i++) {
+                    if (iDataProgramList.get(i).getProduktionsID() == Integer.parseInt(key)) {
+                        iDataProgramList.set(i,iDataProgram);
+                    }
+                }
+                System.out.println(iDataProgramList.size());
                 objectMapper.writeValue(programFile,iDataProgramList);
             }
             else if(icatalogObject instanceof IDataRolle){
                 IDataRolle iDataRolle = (IDataRolle) icatalogObject;
                 List<IDataRolle> iDataRolleList = objectMapper.readValue(rolleFile, new TypeReference<List<IDataRolle>>(){});
-                iDataRolleList.add(iDataRolle);
+                for(int i = 0; i<iDataRolleList.size(); i++){
+                    if(iDataRolleList.get(i).getRolleID() == Integer.parseInt(key)){
+                        iDataRolleList.set(i,iDataRolle);
+                    }
+                }
                 objectMapper.writeValue(rolleFile,iDataRolleList);
             }
 
@@ -143,7 +149,9 @@ public class FileManager implements IFileManager {
         ObjectMapper objectMapper = new ObjectMapper();
         List<IDataPerson> iDataPersonList = null;
         try {
-             iDataPersonList = objectMapper.readValue(new File(FileManager.class.getResource("personFile.json").getFile()),objectMapper.getTypeFactory().constructCollectionType(List.class,IDataPerson.class));
+            if(personFile.length() != 0){
+                iDataPersonList = objectMapper.readValue(personFile, new TypeReference<List<IDataPerson>>() {});
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -156,7 +164,12 @@ public class FileManager implements IFileManager {
         ObjectMapper objectMapper = new ObjectMapper();
         List<IDataProgram> iDataProgramList = null;
         try {
-            iDataProgramList = objectMapper.readValue(new File(FileManager.class.getResource("programFile.json").getFile()),objectMapper.getTypeFactory().constructCollectionType(List.class,IDataProgram.class));
+            if(programFile.length() != 0){
+                iDataProgramList = objectMapper.readValue(programFile, new TypeReference<List<IDataProgram>>() {});
+            }
+
+            System.out.println(iDataProgramList.size());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -166,16 +179,17 @@ public class FileManager implements IFileManager {
     @Override
     public List<IDataRolle> loadRoller() {
         ObjectMapper objectMapper = new ObjectMapper();
-        List<IDataRolle> iDataRolleList = null;
+        List<IDataRolle> iDataRolleList = new ArrayList<>();
         try {
-            iDataRolleList = objectMapper.readValue(new File(FileManager.class.getResource("rolleFile.json").getFile()),objectMapper.getTypeFactory().constructCollectionType(List.class,IDataRolle.class));
+            if(rolleFile.length() != 0){
+                iDataRolleList = objectMapper.readValue(rolleFile, new TypeReference<List<IDataRolle>>(){});
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         return iDataRolleList;
     }
-
-
 
 
     public static void main(String[] args) throws IOException {
@@ -187,14 +201,14 @@ public class FileManager implements IFileManager {
         }
         String brugernavn, String adgangskode, String email, Rettighed rettighed
 
-*/
+
 ObjectMapper objectMapper = new ObjectMapper();
         Bruger bruger = new Bruger("123dfsf","sdssdasd","fujam20@student.sdu.sdk",Rettighed.ADMINISTRATOR,1);
         Map<String, IDataBruger> brugerMap = new HashMap<>();
         brugerMap.put(bruger.getBrugernavn(),bruger);
 
         objectMapper.writeValue(
-                new File(FileManager.class.getResource("brugerFile.json").getFile()),brugerMap);
+                new File(FileManager.class.getResource("brugerFile.json").getFile()),brugerMap);*/
  /*
 
         saveBrugertest(bruger);
@@ -213,17 +227,81 @@ ObjectMapper objectMapper = new ObjectMapper();
         System.out.println(iDataBruger.getBrugernavn());
         objectMapper.writeValue(/*
                 new File(FileManager.class.getResource("brugerFile.json").getFile()),brugerMap1);
-*/
+
         FileManager fileManager = new FileManager();
-        fileManager.saveCatalogObject(new Person("Thomas",new Date(),"Danmark",5));
-        System.out.println(fileManager.loadPersoner());
+        List<IDataPerson> personList = fileManager.loadPersoner();
+        System.out.println(personList);
+        IDataPerson person1 = null;
+        for(IDataPerson person : personList){
+            if(person.getPersonID() == 5){
+                person1 = person;
+            }
+        }
+
+        person1.setNavn("Sigurd");
+
+
+        fileManager.updateCatalogObject("5",person1);
+        fileManager.loadPersoner();*/
 /*
         IDataBruger Idatabruger = fileManager.loadBruger("123dfsf");
         System.out.println(Idatabruger);
         fileManager.saveBruger(Idatabruger);
         ObjectMapper objectMapper1 = new ObjectMapper();
-        objectMapper1.writeValue();*/
+        objectMapper1.writeValue();
+        List<Credit> creditList = new ArrayList<>();
+        creditList.add(new Credit(new Person("Kasper",new Date(),"Danmark",10),new Rolle("Producer",3),"HovedInstruktør for hele produktionen."));
+        FileManager fileManager = new FileManager();
+        fileManager.saveCatalogObject(new Program("Pirates of the caribian",5,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
 
+     List<Credit> creditList = new ArrayList<>();
+        creditList.add(new Credit(new Person("Kasper",new Date(),"Danmark",10),new Rolle("Producer",3),"HovedInstruktør for hele produktionen."));
+        List<Program> programs = new ArrayList<>();
+        programs.add(new Program("Pirates of the caribian",5,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+        programs.add(new Program("TED",5,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+        programs.add(new Program("Twighlight",5,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+        programs.add(new Program("The Way of the HouseHusband",5,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.writeValue(programFile,programs);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        FileManager fileManager = new FileManager();
+        fileManager.saveCatalogObject(new Rolle("Producer",1));
+        fileManager.saveCatalogObject(new Rolle("Skuespiller",2));
+        fileManager.saveCatalogObject(new Rolle("LydMand",3));
+        System.out.println(fileManager.loadRoller());
+        List<Rolle> rolleList = new ArrayList<>();
+        rolleList.add(new Rolle("Producer",1));
+        rolleList.add(new Rolle("Skuespiller",2));
+        rolleList.add(new Rolle("LydMand",3));
+        FileManager fileManager = new FileManager();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.writeValue( fileManager.rolleFile,rolleList);
+
+  ObjectMapper objectMapper = new ObjectMapper();
+        List<IDataProgram> iDataProgramList = new ArrayList<>();
+        objectMapper.writeValue(new FileManager().programFile,iDataProgramList);
+*/
+
+        List<Credit> creditList = new ArrayList<>();
+        creditList.add(new Credit(new Person("Kasper",new Date(),"Danmark",10),new Rolle("Producer",3),"HovedInstruktør for hele produktionen."));
+        List<Program> programs = new ArrayList<>();
+        programs.add(new Program("Pirates of the caribian",1,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+        programs.add(new Program("TED",2,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+        programs.add(new Program("Twighlight",3,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+        programs.add(new Program("The Way of the HouseHusband",4,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.writeValue(new FileManager().programFile,programs);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
 

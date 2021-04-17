@@ -2,7 +2,6 @@ package Intefaces;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import domain.credits.*;
-import domain.logIn.Bruger;
 
 import java.util.Date;
 import java.util.List;
@@ -25,9 +24,9 @@ public interface IDataProgram extends ICatalogObject {
 
     public void setProgramType(ProgramType programType);
 
-    public String getGenre();
+    public Genre getGenre();
 
-    public void setGenre(String genre);
+    public void setGenre(Genre genre);
 
     public double getLængde();
 
@@ -37,5 +36,10 @@ public interface IDataProgram extends ICatalogObject {
 
     public void setCredits(List<Credit> credits);
 
-    public Credit opretCredit(Person person, Rolle rolle, String beskrivelse);
+    public boolean opretCredit(Person person, Rolle rolle, String beskrivelse);
+
+    public String getImagePath();
+
+    public void setImagePath(String imagePath);
+
 }

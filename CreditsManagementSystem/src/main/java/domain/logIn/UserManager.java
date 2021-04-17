@@ -9,7 +9,7 @@ public class UserManager {
     private IFileManager fileManager;
 
     public UserManager() {
-        fileManager = CreditManagementSystemFactory.createFileManager();
+        fileManager = CreditManagementSystemFactory.getFileManager();
         bruger = new Bruger();
         bruger.setRettighed(Rettighed.BESOEGER);
 

@@ -11,7 +11,9 @@ public class Credit implements IDataCredit {
     private String beskrivelse;
 
     public Credit(Person person, Rolle rolle, String beskrivelse) {
-
+        this.person = person;
+        this.rolle = rolle;
+        this.beskrivelse = beskrivelse;
     }
 
     public Credit(){};
@@ -38,5 +40,14 @@ public class Credit implements IDataCredit {
 
     public void setBeskrivelse(String beskrivelse) {
         this.beskrivelse = beskrivelse;
+    }
+
+    @Override
+    public String toString() {
+        return "Credit{" +
+                "person=" + person +
+                ", rolle=" + rolle +
+                ", beskrivelse='" + beskrivelse + '\'' +
+                '}';
     }
 }

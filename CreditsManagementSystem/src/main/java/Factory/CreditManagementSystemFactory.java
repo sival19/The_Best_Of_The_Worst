@@ -9,14 +9,14 @@ public class CreditManagementSystemFactory {
     static ICreditsManagementSystem creditsManagementSystem;
     static IFileManager fileManager;
 
-    public static ICreditsManagementSystem createCreditManagementSystem(){
+    public static ICreditsManagementSystem getCreditManagementSystem(){
         if(creditsManagementSystem == null){
             creditsManagementSystem = new CreditsManagementSystem();
         }
         return creditsManagementSystem;
     }
 
-    public static IFileManager createFileManager(){
+    public static IFileManager getFileManager(){
         if(fileManager == null){
             fileManager = new FileManager();
         }

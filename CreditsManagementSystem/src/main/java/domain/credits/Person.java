@@ -1,6 +1,7 @@
 package domain.credits;
 
 import Intefaces.IDataPerson;
+import javafx.scene.image.Image;
 
 import java.util.Date;
 
@@ -14,11 +15,24 @@ public class Person implements IDataPerson {
 
     private int personID;
 
-    public Person(String navn, Date foedselsdato, String nationalitet, int personID) {
+    private String imagePath;
 
+    public Person(String navn, Date foedselsdato, String nationalitet, int personID) {
+        this.navn = navn;
+        this.foedselsdato = foedselsdato;
+        this.nationalitet = nationalitet;
+        this.personID = personID;
     }
 
     public Person(){}
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public String getNavn() {
         return navn;
@@ -50,5 +64,15 @@ public class Person implements IDataPerson {
 
     public void setPersonID(int personID) {
         this.personID = personID;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "navn='" + navn + '\'' +
+                ", foedselsdato=" + foedselsdato +
+                ", nationalitet='" + nationalitet + '\'' +
+                ", personID=" + personID +
+                '}';
     }
 }

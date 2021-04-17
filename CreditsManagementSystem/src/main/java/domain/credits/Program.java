@@ -1,6 +1,7 @@
 package domain.credits;
 
 import Intefaces.IDataProgram;
+import javafx.scene.image.Image;
 
 import java.util.Date;
 import java.util.List;
@@ -15,13 +16,16 @@ public class Program implements IDataProgram{
 
     private ProgramType programType;
 
-    private String genre;
+    private Genre genre;
 
     private double længde;
 
     private List<Credit> credits;
 
-    public Program(String programNavn, int produktionsID, Date udgivelsesDato, ProgramType programType, String genre, double længde, List<Credit> credits) {
+    private String imagePath;
+
+
+    public Program(String programNavn, int produktionsID, Date udgivelsesDato, ProgramType programType, Genre genre, double længde, List<Credit> credits) {
         this.programNavn = programNavn;
         this.produktionsID = produktionsID;
         this.udgivelsesDato = udgivelsesDato;
@@ -33,6 +37,13 @@ public class Program implements IDataProgram{
 
     public Program(){}
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public String getProgramNavn() {
         return programNavn;
@@ -66,11 +77,11 @@ public class Program implements IDataProgram{
         this.programType = programType;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
@@ -91,11 +102,23 @@ public class Program implements IDataProgram{
     }
 
     @Override
-    public Credit opretCredit(Person person, Rolle rolle, String beskrivelse) {
+    public boolean opretCredit(Person person, Rolle rolle, String beskrivelse) {
         Credit credit = new Credit(person,rolle,beskrivelse);
         credits.add(credit);
-        return null;
+        return true;
     }
 
-
+    @Override
+    public String toString() {
+        return "Program{" +
+                "programNavn='" + programNavn + '\'' +
+                ", produktionsID=" + produktionsID +
+                ", udgivelsesDato=" + udgivelsesDato +
+                ", programType=" + programType +
+                ", genre=" + genre +
+                ", længde=" + længde +
+                ", credits=" + credits +
+                ", imagePath='" + imagePath + '\'' +
+                '}';
+    }
 }

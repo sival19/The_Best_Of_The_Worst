@@ -8,7 +8,7 @@ public class LoginController {
     ICreditsManagementSystem creditsManagementSystem;
 
     public void initialize(){
-        creditsManagementSystem = CreditManagementSystemFactory.createCreditManagementSystem();
+        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
     }
 
     public String login(String brugernavn, String password){

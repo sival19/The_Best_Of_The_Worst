@@ -9,7 +9,7 @@ public class UserController {
 
 
     public void initialize(){
-        creditsManagementSystem = CreditManagementSystemFactory.createCreditManagementSystem();
+        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
         if(creditsManagementSystem.isAdmin()){
             //TODO SHOW ADMINISTRATOR OPTIONS ON SCREEN
         }
