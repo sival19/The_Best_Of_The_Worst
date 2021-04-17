@@ -10,6 +10,8 @@ public class UserManager {
 
     public UserManager() {
         fileManager = CreditManagementSystemFactory.createFileManager();
+        bruger = new Bruger();
+        bruger.setRettighed(Rettighed.BESOEGER);
 
     }
 
@@ -57,6 +59,12 @@ public class UserManager {
 
     public boolean isAdmin(){
         return bruger.getRettighed() == Rettighed.ADMINISTRATOR;
+    }
+
+    public static void main(String[] args) {
+        UserManager userManager = new UserManager();
+        userManager.opretBruger("33","33","sds","Producer");
+
     }
 
 }

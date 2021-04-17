@@ -1,6 +1,8 @@
 package domain.creditManagement;
 
 import Intefaces.ICreditsManagementSystem;
+import domain.credits.Person;
+import domain.credits.Program;
 import domain.credits.ProgramType;
 import domain.credits.Rolle;
 import domain.logIn.UserManager;
@@ -13,10 +15,16 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
 
 
     public CreditsManagementSystem() {
+        userManager = new UserManager();
+        catalog = new Catalog();
 
     }
 
-    public String opretCredit(int produktionsID, String rolletype, int personID) {
+    public String opretCredit(int produktionsID, String rolletype, int personID, String beskrivelse) {
+        Program program = catalog.getProgram(produktionsID);
+        Person person = catalog.getPerson(personID);
+        Rolle rolle = catalog.getRolle(rolletype);
+        catalog.getProgram(produktionsID).opretCredit(person,rolle,beskrivelse);
         return null;
     }
 

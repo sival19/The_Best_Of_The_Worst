@@ -5,4 +5,5 @@ module org.example {
     exports presentation;
     requires com.fasterxml.jackson.databind;
     exports domain.logIn;
+    exports domain.credits;
 }
