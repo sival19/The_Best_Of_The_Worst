@@ -11,5 +11,16 @@ public interface ICreditsManagementSystem {
     String opretCredit(String produktionsID, String rolletype, String personID, String beskrivelse);
     List<IDataProgram> getPrograms();
     List<IDataPerson> getPersons();
-    List<IDataRolle> getRolle();
+    List<IDataRolle> getRoller();
+
+    IDataProgram getProgram();
+    IDataPerson getPerson();
+
+    IDataRolle getRolle();
+
+    void setRolle(IDataRolle iDataRolle);
+    void setProgram(IDataProgram iDataProgram);
+    void setPerson(IDataPerson iDataPerson);
+
+
 }

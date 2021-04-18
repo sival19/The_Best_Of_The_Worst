@@ -18,11 +18,14 @@ import java.util.HashMap;
 public class App extends Application {
 
     private static Scene scene;
+    private static Stage stage;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage primaryStage) throws IOException {
         scene = new Scene(loadFXML("startSide"));
+        stage = primaryStage;
         stage.setScene(scene);
+        stage.setTitle("Credit Management System");
         stage.show();
     }
 
@@ -42,6 +45,10 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public static Stage getStage(){
+        return stage;
     }
 
 }

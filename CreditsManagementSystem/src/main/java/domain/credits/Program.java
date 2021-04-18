@@ -121,4 +121,13 @@ public class Program implements IDataProgram{
                 ", imagePath='" + imagePath + '\'' +
                 '}';
     }
+
+    public String getCreditListString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Credits: ");
+        for(Credit credit: credits){
+            stringBuilder.append(credit).append("\n");
+        }
+        return stringBuilder.toString();
+    }
 }

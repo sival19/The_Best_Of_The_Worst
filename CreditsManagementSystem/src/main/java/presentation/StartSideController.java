@@ -5,16 +5,19 @@ import Intefaces.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import persistancy.file.FileManager;
 
-import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -37,8 +40,10 @@ public class StartSideController implements Initializable {
     public Text program2Txt;
     public Text program3Txt;
     public TextField searchField;
-    public ListView searchResultView;
-    public Button nextImageBt;
+    public ListView<ICatalogObject> searchResultView;
+    public Button nextBtRight;
+    public Button nextBtLeft;
+    public AnchorPane anchorpane;
     private ICreditsManagementSystem creditsManagementSystem;
     private ObservableList<ICatalogObject> observableList;
     List<ICatalogObject> searchResultList;
@@ -66,7 +71,6 @@ public class StartSideController implements Initializable {
             searchResultView.setStyle("-fx-background-color: transparent");
         }
         else {
-
             searchResultView.setStyle("-fx-background-color: white");
             searchResultList = new ArrayList<>();
             for(IDataPerson iDataPerson: creditsManagementSystem.getPersons()){
@@ -79,7 +83,7 @@ public class StartSideController implements Initializable {
                     searchResultList.add(iDataProgram);
                 }
             }
-            for(IDataRolle iDataRolle: creditsManagementSystem.getRolle()){
+            for(IDataRolle iDataRolle: creditsManagementSystem.getRoller()){
                 if(iDataRolle.getRolletype().toLowerCase().contains(searchField.getText().toLowerCase())){
                     searchResultList.add(iDataRolle);
                 }
@@ -93,19 +97,79 @@ public class StartSideController implements Initializable {
 
     }
 
-    public void listViewHandler(MouseEvent mouseEvent){
+    public void catalogHandler(MouseEvent mouseEvent) throws IOException {
+        CreditsController creditsController = new CreditsController();
+        if(mouseEvent.getSource()==searchResultView){
+            ICatalogObject iCatalogObject = searchResultView.getFocusModel().getFocusedItem();
+            System.out.println(searchResultView.getFocusModel().getFocusedItem());
+            if(iCatalogObject instanceof IDataProgram){
+                creditsManagementSystem.setProgram((IDataProgram) iCatalogObject);
+                App.getStage().setScene(new Scene(loadFXML("seProgram")));
 
-
+            }
+            else if(iCatalogObject instanceof IDataPerson){
+                creditsManagementSystem.setPerson((IDataPerson) iCatalogObject);
+            }
+            else if(iCatalogObject instanceof IDataRolle){
+                creditsManagementSystem.setRolle((IDataRolle)iCatalogObject);
+            }
+        }
+        else if(mouseEvent.getSource()==programImage1){
+            for(IDataProgram iDataProgram: programs){
+                if(iDataProgram.getProgramNavn().equals(program1Txt.getText())){
+                    creditsManagementSystem.setProgram(iDataProgram);
+                    System.out.println(iDataProgram);
+                    App.getStage().setScene(new Scene(loadFXML("seProgram")));
+                }
+            }
+        }
+        else if(mouseEvent.getSource()==programImage2){
+            for(IDataProgram iDataProgram: programs){
+                if(iDataProgram.getProgramNavn().equals(program2Txt.getText())){
+                    creditsManagementSystem.setProgram(iDataProgram);
+                    System.out.println(iDataProgram);
+                    App.getStage().setScene(new Scene(loadFXML("seProgram")));
+                }
+            }
+        }
+        else if(mouseEvent.getSource()==programImage3){
+            for(IDataProgram iDataProgram: programs){
+                if(iDataProgram.getProgramNavn().equals(program3Txt.getText())){
+                    creditsManagementSystem.setProgram(iDataProgram);
+                    System.out.println(iDataProgram);
+                    App.getStage().setScene(new Scene(loadFXML("seprogram")));
+                }
+            }
+        }
     }
 
 
-    private void next3ProgramImages() throws URISyntaxException, MalformedURLException {
-        circularCount++;
-        int circular1 = circularCount%programs.size();
-        circularCount++;
-        int circular2 = circularCount%programs.size();
-        circularCount++;
-        int circular3 = circularCount%programs.size();
+    private void next3ProgramImages(boolean isDirectionRight) throws URISyntaxException, MalformedURLException {
+        int circular1;
+        int circular2;
+        int circular3;
+        if(isDirectionRight){
+            circularCount++;
+            circular1 = circularCount%programs.size();
+            circularCount++;
+            circular2 = circularCount%programs.size();
+            circularCount++;
+            circular3 = circularCount%programs.size();
+        }
+        else{
+            circularCount = (circularCount-1)+programs.size();
+            circular3 = circularCount%programs.size();
+
+            circularCount = (circularCount-1)+programs.size();
+            circular2 = circularCount%programs.size();
+
+            circularCount = (circularCount-1)+programs.size();
+            circular1 = circularCount%programs.size();
+        }
+
+        //0-1-2 3-0-1 2-3-0
+        //0-1-2 1-2-3 2-3-0
+
 
         programImage1.setImage(new Image(String.valueOf(StartSideController.class.getResource(programs.get(circular1).getImagePath()).toURI().toURL())));
         programImage2.setImage(new Image(String.valueOf(StartSideController.class.getResource(programs.get(circular2).getImagePath()).toURI().toURL())));
@@ -124,23 +188,34 @@ public class StartSideController implements Initializable {
 
         if(programs.size() != 0){
             try {
-                next3ProgramImages();
+                next3ProgramImages(true);
             } catch (URISyntaxException | MalformedURLException e) {
                 e.printStackTrace();
             }
         }
         else{
-            nextImageBt.setDisable(true);
-            nextImageBt.setStyle("-fx-background-color:transparent;");
+            nextBtRight.setDisable(true);
+            nextBtRight.setStyle("-fx-background-color:transparent;");
         }
     }
 
     public void nextHandler(ActionEvent actionEvent){
         try {
-            next3ProgramImages();
+            if(actionEvent.getSource()==nextBtRight){
+                next3ProgramImages(true);
+            }
+            else if(actionEvent.getSource()==nextBtLeft){
+                next3ProgramImages(false);
+            }
+
         } catch (URISyntaxException | MalformedURLException e) {
             e.printStackTrace();
         }
+    }
+
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
     }
 
 }

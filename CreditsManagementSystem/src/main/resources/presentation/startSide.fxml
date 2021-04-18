@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.StartSideController">
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.StartSideController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="374.0" layoutY="14.0" prefHeight="200.0" prefWidth="218.0">
          <children>
@@ -33,14 +33,15 @@
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Credit Management System" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Text fx:id="welcomeTxt" layoutX="240.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg en film at se info om" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="150.0" prefWidth="586.0">
                <children>
-                  <ImageView fx:id="programImage1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="programImage2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="programImage3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="programImage1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#catalogHandler" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="programImage2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#catalogHandler" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="programImage3" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#catalogHandler" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="170.0">
@@ -50,9 +51,18 @@
                   <Text fx:id="program3Txt" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="nextImageBt" mnemonicParsing="false" onAction="#nextHandler" stylesheets="@arrowstyle.css" text="next" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="nextBtLeft" mnemonicParsing="false" onAction="#nextHandler" stylesheets="@arrowstyle.css" text="back" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="nextBtRight" mnemonicParsing="false" onAction="#nextHandler" stylesheets="@arrowstyle.css" text="next" />
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </children>
@@ -60,7 +70,7 @@
       <VBox layoutY="14.0" prefHeight="258.0" prefWidth="174.0">
          <children>
             <TextField fx:id="searchField" onKeyReleased="#searchHandler" promptText="Search" />
-            <ListView fx:id="searchResultView" onMouseClicked="#listViewHandler" prefHeight="262.0" prefWidth="174.0" />
+            <ListView fx:id="searchResultView" onMouseClicked="#catalogHandler" prefHeight="262.0" prefWidth="174.0" />
          </children>
       </VBox>
    </children>

@@ -2,8 +2,10 @@ package domain.creditManagement;
 
 import Factory.CreditManagementSystemFactory;
 import Intefaces.*;
+import domain.credits.Program;
 import domain.credits.ProgramType;
 import domain.credits.Rolle;
+import domain.logIn.Bruger;
 import domain.logIn.UserManager;
 
 import java.util.ArrayList;
@@ -14,6 +16,9 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     private UserManager userManager;
     private Catalog catalog;
     private IFileManager iFileManager;
+    private IDataProgram program;
+    private IDataPerson person;
+    private IDataRolle rolle;
 
 
     public CreditsManagementSystem() {
@@ -38,9 +43,40 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     }
 
     @Override
-    public List<IDataRolle> getRolle() {
+    public List<IDataRolle> getRoller() {
         return new ArrayList<>(catalog.getRoller().values());
     }
+
+    @Override
+    public IDataProgram getProgram() {
+        return program;
+    }
+
+    @Override
+    public IDataPerson getPerson() {
+        return person;
+    }
+
+    @Override
+    public IDataRolle getRolle() {
+        return rolle;
+    }
+
+    @Override
+    public void setRolle(IDataRolle iDataRolle) {
+        rolle = iDataRolle;
+    }
+
+    @Override
+    public void setProgram(IDataProgram iDataProgram) {
+        program = iDataProgram;
+    }
+
+    @Override
+    public void setPerson(IDataPerson iDataPerson) {
+        person = iDataPerson;
+    }
+
 
     public String opretPerson(String navn, String nationalitet, Date fødselsdato) {
         return null;

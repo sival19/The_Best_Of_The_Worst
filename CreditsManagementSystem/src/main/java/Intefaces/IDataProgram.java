@@ -41,5 +41,7 @@ public interface IDataProgram extends ICatalogObject {
     public String getImagePath();
 
     public void setImagePath(String imagePath);
+    public String getCreditListString();
 
-}
+
+    }
