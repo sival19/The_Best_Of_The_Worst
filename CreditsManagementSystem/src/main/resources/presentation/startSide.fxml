@@ -26,21 +26,21 @@
                   <Button fx:id="opretBrugerBt" mnemonicParsing="false" text="Opret Bruger" />
                </children>
             </HBox>
-            <Text fx:id="loginTxt" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="loginTxt" strokeType="OUTSIDE" strokeWidth="0.0" />
          </children>
       </VBox>
       <VBox layoutY="142.0" prefHeight="200.0" prefWidth="571.0">
          <children>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Credit Management System" />
+               </children>
+            </HBox>
             <HBox alignment="CENTER" prefHeight="150.0" prefWidth="586.0">
                <children>
                   <ImageView fx:id="programImage1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="programImage2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="programImage3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-            </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Credit Management System" />
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="170.0">
@@ -50,12 +50,17 @@
                   <Text fx:id="program3Txt" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
                </children>
             </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="nextImageBt" mnemonicParsing="false" onAction="#nextHandler" stylesheets="@arrowstyle.css" text="next" />
+               </children>
+            </HBox>
          </children>
       </VBox>
       <VBox layoutY="14.0" prefHeight="258.0" prefWidth="174.0">
          <children>
             <TextField fx:id="searchField" onKeyReleased="#searchHandler" promptText="Search" />
-            <ListView fx:id="searchResultView" prefHeight="262.0" prefWidth="174.0" />
+            <ListView fx:id="searchResultView" onMouseClicked="#listViewHandler" prefHeight="262.0" prefWidth="174.0" />
          </children>
       </VBox>
    </children>

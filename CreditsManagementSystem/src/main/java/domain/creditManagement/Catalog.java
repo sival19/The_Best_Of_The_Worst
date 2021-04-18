@@ -34,23 +34,31 @@ public class Catalog {
     }
 
     private void fillCatalog(List<IDataPerson> personer, List<IDataProgram> programs, List<IDataRolle> roller){
-        for(IDataPerson person: personer){
-            this.personer.put(String.valueOf(person.getPersonID()), new Person(person.getNavn(),person.getFoedselsdato(),person.getNationalitet(),person.getPersonID()));
+        if(personer!= null){
+            for(IDataPerson person: personer){
+                this.personer.put(String.valueOf(person.getPersonID()), new Person(person.getNavn(),person.getFoedselsdato(),person.getNationalitet(),person.getPersonID()));
 
-        }
-
-        for(IDataProgram iDataProgram: programs){
-            Program program = new Program(iDataProgram.getProgramNavn(),iDataProgram.getProduktionsID(),iDataProgram.getUdgivelsesDato(),iDataProgram.getProgramType(),iDataProgram.getGenre(),iDataProgram.getLængde(),iDataProgram.getCredits());
-            if(iDataProgram.getImagePath()!= null) {
-                program.setImagePath(iDataProgram.getImagePath());
             }
-            this.programmer.put(String.valueOf(iDataProgram.getProduktionsID()), program);
-
         }
 
-        for(IDataRolle rolle: roller){
-            this.roller.put(String.valueOf(rolle.getRolletype()), new Rolle(rolle.getRolletype(),rolle.getRolleID()));
+        if(programs!= null){
+            for(IDataProgram iDataProgram: programs){
+                Program program = new Program(iDataProgram.getProgramNavn(),iDataProgram.getProduktionsID(),iDataProgram.getUdgivelsesDato(),iDataProgram.getProgramType(),iDataProgram.getGenre(),iDataProgram.getLængde(),iDataProgram.getCredits());
+                if(iDataProgram.getImagePath()!= null) {
+                    program.setImagePath(iDataProgram.getImagePath());
+                }
+                this.programmer.put(String.valueOf(iDataProgram.getProduktionsID()), program);
+
+            }
         }
+
+
+        if(roller!=null){
+            for(IDataRolle rolle: roller){
+                this.roller.put(String.valueOf(rolle.getRolletype()), new Rolle(rolle.getRolletype(),rolle.getRolleID()));
+            }
+        }
+
 
     }
 

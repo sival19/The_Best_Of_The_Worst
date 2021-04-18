@@ -8,6 +8,7 @@ import domain.logIn.Bruger;
 import domain.logIn.Rettighed;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class FileManager implements IFileManager {
@@ -17,10 +18,10 @@ public class FileManager implements IFileManager {
     File rolleFile;
 
     public FileManager() {
-        brugerFile = new File(FileManager.class.getResource("brugerFile.json").getFile());
-        personFile = new File(FileManager.class.getResource("personFile.json").getFile());
-        programFile = new File(FileManager.class.getResource("programFile.json").getFile());
-        rolleFile = new File(FileManager.class.getResource("rolleFile.json").getFile());
+        brugerFile = new File(FileManager.class.getResource("brugerFile.json").getPath());
+        personFile = new File(FileManager.class.getResource("personFile.json").getPath());
+        programFile = new File(FileManager.class.getResource("programFile.json").getPath());
+        rolleFile = new File(String.valueOf(FileManager.class.getResource("rolleFile.json")));
     }
 
     @Override
@@ -168,7 +169,7 @@ public class FileManager implements IFileManager {
                 iDataProgramList = objectMapper.readValue(programFile, new TypeReference<List<IDataProgram>>() {});
             }
 
-            System.out.println(iDataProgramList.size());
+         //   System.out.println(iDataProgramList.size());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -195,20 +196,20 @@ public class FileManager implements IFileManager {
     public static void main(String[] args) throws IOException {
 /*
         Scanner scanner1 = new Scanner(new File(FileManager.class.getResource("brugerFile.json").getPath()));
-        String jsonString = null;
+        String jsonString = programFile.json;
         while (scanner1.hasNext()){
             jsonString = scanner1.nextLine();
         }
         String brugernavn, String adgangskode, String email, Rettighed rettighed
-
 
 ObjectMapper objectMapper = new ObjectMapper();
         Bruger bruger = new Bruger("123dfsf","sdssdasd","fujam20@student.sdu.sdk",Rettighed.ADMINISTRATOR,1);
         Map<String, IDataBruger> brugerMap = new HashMap<>();
         brugerMap.put(bruger.getBrugernavn(),bruger);
 
-        objectMapper.writeValue(
-                new File(FileManager.class.getResource("brugerFile.json").getFile()),brugerMap);*/
+        objectMapper.writeValue(new File("brugerFile.json")
+                ,brugerMap);*/
+
  /*
 
         saveBrugertest(bruger);
@@ -217,7 +218,7 @@ ObjectMapper objectMapper = new ObjectMapper();
 
 
  objectMapper = new ObjectMapper();
-        Map<String, IDataBruger> brugerMap1 = null;
+        Map<String, IDataBruger> brugerMap1 = programFile.json;
         try {
             brugerMap1 = objectMapper.readValue(new File(FileManager.class.getResource("brugerFile.json").getFile()), new TypeReference<Map<String, IDataBruger>>() {});//objectMapper.getTypeFactory().constructMapType(HashMap.class,String.class, IDataBruger.class)
         } catch (IOException e) {
@@ -231,7 +232,7 @@ ObjectMapper objectMapper = new ObjectMapper();
         FileManager fileManager = new FileManager();
         List<IDataPerson> personList = fileManager.loadPersoner();
         System.out.println(personList);
-        IDataPerson person1 = null;
+        IDataPerson person1 = programFile.json;
         for(IDataPerson person : personList){
             if(person.getPersonID() == 5){
                 person1 = person;
@@ -286,7 +287,7 @@ ObjectMapper objectMapper = new ObjectMapper();
   ObjectMapper objectMapper = new ObjectMapper();
         List<IDataProgram> iDataProgramList = new ArrayList<>();
         objectMapper.writeValue(new FileManager().programFile,iDataProgramList);
-*/
+
 
         List<Credit> creditList = new ArrayList<>();
         creditList.add(new Credit(new Person("Kasper",new Date(),"Danmark",10),new Rolle("Producer",3),"HovedInstruktør for hele produktionen."));
@@ -296,12 +297,40 @@ ObjectMapper objectMapper = new ObjectMapper();
         programs.add(new Program("Twighlight",3,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
         programs.add(new Program("The Way of the HouseHusband",4,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
 
+        FileManager fileManager = new FileManager();
+        fileManager.saveCatalogObject(new Program("Pirates of the caribian",1,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+        fileManager.saveCatalogObject(new Program("TED",2,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+        fileManager.saveCatalogObject(new Program("Twighlight",3,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+        fileManager.saveCatalogObject(new Program("The Way of the HouseHusband",4,new Date(),ProgramType.FILM,Genre.ACTION,1.40,creditList));
+        FileManager fileManager = new FileManager();
+
+        fileManager.saveCatalogObject(new Rolle("Producer",1));
+        fileManager.saveCatalogObject(new Rolle("Skuespiller",2));
+        fileManager.saveCatalogObject(new Rolle("LydMand",3)); System.out.println(fileManager.loadRoller());
+*/
+
+     /*
+        List<Rolle> rolleList = new ArrayList<>();
+        rolleList.add(new Rolle("Producer",1));
+        rolleList.add(new Rolle("Skuespiller",2));
+        rolleList.add(new Rolle("LydMand",3));
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            objectMapper.writeValue(new FileManager().programFile,programs);
+            objectMapper.writeValue(new File("rolleFile.json"),rolleList);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
+*/
+
+        List<IDataPerson> iDataPersonList = new ArrayList<>();
+        iDataPersonList.add(new Person("Jim",new Date(),"USA",1));
+        iDataPersonList.add(new Person("Tim",new Date(),"Australia",2));
+        iDataPersonList.add(new Person("Simon",new Date(),"Danmark",3));
+        iDataPersonList.add(new Person("JernHört",new Date(),"Sweden",4));
+        new ObjectMapper().writeValue(new File("personFile.json"),iDataPersonList);
 
 
 

@@ -4,11 +4,13 @@ import Factory.CreditManagementSystemFactory;
 import Intefaces.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import persistancy.file.FileManager;
 
@@ -36,6 +38,7 @@ public class StartSideController implements Initializable {
     public Text program3Txt;
     public TextField searchField;
     public ListView searchResultView;
+    public Button nextImageBt;
     private ICreditsManagementSystem creditsManagementSystem;
     private ObservableList<ICatalogObject> observableList;
     List<ICatalogObject> searchResultList;
@@ -53,15 +56,8 @@ public class StartSideController implements Initializable {
         searchResultList = new ArrayList<>();
         observableList = FXCollections.observableArrayList();
         programs = creditsManagementSystem.getPrograms();
-        circularCount = 0;
-        try {
-            next3ProgramImages();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
+        circularCount = -1;
+        programsEmptyChecker();
     }
 
     public void searchHandler(KeyEvent keyEvent){
@@ -97,22 +93,54 @@ public class StartSideController implements Initializable {
 
     }
 
+    public void listViewHandler(MouseEvent mouseEvent){
+
+
+    }
+
 
     private void next3ProgramImages() throws URISyntaxException, MalformedURLException {
-        int circular1 = circularCount++%programs.size();
-        int circular2 = circularCount++%programs.size();
-        int circular3 = circularCount++%programs.size();
-        System.out.println(StartSideController.class.getResource(programs.get(circular1).getImagePath()).getPath());
-        System.out.println(StartSideController.class.getResource(programs.get(circular2).getImagePath()).getPath());
+        circularCount++;
+        int circular1 = circularCount%programs.size();
+        circularCount++;
+        int circular2 = circularCount%programs.size();
+        circularCount++;
+        int circular3 = circularCount%programs.size();
+
         programImage1.setImage(new Image(String.valueOf(StartSideController.class.getResource(programs.get(circular1).getImagePath()).toURI().toURL())));
         programImage2.setImage(new Image(String.valueOf(StartSideController.class.getResource(programs.get(circular2).getImagePath()).toURI().toURL())));
         programImage3.setImage(new Image(String.valueOf(StartSideController.class.getResource(programs.get(circular3).getImagePath()).toURI().toURL())));
-        program1Txt.setText(programs.get(circular1).getProgramNavn());
-        program2Txt.setText(programs.get(circular2).getProgramNavn());
-        program3Txt.setText(programs.get(circular3).getProgramNavn());
+        programImage1.setFitHeight(200); programImage1.setFitWidth(200);programImage1.setPreserveRatio(false);
+        programImage2.setFitHeight(200); programImage2.setFitWidth(200);programImage2.setPreserveRatio(false);
+        programImage3.setFitHeight(200); programImage3.setFitWidth(200);programImage3.setPreserveRatio(false);
 
+        program1Txt.setText(programs.get(circular1).getProgramNavn()); program1Txt.setX((programImage1.getX()+programImage1.getFitWidth())/2);
+        program2Txt.setText(programs.get(circular2).getProgramNavn()); program2Txt.setX((programImage2.getX()+programImage2.getFitWidth())/2);
+        program3Txt.setText(programs.get(circular3).getProgramNavn()); program3Txt.setX((programImage3.getX()+programImage3.getFitWidth())/2);
 
+    }
 
+    public void programsEmptyChecker(){
+
+        if(programs.size() != 0){
+            try {
+                next3ProgramImages();
+            } catch (URISyntaxException | MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            nextImageBt.setDisable(true);
+            nextImageBt.setStyle("-fx-background-color:transparent;");
+        }
+    }
+
+    public void nextHandler(ActionEvent actionEvent){
+        try {
+            next3ProgramImages();
+        } catch (URISyntaxException | MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
