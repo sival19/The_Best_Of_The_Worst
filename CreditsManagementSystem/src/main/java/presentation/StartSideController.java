@@ -71,6 +71,7 @@ public class StartSideController implements Initializable {
             searchResultView.setStyle("-fx-background-color: transparent");
         }
         else {
+            searchResultView.setDisable(false);
             searchResultView.setStyle("-fx-background-color: white");
             searchResultList = new ArrayList<>();
             for(IDataPerson iDataPerson: creditsManagementSystem.getPersons()){
@@ -109,9 +110,12 @@ public class StartSideController implements Initializable {
             }
             else if(iCatalogObject instanceof IDataPerson){
                 creditsManagementSystem.setPerson((IDataPerson) iCatalogObject);
+                //TODO SWITCH TO sePerson.FXML
             }
             else if(iCatalogObject instanceof IDataRolle){
                 creditsManagementSystem.setRolle((IDataRolle)iCatalogObject);
+                //TODO SWITCH TO seRolle.FXML
+
             }
         }
         else if(mouseEvent.getSource()==programImage1){
