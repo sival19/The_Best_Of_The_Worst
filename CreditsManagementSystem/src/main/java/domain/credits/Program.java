@@ -1,6 +1,7 @@
 package domain.credits;
 
 import Intefaces.IDataProgram;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javafx.scene.image.Image;
 
 import java.util.Date;
@@ -122,6 +123,7 @@ public class Program implements IDataProgram{
                 '}';
     }
 
+    @JsonIgnore
     public String getCreditListString(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Credits: ");
