@@ -21,7 +21,7 @@ public class FileManager implements IDataManager {
         brugerFile = new File(FileManager.class.getResource("brugerFile.json").getPath());
         personFile = new File(FileManager.class.getResource("personFile.json").getPath());
         programFile = new File(FileManager.class.getResource("programFile.json").getPath());
-        rolleFile = new File(String.valueOf(FileManager.class.getResource("rolleFile.json")));
+        rolleFile = new File(FileManager.class.getResource("rolleFile.json").getPath());
     }
 
     @Override
