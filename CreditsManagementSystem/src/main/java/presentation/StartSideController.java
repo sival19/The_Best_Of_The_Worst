@@ -25,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static presentation.App.loadFXML;
+
 public class StartSideController implements Initializable {
 
 
@@ -97,6 +99,8 @@ public class StartSideController implements Initializable {
 
 
     }
+
+
 
     public void catalogHandler(MouseEvent mouseEvent) throws IOException {
         CreditsController creditsController = new CreditsController();
@@ -217,9 +221,13 @@ public class StartSideController implements Initializable {
         }
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
 
+
+    public void opretBrugerHandler(ActionEvent event) {
+        try {
+            App.getStage().setScene(new Scene(loadFXML("opretBruger")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

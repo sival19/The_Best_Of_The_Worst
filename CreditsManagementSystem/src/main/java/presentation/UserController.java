@@ -2,6 +2,14 @@ package presentation;
 
 import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+
+import java.io.IOException;
+
+import static presentation.App.loadFXML;
 
 public class UserController {
 
@@ -20,4 +28,14 @@ public class UserController {
     public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed){
         return creditsManagementSystem.opretBruger(brugernavn, adgangskode, email, rettighed);
     }
+
+    public void toStartScreen(ActionEvent event) {
+        try {
+            App.getStage().setScene(new Scene(loadFXML("startSide")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
