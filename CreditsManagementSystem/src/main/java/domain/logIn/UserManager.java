@@ -59,10 +59,7 @@ public class UserManager {
 
 
     public boolean isAdmin(){
-        if (bruger.getRettighed() == Rettighed.ADMINISTRATOR)
-        return true;
-        else
-            return false;
+        return bruger.getRettighed() == Rettighed.ADMINISTRATOR;
     }
 
     public static void main(String[] args) {
