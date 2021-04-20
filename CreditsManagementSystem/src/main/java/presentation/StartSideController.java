@@ -217,6 +217,20 @@ public class StartSideController implements Initializable {
         }
     }
 
+    public void loginHandler(ActionEvent actionEvent) {
+        try {
+            if(actionEvent.getSource()==loginBt){
+                String brugernavn = brugernavnField.getText();
+                String adgangskode = adgangskodeField.getText();
+                System.out.println("Im here and ready to login " + brugernavn + " med adgangskoden: " + adgangskode);
+                //login(brugernavnField.getText(), adgangskodeField.getText());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
