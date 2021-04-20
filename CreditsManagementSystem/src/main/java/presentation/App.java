@@ -33,10 +33,7 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
+
 
     public static Scene getScene() {
         return scene;
@@ -48,6 +45,11 @@ public class App extends Application {
 
     public static Stage getStage(){
         return stage;
+    }
+
+    public static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
     }
 
 }
