@@ -57,7 +57,7 @@ public class UserManager {
         return fileManager.loadBruger(brugernavn) != null;
     }
 
-
+//if admin true else false
     public boolean isAdmin(){
         return bruger.getRettighed() == Rettighed.ADMINISTRATOR;
     }
