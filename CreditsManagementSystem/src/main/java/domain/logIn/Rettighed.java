@@ -3,10 +3,12 @@ package domain.logIn;
 public enum Rettighed {
     ADMINISTRATOR("Administrator"),
     PRODUCER("Producer"),
-    BESOEGER("Besoeger");
+    SEER("Seer");
 
     private String rettighedWord;
 
-    Rettighed(String rettighedWord){this.rettighedWord = rettighedWord;}
+    Rettighed(String rettighedWord) {
+        this.rettighedWord = rettighedWord;
+    }
     
 }

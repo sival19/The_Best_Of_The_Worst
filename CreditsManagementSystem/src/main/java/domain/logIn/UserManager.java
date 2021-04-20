@@ -1,6 +1,5 @@
 package domain.logIn;
 
-import Factory.CreditManagementSystemFactory;
 import Factory.DataManagementFactory;
 import Intefaces.IDataManager;
 
@@ -12,9 +11,9 @@ public class UserManager {
     public UserManager() {
         fileManager = DataManagementFactory.createDataManager("file");
         bruger = new Bruger();
-        bruger.setRettighed(Rettighed.BESOEGER);
-
+        bruger.setRettighed(Rettighed.SEER);
     }
+
 
     public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed){
         String result = "";
@@ -27,7 +26,7 @@ public class UserManager {
             brugerRettighed = Rettighed.PRODUCER;
         }
         if(isBruger(brugernavn)){
-            result = "Bruger eksister";
+            result = "Bruger eksisterer";
         }
 
         else if(!fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,1))){
@@ -43,13 +42,13 @@ public class UserManager {
         Bruger bruger = (Bruger) fileManager.loadBruger(brugernavn);
 
         if(bruger == null){
-            result = "bruger eksister ikke";
+            result = "Bruger eksisterer ikke";
         }
         else if (!bruger.getAdgangskode().equals(adgangskode)){
-            result = "adgangskode er forkert";
+            result = "Adgangskode er forkert";
         }
         else if (bruger.getAdgangskode().equals(adgangskode)){
-            result = "Welkommen!";
+            result = "Velkommen!";
         }
         return result;
     }
@@ -58,8 +57,12 @@ public class UserManager {
         return fileManager.loadBruger(brugernavn) != null;
     }
 
+
     public boolean isAdmin(){
-        return bruger.getRettighed() == Rettighed.ADMINISTRATOR;
+        if (bruger.getRettighed() == Rettighed.ADMINISTRATOR)
+        return true;
+        else
+            return false;
     }
 
     public static void main(String[] args) {

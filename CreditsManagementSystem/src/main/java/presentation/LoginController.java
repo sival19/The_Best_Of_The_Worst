@@ -2,16 +2,22 @@ package presentation;
 
 import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
+import javafx.fxml.Initializable;
 
-public class LoginController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginController implements Initializable {
 
     ICreditsManagementSystem creditsManagementSystem;
 
-    public void initialize(){
-        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
-    }
 
     public String login(String brugernavn, String password){
         return creditsManagementSystem.login(brugernavn,password);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
     }
 }
