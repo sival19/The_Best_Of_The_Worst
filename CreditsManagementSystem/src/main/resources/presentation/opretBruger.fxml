@@ -3,9 +3,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.UserController">
    <children>
       <Button fx:id="backToStart" layoutX="230.0" layoutY="90.0" mnemonicParsing="false" onAction="#toStartScreen" text="Tilabge" />
+      <Button fx:id="opretBt" layoutX="383.0" layoutY="181.0" mnemonicParsing="false" onAction="#brugerHandler" text="Button" />
    </children>
 </AnchorPane>

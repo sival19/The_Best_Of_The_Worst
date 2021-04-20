@@ -23,4 +23,10 @@ public interface IDataPerson extends ICatalogObject {
     public int getPersonID();
 
     public void setPersonID(int personID);
+
+    public String getImagePath();
+
+    public void setImagePath(String imagePath);
+
+
 }

@@ -118,7 +118,7 @@ public class StartSideController implements Initializable {
             }
             else if(iCatalogObject instanceof IDataRolle){
                 creditsManagementSystem.setRolle((IDataRolle)iCatalogObject);
-                //TODO SWITCH TO seRolle.FXML
+                App.getStage().setScene(new Scene(loadFXML("seRolle")));
 
             }
         }
@@ -175,13 +175,10 @@ public class StartSideController implements Initializable {
             circular1 = circularCount%programs.size();
         }
 
-        //0-1-2 3-0-1 2-3-0
-        //0-1-2 1-2-3 2-3-0
 
-
-        programImage1.setImage(new Image(String.valueOf(StartSideController.class.getResource(programs.get(circular1).getImagePath()).toURI().toURL())));
-        programImage2.setImage(new Image(String.valueOf(StartSideController.class.getResource(programs.get(circular2).getImagePath()).toURI().toURL())));
-        programImage3.setImage(new Image(String.valueOf(StartSideController.class.getResource(programs.get(circular3).getImagePath()).toURI().toURL())));
+        programImage1.setImage(new Image(StartSideController.class.getResource(programs.get(circular1).getImagePath()).toURI().toString()));
+        programImage2.setImage(new Image(StartSideController.class.getResource(programs.get(circular2).getImagePath()).toURI().toString()));
+        programImage3.setImage(new Image(StartSideController.class.getResource(programs.get(circular3).getImagePath()).toURI().toString()));
         programImage1.setFitHeight(200); programImage1.setFitWidth(200);programImage1.setPreserveRatio(false);
         programImage2.setFitHeight(200); programImage2.setFitWidth(200);programImage2.setPreserveRatio(false);
         programImage3.setFitHeight(200); programImage3.setFitWidth(200);programImage3.setPreserveRatio(false);

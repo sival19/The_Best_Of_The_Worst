@@ -33,6 +33,11 @@ public class UserManager {
             result = "Kunne ikke gemmes";
         }
 
+        else if(fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,1))){
+            result = "Kunne gemmes";
+        }
+
+        System.out.println("hello");
         return result;
 
     }

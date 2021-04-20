@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 
@@ -13,6 +14,8 @@ import static presentation.App.loadFXML;
 
 public class UserController {
 
+    public Button backToStart;
+    public Button opretBt;
     ICreditsManagementSystem creditsManagementSystem;
 
 
@@ -35,6 +38,10 @@ public class UserController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void brugerHandler(ActionEvent a){
+       //TODO IMPLEMENTER OPRETBRUGER MED GUI DATA opretBruger("helle","holle","hello","Administrator");
     }
 
 
