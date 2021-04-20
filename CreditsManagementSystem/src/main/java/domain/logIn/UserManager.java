@@ -70,7 +70,6 @@ public class UserManager {
     public static void main(String[] args) {
         UserManager userManager = new UserManager();
         userManager.opretBruger("33","33","sds","Producer");
-
     }
 
 }

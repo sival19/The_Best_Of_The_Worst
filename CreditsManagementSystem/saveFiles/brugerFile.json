@@ -1,1 +1,9 @@
-{"123dfsf":{"brugernavn":"123dfsf","adgangskode":"sdssdasd","email":"fujam20@student.sdu.sdk","rettighed":"ADMINISTRATOR","brugerID":1}}
+{
+  "123dfsf": {
+    "brugernavn": "123dfsf",
+    "adgangskode": "sdssdasd",
+    "email": "fujam20@student.sdu.sdk",
+    "rettighed": "ADMINISTRATOR",
+    "brugerID": 1
+  }
+}
