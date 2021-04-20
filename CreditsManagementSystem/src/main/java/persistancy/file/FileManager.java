@@ -11,7 +11,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-public class FileManager implements IFileManager {
+public class FileManager implements IDataManager {
     File brugerFile;
     File personFile;
     File programFile;

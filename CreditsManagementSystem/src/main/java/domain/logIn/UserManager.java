@@ -1,15 +1,16 @@
 package domain.logIn;
 
 import Factory.CreditManagementSystemFactory;
-import Intefaces.IFileManager;
+import Factory.DataManagementFactory;
+import Intefaces.IDataManager;
 
 public class UserManager {
 
     private Bruger bruger;
-    private IFileManager fileManager;
+    private IDataManager fileManager;
 
     public UserManager() {
-        fileManager = CreditManagementSystemFactory.getFileManager();
+        fileManager = DataManagementFactory.createDataManager("file");
         bruger = new Bruger();
         bruger.setRettighed(Rettighed.BESOEGER);
 

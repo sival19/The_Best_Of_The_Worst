@@ -1,19 +1,49 @@
 package persistancy.database;
 
+import Intefaces.*;
 import domain.creditManagement.CatalogObject;
 
-public class DatabaseManager {
+import java.util.List;
+
+public class DatabaseManager implements IDataManager {
 
     public DatabaseManager() {
 
     }
 
-    public void save(CatalogObject catalogObject) {
 
+    @Override
+    public IDataBruger loadBruger(String brugerNavn) {
+        return null;
     }
 
-    public void load(CatalogObject catalogObject) {
-
+    @Override
+    public boolean saveBruger(IDataBruger bruger) {
+        return false;
     }
 
+    @Override
+    public List<IDataPerson> loadPersoner() {
+        return null;
+    }
+
+    @Override
+    public List<IDataProgram> loadProgrammer() {
+        return null;
+    }
+
+    @Override
+    public List<IDataRolle> loadRoller() {
+        return null;
+    }
+
+    @Override
+    public boolean saveCatalogObject(ICatalogObject catalogObject) {
+        return false;
+    }
+
+    @Override
+    public boolean updateCatalogObject(String key, ICatalogObject catalogObject) {
+        return false;
+    }
 }

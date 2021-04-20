@@ -1,9 +1,9 @@
 package Intefaces;
 
 import java.util.List;
-import java.util.Map;
 
-public interface IFileManager {
+public interface IDataManager {
+
     IDataBruger loadBruger(String brugerNavn);
     boolean saveBruger(IDataBruger bruger);
     List<IDataPerson> loadPersoner();

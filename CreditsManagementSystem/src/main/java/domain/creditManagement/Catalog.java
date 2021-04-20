@@ -1,6 +1,7 @@
 package domain.creditManagement;
 
 import Factory.CreditManagementSystemFactory;
+import Factory.DataManagementFactory;
 import Intefaces.*;
 import domain.credits.Person;
 import domain.credits.Program;
@@ -14,13 +15,13 @@ public class Catalog {
     Map<String, Program> programmer;
     Map<String, Rolle> roller;
     Map<String, Person> personer;
-    IFileManager iFileManager;
+    IDataManager iFileManager;
 
     public Catalog() {
         personer = new HashMap<>();
         roller = new HashMap<>();
         programmer = new HashMap<>();
-        iFileManager = CreditManagementSystemFactory.getFileManager();
+        iFileManager = DataManagementFactory.createDataManager("file");
 
         List<IDataPerson> tempPers =  iFileManager.loadPersoner();
         List<IDataProgram> tempPro = iFileManager.loadProgrammer();

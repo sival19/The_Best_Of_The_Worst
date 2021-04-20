@@ -1,6 +1,7 @@
 package domain.creditManagement;
 
 import Factory.CreditManagementSystemFactory;
+import Factory.DataManagementFactory;
 import Intefaces.*;
 import domain.credits.Program;
 import domain.credits.ProgramType;
@@ -15,7 +16,7 @@ import java.util.List;
 public class CreditsManagementSystem implements ICreditsManagementSystem {
     private UserManager userManager;
     private Catalog catalog;
-    private IFileManager iFileManager;
+    private IDataManager iFileManager;
     private IDataProgram program;
     private IDataPerson person;
     private IDataRolle rolle;
@@ -24,13 +25,10 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     public CreditsManagementSystem() {
         userManager = new UserManager();
         catalog = new Catalog();
-        iFileManager = CreditManagementSystemFactory.getFileManager();
+        iFileManager = DataManagementFactory.createDataManager("file");
 
     }
 
-    public String opretCredit(String produktionsID, String rolletype, String personID, String beskrivelse) {
-        return catalog.opretCredit(personID,rolletype, produktionsID, beskrivelse);
-    }
 
     @Override
     public List<IDataProgram> getPrograms() {
@@ -77,6 +75,10 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
         person = iDataPerson;
     }
 
+    @Override
+    public String opretCredit(String produktionsID, String rolletype, String personID, String beskrivelse) {
+        return catalog.opretCredit(personID,rolletype, produktionsID, beskrivelse);
+    }
 
     public String opretPerson(String navn, String nationalitet, Date fødselsdato) {
         return null;
