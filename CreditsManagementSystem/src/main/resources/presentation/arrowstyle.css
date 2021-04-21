@@ -1,0 +1,7 @@
+.button {
+    -fx-background-image: url("arrow.jpg");
+}
+
+.button:hover {
+    -fx-background-color: ffa247;
+}
