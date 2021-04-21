@@ -1,9 +1,16 @@
 {
-  "123dfsf": {
-    "brugernavn": "123dfsf",
-    "adgangskode": "sdssdasd",
-    "email": "fujam20@student.sdu.sdk",
+  "admin": {
+    "brugernavn": "admin",
+    "adgangskode": "admin",
+    "email": "admin",
     "rettighed": "ADMINISTRATOR",
+    "brugerID": 1
+  },
+  "producer": {
+    "brugernavn": "producer",
+    "adgangskode": "producer",
+    "email": "admin",
+    "rettighed": "PRODUCER",
     "brugerID": 1
   }
 }
