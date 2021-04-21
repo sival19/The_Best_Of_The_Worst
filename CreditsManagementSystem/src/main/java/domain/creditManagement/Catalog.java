@@ -84,6 +84,9 @@ public class Catalog {
         Program program = programmer.get(produktionsID);
         Person person = personer.get(personID);
         Rolle rolle = roller.get(rolletype);
+        System.out.println(program);
+        System.out.println(person);
+        System.out.println(rolle);
 
         StringBuilder stringBuilder = new StringBuilder();
         if(program == null){
@@ -93,7 +96,7 @@ public class Catalog {
             return "Person: " + personID + "Findes ikke";
         }
         else if(rolle == null){
-            return "Rolle: " + produktionsID + " Findes ikke";        }
+            return "Rolle: " + rolletype + " Findes ikke";        }
 
         program.opretCredit(person,rolle,beskrivelse);
         programmer.replace(String.valueOf(program.getProduktionsID()),program);
