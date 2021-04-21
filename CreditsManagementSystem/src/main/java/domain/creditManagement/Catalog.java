@@ -36,8 +36,15 @@ public class Catalog {
 
     private void fillCatalog(List<IDataPerson> personer, List<IDataProgram> programs, List<IDataRolle> roller){
         if(personer!= null){
-            for(IDataPerson person: personer){
-                this.personer.put(String.valueOf(person.getPersonID()), new Person(person.getNavn(),person.getFoedselsdato(),person.getNationalitet(),person.getPersonID()));
+            for(IDataPerson iDataPerson: personer){
+                Person person = new Person(iDataPerson.getNavn(),iDataPerson.getFoedselsdato(),iDataPerson.getNationalitet(),iDataPerson.getPersonID());
+                if(iDataPerson.getImagePath()!= null) {
+                    person.setImagePath(iDataPerson.getImagePath());
+                }
+                else{
+                    person.setImagePath("defaultMovieImage.jpg");
+                }
+                this.personer.put(String.valueOf(person.getPersonID()), person);
 
             }
         }
@@ -48,15 +55,25 @@ public class Catalog {
                 if(iDataProgram.getImagePath()!= null) {
                     program.setImagePath(iDataProgram.getImagePath());
                 }
-                this.programmer.put(String.valueOf(iDataProgram.getProduktionsID()), program);
+                else{
+                    program.setImagePath("defaultMovieImage.jpg");
+                }
+                this.programmer.put(String.valueOf(program.getProduktionsID()), program);
 
             }
         }
 
 
         if(roller!=null){
-            for(IDataRolle rolle: roller){
-                this.roller.put(String.valueOf(rolle.getRolletype()), new Rolle(rolle.getRolletype(),rolle.getRolleID()));
+            for(IDataRolle iDataRolle: roller){
+                Rolle rolle = new Rolle(iDataRolle.getRolletype(),iDataRolle.getRolleID());
+                if(iDataRolle.getImagePath()!= null) {
+                    rolle.setImagePath(iDataRolle.getImagePath());
+                }
+                else{
+                    rolle.setImagePath("defaultMovieImage.jpg");
+                }
+                this.roller.put(String.valueOf(rolle.getRolletype()), rolle);
             }
         }
 
