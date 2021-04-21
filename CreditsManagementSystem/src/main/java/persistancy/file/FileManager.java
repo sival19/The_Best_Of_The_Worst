@@ -4,11 +4,8 @@ import Intefaces.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import domain.credits.*;
-import domain.logIn.Bruger;
-import domain.logIn.Rettighed;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class FileManager implements IDataManager {
@@ -18,10 +15,10 @@ public class FileManager implements IDataManager {
     File rolleFile;
 
     public FileManager() {
-        brugerFile = new File(FileManager.class.getResource("brugerFile.json").getPath());
-        personFile = new File(FileManager.class.getResource("personFile.json").getPath());
-        programFile = new File(FileManager.class.getResource("programFile.json").getPath());
-        rolleFile = new File(FileManager.class.getResource("rolleFile.json").getPath());
+        brugerFile = new File("saveFiles\\brugerFile.json");
+        personFile = new File("saveFiles\\personFile.json");
+        programFile = new File("saveFiles\\programFile.json");
+        rolleFile = new File("saveFiles\\rolleFile.json");
     }
 
     @Override
@@ -30,9 +27,7 @@ public class FileManager implements IDataManager {
         try {
             Map<String, IDataBruger> brugerMap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IDataBruger>>() {});
             brugerMap.put(iDatabruger.getBrugernavn(),iDatabruger);
-
             objectMapper.writeValue(brugerFile,brugerMap);
-
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -323,16 +318,24 @@ ObjectMapper objectMapper = new ObjectMapper();
 
 
 
-*/
 
+
+
+
+
+        FileManager fileManager = new FileManager();
+        fileManager.saveCatalogObject(new Rolle("Producer",1));
+        fileManager.saveCatalogObject(new Rolle("Skuespiller",2));
+        fileManager.saveCatalogObject(new Rolle("LydMand",3));
+
+
+*/
         List<IDataPerson> iDataPersonList = new ArrayList<>();
         iDataPersonList.add(new Person("Jim",new Date(),"USA",1));
         iDataPersonList.add(new Person("Tim",new Date(),"Australia",2));
         iDataPersonList.add(new Person("Simon",new Date(),"Danmark",3));
         iDataPersonList.add(new Person("JernHört",new Date(),"Sweden",4));
         new ObjectMapper().writeValue(new File("personFile.json"),iDataPersonList);
-
-
 
     }
 
