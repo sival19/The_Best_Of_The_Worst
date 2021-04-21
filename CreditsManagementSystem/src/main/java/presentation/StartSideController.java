@@ -60,7 +60,7 @@ public class StartSideController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
-        searchResultView.setStyle("-fx-background-color: transparent");
+        searchResultView.setVisible(false);
         searchResultList = new ArrayList<>();
         observableList = FXCollections.observableArrayList();
         programs = creditsManagementSystem.getPrograms();
@@ -71,11 +71,10 @@ public class StartSideController implements Initializable {
     public void searchHandler(KeyEvent keyEvent){
         observableList.removeAll(searchResultList);
         if(searchField.getText().equals("")) {
-            searchResultView.setStyle("-fx-background-color: transparent");
+            searchResultView.setVisible(false);
         }
         else {
-            searchResultView.setDisable(false);
-            searchResultView.setStyle("-fx-background-color: white");
+            searchResultView.setVisible(true);
             searchResultList = new ArrayList<>();
             for(IDataPerson iDataPerson: creditsManagementSystem.getPersons()){
                 if(iDataPerson.getNavn().toLowerCase().contains(searchField.getText().toLowerCase())){
