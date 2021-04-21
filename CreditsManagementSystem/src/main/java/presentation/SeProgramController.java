@@ -20,7 +20,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class seProgramController implements Initializable {
+public class SeProgramController implements Initializable {
     public Label programNavn;
     public Label programDato;
     public Label programGenre;

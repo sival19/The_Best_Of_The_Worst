@@ -16,5 +16,6 @@ public interface IDataRolle extends ICatalogObject{
     public void setRolleID(int rolleID);
 
     public String getImagePath();
+
     public void setImagePath(String imagePath);
 }
