@@ -9,4 +9,9 @@ public enum ProgramType {
     private String programTypeOrd;
 
     ProgramType(String programTypeOrd){ this.programTypeOrd = programTypeOrd;}
+
+    @Override
+    public String toString() {
+        return programTypeOrd;
+    }
 }

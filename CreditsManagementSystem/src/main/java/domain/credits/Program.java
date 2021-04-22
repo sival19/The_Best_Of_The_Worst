@@ -2,9 +2,8 @@ package domain.credits;
 
 import Intefaces.IDataProgram;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javafx.scene.image.Image;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Program implements IDataProgram{
@@ -13,7 +12,7 @@ public class Program implements IDataProgram{
 
     private int produktionsID;
 
-    private Date udgivelsesDato;
+    private LocalDate udgivelsesDato;
 
     private ProgramType programType;
 
@@ -26,7 +25,7 @@ public class Program implements IDataProgram{
     private String imagePath;
 
 
-    public Program(String programNavn, int produktionsID, Date udgivelsesDato, ProgramType programType, Genre genre, double længde, List<Credit> credits) {
+    public Program(String programNavn, int produktionsID, LocalDate udgivelsesDato, ProgramType programType, Genre genre, double længde, List<Credit> credits) {
         this.programNavn = programNavn;
         this.produktionsID = produktionsID;
         this.udgivelsesDato = udgivelsesDato;
@@ -62,11 +61,11 @@ public class Program implements IDataProgram{
         this.produktionsID = produktionsID;
     }
 
-    public Date getUdgivelsesDato() {
+    public LocalDate getUdgivelsesDato() {
         return udgivelsesDato;
     }
 
-    public void setUdgivelsesDato(Date udgivelsesDato) {
+    public void setUdgivelsesDato(LocalDate udgivelsesDato) {
         this.udgivelsesDato = udgivelsesDato;
     }
 

@@ -2,13 +2,14 @@ package presentation;
 
 import Factory.CreditManagementSystemFactory;
 import Intefaces.*;
+import javafx.animation.AnimationTimer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -46,35 +47,83 @@ public class StartSideController implements Initializable {
     public Button nextBtRight;
     public Button nextBtLeft;
     public AnchorPane anchorpane;
+    public Canvas canvasProgramImages;
+    public Button opretProgramBt;
+    GraphicsContext graphicsContext;
+    AnimationTimer animationTimer;
+    Image image1;
+    Image image2;
+    Image image3;
     private ICreditsManagementSystem creditsManagementSystem;
     private ObservableList<ICatalogObject> observableList;
     List<ICatalogObject> searchResultList;
     List<IDataProgram> programs;
     int circularCount;
-    public Button opretCredit;
 
-    public String login(String brugernavn, String password){
+    private String login(String brugernavn, String password){
         return creditsManagementSystem.login(brugernavn,password);
+    }
+
+    public void loginHandler(ActionEvent event){
+        loginTxt.setText(login(brugernavnField.getText(),adgangskodeField.getText()));
+        if(loginTxt.getText().equalsIgnoreCase("Velkommen!")){
+            try {
+                App.getStage().setScene(new Scene(loadFXML("startSide")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println("logget ind");
+        }
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
-        searchResultView.setVisible(false);
+        canvasProgramImages = new Canvas();
+        graphicsContext = canvasProgramImages.getGraphicsContext2D();
+        animationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                drawCanvas();
+            }
+        };
+        showBrugerOptions();
+        searchResultView.setStyle("-fx-background-color: transparent");
         searchResultList = new ArrayList<>();
         observableList = FXCollections.observableArrayList();
         programs = creditsManagementSystem.getPrograms();
         circularCount = -1;
         programsEmptyChecker();
+        animationTimer.start();
+    }
+
+    private void drawCanvas(){
+        graphicsContext.drawImage(image1,0,canvasProgramImages.getLayoutY(),canvasProgramImages.getWidth()/3,canvasProgramImages.getHeight());
+        graphicsContext.drawImage(image2,0,canvasProgramImages.getLayoutY(),(canvasProgramImages.getWidth()/3)*2,canvasProgramImages.getHeight());
+        graphicsContext.drawImage(image3,0,canvasProgramImages.getLayoutY(),canvasProgramImages.getWidth(),canvasProgramImages.getHeight());
+
+
+    }
+
+    private void showBrugerOptions(){
+        String brugerRettighed = creditsManagementSystem.getBrugerrettighed();
+        if(brugerRettighed.equalsIgnoreCase("Administrator")){
+            //TODO SET NODES THAT ARE FOR ADMIN TO VISIBLE
+        }
+        else if(brugerRettighed.equalsIgnoreCase("Producer")){
+            //TODO SET NODES THAT ARE FOR PRODUCER TO VISIBLE
+        }
     }
 
     public void searchHandler(KeyEvent keyEvent){
         observableList.removeAll(searchResultList);
         if(searchField.getText().equals("")) {
-            searchResultView.setVisible(false);
+            searchResultView.setStyle("-fx-background-color: transparent");
         }
         else {
-            searchResultView.setVisible(true);
+            searchResultView.setDisable(false);
+            searchResultView.setStyle("-fx-background-color: white");
             searchResultList = new ArrayList<>();
             for(IDataPerson iDataPerson: creditsManagementSystem.getPersons()){
                 if(iDataPerson.getNavn().toLowerCase().contains(searchField.getText().toLowerCase())){
@@ -152,7 +201,7 @@ public class StartSideController implements Initializable {
     }
 
 
-    private void next3ProgramImages(boolean isDirectionRight) throws URISyntaxException, MalformedURLException {
+    private void next3ProgramImages(boolean isDirectionRight) {
         int circular1;
         int circular2;
         int circular3;
@@ -176,27 +225,25 @@ public class StartSideController implements Initializable {
         }
 
 
-        programImage1.setImage(new Image(StartSideController.class.getResource(programs.get(circular1).getImagePath()).toURI().toString()));
-        programImage2.setImage(new Image(StartSideController.class.getResource(programs.get(circular2).getImagePath()).toURI().toString()));
-        programImage3.setImage(new Image(StartSideController.class.getResource(programs.get(circular3).getImagePath()).toURI().toString()));
-        programImage1.setFitHeight(200); programImage1.setFitWidth(200);programImage1.setPreserveRatio(false);
-        programImage2.setFitHeight(200); programImage2.setFitWidth(200);programImage2.setPreserveRatio(false);
-        programImage3.setFitHeight(200); programImage3.setFitWidth(200);programImage3.setPreserveRatio(false);
+        try {
+            image1 = new Image(StartSideController.class.getResource(programs.get(circular1).getImagePath()).toURI().toString());
+            image2 = new Image(StartSideController.class.getResource(programs.get(circular2).getImagePath()).toURI().toString());
+            image3 = new Image(StartSideController.class.getResource(programs.get(circular3).getImagePath()).toURI().toString());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
-        program1Txt.setText(programs.get(circular1).getProgramNavn()); program1Txt.setX((programImage1.getX()+programImage1.getFitWidth())/2);
-        program2Txt.setText(programs.get(circular2).getProgramNavn()); program2Txt.setX((programImage2.getX()+programImage2.getFitWidth())/2);
-        program3Txt.setText(programs.get(circular3).getProgramNavn()); program3Txt.setX((programImage3.getX()+programImage3.getFitWidth())/2);
+
+        program1Txt.setText(programs.get(circular1).getProgramNavn()); program1Txt.setX(((canvasProgramImages.getWidth()/3)/2));
+        program2Txt.setText(programs.get(circular2).getProgramNavn()); program2Txt.setX(((canvasProgramImages.getWidth()/3)*2)/2);
+        program3Txt.setText(programs.get(circular3).getProgramNavn()); program3Txt.setX(canvasProgramImages.getWidth()/2);
 
     }
 
     public void programsEmptyChecker(){
 
-        if(programs.size() != 0){
-            try {
-                next3ProgramImages(true);
-            } catch (URISyntaxException | MalformedURLException e) {
-                e.printStackTrace();
-            }
+        if(programs.size() > 2){
+            next3ProgramImages(true);
         }
         else{
             nextBtRight.setDisable(true);
@@ -205,18 +252,18 @@ public class StartSideController implements Initializable {
     }
 
     public void nextHandler(ActionEvent actionEvent){
-        try {
-            if(actionEvent.getSource()==nextBtRight){
-                next3ProgramImages(true);
-            }
-            else if(actionEvent.getSource()==nextBtLeft){
-                next3ProgramImages(false);
-            }
-
-        } catch (URISyntaxException | MalformedURLException e) {
-            e.printStackTrace();
+        if(actionEvent.getSource()==nextBtRight){
+            next3ProgramImages(true);
+            animationTimer.start();
         }
+        else if(actionEvent.getSource()==nextBtLeft){
+            next3ProgramImages(false);
+            animationTimer.stop();
+        }
+
     }
+
+
 
     public void opretBrugerHandler(ActionEvent event) {
         try {
@@ -226,10 +273,13 @@ public class StartSideController implements Initializable {
         }
     }
 
-    public void opretCreditHandler(ActionEvent event) {
-        try{
-            App.getStage().setScene(new Scene(loadFXML("opretCredit")));
-        } catch (IOException e){
+    public void opretCreditHandler(ActionEvent actionEvent) {
+    }
+
+    public void opretProgramHandler(ActionEvent actionEvent) {
+        try {
+            App.getStage().setScene(new Scene(loadFXML("opretProgram")));
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

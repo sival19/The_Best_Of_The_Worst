@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.opretProgramController">
+    <children>
+        <Button fx:id="opretBt" layoutX="460.0" layoutY="333.0" mnemonicParsing="false" onAction="#opretProgramHandler" text="Opret Program" />
+      <VBox layoutX="106.0" layoutY="173.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+         <children>
+              <RadioButton fx:id="dokumentarRdBt" mnemonicParsing="false" text="Dokumentar" />
+              <RadioButton fx:id="filmRdBt" mnemonicParsing="false" text="Film" />
+            <RadioButton fx:id="kortFilmRdBt" mnemonicParsing="false" text="KortFilm" />
+            <RadioButton fx:id="serieRdBt" mnemonicParsing="false" text="Serie" />
+         </children>
+      </VBox>
+      <VBox layoutX="376.0" layoutY="173.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <RadioButton fx:id="actionRdBt" mnemonicParsing="false" text="Action" />
+            <RadioButton fx:id="adventureRdBt" mnemonicParsing="false" text="Adventure" />
+            <RadioButton fx:id="comedyRdBt" mnemonicParsing="false" text="Comedy" />
+            <RadioButton fx:id="crimeRdBt" mnemonicParsing="false" text="Crime" />
+            <RadioButton fx:id="horrorRdBt" mnemonicParsing="false" text="Horror" />
+         </children>
+      </VBox>
+      <VBox layoutX="476.0" layoutY="173.0" prefHeight="143.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <RadioButton fx:id="romanceRdBt" mnemonicParsing="false" text="Romance" />
+            <RadioButton fx:id="scifiRdBt" mnemonicParsing="false" text="Sci-fi" />
+            <RadioButton fx:id="dramaRdBt" mnemonicParsing="false" text="Drama" />
+            <RadioButton fx:id="fantasyRdBt" mnemonicParsing="false" text="Fantasy" />
+            <RadioButton fx:id="thrillerRdBt" mnemonicParsing="false" text="Thriller" />
+         </children>
+      </VBox>
+        <Button fx:id="backToStart" layoutX="17.0" layoutY="10.0" mnemonicParsing="false" onAction="#toStartScreen" text="Tilbage" />
+      <VBox layoutX="146.0" layoutY="23.0" prefHeight="110.0" prefWidth="380.0" spacing="20.0">
+         <children>
+            <HBox prefHeight="42.0" prefWidth="200.0" spacing="16.0">
+               <children>
+                    <Text fx:id="programnavn" strokeType="OUTSIDE" strokeWidth="0.0" text="ProgramNavn" />
+                    <TextField fx:id="programnavnField" />
+               </children>
+            </HBox>
+            <HBox prefHeight="42.0" prefWidth="380.0" spacing="10.0">
+               <children>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Udgivelsesdato" />
+                    <TextField fx:id="yrField" maxWidth="50.0" prefHeight="26.0" prefWidth="42.0" />
+                  <TextField fx:id="monthField" prefHeight="26.0" prefWidth="42.0" />
+                  <TextField fx:id="dayField" prefHeight="26.0" prefWidth="42.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="282.0" spacing="50.0">
+               <children>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="længde" />
+                    <TextField fx:id="lengthField" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label fx:id="resultatTxt" layoutX="286.0" layoutY="165.0" text="Label" />
+    </children>
+</AnchorPane>

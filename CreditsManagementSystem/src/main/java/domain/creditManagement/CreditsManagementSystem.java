@@ -1,14 +1,15 @@
 package domain.creditManagement;
 
-import Factory.CreditManagementSystemFactory;
 import Factory.DataManagementFactory;
 import Intefaces.*;
-import domain.credits.Program;
 import domain.credits.ProgramType;
 import domain.credits.Rolle;
-import domain.logIn.Bruger;
 import domain.logIn.UserManager;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -76,6 +77,11 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     }
 
     @Override
+    public String getBrugerrettighed() {
+        return userManager.getBruger().getRettighed().toString();
+    }
+
+    @Override
     public String opretCredit(String produktionsID, String rolletype, String personID, String beskrivelse) {
         return catalog.opretCredit(personID,rolletype, produktionsID, beskrivelse);
     }
@@ -116,6 +122,16 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     @Override
     public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed) {
         return userManager.opretBruger(brugernavn, adgangskode, email, rettighed);
+    }
+
+    @Override
+    public String opretProgram(String programnavn,String yr, String mth, String day, String programtype, String genre, double længde) {
+        LocalDate localDate = LocalDate.of(Integer.parseInt(yr),Integer.parseInt(mth), Integer.parseInt(day));
+        System.out.println(localDate);
+        if(catalog.opretProgram(programnavn,localDate,programtype,genre,længde)) {
+            return "Program er oprettet";
+        }
+        return "Program er ikke oprettet";
     }
 
     @Override

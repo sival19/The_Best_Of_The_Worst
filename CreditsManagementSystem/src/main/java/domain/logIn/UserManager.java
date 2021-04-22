@@ -54,8 +54,14 @@ public class UserManager {
         }
         else if (bruger.getAdgangskode().equals(adgangskode)){
             result = "Velkommen!";
+            this.bruger = bruger;
         }
+        System.out.println(this.bruger.getRettighed());
         return result;
+    }
+
+    public Bruger getBruger() {
+        return bruger;
     }
 
     public boolean isBruger(String brugernavn) {

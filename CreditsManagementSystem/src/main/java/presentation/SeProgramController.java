@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -40,9 +39,7 @@ public class SeProgramController implements Initializable {
         programGenre.setText(iDataProgram.getGenre().toString());
         try {
             programImage.setImage(new Image(String.valueOf(StartSideController.class.getResource(iDataProgram.getImagePath()).toURI().toURL())));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
+        } catch (MalformedURLException | URISyntaxException e) {
             e.printStackTrace();
         }
         creditList.setText(iDataProgram.getCreditListString());
@@ -67,4 +64,5 @@ public class SeProgramController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
+
 }

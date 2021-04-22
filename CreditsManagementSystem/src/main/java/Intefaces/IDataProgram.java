@@ -3,7 +3,7 @@ package Intefaces;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import domain.credits.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @JsonDeserialize(as = Program.class)
@@ -16,9 +16,9 @@ public interface IDataProgram extends ICatalogObject {
 
     public void setProduktionsID(int produktionsID);
 
-    public Date getUdgivelsesDato();
+    public LocalDate getUdgivelsesDato();
 
-    public void setUdgivelsesDato(Date udgivelsesDato);
+    public void setUdgivelsesDato(LocalDate udgivelsesDato);
 
     public ProgramType getProgramType();
 

@@ -1,13 +1,10 @@
 package domain.creditManagement;
 
-import Factory.CreditManagementSystemFactory;
 import Factory.DataManagementFactory;
 import Intefaces.*;
-import domain.credits.Person;
-import domain.credits.Program;
-import domain.credits.ProgramType;
-import domain.credits.Rolle;
+import domain.credits.*;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Catalog {
@@ -121,7 +118,69 @@ public class Catalog {
 
     }
 
-    public void opretProgram(String programNavn, Date udgivelssdato, ProgramType programtype, String genre, double længde) {
+    public boolean opretProgram(String programNavn, LocalDate udgivelssdato, String programtype, String genre, double længde) {
+       ProgramType programTypetemp = null;
+        if(ProgramType.DOKUMENTAR.toString().equalsIgnoreCase(programtype)){
+            programTypetemp = ProgramType.DOKUMENTAR;
+
+        }
+        else if(ProgramType.FILM.toString().equalsIgnoreCase(programtype)){
+            programTypetemp = ProgramType.FILM;
+
+        }
+        else if(ProgramType.KORTFILM.toString().equalsIgnoreCase(programtype)){
+            programTypetemp = ProgramType.KORTFILM;
+
+        }
+        else if(ProgramType.SERIE.toString().equalsIgnoreCase(programtype)){
+            programTypetemp = ProgramType.SERIE;
+
+        }
+        Genre genretemp = null;
+        if(Genre.ACTION.toString().equalsIgnoreCase(genre)){
+            genretemp = Genre.ACTION;
+
+        }
+        else if(Genre.ADVENTURE.toString().equalsIgnoreCase(genre)){
+            genretemp = Genre.ADVENTURE;
+
+        }
+        else if(Genre.COMEDY.toString().equalsIgnoreCase(genre)){
+            genretemp = Genre.COMEDY;
+
+        }
+        else if(Genre.CRIME.toString().equalsIgnoreCase(genre)){
+            genretemp = Genre.CRIME;
+
+        }
+        else if(Genre.HORROR.toString().equalsIgnoreCase(genre)){
+            genretemp = Genre.HORROR;
+
+        }
+        else if(Genre.ROMANCE.toString().equalsIgnoreCase(genre)){
+            genretemp = Genre.ROMANCE;
+
+        }
+        else if(Genre.SCIFI.toString().equalsIgnoreCase(genre)){
+            genretemp = Genre.SCIFI;
+
+        }
+        else if(Genre.DRAMA.toString().equalsIgnoreCase(genre)){
+            genretemp = Genre.DRAMA;
+
+        }
+        else if(Genre.FANTASY.toString().equalsIgnoreCase(genre)){
+            genretemp = Genre.FANTASY;
+
+        }
+        else if(Genre.THRILLER.toString().equalsIgnoreCase(genre)){
+            genretemp = Genre.THRILLER;
+
+        }
+        Program program = new Program(programNavn, programmer.size(), udgivelssdato,programTypetemp,genretemp,længde, new ArrayList<Credit>());
+        programmer.put(String.valueOf(program.getProduktionsID()),program);
+
+        return iFileManager.saveCatalogObject(program);
 
     }
 
