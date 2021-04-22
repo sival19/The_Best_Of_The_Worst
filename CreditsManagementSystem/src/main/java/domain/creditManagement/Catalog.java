@@ -16,6 +16,7 @@ public class Catalog {
     Map<String, Rolle> roller;
     Map<String, Person> personer;
     IDataManager iFileManager;
+    int personID;
 
     public Catalog() {
         personer = new HashMap<>();
@@ -117,8 +118,24 @@ public class Catalog {
 
     }
 
-    public void opretPerson(String navn, String nationalitet, Date fødselsdato, int personID) {
+    public String opretPerson(String navn, String nationalitet, String fødselsdato, int personID) {
+        String result = "";
 
+
+        if(isPerson(personID)){
+            result = "Person eksistere";
+        }
+
+        else if(!iFileManager.saveCatalogObject(new Person(navn, fødselsdato, nationalitet, personID))){
+            result = "Kunne ikke gemmes";
+        }
+
+        else if(iFileManager.saveCatalogObject(new Person(navn, fødselsdato, nationalitet, personID))){
+            result = "Kunne gemmes";
+        }
+        System.out.println(result);
+
+        return result;
     }
 
     public void opretProgram(String programNavn, Date udgivelssdato, ProgramType programtype, String genre, double længde) {
@@ -136,6 +153,16 @@ public class Catalog {
     public void søg(String søgeord) {
 
     }
+
+    public boolean isPerson(int personID) {
+        if(iFileManager.loadPersoner().size()>= personID){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+
 
     public Person getPerson(int personID){
         return personer.get(String.valueOf(personID));
