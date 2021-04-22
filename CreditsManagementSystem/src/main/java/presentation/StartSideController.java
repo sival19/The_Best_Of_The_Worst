@@ -1,7 +1,8 @@
 package presentation;
 
-import Factory.CreditManagementSystemFactory;
+
 import Intefaces.*;
+import domain.creditManagement.CreditsManagementSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,7 +51,7 @@ public class StartSideController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
+        creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
         searchResultView.setVisible(false);
         searchResultList = new ArrayList<>();
         observableList = FXCollections.observableArrayList();
