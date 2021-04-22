@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.StartSideController">
+<AnchorPane fx:id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="764.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.StartSideController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="374.0" layoutY="14.0" prefHeight="200.0" prefWidth="218.0">
+      <VBox alignment="TOP_CENTER" layoutX="792.0" layoutY="14.0" prefHeight="200.0" prefWidth="218.0">
          <children>
             <HBox prefHeight="29.0" prefWidth="218.0">
                <children>
@@ -29,7 +29,7 @@
             <Text fx:id="loginTxt" strokeType="OUTSIDE" strokeWidth="0.0" />
          </children>
       </VBox>
-      <VBox layoutY="142.0" prefHeight="200.0" prefWidth="571.0">
+      <VBox layoutX="202.0" layoutY="287.0" prefHeight="200.0" prefWidth="571.0">
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -73,6 +73,6 @@
             <ListView fx:id="searchResultView" onMouseClicked="#catalogHandler" prefHeight="262.0" prefWidth="174.0" />
          </children>
       </VBox>
-      <Button fx:id="opretCredit" layoutX="232.0" layoutY="22.0" mnemonicParsing="false" onAction="#opretCreditHandler" text="Opret Credit" />
+      <Button fx:id="opretCredit" layoutX="928.0" layoutY="725.0" mnemonicParsing="false" onAction="#opretCreditHandler" text="Opret Credit" />
    </children>
 </AnchorPane>

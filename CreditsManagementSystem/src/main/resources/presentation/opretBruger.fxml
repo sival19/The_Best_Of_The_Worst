@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.UserController">
+<AnchorPane prefHeight="764.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.UserController">
    <children>
       <Button fx:id="backToStart" layoutX="23.0" layoutY="27.0" mnemonicParsing="false" onAction="#toStartScreen" text="Tilabge" />
       <Button fx:id="opretBt" layoutX="460.0" layoutY="333.0" mnemonicParsing="false" onAction="#brugerHandler" text="Opret Bruger" />
