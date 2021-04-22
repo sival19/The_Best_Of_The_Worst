@@ -67,12 +67,12 @@
          </children>
       </VBox>
       <Button fx:id="opretCredit" layoutX="928.0" layoutY="725.0" mnemonicParsing="false" onAction="#opretCreditHandler" text="Opret Credit" />
-      <ImageView fx:id="nextBtLeft" fitHeight="200.0" fitWidth="126.0" layoutX="38.0" layoutY="302.0" onMouseClicked="#nextHandler">
+      <ImageView fx:id="nextBtLeft" fitHeight="89.0" fitWidth="56.0" layoutX="31.0" layoutY="358.0" onMouseClicked="#nextHandler">
          <image>
             <Image url="@previous.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="nextBtRight" fitHeight="200.0" fitWidth="126.0" layoutX="865.0" layoutY="302.0" onMouseClicked="#nextHandler">
+      <ImageView fx:id="nextBtRight" fitHeight="89.0" fitWidth="56.0" layoutX="928.0" layoutY="358.0" onMouseClicked="#nextHandler">
          <image>
             <Image url="@next.png" />
          </image>

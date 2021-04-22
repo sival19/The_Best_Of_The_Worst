@@ -30,28 +30,19 @@ import static presentation.App.loadFXML;
 public class StartSideController implements Initializable {
 
 
-    public TextField brugernavnField;
+    public TextField brugernavnField, searchField;
     public PasswordField adgangskodeField;
-    public Button loginBt;
-    public Button opretBrugerBt;
     public Text loginTxt;
-    public ImageView programImage1;
-    public ImageView programImage2;
-    public ImageView programImage3;
-    public Text program1Txt;
-    public Text program2Txt;
-    public Text program3Txt;
-    public TextField searchField;
+    public ImageView programImage1, programImage2, programImage3, nextBtRight,nextBtLeft;
+    public Text program1Txt, program2Txt, program3Txt;
     public ListView<ICatalogObject> searchResultView;
-    public ImageView nextBtRight;
-    public ImageView nextBtLeft;
     public AnchorPane anchorpane;
     private ICreditsManagementSystem creditsManagementSystem;
     private ObservableList<ICatalogObject> observableList;
     List<ICatalogObject> searchResultList;
     List<IDataProgram> programs;
     int circularCount;
-    public Button opretCredit;
+    public Button opretCredit, loginBt, opretBrugerBt;
 
     public String login(String brugernavn, String password){
         return creditsManagementSystem.login(brugernavn,password);
@@ -179,9 +170,9 @@ public class StartSideController implements Initializable {
         programImage1.setImage(new Image(StartSideController.class.getResource(programs.get(circular1).getImagePath()).toURI().toString()));
         programImage2.setImage(new Image(StartSideController.class.getResource(programs.get(circular2).getImagePath()).toURI().toString()));
         programImage3.setImage(new Image(StartSideController.class.getResource(programs.get(circular3).getImagePath()).toURI().toString()));
-        programImage1.setFitHeight(200); programImage1.setFitWidth(200);programImage1.setPreserveRatio(false);
-        programImage2.setFitHeight(200); programImage2.setFitWidth(200);programImage2.setPreserveRatio(false);
-        programImage3.setFitHeight(200); programImage3.setFitWidth(200);programImage3.setPreserveRatio(false);
+        programImage1.setPreserveRatio(true);programImage1.setFitHeight(200); programImage1.setFitWidth(200);
+        programImage2.setPreserveRatio(true);programImage2.setFitHeight(200); programImage2.setFitWidth(200);
+        programImage3.setPreserveRatio(true);programImage3.setFitHeight(200); programImage3.setFitWidth(200);
 
         program1Txt.setText(programs.get(circular1).getProgramNavn()); program1Txt.setX((programImage1.getX()+programImage1.getFitWidth())/2);
         program2Txt.setText(programs.get(circular2).getProgramNavn()); program2Txt.setX((programImage2.getX()+programImage2.getFitWidth())/2);
