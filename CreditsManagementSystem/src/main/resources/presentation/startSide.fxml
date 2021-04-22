@@ -47,9 +47,9 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="170.0">
                <children>
-                  <Text fx:id="program1Txt" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="program2Txt" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  <Text fx:id="program3Txt" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <TextField fx:id="program1Txt" disable="true"/>
+                  <TextField fx:id="program2Txt" disable="true"/>
+                  <TextField fx:id="program3Txt" disable="true"/>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

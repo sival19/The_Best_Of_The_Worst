@@ -34,7 +34,7 @@ public class StartSideController implements Initializable {
     public PasswordField adgangskodeField;
     public Text loginTxt;
     public ImageView programImage1, programImage2, programImage3, nextBtRight,nextBtLeft;
-    public Text program1Txt, program2Txt, program3Txt;
+    public TextField program1Txt, program2Txt, program3Txt;
     public ListView<ICatalogObject> searchResultView;
     public AnchorPane anchorpane;
     private ICreditsManagementSystem creditsManagementSystem;
@@ -174,9 +174,9 @@ public class StartSideController implements Initializable {
         programImage2.setPreserveRatio(true);programImage2.setFitHeight(200); programImage2.setFitWidth(200);
         programImage3.setPreserveRatio(true);programImage3.setFitHeight(200); programImage3.setFitWidth(200);
 
-        program1Txt.setText(programs.get(circular1).getProgramNavn()); program1Txt.setX((programImage1.getX()+programImage1.getFitWidth())/2);
-        program2Txt.setText(programs.get(circular2).getProgramNavn()); program2Txt.setX((programImage2.getX()+programImage2.getFitWidth())/2);
-        program3Txt.setText(programs.get(circular3).getProgramNavn()); program3Txt.setX((programImage3.getX()+programImage3.getFitWidth())/2);
+        program1Txt.setText(programs.get(circular1).getProgramNavn());
+        program2Txt.setText(programs.get(circular2).getProgramNavn());
+        program3Txt.setText(programs.get(circular3).getProgramNavn());
 
     }
 
