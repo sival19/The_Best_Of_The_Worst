@@ -52,6 +52,7 @@ public class StartSideController implements Initializable {
     List<ICatalogObject> searchResultList;
     List<IDataProgram> programs;
     int circularCount;
+    public Button opretCredit;
 
     public String login(String brugernavn, String password){
         return creditsManagementSystem.login(brugernavn,password);
@@ -60,7 +61,7 @@ public class StartSideController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
-        searchResultView.setStyle("-fx-background-color: transparent");
+        searchResultView.setVisible(false);
         searchResultList = new ArrayList<>();
         observableList = FXCollections.observableArrayList();
         programs = creditsManagementSystem.getPrograms();
@@ -71,11 +72,10 @@ public class StartSideController implements Initializable {
     public void searchHandler(KeyEvent keyEvent){
         observableList.removeAll(searchResultList);
         if(searchField.getText().equals("")) {
-            searchResultView.setStyle("-fx-background-color: transparent");
+            searchResultView.setVisible(false);
         }
         else {
-            searchResultView.setDisable(false);
-            searchResultView.setStyle("-fx-background-color: white");
+            searchResultView.setVisible(true);
             searchResultList = new ArrayList<>();
             for(IDataPerson iDataPerson: creditsManagementSystem.getPersons()){
                 if(iDataPerson.getNavn().toLowerCase().contains(searchField.getText().toLowerCase())){
@@ -119,7 +119,7 @@ public class StartSideController implements Initializable {
             }
             else if(iCatalogObject instanceof IDataRolle){
                 creditsManagementSystem.setRolle((IDataRolle)iCatalogObject);
-                //TODO SWITCH TO seRolle.FXML
+                App.getStage().setScene(new Scene(loadFXML("seRolle")));
 
             }
         }
@@ -176,13 +176,10 @@ public class StartSideController implements Initializable {
             circular1 = circularCount%programs.size();
         }
 
-        //0-1-2 3-0-1 2-3-0
-        //0-1-2 1-2-3 2-3-0
 
-
-        programImage1.setImage(new Image(String.valueOf(StartSideController.class.getResource(programs.get(circular1).getImagePath()).toURI().toURL())));
-        programImage2.setImage(new Image(String.valueOf(StartSideController.class.getResource(programs.get(circular2).getImagePath()).toURI().toURL())));
-        programImage3.setImage(new Image(String.valueOf(StartSideController.class.getResource(programs.get(circular3).getImagePath()).toURI().toURL())));
+        programImage1.setImage(new Image(StartSideController.class.getResource(programs.get(circular1).getImagePath()).toURI().toString()));
+        programImage2.setImage(new Image(StartSideController.class.getResource(programs.get(circular2).getImagePath()).toURI().toString()));
+        programImage3.setImage(new Image(StartSideController.class.getResource(programs.get(circular3).getImagePath()).toURI().toString()));
         programImage1.setFitHeight(200); programImage1.setFitWidth(200);programImage1.setPreserveRatio(false);
         programImage2.setFitHeight(200); programImage2.setFitWidth(200);programImage2.setPreserveRatio(false);
         programImage3.setFitHeight(200); programImage3.setFitWidth(200);programImage3.setPreserveRatio(false);
@@ -222,6 +219,7 @@ public class StartSideController implements Initializable {
         }
     }
 
+
     public void loginHandler(ActionEvent actionEvent) {
         try {
             if(actionEvent.getSource()==loginBt){
@@ -241,11 +239,18 @@ public class StartSideController implements Initializable {
     }
 
 
-
     public void opretBrugerHandler(ActionEvent event) {
         try {
             App.getStage().setScene(new Scene(loadFXML("opretBruger")));
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void opretCreditHandler(ActionEvent event) {
+        try{
+            App.getStage().setScene(new Scene(loadFXML("opretCredit")));
+        } catch (IOException e){
             e.printStackTrace();
         }
     }
