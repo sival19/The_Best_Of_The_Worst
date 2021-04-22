@@ -1,6 +1,6 @@
 package domain.creditManagement;
 
-import Factory.CreditManagementSystemFactory;
+
 import Factory.DataManagementFactory;
 import Intefaces.*;
 import domain.credits.Person;
