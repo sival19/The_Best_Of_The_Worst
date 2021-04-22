@@ -111,16 +111,7 @@ public class Program implements IDataProgram{
 
     @Override
     public String toString() {
-        return "Program{" +
-                "programNavn='" + programNavn + '\'' +
-                ", produktionsID=" + produktionsID +
-                ", udgivelsesDato=" + udgivelsesDato +
-                ", programType=" + programType +
-                ", genre=" + genre +
-                ", længde=" + længde +
-                ", credits=" + credits +
-                ", imagePath='" + imagePath + '\'' +
-                '}';
+        return   programNavn + " " +udgivelsesDato;
     }
 
     @JsonIgnore
