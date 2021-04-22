@@ -45,13 +45,7 @@
                   <ImageView fx:id="programImage3" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#catalogHandler" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="170.0">
-               <children>
-                  <TextField fx:id="program1Txt" disable="true"/>
-                  <TextField fx:id="program2Txt" disable="true"/>
-                  <TextField fx:id="program3Txt" disable="true"/>
-               </children>
-            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="170.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
 
@@ -67,15 +61,18 @@
          </children>
       </VBox>
       <Button fx:id="opretCredit" layoutX="928.0" layoutY="725.0" mnemonicParsing="false" onAction="#opretCreditHandler" text="Opret Credit" />
-      <ImageView fx:id="nextBtLeft" fitHeight="89.0" fitWidth="56.0" layoutX="31.0" layoutY="358.0" onMouseClicked="#nextHandler">
+      <ImageView fx:id="nextBtLeft" fitHeight="89.0" fitWidth="56.0" layoutX="174.0" layoutY="358.0" onMouseClicked="#nextHandler">
          <image>
             <Image url="@previous.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="nextBtRight" fitHeight="89.0" fitWidth="56.0" layoutX="928.0" layoutY="358.0" onMouseClicked="#nextHandler">
+      <ImageView fx:id="nextBtRight" fitHeight="89.0" fitWidth="56.0" layoutX="764.0" layoutY="358.0" onMouseClicked="#nextHandler">
          <image>
             <Image url="@next.png" />
          </image>
       </ImageView>
+      <TextField fx:id="program1Txt" disable="true" layoutX="239.0" layoutY="512.0" visible="false" />
+      <TextField fx:id="program2Txt" disable="true" layoutX="416.0" layoutY="512.0" visible="false" />
+      <TextField fx:id="program3Txt" disable="true" layoutX="590.0" layoutY="512.0" visible="false" />
    </children>
 </AnchorPane>
