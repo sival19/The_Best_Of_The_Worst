@@ -115,6 +115,7 @@ public class StartSideController implements Initializable {
 
             }
         }
+        //TODO CHANGE FROM getText to react on image
         else if(mouseEvent.getSource()==programImage1){
             for(IDataProgram iDataProgram: programs){
                 if(iDataProgram.getProgramNavn().equals(program1Txt.getText())){
@@ -176,9 +177,9 @@ public class StartSideController implements Initializable {
         programImage2.setPreserveRatio(true);programImage2.setFitHeight(200); programImage2.setFitWidth(200);
         programImage3.setPreserveRatio(true);programImage3.setFitHeight(200); programImage3.setFitWidth(200);
 
-//        program1Txt.setText(programs.get(circular1).getProgramNavn());
-//        program2Txt.setText(programs.get(circular2).getProgramNavn());
-//        program3Txt.setText(programs.get(circular3).getProgramNavn());
+        program1Txt.setText(programs.get(circular1).getProgramNavn());
+        program2Txt.setText(programs.get(circular2).getProgramNavn());
+        program3Txt.setText(programs.get(circular3).getProgramNavn());
 
     }
 

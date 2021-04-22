@@ -24,7 +24,7 @@
             <HBox alignment="TOP_CENTER" prefHeight="29.0" prefWidth="218.0" spacing="50.0">
                <children>
                   <Button fx:id="loginBt" mnemonicParsing="false" onAction="#loginHandler" text="Log In" />
-                  <Button fx:id="opretBrugerBt" mnemonicParsing="false" text="Opret Bruger" />
+                  <Button fx:id="opretBrugerBt" mnemonicParsing="false" onAction="#opretBrugerHandler" text="Opret Bruger" />
                </children>
             </HBox>
             <Text fx:id="loginTxt" strokeType="OUTSIDE" strokeWidth="0.0" />
