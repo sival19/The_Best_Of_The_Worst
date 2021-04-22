@@ -16,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -217,6 +218,24 @@ public class StartSideController implements Initializable {
             }
 
         } catch (URISyntaxException | MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loginHandler(ActionEvent actionEvent) {
+        try {
+            if(actionEvent.getSource()==loginBt){
+                Alert loginInfo = new Alert (Alert.AlertType.CONFIRMATION);
+                loginInfo.setTitle("Login");
+                loginInfo.setHeaderText(null);
+                String brugernavn = brugernavnField.getText();
+                String adgangskode = adgangskodeField.getText();
+
+                loginInfo.setContentText(login(brugernavn, adgangskode));
+                loginInfo.showAndWait();
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
