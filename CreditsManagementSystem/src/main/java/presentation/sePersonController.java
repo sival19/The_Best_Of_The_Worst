@@ -21,14 +21,18 @@ import java.util.ResourceBundle;
 
 public class sePersonController implements Initializable {
 
-    ICreditsManagementSystem iCreditsManagementSystem;
     public Button backToStart;
     public Label personNavn;
     public Label personFoedselsdato;
     public Label personNationalitet;
     public ImageView personImage;
     public TextArea personTextArea;
+    ICreditsManagementSystem iCreditsManagementSystem;
 
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,14 +51,7 @@ public class sePersonController implements Initializable {
         }
     }
 
-
-
     public void backtoStartSideHandler() throws IOException {
         App.getStage().setScene(new Scene(loadFXML("startSide")));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
     }
 }

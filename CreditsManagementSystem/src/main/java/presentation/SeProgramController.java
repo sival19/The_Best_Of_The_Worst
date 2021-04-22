@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -27,14 +26,15 @@ public class SeProgramController implements Initializable {
     public ImageView programImage;
     public TextArea creditList;
     public Button backBt;
+    ICreditsManagementSystem creditsManagementSystem;
     private IDataProgram iDataProgram;
 
-    ICreditsManagementSystem creditsManagementSystem;
+    private static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
 
-
-
-
-    private void seProgram(){
+    private void seProgram() {
         programNavn.setText(iDataProgram.getProgramNavn());
         programDato.setText(iDataProgram.getUdgivelsesDato().toString());
         programGenre.setText(iDataProgram.getGenre().toString());
@@ -49,8 +49,6 @@ public class SeProgramController implements Initializable {
 
     }
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
@@ -61,10 +59,5 @@ public class SeProgramController implements Initializable {
 
     public void backtoStartSideHandler() throws IOException {
         App.getStage().setScene(new Scene(loadFXML("startSide")));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
     }
 }

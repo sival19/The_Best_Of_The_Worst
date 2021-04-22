@@ -3,8 +3,6 @@ package presentation;
 import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
@@ -19,16 +17,16 @@ public class UserController {
     ICreditsManagementSystem creditsManagementSystem;
 
 
-    public void initialize(){
+    public void initialize() {
         creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
-        if(creditsManagementSystem.isAdmin()){
+        if (creditsManagementSystem.isAdmin()) {
             //TODO SHOW ADMINISTRATOR OPTIONS ON SCREEN
-        }
-        else{
+        } else {
             //TODO HIDE ADMINISTRATOR OPTIONS ON SCREEN
         }
     }
-    public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed){
+
+    public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed) {
         return creditsManagementSystem.opretBruger(brugernavn, adgangskode, email, rettighed);
     }
 
@@ -40,9 +38,7 @@ public class UserController {
         }
     }
 
-    public void brugerHandler(ActionEvent a){
-       //TODO IMPLEMENTER OPRETBRUGER MED GUI DATA opretBruger("helle","holle","hello","Administrator");
+    public void brugerHandler(ActionEvent a) {
+        //TODO IMPLEMENTER OPRETBRUGER MED GUI DATA opretBruger("helle","holle","hello","Administrator");
     }
-
-
 }
