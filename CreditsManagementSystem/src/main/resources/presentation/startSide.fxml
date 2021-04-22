@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -53,16 +54,8 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="nextBtLeft" mnemonicParsing="false" onAction="#nextHandler" stylesheets="@arrowstyle.css" text="back" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="nextBtRight" mnemonicParsing="false" onAction="#nextHandler" stylesheets="@arrowstyle.css" text="next" />
-                     </children>
-                  </HBox>
+
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" />
                </children>
             </HBox>
          </children>
@@ -74,5 +67,15 @@
          </children>
       </VBox>
       <Button fx:id="opretCredit" layoutX="928.0" layoutY="725.0" mnemonicParsing="false" onAction="#opretCreditHandler" text="Opret Credit" />
+      <ImageView fx:id="nextBtLeft" fitHeight="200.0" fitWidth="126.0" layoutX="38.0" layoutY="302.0" onMouseClicked="#nextHandler">
+         <image>
+            <Image url="@previous.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="nextBtRight" fitHeight="200.0" fitWidth="126.0" layoutX="865.0" layoutY="302.0" onMouseClicked="#nextHandler">
+         <image>
+            <Image url="@next.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -43,8 +43,8 @@ public class StartSideController implements Initializable {
     public Text program3Txt;
     public TextField searchField;
     public ListView<ICatalogObject> searchResultView;
-    public Button nextBtRight;
-    public Button nextBtLeft;
+    public ImageView nextBtRight;
+    public ImageView nextBtLeft;
     public AnchorPane anchorpane;
     private ICreditsManagementSystem creditsManagementSystem;
     private ObservableList<ICatalogObject> observableList;
@@ -204,7 +204,7 @@ public class StartSideController implements Initializable {
         }
     }
 
-    public void nextHandler(ActionEvent actionEvent){
+    public void nextHandler(MouseEvent actionEvent){
         try {
             if(actionEvent.getSource()==nextBtRight){
                 next3ProgramImages(true);
