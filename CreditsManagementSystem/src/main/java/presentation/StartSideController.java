@@ -114,7 +114,7 @@ public class StartSideController implements Initializable {
             }
             else if(iCatalogObject instanceof IDataPerson){
                 creditsManagementSystem.setPerson((IDataPerson) iCatalogObject);
-                //TODO SWITCH TO sePerson.FXML
+                App.getStage().setScene(new Scene(loadFXML("sePerson")));
             }
             else if(iCatalogObject instanceof IDataRolle){
                 creditsManagementSystem.setRolle((IDataRolle)iCatalogObject);
