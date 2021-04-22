@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +28,7 @@ import static presentation.App.loadFXML;
 public class SeRolleController implements Initializable {
     public Label rolleNavnTxt;
     public ImageView rolleImage;
-    public TextArea creditList;
+    public Text creditList;
     ICreditsManagementSystem iCreditsManagementSystem;
     List<IDataCredit> iDataCredits;
 

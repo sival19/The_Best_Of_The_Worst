@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,14 +23,26 @@
          <children>
             <HBox prefHeight="29.0" prefWidth="218.0">
                <children>
-                  <TextField fx:id="brugernavnField" promptText="brugernavn" />
-                  <PasswordField fx:id="adgangskodeField" promptText="adgangskode" />
+                  <TextField fx:id="brugernavnField" promptText="brugernavn">
+                     <effect>
+                        <InnerShadow />
+                     </effect></TextField>
+                  <PasswordField fx:id="adgangskodeField" promptText="adgangskode">
+                     <effect>
+                        <InnerShadow />
+                     </effect></PasswordField>
                </children>
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="29.0" prefWidth="218.0" spacing="50.0">
                <children>
-                  <Button fx:id="loginBt" mnemonicParsing="false" onAction="#loginHandler" text="Log In" />
-                  <Button fx:id="opretBrugerBt" mnemonicParsing="false" onAction="#opretBrugerHandler" text="Opret Bruger" />
+                  <Button fx:id="loginBt" mnemonicParsing="false" onAction="#loginHandler" text="Log In">
+                     <effect>
+                        <InnerShadow />
+                     </effect></Button>
+                  <Button fx:id="opretBrugerBt" mnemonicParsing="false" onAction="#opretBrugerHandler" text="Opret Bruger">
+                     <effect>
+                        <InnerShadow />
+                     </effect></Button>
                </children>
             </HBox>
             <Text fx:id="loginTxt" strokeType="OUTSIDE" strokeWidth="0.0" />
@@ -61,11 +74,17 @@
       </VBox>
       <VBox layoutX="14.0" layoutY="29.0" prefHeight="258.0" prefWidth="174.0">
          <children>
-            <TextField fx:id="searchField" onKeyReleased="#searchHandler" promptText="Search" />
+            <TextField fx:id="searchField" onKeyReleased="#searchHandler" promptText="Search">
+               <effect>
+                  <InnerShadow />
+               </effect></TextField>
             <ListView fx:id="searchResultView" onMouseClicked="#catalogHandler" prefHeight="262.0" prefWidth="174.0" />
          </children>
       </VBox>
-      <Button fx:id="opretCredit" layoutX="928.0" layoutY="725.0" mnemonicParsing="false" onAction="#opretCreditHandler" text="Opret Credit" />
+      <Button fx:id="opretCredit" layoutX="6.0" layoutY="717.0" mnemonicParsing="false" onAction="#opretCreditHandler" text="Opret Credit">
+         <effect>
+            <InnerShadow />
+         </effect></Button>
       <ImageView fx:id="nextBtLeft" fitHeight="89.0" fitWidth="56.0" layoutX="258.0" layoutY="338.0" onMouseClicked="#nextHandler">
          <image>
             <Image url="@previous.png" />

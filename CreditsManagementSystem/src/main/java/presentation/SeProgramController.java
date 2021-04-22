@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
@@ -26,7 +27,7 @@ public class SeProgramController implements Initializable {
     public Label programDato;
     public Label programGenre;
     public ImageView programImage;
-    public TextArea creditList;
+    public Text creditList;
     public Button backBt;
     private IDataProgram iDataProgram;
 
