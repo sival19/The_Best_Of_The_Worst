@@ -2,7 +2,6 @@ package Intefaces;
 
 import domain.logIn.Rettighed;
 
-import java.util.Date;
 import java.util.List;
 
 public interface ICreditsManagementSystem {
@@ -10,7 +9,6 @@ public interface ICreditsManagementSystem {
     String opretBruger(String brugernavn, String adgangskode, String email, String rettigheder);
     String login(String brugernavn, String adgangskode);
     String opretCredit(String produktionsID, String rolletype, String personID, String beskrivelse);
-    String opretPerson(String navn, String nationalitet, String fødselsdato, int personID);
     List<IDataProgram> getPrograms();
     List<IDataPerson> getPersons();
     List<IDataRolle> getRoller();

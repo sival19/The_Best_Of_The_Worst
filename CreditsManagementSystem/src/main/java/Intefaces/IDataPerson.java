@@ -12,9 +12,9 @@ public interface IDataPerson extends ICatalogObject {
 
     public void setNavn(String navn);
 
-    public String getFoedselsdato();
+    public Date getFoedselsdato();
 
-    public void setFoedselsdato(String foedselsdato);
+    public void setFoedselsdato(Date foedselsdato);
 
     public String getNationalitet();
 

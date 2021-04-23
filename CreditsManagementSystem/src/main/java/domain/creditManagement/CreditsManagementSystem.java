@@ -87,8 +87,8 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
         return catalog.opretCredit(personID,rolletype, produktionsID, beskrivelse);
     }
 
-    public String opretPerson(String navn, String nationalitet, String fødselsdato, int personID) {
-        return catalog.opretPerson(navn, nationalitet, fødselsdato, personID );
+    public String opretPerson(String navn, String nationalitet, Date fødselsdato) {
+        return null;
     }
 
     public String opretRolle(String rolletype) {
