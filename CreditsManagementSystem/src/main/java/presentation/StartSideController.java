@@ -73,18 +73,6 @@ public class StartSideController implements Initializable {
         if (searchField.getText().equals("")) {
             searchResultView.setStyle("-fx-background-color: transparent");
 
-            // Nedenstående er et forsøg på at tilføje en måde hvorpå man kan søge efter person med et ID.
-//        }
-//        else if (searchField.getText().equals("[0-9]")) {
-//
-//            searchResultList = new ArrayList<>();
-//
-//            // Search for a person by ID
-//            for (IDataPerson iDataPerson : creditsManagementSystem.getPersons()) {
-//                if (iDataPerson.getPersonID() == Integer.parseInt(searchField.getText())) {
-//                    searchResultList.add(iDataPerson);
-//                }
-//            }
         } else {
             searchResultView.setDisable(false);
             searchResultView.setStyle("-fx-background-color: white");
@@ -94,6 +82,13 @@ public class StartSideController implements Initializable {
             for (IDataPerson iDataPerson : creditsManagementSystem.getPersons()) {
                 if (iDataPerson.getNavn().toLowerCase().contains(searchField.getText().toLowerCase())) {
                     searchResultList.add(iDataPerson);
+                }
+            }
+
+            // Search for a person by ID
+            for (IDataPerson iDataPerson : creditsManagementSystem.getPersons()) {
+                if (searchField.getText().equals(String.valueOf(iDataPerson.getPersonID()))) {
+                    searchResultList.add((iDataPerson));
                 }
             }
 
