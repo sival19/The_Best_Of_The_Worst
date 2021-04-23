@@ -1,6 +1,7 @@
 package presentation;
 
 
+import Factory.CreditManagementSystemFactory;
 import Intefaces.*;
 import domain.creditManagement.CreditsManagementSystem;
 import javafx.collections.FXCollections;
@@ -52,7 +53,7 @@ public class StartSideController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
+        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
         searchResultView.setVisible(false);
         searchResultList = new ArrayList<>();
         observableList = FXCollections.observableArrayList();
@@ -237,10 +238,10 @@ public class StartSideController implements Initializable {
         }
     }
 
-    public void opretCreditHandler(ActionEvent event) {
-        try {
-            App.getStage().setScene(new Scene(loadFXML("opretCredit")));
-        } catch (IOException e) {
+    public void opretHandler(ActionEvent event) {
+        try{
+            App.getStage().setScene(new Scene(loadFXML("opret")));
+        } catch (IOException e){
             e.printStackTrace();
         }
     }

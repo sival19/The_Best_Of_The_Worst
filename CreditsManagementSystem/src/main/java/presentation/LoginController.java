@@ -1,6 +1,7 @@
 package presentation;
 
 
+import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
 import domain.creditManagement.CreditsManagementSystem;
 import javafx.event.ActionEvent;
@@ -25,7 +26,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
+        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
     }
 
 }
