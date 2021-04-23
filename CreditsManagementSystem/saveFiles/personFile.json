@@ -1,7 +1,7 @@
 [
   {
     "navn": "Jim",
-    "foedselsdato": "1618936041404",
+    "foedselsdato": 1618936041404,
     "nationalitet": "USA",
     "personID": 1,
     "imagePath": null
@@ -20,4 +20,11 @@
     "personID": 3,
     "imagePath": null
   },
+  {
+    "navn": "JernHört",
+    "foedselsdato": 1618936041404,
+    "nationalitet": "Sweden",
+    "personID": 4,
+    "imagePath": null
+  }
 ]

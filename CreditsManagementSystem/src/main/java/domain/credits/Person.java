@@ -9,7 +9,7 @@ public class Person implements IDataPerson {
 
     private String navn;
 
-    private String foedselsdato;
+    private Date foedselsdato;
 
     private String nationalitet;
 
@@ -17,7 +17,7 @@ public class Person implements IDataPerson {
 
     private String imagePath;
 
-    public Person(String navn, String foedselsdato, String nationalitet, int personID) {
+    public Person(String navn, Date foedselsdato, String nationalitet, int personID) {
         this.navn = navn;
         this.foedselsdato = foedselsdato;
         this.nationalitet = nationalitet;
@@ -42,11 +42,11 @@ public class Person implements IDataPerson {
         this.navn = navn;
     }
 
-    public String getFoedselsdato() {
+    public Date getFoedselsdato() {
         return foedselsdato;
     }
 
-    public void setFoedselsdato(String foedselsdato) {
+    public void setFoedselsdato(Date foedselsdato) {
         this.foedselsdato = foedselsdato;
     }
 
