@@ -40,7 +40,7 @@ public class StartSideController implements Initializable {
     public TextField program1Txt, program2Txt, program3Txt;
     public ListView<ICatalogObject> searchResultView;
     public AnchorPane anchorpane;
-    public Button opretCredit, loginBt, opretBrugerBt;
+    public Button loginBt, opretBrugerBt;
     List<ICatalogObject> searchResultList;
     List<IDataProgram> programs;
     int circularCount;
