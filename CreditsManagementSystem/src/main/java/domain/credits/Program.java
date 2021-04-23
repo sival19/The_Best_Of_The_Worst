@@ -117,7 +117,7 @@ public class Program implements IDataProgram{
     @JsonIgnore
     public String getCreditListString(){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Credits: ");
+//        stringBuilder.append("Credits: ");
         for(Credit credit: credits){
             stringBuilder.append(credit).append("\n");
         }

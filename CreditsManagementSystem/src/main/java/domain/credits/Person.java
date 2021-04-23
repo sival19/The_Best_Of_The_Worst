@@ -68,11 +68,11 @@ public class Person implements IDataPerson {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "navn='" + navn + '\'' +
-                ", foedselsdato=" + foedselsdato +
-                ", nationalitet='" + nationalitet + '\'' +
-                ", personID=" + personID +
-                '}';
+        return
+                navn + "\n" +
+                "Født: " + foedselsdato + "\n" +
+                "Nationalitet: " + nationalitet + "\n" +
+                "PersonID: " + personID
+                ;
     }
 }

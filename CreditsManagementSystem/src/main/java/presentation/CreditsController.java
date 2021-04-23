@@ -1,9 +1,9 @@
 package presentation;
 
-import Factory.CreditManagementSystemFactory;
 import Intefaces.*;
 import domain.creditManagement.Catalog;
 import domain.creditManagement.CatalogObject;
+import domain.creditManagement.CreditsManagementSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,7 +54,7 @@ public class CreditsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
+        creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
 
     }
 

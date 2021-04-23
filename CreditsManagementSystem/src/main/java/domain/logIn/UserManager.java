@@ -53,6 +53,7 @@ public class UserManager {
             result = "Adgangskode er forkert";
         }
         else if (bruger.getAdgangskode().equals(adgangskode)){
+            this.bruger = bruger;
             result = "Velkommen!";
         }
         return result;

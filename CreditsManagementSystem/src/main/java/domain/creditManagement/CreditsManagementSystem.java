@@ -1,6 +1,5 @@
 package domain.creditManagement;
 
-import Factory.CreditManagementSystemFactory;
 import Factory.DataManagementFactory;
 import Intefaces.*;
 import domain.credits.Program;
@@ -20,9 +19,17 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     private IDataProgram program;
     private IDataPerson person;
     private IDataRolle rolle;
+    private static CreditsManagementSystem creditsManagementSystem;
+
+    public static ICreditsManagementSystem getCreditManagementSystem(){
+        if(creditsManagementSystem == null){
+            creditsManagementSystem = new CreditsManagementSystem();
+        }
+        return creditsManagementSystem;
+    }
 
 
-    public CreditsManagementSystem() {
+    private CreditsManagementSystem() {
         userManager = new UserManager();
         catalog = new Catalog();
         iFileManager = DataManagementFactory.createDataManager("file");
