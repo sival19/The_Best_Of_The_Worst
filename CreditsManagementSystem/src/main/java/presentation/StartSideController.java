@@ -43,8 +43,10 @@ public class StartSideController implements Initializable {
     List<ICatalogObject> searchResultList;
     List<IDataProgram> programs;
     int circularCount;
+    public Button opret;
     private ICreditsManagementSystem creditsManagementSystem;
     private ObservableList<ICatalogObject> observableList;
+
 
     public String login(String brugernavn, String password) {
         return creditsManagementSystem.login(brugernavn, password);
@@ -237,10 +239,12 @@ public class StartSideController implements Initializable {
         }
     }
 
-    public void opretCreditHandler(ActionEvent event) {
-        try {
-            App.getStage().setScene(new Scene(loadFXML("opretCredit")));
-        } catch (IOException e) {
+
+    public void opretHandler(ActionEvent event) {
+        try{
+            App.getStage().setScene(new Scene(loadFXML("opret")));
+        } catch (IOException e){
+
             e.printStackTrace();
         }
     }

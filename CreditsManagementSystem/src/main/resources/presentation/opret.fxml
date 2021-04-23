@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.OpretController">
+   <children>
+      <Button fx:id="tilbage" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#toStartScreen" text="Tilbage" />
+      <Button fx:id="opretCredit" layoutX="43.0" layoutY="181.0" mnemonicParsing="false" onAction="#opretCreditHandler" text="Opret credit" />
+      <Button fx:id="opretPerson" layoutX="186.0" layoutY="181.0" mnemonicParsing="false" onAction="#opretPersonHandler" text="Opret Person" />
+   </children>
+</AnchorPane>
