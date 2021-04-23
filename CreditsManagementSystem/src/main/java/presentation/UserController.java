@@ -1,5 +1,6 @@
 package presentation;
 
+import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
 import domain.creditManagement.CreditsManagementSystem;
 import domain.logIn.Rettighed;
@@ -28,7 +29,7 @@ public class UserController {
         toggleGroup = new ToggleGroup();
         admin.setToggleGroup(toggleGroup);
         producer.setToggleGroup(toggleGroup);
-        creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
+        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
         if(creditsManagementSystem.isAdmin()){
             //TODO SHOW ADMINISTRATOR OPTIONS ON SCREEN
         }

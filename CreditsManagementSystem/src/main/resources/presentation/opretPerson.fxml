@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="764.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.OpretPersonController">
+   <children>
+      <ImageView fitHeight="764.0" fitWidth="1024.0">
+         <image>
+            <Image url="@bckgrnd.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="tilbage" layoutX="14.0" layoutY="56.0" mnemonicParsing="false" onAction="#toPreviousScene" text="Tilbage">
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <Button fx:id="opretButton" layoutX="426.0" layoutY="321.0" mnemonicParsing="false" onAction="#opretPersonHandler" text="Opret Person">
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <TextField fx:id="navn" layoutX="435.0" layoutY="106.0" prefHeight="26.0" prefWidth="183.0">
+         <effect>
+            <InnerShadow />
+         </effect></TextField>
+      <TextField fx:id="nationalitet" layoutX="435.0" layoutY="160.0" prefHeight="26.0" prefWidth="200.0">
+         <effect>
+            <InnerShadow />
+         </effect></TextField>
+      <TextField fx:id="fødselsdato" layoutX="435.0" layoutY="215.0" prefHeight="26.0" prefWidth="215.0">
+         <effect>
+            <InnerShadow />
+         </effect></TextField>
+      <TextField fx:id="personID" layoutX="435.0" layoutY="272.0" prefHeight="26.0" prefWidth="82.0">
+         <effect>
+            <InnerShadow />
+         </effect></TextField>
+      <Label layoutX="376.0" layoutY="110.0" text="Navn" />
+      <Label layoutX="340.0" layoutY="211.0" text="Fødselsdato" />
+      <Label layoutX="345.0" layoutY="165.0" text="Nationalitet" />
+      <Label layoutX="353.0" layoutY="277.0" text="PersonID" />
+      <Label fx:id="label" layoutX="467.0" layoutY="359.0" prefWidth="4.0" />
+   </children>
+</AnchorPane>

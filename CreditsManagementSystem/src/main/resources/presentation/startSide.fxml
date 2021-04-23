@@ -81,7 +81,7 @@
             <ListView fx:id="searchResultView" onMouseClicked="#catalogHandler" prefHeight="262.0" prefWidth="174.0" />
          </children>
       </VBox>
-      <Button fx:id="opretCredit" layoutX="6.0" layoutY="717.0" mnemonicParsing="false" onAction="#opretCreditHandler" text="Opret Credit">
+      <Button fx:id="opret" layoutX="6.0" layoutY="717.0" mnemonicParsing="false" onAction="#opretHandler" text="Opret">
          <effect>
             <InnerShadow />
          </effect></Button>

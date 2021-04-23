@@ -1,6 +1,7 @@
 package presentation;
 
 
+import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
 import Intefaces.IDataCredit;
 import Intefaces.IDataProgram;
@@ -35,7 +36,7 @@ public class SeRolleController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iCreditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
+        iCreditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
         IDataRolle rolle = iCreditsManagementSystem.getRolle();
         iDataCredits = new ArrayList<>();
         rolleNavnTxt.setText(rolle.getRolletype());

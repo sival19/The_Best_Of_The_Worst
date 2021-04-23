@@ -21,15 +21,9 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     private IDataRolle rolle;
     private static CreditsManagementSystem creditsManagementSystem;
 
-    public static ICreditsManagementSystem getCreditManagementSystem(){
-        if(creditsManagementSystem == null){
-            creditsManagementSystem = new CreditsManagementSystem();
-        }
-        return creditsManagementSystem;
-    }
 
 
-    private CreditsManagementSystem() {
+    public CreditsManagementSystem() {
         userManager = new UserManager();
         catalog = new Catalog();
         iFileManager = DataManagementFactory.createDataManager("file");
@@ -87,8 +81,8 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
         return catalog.opretCredit(personID,rolletype, produktionsID, beskrivelse);
     }
 
-    public String opretPerson(String navn, String nationalitet, Date fødselsdato) {
-        return null;
+    public String opretPerson(String navn, String nationalitet, String fødselsdato, int personID) {
+        return catalog.opretPerson(navn, nationalitet, fødselsdato, personID );
     }
 
     public String opretRolle(String rolletype) {
