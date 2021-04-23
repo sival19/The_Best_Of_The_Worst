@@ -1,11 +1,10 @@
 package presentation;
 
-
+import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
 import Intefaces.IDataCredit;
 import Intefaces.IDataProgram;
 import Intefaces.IDataRolle;
-import domain.creditManagement.CreditsManagementSystem;
 import domain.credits.Rolle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -14,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,14 +26,14 @@ import static presentation.App.loadFXML;
 public class SeRolleController implements Initializable {
     public Label rolleNavnTxt;
     public ImageView rolleImage;
-    public Text creditList;
+    public TextArea creditList;
     ICreditsManagementSystem iCreditsManagementSystem;
     List<IDataCredit> iDataCredits;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        iCreditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
+        iCreditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
         IDataRolle rolle = iCreditsManagementSystem.getRolle();
         iDataCredits = new ArrayList<>();
         rolleNavnTxt.setText(rolle.getRolletype());

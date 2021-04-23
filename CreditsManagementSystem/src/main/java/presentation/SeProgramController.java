@@ -1,9 +1,8 @@
 package presentation;
 
-
+import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
 import Intefaces.IDataProgram;
-import domain.creditManagement.CreditsManagementSystem;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -13,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
@@ -27,7 +25,7 @@ public class SeProgramController implements Initializable {
     public Label programDato;
     public Label programGenre;
     public ImageView programImage;
-    public Text creditList;
+    public TextArea creditList;
     public Button backBt;
     private IDataProgram iDataProgram;
 
@@ -55,7 +53,7 @@ public class SeProgramController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
+        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
         iDataProgram = creditsManagementSystem.getProgram();
         seProgram();
 

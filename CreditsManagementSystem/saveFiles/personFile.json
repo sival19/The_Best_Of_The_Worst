@@ -1,30 +1,37 @@
 [
   {
     "navn": "Jim",
-    "foedselsdato": 1618936041404,
+    "foedselsdato": "1618936041404",
     "nationalitet": "USA",
     "personID": 1,
     "imagePath": null
   },
   {
     "navn": "Tim",
-    "foedselsdato": 1618936041404,
+    "foedselsdato": "1618936041404",
     "nationalitet": "Australia",
     "personID": 2,
     "imagePath": null
   },
   {
     "navn": "Simon",
-    "foedselsdato": 1618936041404,
+    "foedselsdato": "1618936041404",
     "nationalitet": "Danmark",
     "personID": 3,
     "imagePath": null
   },
   {
     "navn": "JernHört",
-    "foedselsdato": 1618936041404,
+    "foedselsdato": "1618936041404",
     "nationalitet": "Sweden",
     "personID": 4,
+    "imagePath": null
+  },
+  {
+    "navn": "Jeppe",
+    "foedselsdato": "13-04-2000",
+    "nationalitet": "Danish",
+    "personID": 5,
     "imagePath": null
   }
 ]

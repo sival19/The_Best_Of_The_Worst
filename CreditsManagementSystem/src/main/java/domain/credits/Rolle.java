@@ -45,7 +45,9 @@ public class Rolle implements IDataRolle {
 
     @Override
     public String toString() {
-        return   rolletype + "\n" +
-                "rolleID: " + rolleID;
+        return "Rolle{" +
+                "rolletype='" + rolletype + '\'' +
+                ", rolleID=" + rolleID +
+                '}';
     }
 }
