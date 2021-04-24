@@ -5,8 +5,6 @@ import Intefaces.ICreditsManagementSystem;
 import domain.creditManagement.CreditsManagementSystem;
 import domain.logIn.Rettighed;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
@@ -25,19 +23,20 @@ public class UserController {
     String rights;
 
 
+
     public void initialize(){
         toggleGroup = new ToggleGroup();
         admin.setToggleGroup(toggleGroup);
         producer.setToggleGroup(toggleGroup);
         creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
-        if(creditsManagementSystem.isAdmin()){
+        if (creditsManagementSystem.isAdmin()) {
             //TODO SHOW ADMINISTRATOR OPTIONS ON SCREEN
-        }
-        else{
+        } else {
             //TODO HIDE ADMINISTRATOR OPTIONS ON SCREEN
         }
     }
-    public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed){
+
+    public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed) {
         return creditsManagementSystem.opretBruger(brugernavn, adgangskode, email, rettighed);
     }
 
@@ -48,6 +47,7 @@ public class UserController {
             e.printStackTrace();
         }
     }
+
 
     public void brugerHandler(ActionEvent event){
         rights = "";
@@ -62,6 +62,4 @@ public class UserController {
         System.out.println(opretBruger(username.getText(), password.getText(), eMail.getText(), rights));
        //TODO IMPLEMENTER OPRETBRUGER MED GUI DATA opretBruger("helle","holle","hello","Administrator");
     }
-
-
 }

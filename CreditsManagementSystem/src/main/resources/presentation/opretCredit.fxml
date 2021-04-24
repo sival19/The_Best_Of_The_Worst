@@ -28,10 +28,6 @@
          <effect>
             <InnerShadow />
          </effect></TextField>
-      <TextField fx:id="produktionsID" layoutX="521.0" layoutY="118.0" prefHeight="26.0" prefWidth="40.0">
-         <effect>
-            <InnerShadow />
-         </effect></TextField>
       <TextArea fx:id="beskrivelse" layoutX="660.0" layoutY="144.0" prefHeight="200.0" prefWidth="200.0">
          <effect>
             <InnerShadow />
@@ -42,7 +38,7 @@
          </effect></Button>
       <Label layoutX="465.0" layoutY="163.0" text="PersonID" />
       <Label layoutX="439.0" layoutY="209.0" text="Rolle type" />
-      <Label layoutX="436.0" layoutY="123.0" text="ProduktionsID" />
       <Label layoutX="660.0" layoutY="115.0" text="Beskrivelse" />
+      <Label fx:id="label" layoutX="527.0" layoutY="319.0" />
    </children>
 </AnchorPane>

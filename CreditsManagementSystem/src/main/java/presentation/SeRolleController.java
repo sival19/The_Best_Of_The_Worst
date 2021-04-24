@@ -6,8 +6,7 @@ import Intefaces.ICreditsManagementSystem;
 import Intefaces.IDataCredit;
 import Intefaces.IDataProgram;
 import Intefaces.IDataRolle;
-import domain.creditManagement.CreditsManagementSystem;
-import domain.credits.Rolle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -17,13 +16,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import static presentation.App.loadFXML;
 
 public class SeRolleController implements Initializable {
@@ -40,12 +39,12 @@ public class SeRolleController implements Initializable {
         IDataRolle rolle = iCreditsManagementSystem.getRolle();
         iDataCredits = new ArrayList<>();
         rolleNavnTxt.setText(rolle.getRolletype());
-        for (IDataProgram iDataProgram: iCreditsManagementSystem.getPrograms()){
-           for (IDataCredit iDataCredit : iDataProgram.getCredits()){
-               if(iDataCredit.getRolle().getRolletype().equalsIgnoreCase(rolle.getRolletype())){
-                   iDataCredits.add(iDataCredit);
-               }
-           }
+        for (IDataProgram iDataProgram : iCreditsManagementSystem.getPrograms()) {
+            for (IDataCredit iDataCredit : iDataProgram.getCredits()) {
+                if (iDataCredit.getRolle().getRolletype().equalsIgnoreCase(rolle.getRolletype())) {
+                    iDataCredits.add(iDataCredit);
+                }
+            }
         }
 
         creditList.setText(iDataCredits.toString());

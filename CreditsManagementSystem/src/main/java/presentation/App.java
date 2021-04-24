@@ -51,5 +51,4 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
-
 }
