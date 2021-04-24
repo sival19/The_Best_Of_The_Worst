@@ -28,7 +28,7 @@ public class OpretPersonController {
 
     public void toPreviousScene(ActionEvent event) {
         try {
-            App.getStage().setScene(new Scene(loadFXML("opret")));
+            App.getStage().setScene(new Scene(loadFXML("minSide")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -40,10 +40,10 @@ public class OpretPersonController {
 
     @FXML
     void opretPersonHandler(ActionEvent event){
-        if(navn.getText().equals("")|| personID.getText().equals("")||nationalitet.getText().equals("")||fødselsdato.getText().equals("")){
+        if(navn.getText().equals("")|| nationalitet.getText().equals("")||fødselsdato.getText().equals("")){
             label.setText("udfyld felterne");
         } else{
-            String returnAnswer = creditsManagementSystem.opretPerson(navn.getText(), nationalitet.getText(), fødselsdato.getText(), Integer.parseInt(personID.getText()));
+            String returnAnswer = creditsManagementSystem.opretPerson(navn.getText(), nationalitet.getText(), fødselsdato.getText());
         }
     }
 

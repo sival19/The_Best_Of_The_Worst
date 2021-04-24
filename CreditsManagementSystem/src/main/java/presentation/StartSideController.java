@@ -41,6 +41,8 @@ public class StartSideController implements Initializable {
     public ListView<ICatalogObject> searchResultView;
     public AnchorPane anchorpane;
     public Button opretCredit, loginBt, opretBrugerBt;
+    public Button opret;
+    public Button minSideBt;
     List<ICatalogObject> searchResultList;
     List<IDataProgram> programs;
     int circularCount;
@@ -59,7 +61,12 @@ public class StartSideController implements Initializable {
         observableList = FXCollections.observableArrayList();
         programs = creditsManagementSystem.getPrograms();
         circularCount = -1;
+        showBrugerOptions();
         programsEmptyChecker();
+    }
+
+    void showBrugerOptions(){
+        minSideBt.setVisible(creditsManagementSystem.isAdmin() || creditsManagementSystem.isProducer());
     }
 
     public void searchHandler(KeyEvent keyEvent) {
@@ -219,8 +226,11 @@ public class StartSideController implements Initializable {
                 loginInfo.setHeaderText(null);
                 String brugernavn = brugernavnField.getText();
                 String adgangskode = adgangskodeField.getText();
-
-                loginInfo.setContentText(login(brugernavn, adgangskode));
+                String resultText = login(brugernavn, adgangskode);
+                if(resultText.equals("Velkommen!")){
+                    App.getStage().setScene(new Scene(loadFXML("startSide")));
+                }
+                loginInfo.setContentText(resultText);
                 loginInfo.showAndWait();
             }
 
@@ -241,6 +251,15 @@ public class StartSideController implements Initializable {
     public void opretHandler(ActionEvent event) {
         try{
             App.getStage().setScene(new Scene(loadFXML("opret")));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void minSideHandler(ActionEvent actionEvent) {
+
+        try{
+            App.getStage().setScene(new Scene(loadFXML("minSide")));
         } catch (IOException e){
             e.printStackTrace();
         }

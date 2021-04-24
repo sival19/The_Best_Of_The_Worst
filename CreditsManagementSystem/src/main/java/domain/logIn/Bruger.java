@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Bruger implements IDataBruger{
 
@@ -17,6 +18,8 @@ public class Bruger implements IDataBruger{
     private Rettighed rettighed;
 
     private int brugerID;
+
+    private List<Integer> produktioner;
 
     public Bruger(String brugernavn, String adgangskode, String email, Rettighed rettighed, int brugerID) {
         this.brugernavn = brugernavn;

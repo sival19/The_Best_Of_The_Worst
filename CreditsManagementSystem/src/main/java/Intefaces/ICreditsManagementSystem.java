@@ -6,13 +6,16 @@ import java.util.List;
 
 public interface ICreditsManagementSystem {
     boolean isAdmin();
+    boolean isProducer();
+    IDataBruger getBruger();
     String opretBruger(String brugernavn, String adgangskode, String email, String rettigheder);
     String login(String brugernavn, String adgangskode);
     String opretCredit(String produktionsID, String rolletype, String personID, String beskrivelse);
-    String opretPerson(String navn, String nationalitet, String fødselsdato, int personID);
+    String opretPerson(String navn, String nationalitet, String fødselsdato);
     List<IDataProgram> getPrograms();
     List<IDataPerson> getPersons();
     List<IDataRolle> getRoller();
+
 
     IDataProgram getProgram();
     IDataPerson getPerson();

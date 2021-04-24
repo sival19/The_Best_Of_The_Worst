@@ -98,5 +98,10 @@
       <TextField fx:id="program1Txt" disable="true" layoutX="239.0" layoutY="512.0" visible="false" />
       <TextField fx:id="program2Txt" disable="true" layoutX="416.0" layoutY="512.0" visible="false" />
       <TextField fx:id="program3Txt" disable="true" layoutX="590.0" layoutY="512.0" visible="false" />
+      <Button fx:id="minSideBt" layoutX="280.0" layoutY="1.0" mnemonicParsing="false" onAction="#minSideHandler" text="Min Side">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

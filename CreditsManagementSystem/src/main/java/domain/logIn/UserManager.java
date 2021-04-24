@@ -67,6 +67,13 @@ public class UserManager {
     public boolean isAdmin(){
         return bruger.getRettighed() == Rettighed.ADMINISTRATOR;
     }
+    public boolean isProducer(){
+        return bruger.getRettighed() == Rettighed.PRODUCER;
+    }
+
+    public Bruger getBruger() {
+        return bruger;
+    }
 
     public static void main(String[] args) {
         UserManager userManager = new UserManager();

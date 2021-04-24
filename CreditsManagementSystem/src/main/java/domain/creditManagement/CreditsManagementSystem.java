@@ -81,8 +81,8 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
         return catalog.opretCredit(personID,rolletype, produktionsID, beskrivelse);
     }
 
-    public String opretPerson(String navn, String nationalitet, String fødselsdato, int personID) {
-        return catalog.opretPerson(navn, nationalitet, fødselsdato, personID );
+    public String opretPerson(String navn, String nationalitet, String fødselsdato) {
+        return catalog.opretPerson(navn, nationalitet, fødselsdato);
     }
 
     public String opretRolle(String rolletype) {
@@ -113,6 +113,16 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     public boolean isAdmin() {
         return userManager.isAdmin();
     }
+    @Override
+    public boolean isProducer() {
+        return userManager.isProducer();
+    }
+
+    @Override
+    public IDataBruger getBruger() {
+        return userManager.getBruger();
+    }
+
 
     @Override
     public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed) {

@@ -117,20 +117,19 @@ public class Catalog {
 
     }
 
-    public String opretPerson(String navn, String nationalitet, String fødselsdato, int personID) {
+    public String opretPerson(String navn, String nationalitet, String fødselsdato) {
         String result = "";
+        System.out.println(personer.size()+1);
+        Person person = new Person(navn, fødselsdato, nationalitet, personer.size()+1);
+        boolean saveSucces= iFileManager.saveCatalogObject(person);
 
-
-        if(isPerson(personID)){
-            result = "Person eksistere";
-        }
-
-        else if(!iFileManager.saveCatalogObject(new Person(navn, fødselsdato, nationalitet, personID))){
+        if(!saveSucces){
             result = "Kunne ikke gemmes";
         }
 
-        else if(iFileManager.saveCatalogObject(new Person(navn, fødselsdato, nationalitet, personID))){
+        else if(saveSucces){
             result = "Kunne gemmes";
+            personer.put(String.valueOf(person.getPersonID()),person);
         }
         System.out.println(result);
 
