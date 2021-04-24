@@ -32,7 +32,6 @@ public class CreditsController implements Initializable {
     public Label label;
     public TextField personID;
     public TextField rolletype;
-    public TextField produktionsID;
     public TextArea beskrivelse;
 
     private IDataPerson iDataPerson;
@@ -43,11 +42,11 @@ public class CreditsController implements Initializable {
 
     @FXML
     void opretCreditHandler(ActionEvent actionEvent){
-        if(personID.getText().equals("")|| produktionsID.getText().equals("") || rolletype.getText().equals("") || beskrivelse.getText().equals("")){
+        if(personID.getText().equals("") || rolletype.getText().equals("") || beskrivelse.getText().equals("")){
             label.setText("udfyld felterne");
         }
         else{
-            String returnAnswer = creditsManagementSystem.opretCredit(produktionsID.getText(),rolletype.getText(),personID.getText(),beskrivelse.getText());
+            String returnAnswer = creditsManagementSystem.opretCredit(String.valueOf(creditsManagementSystem.getProgram().getProduktionsID()),rolletype.getText(),personID.getText(),beskrivelse.getText());
             label.setText(returnAnswer);
         }
 
