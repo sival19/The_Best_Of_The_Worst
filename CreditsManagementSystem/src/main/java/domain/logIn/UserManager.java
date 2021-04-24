@@ -53,9 +53,16 @@ public class UserManager {
             result = "Adgangskode er forkert";
         }
         else if (bruger.getAdgangskode().equals(adgangskode)){
+            this.bruger = bruger;
             result = "Velkommen!";
+            this.bruger = bruger;
         }
+        System.out.println(this.bruger.getRettighed());
         return result;
+    }
+
+    public Bruger getBruger() {
+        return bruger;
     }
 
     public boolean isBruger(String brugernavn) {
@@ -66,11 +73,15 @@ public class UserManager {
     public boolean isAdmin(){
         return bruger.getRettighed() == Rettighed.ADMINISTRATOR;
     }
+    public boolean isProducer(){
+        return bruger.getRettighed() == Rettighed.PRODUCER;
+    }
+
+
 
     public static void main(String[] args) {
         UserManager userManager = new UserManager();
         userManager.opretBruger("33","33","sds","Producer");
-
     }
 
 }

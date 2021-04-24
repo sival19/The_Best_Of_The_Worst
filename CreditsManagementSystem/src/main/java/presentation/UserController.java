@@ -2,9 +2,11 @@ package presentation;
 
 import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
+import domain.creditManagement.CreditsManagementSystem;
+import domain.logIn.Rettighed;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
@@ -14,10 +16,18 @@ public class UserController {
 
     public Button backToStart;
     public Button opretBt;
+    public TextField username, password, eMail;
+    public RadioButton admin, producer;
     ICreditsManagementSystem creditsManagementSystem;
+    ToggleGroup toggleGroup;
+    String rights;
 
 
-    public void initialize() {
+
+    public void initialize(){
+        toggleGroup = new ToggleGroup();
+        admin.setToggleGroup(toggleGroup);
+        producer.setToggleGroup(toggleGroup);
         creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
         if (creditsManagementSystem.isAdmin()) {
             //TODO SHOW ADMINISTRATOR OPTIONS ON SCREEN
@@ -38,7 +48,18 @@ public class UserController {
         }
     }
 
-    public void brugerHandler(ActionEvent a) {
-        //TODO IMPLEMENTER OPRETBRUGER MED GUI DATA opretBruger("helle","holle","hello","Administrator");
+
+    public void brugerHandler(ActionEvent event){
+        rights = "";
+
+        //eventuelt lave rettighed om til Enum f eks: a = Rettighed.ADMINISTRATOR
+
+        if(admin.isSelected()){
+            rights = "Administrator";
+        } else if(producer.isSelected())  {
+            rights = "Producer";
+        }
+        System.out.println(opretBruger(username.getText(), password.getText(), eMail.getText(), rights));
+       //TODO IMPLEMENTER OPRETBRUGER MED GUI DATA opretBruger("helle","holle","hello","Administrator");
     }
 }

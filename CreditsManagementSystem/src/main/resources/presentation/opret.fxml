@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="764.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.OpretController">
+   <children>
+      <ImageView fitHeight="764.0" fitWidth="1024.0">
+         <image>
+            <Image url="@bckgrnd.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="tilbage" layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onAction="#toStartScreen" text="Tilbage">
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <Button fx:id="opretCredit" layoutX="29.0" layoutY="144.0" mnemonicParsing="false" onAction="#opretCreditHandler" text="Opret credit">
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+      <Button fx:id="opretPerson" layoutX="26.0" layoutY="103.0" mnemonicParsing="false" onAction="#opretPersonHandler" text="Opret Person">
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+   </children>
+</AnchorPane>

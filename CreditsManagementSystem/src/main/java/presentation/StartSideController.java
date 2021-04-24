@@ -1,7 +1,9 @@
 package presentation;
 
+
 import Factory.CreditManagementSystemFactory;
 import Intefaces.*;
+import domain.creditManagement.CreditsManagementSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -31,22 +34,16 @@ import static presentation.App.loadFXML;
 public class StartSideController implements Initializable {
 
 
-    public TextField brugernavnField;
+    public TextField brugernavnField, searchField;
     public PasswordField adgangskodeField;
-    public Button loginBt;
-    public Button opretBrugerBt;
     public Text loginTxt;
-    public ImageView programImage1;
-    public ImageView programImage2;
-    public ImageView programImage3;
-    public Text program1Txt;
-    public Text program2Txt;
-    public Text program3Txt;
-    public TextField searchField;
+    public ImageView programImage1, programImage2, programImage3, nextBtRight, nextBtLeft;
+    public TextField program1Txt, program2Txt, program3Txt;
     public ListView<ICatalogObject> searchResultView;
-    public Button nextBtRight;
-    public Button nextBtLeft;
     public AnchorPane anchorpane;
+    public Button opretCredit, loginBt, opretBrugerBt;
+    public Button opret;
+    public Button minSideBt;
     List<ICatalogObject> searchResultList;
     List<IDataProgram> programs;
     int circularCount;
@@ -60,25 +57,39 @@ public class StartSideController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
-        searchResultView.setStyle("-fx-background-color: transparent");
+        searchResultView.setVisible(false);
         searchResultList = new ArrayList<>();
         observableList = FXCollections.observableArrayList();
         programs = creditsManagementSystem.getPrograms();
         circularCount = -1;
+        showBrugerOptions();
         programsEmptyChecker();
+    }
+
+
+//    public void searchHandler(KeyEvent keyEvent) {
+//        observableList.removeAll(searchResultList);
+//        if (searchField.getText().equals("")) {
+//            searchResultView.setStyle("-fx-background-color: transparent");
+//
+//        } else {
+//            searchResultView.setDisable(false);
+//            searchResultView.setStyle("-fx-background-color: white");
+//            searchResultList = new ArrayList<>();
+
+            // Search for a person by name
+
+    void showBrugerOptions(){
+        minSideBt.setVisible(creditsManagementSystem.isAdmin() || creditsManagementSystem.isProducer());
     }
 
     public void searchHandler(KeyEvent keyEvent) {
         observableList.removeAll(searchResultList);
         if (searchField.getText().equals("")) {
-            searchResultView.setStyle("-fx-background-color: transparent");
-
+            searchResultView.setVisible(false);
         } else {
-            searchResultView.setDisable(false);
-            searchResultView.setStyle("-fx-background-color: white");
+            searchResultView.setVisible(true);
             searchResultList = new ArrayList<>();
-
-            // Search for a person by name
             for (IDataPerson iDataPerson : creditsManagementSystem.getPersons()) {
                 if (iDataPerson.getNavn().toLowerCase().contains(searchField.getText().toLowerCase())) {
                     searchResultList.add(iDataPerson);
@@ -121,13 +132,21 @@ public class StartSideController implements Initializable {
 
             } else if (iCatalogObject instanceof IDataPerson) {
                 creditsManagementSystem.setPerson((IDataPerson) iCatalogObject);
+
                 App.getStage().setScene(new Scene(loadFXML("sePerson")));
+
+                //TODO SWITCH TO sePerson.FXML
             } else if (iCatalogObject instanceof IDataRolle) {
                 creditsManagementSystem.setRolle((IDataRolle) iCatalogObject);
                 App.getStage().setScene(new Scene(loadFXML("seRolle")));
 
             }
+
         } else if (mouseEvent.getSource() == programImage1) {
+        }
+        //TODO CHANGE FROM getText to react on image
+        else if (mouseEvent.getSource() == programImage1) {
+
             for (IDataProgram iDataProgram : programs) {
                 if (iDataProgram.getProgramNavn().equals(program1Txt.getText())) {
                     creditsManagementSystem.setProgram(iDataProgram);
@@ -181,22 +200,19 @@ public class StartSideController implements Initializable {
         programImage1.setImage(new Image(StartSideController.class.getResource(programs.get(circular1).getImagePath()).toURI().toString()));
         programImage2.setImage(new Image(StartSideController.class.getResource(programs.get(circular2).getImagePath()).toURI().toString()));
         programImage3.setImage(new Image(StartSideController.class.getResource(programs.get(circular3).getImagePath()).toURI().toString()));
+        programImage1.setPreserveRatio(true);
         programImage1.setFitHeight(200);
         programImage1.setFitWidth(200);
-        programImage1.setPreserveRatio(false);
+        programImage2.setPreserveRatio(true);
         programImage2.setFitHeight(200);
         programImage2.setFitWidth(200);
-        programImage2.setPreserveRatio(false);
+        programImage3.setPreserveRatio(true);
         programImage3.setFitHeight(200);
         programImage3.setFitWidth(200);
-        programImage3.setPreserveRatio(false);
 
         program1Txt.setText(programs.get(circular1).getProgramNavn());
-        program1Txt.setX((programImage1.getX() + programImage1.getFitWidth()) / 2);
         program2Txt.setText(programs.get(circular2).getProgramNavn());
-        program2Txt.setX((programImage2.getX() + programImage2.getFitWidth()) / 2);
         program3Txt.setText(programs.get(circular3).getProgramNavn());
-        program3Txt.setX((programImage3.getX() + programImage3.getFitWidth()) / 2);
 
     }
 
@@ -214,7 +230,8 @@ public class StartSideController implements Initializable {
         }
     }
 
-    public void nextHandler(ActionEvent actionEvent) {
+
+    public void nextHandler(MouseEvent actionEvent) {
         try {
             if (actionEvent.getSource() == nextBtRight) {
                 next3ProgramImages(true);
@@ -228,10 +245,51 @@ public class StartSideController implements Initializable {
     }
 
 
+
+    public void loginHandler(ActionEvent actionEvent) {
+        try {
+            if (actionEvent.getSource() == loginBt) {
+                Alert loginInfo = new Alert(Alert.AlertType.CONFIRMATION);
+                loginInfo.setTitle("Login");
+                loginInfo.setHeaderText(null);
+                String brugernavn = brugernavnField.getText();
+                String adgangskode = adgangskodeField.getText();
+                String resultText = login(brugernavn, adgangskode);
+                if(resultText.equals("Velkommen!")){
+                    App.getStage().setScene(new Scene(loadFXML("startSide")));
+                }
+                loginInfo.setContentText(resultText);
+                loginInfo.showAndWait();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public void opretBrugerHandler(ActionEvent event) {
         try {
             App.getStage().setScene(new Scene(loadFXML("opretBruger")));
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void opretHandler(ActionEvent event) {
+        try{
+            App.getStage().setScene(new Scene(loadFXML("opret")));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void minSideHandler(ActionEvent actionEvent) {
+
+        try{
+            App.getStage().setScene(new Scene(loadFXML("minSide")));
+        } catch (IOException e){
             e.printStackTrace();
         }
     }

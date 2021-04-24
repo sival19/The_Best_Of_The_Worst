@@ -330,12 +330,12 @@ ObjectMapper objectMapper = new ObjectMapper();
 
 
 */
-        List<IDataPerson> iDataPersonList = new ArrayList<>();
-        iDataPersonList.add(new Person("Jim",new Date(),"USA",1));
-        iDataPersonList.add(new Person("Tim",new Date(),"Australia",2));
-        iDataPersonList.add(new Person("Simon",new Date(),"Danmark",3));
-        iDataPersonList.add(new Person("JernHört",new Date(),"Sweden",4));
-        new ObjectMapper().writeValue(new File("personFile.json"),iDataPersonList);
+//        List<IDataPerson> iDataPersonList = new ArrayList<>();
+//        iDataPersonList.add(new Person("Jim",new Date(),"USA",1));
+//        iDataPersonList.add(new Person("Tim",new Date(),"Australia",2));
+//        iDataPersonList.add(new Person("Simon",new Date(),"Danmark",3));
+//        iDataPersonList.add(new Person("JernHört",new Date(),"Sweden",4));
+//        new ObjectMapper().writeValue(new File("personFile.json"),iDataPersonList);
 
     }
 

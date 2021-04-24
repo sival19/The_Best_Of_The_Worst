@@ -2,7 +2,6 @@ package Intefaces;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import domain.credits.Person;
-import domain.logIn.Bruger;
 
 import java.util.Date;
 

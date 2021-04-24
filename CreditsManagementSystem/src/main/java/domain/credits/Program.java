@@ -2,8 +2,8 @@ package domain.credits;
 
 import Intefaces.IDataProgram;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javafx.scene.image.Image;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -111,25 +111,19 @@ public class Program implements IDataProgram{
 
     @Override
     public String toString() {
-        return "Program{" +
-                "programNavn='" + programNavn + '\'' +
-                ", produktionsID=" + produktionsID +
-                ", udgivelsesDato=" + udgivelsesDato +
-                ", programType=" + programType +
-                ", genre=" + genre +
-                ", længde=" + længde +
-                ", credits=" + credits +
-                ", imagePath='" + imagePath + '\'' +
-                '}';
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
+        return   programNavn + " " + simpleDateFormat.format(udgivelsesDato) ;
     }
 
     @JsonIgnore
     public String getCreditListString(){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Credits: ");
+//        stringBuilder.append("Credits: ");
         for(Credit credit: credits){
             stringBuilder.append(credit).append("\n");
         }
         return stringBuilder.toString();
     }
+
+
 }
