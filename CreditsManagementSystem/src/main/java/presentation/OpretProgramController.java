@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class OpretProgramController implements Initializable {
+public class opretProgramController implements Initializable {
     public Button opretBt;
 
     public RadioButton dokumentarRdBt, filmRdBt, kortFilmRdBt, serieRdBt;
@@ -58,7 +58,7 @@ public class OpretProgramController implements Initializable {
     }
 
     public String opretProgram(String programnavn, String yr, String mth, String programtype, String genre, double længde){
-        return creditsManagementSystem.opretProgram(programnavn,yr,mth, programtype,genre, længde);
+       return creditsManagementSystem.opretProgram(programnavn,yr,mth, programtype,genre, længde);
     }
 
     public void opretProgramHandler(ActionEvent actionEvent) {
