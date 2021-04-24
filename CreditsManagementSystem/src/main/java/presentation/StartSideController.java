@@ -142,7 +142,6 @@ public class StartSideController implements Initializable {
 
             }
 
-        } else if (mouseEvent.getSource() == programImage1) {
         }
         //TODO CHANGE FROM getText to react on image
         else if (mouseEvent.getSource() == programImage1) {

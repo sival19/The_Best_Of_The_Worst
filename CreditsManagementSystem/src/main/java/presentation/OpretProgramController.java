@@ -70,7 +70,7 @@ public class opretProgramController implements Initializable {
 
     public void backToMinsideHandler(ActionEvent actionEvent) {
         try {
-            App.getStage().setScene(new Scene(loadFXML("minside")));
+            App.getStage().setScene(new Scene(loadFXML("minSide")));
         } catch (IOException e) {
             e.printStackTrace();
         }

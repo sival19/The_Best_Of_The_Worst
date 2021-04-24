@@ -49,7 +49,7 @@ public class SeProgramController implements Initializable {
         iDataBruger = creditsManagementSystem.getBruger();
         iDataProgram = creditsManagementSystem.getProgram();
         seProgram();
-        showBrugerOptions();
+
 
     }
     private void seProgram(){
@@ -68,9 +68,7 @@ public class SeProgramController implements Initializable {
 
 
 
-    void showBrugerOptions(){
-        opretCreditBT.setVisible(creditsManagementSystem.isAdmin() || creditsManagementSystem.isProducer());
-    }
+
     public void backtoStartSideHandler() throws IOException {
         App.getStage().setScene(new Scene(loadFXML("startSide")));
     }
