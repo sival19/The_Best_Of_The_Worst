@@ -9,17 +9,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -38,7 +34,7 @@ public class StartSideController implements Initializable {
     public PasswordField adgangskodeField;
     public Text loginTxt;
     public ImageView programImage1, programImage2, programImage3, nextBtRight, nextBtLeft;
-    public TextField program1Txt, program2Txt, program3Txt;
+    public Label program1Txt, program2Txt, program3Txt;
     public ListView<ICatalogObject> searchResultView;
     public AnchorPane anchorpane;
     public Button opretCredit, loginBt, opretBrugerBt;
