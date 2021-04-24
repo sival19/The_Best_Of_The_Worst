@@ -67,17 +67,7 @@ public class StartSideController implements Initializable {
     }
 
 
-//    public void searchHandler(KeyEvent keyEvent) {
-//        observableList.removeAll(searchResultList);
-//        if (searchField.getText().equals("")) {
-//            searchResultView.setStyle("-fx-background-color: transparent");
-//
-//        } else {
-//            searchResultView.setDisable(false);
-//            searchResultView.setStyle("-fx-background-color: white");
-//            searchResultList = new ArrayList<>();
 
-            // Search for a person by name
 
     void showBrugerOptions(){
         minSideBt.setVisible(creditsManagementSystem.isAdmin() || creditsManagementSystem.isProducer());
@@ -142,8 +132,9 @@ public class StartSideController implements Initializable {
 
             }
 
-        } else if (mouseEvent.getSource() == programImage1) {
         }
+//        else if (mouseEvent.getSource() == programImage1) {
+//        }
         //TODO CHANGE FROM getText to react on image
         else if (mouseEvent.getSource() == programImage1) {
 
@@ -167,7 +158,7 @@ public class StartSideController implements Initializable {
                 if (iDataProgram.getProgramNavn().equals(program3Txt.getText())) {
                     creditsManagementSystem.setProgram(iDataProgram);
                     System.out.println(iDataProgram);
-                    App.getStage().setScene(new Scene(loadFXML("seprogram")));
+                    App.getStage().setScene(new Scene(loadFXML("seProgram")));
                 }
             }
         }
