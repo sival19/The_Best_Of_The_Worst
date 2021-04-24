@@ -55,8 +55,14 @@ public class UserManager {
         else if (bruger.getAdgangskode().equals(adgangskode)){
             this.bruger = bruger;
             result = "Velkommen!";
+            this.bruger = bruger;
         }
+        System.out.println(this.bruger.getRettighed());
         return result;
+    }
+
+    public Bruger getBruger() {
+        return bruger;
     }
 
     public boolean isBruger(String brugernavn) {
@@ -71,9 +77,7 @@ public class UserManager {
         return bruger.getRettighed() == Rettighed.PRODUCER;
     }
 
-    public Bruger getBruger() {
-        return bruger;
-    }
+
 
     public static void main(String[] args) {
         UserManager userManager = new UserManager();

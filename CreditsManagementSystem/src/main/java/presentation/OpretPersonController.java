@@ -24,6 +24,9 @@ public class OpretPersonController {
     public TextField personID;
     public TextField nationalitet;
     public TextField fødselsdato;
+    public TextField yearField;
+    public TextField monthField;
+    public TextField dayField;
     ICreditsManagementSystem creditsManagementSystem;
 
     public void toPreviousScene(ActionEvent event) {
@@ -40,10 +43,10 @@ public class OpretPersonController {
 
     @FXML
     void opretPersonHandler(ActionEvent event){
-        if(navn.getText().equals("")|| nationalitet.getText().equals("")||fødselsdato.getText().equals("")){
+        if(navn.getText().equals("")|| nationalitet.getText().equals("")||yearField.getText().equals("") || monthField.getText().equals("") || dayField.getText().equals("")){
             label.setText("udfyld felterne");
         } else{
-            String returnAnswer = creditsManagementSystem.opretPerson(navn.getText(), nationalitet.getText(), fødselsdato.getText());
+            String returnAnswer = creditsManagementSystem.opretPerson(navn.getText(), nationalitet.getText(),   yearField.getText() + "-" + monthField.getText() + "-" +dayField.getText());
         }
     }
 

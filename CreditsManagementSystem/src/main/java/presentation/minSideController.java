@@ -93,5 +93,12 @@ public class minSideController implements Initializable {
                 e.printStackTrace();
             }
         }
+        else if(actionEvent.getSource()==opretProgramBT){
+            try {
+                App.getStage().setScene(new Scene(loadFXML("opretProgram")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

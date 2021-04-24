@@ -31,7 +31,7 @@
          <effect>
             <InnerShadow />
          </effect></TextField>
-      <TextField fx:id="fødselsdato" layoutX="435.0" layoutY="215.0" prefHeight="26.0" prefWidth="215.0">
+      <TextField fx:id="yearField" layoutX="435.0" layoutY="215.0" prefHeight="26.0" prefWidth="55.0" promptText="yyyy">
          <effect>
             <InnerShadow />
          </effect></TextField>
@@ -39,5 +39,15 @@
       <Label layoutX="340.0" layoutY="211.0" text="Fødselsdato" />
       <Label layoutX="345.0" layoutY="165.0" text="Nationalitet" />
       <Label fx:id="label" layoutX="467.0" layoutY="359.0" prefWidth="4.0" />
+      <TextField fx:id="monthField" layoutX="507.0" layoutY="215.0" prefHeight="26.0" prefWidth="55.0" promptText="MM">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </TextField>
+      <TextField fx:id="dayField" layoutX="579.0" layoutY="215.0" prefHeight="26.0" prefWidth="55.0" promptText="dd">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </TextField>
    </children>
 </AnchorPane>

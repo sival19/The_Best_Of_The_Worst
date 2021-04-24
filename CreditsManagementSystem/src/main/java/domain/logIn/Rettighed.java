@@ -10,5 +10,9 @@ public enum Rettighed {
     Rettighed(String rettighedWord) {
         this.rettighedWord = rettighedWord;
     }
-    
+
+    @Override
+    public String toString() {
+        return rettighedWord;
+    }
 }

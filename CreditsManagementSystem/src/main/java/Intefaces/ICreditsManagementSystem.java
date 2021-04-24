@@ -1,7 +1,5 @@
 package Intefaces;
 
-import domain.logIn.Rettighed;
-
 import java.util.List;
 
 public interface ICreditsManagementSystem {
@@ -9,6 +7,7 @@ public interface ICreditsManagementSystem {
     boolean isProducer();
     IDataBruger getBruger();
     String opretBruger(String brugernavn, String adgangskode, String email, String rettigheder);
+    String opretProgram(String programnavn, String yr,String mth, String programtype, String genre, double længde );
     String login(String brugernavn, String adgangskode);
     String opretCredit(String produktionsID, String rolletype, String personID, String beskrivelse);
     String opretPerson(String navn, String nationalitet, String fødselsdato);
@@ -25,6 +24,9 @@ public interface ICreditsManagementSystem {
     void setRolle(IDataRolle iDataRolle);
     void setProgram(IDataProgram iDataProgram);
     void setPerson(IDataPerson iDataPerson);
+
+    String getBrugerrettighed();
+
 
 
 }

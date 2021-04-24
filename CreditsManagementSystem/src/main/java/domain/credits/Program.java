@@ -2,8 +2,8 @@ package domain.credits;
 
 import Intefaces.IDataProgram;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javafx.scene.image.Image;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -111,7 +111,8 @@ public class Program implements IDataProgram{
 
     @Override
     public String toString() {
-        return   programNavn + " " +udgivelsesDato;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
+        return   programNavn + " " + simpleDateFormat.format(udgivelsesDato) ;
     }
 
     @JsonIgnore
@@ -123,4 +124,6 @@ public class Program implements IDataProgram{
         }
         return stringBuilder.toString();
     }
+
+
 }

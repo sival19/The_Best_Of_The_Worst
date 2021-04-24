@@ -30,12 +30,12 @@
             <TextArea fx:id="produktioner" prefHeight="211.0" prefWidth="100.0" />
          </children>
       </VBox>
-      <Button fx:id="opretProgramBT" layoutX="33.0" layoutY="217.0" mnemonicParsing="false" onAction="#toStartScreen" text="Opret Program">
+      <Button fx:id="opretBrugerBT" layoutX="33.0" layoutY="167.0" mnemonicParsing="false" onAction="#opretHandler" prefHeight="26.0" prefWidth="96.0" text="Opret Bruger">
          <effect>
             <InnerShadow />
          </effect>
       </Button>
-      <Button fx:id="opretBrugerBT" layoutX="33.0" layoutY="167.0" mnemonicParsing="false" onAction="#opretHandler" prefHeight="26.0" prefWidth="96.0" text="Opret Bruger">
+      <Button fx:id="opretProgramBT" layoutX="33.0" layoutY="217.0" mnemonicParsing="false" onAction="#opretHandler" text="Opret Program">
          <effect>
             <InnerShadow />
          </effect>
