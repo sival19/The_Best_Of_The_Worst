@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import domain.credits.*;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @JsonDeserialize(as = Program.class)
@@ -16,9 +17,9 @@ public interface IDataProgram extends ICatalogObject {
 
     public void setProduktionsID(int produktionsID);
 
-    public LocalDate getUdgivelsesDato();
+    public Date getUdgivelsesDato();
 
-    public void setUdgivelsesDato(LocalDate udgivelsesDato);
+    public void setUdgivelsesDato(Date udgivelsesDato);
 
     public ProgramType getProgramType();
 

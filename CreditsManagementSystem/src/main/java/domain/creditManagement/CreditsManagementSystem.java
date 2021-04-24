@@ -9,7 +9,6 @@ import domain.logIn.UserManager;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -126,9 +125,15 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
 
     @Override
     public String opretProgram(String programnavn,String yr, String mth, String day, String programtype, String genre, double længde) {
-        LocalDate localDate = LocalDate.of(Integer.parseInt(yr),Integer.parseInt(mth), Integer.parseInt(day));
-        System.out.println(localDate);
-        if(catalog.opretProgram(programnavn,localDate,programtype,genre,længde)) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(yr+"-"+mth+"-"+day);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println(date);
+        if(catalog.opretProgram(programnavn,date,programtype,genre,længde)) {
             return "Program er oprettet";
         }
         return "Program er ikke oprettet";

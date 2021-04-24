@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import domain.credits.*;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class FileManager implements IDataManager {
@@ -328,14 +331,29 @@ ObjectMapper objectMapper = new ObjectMapper();
         fileManager.saveCatalogObject(new Rolle("Skuespiller",2));
         fileManager.saveCatalogObject(new Rolle("LydMand",3));
 
-
 */
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        Date localDate = null;
+        Date localDate1 = null;
+        Date localDate2 = null;
+        Date localDate3 = null;
+        try {
+            localDate = simpleDateFormat.parse("22-01-2018");
+            localDate1 = simpleDateFormat.parse("14-3-2019");
+            localDate2 = simpleDateFormat.parse("5-3-1980");
+            localDate3 =  simpleDateFormat.parse("10-12-1960");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
         List<IDataPerson> iDataPersonList = new ArrayList<>();
-        iDataPersonList.add(new Person("Jim",new Date(),"USA",1));
-        iDataPersonList.add(new Person("Tim",new Date(),"Australia",2));
-        iDataPersonList.add(new Person("Simon",new Date(),"Danmark",3));
-        iDataPersonList.add(new Person("JernHört",new Date(),"Sweden",4));
-        new ObjectMapper().writeValue(new File("personFile.json"),iDataPersonList);
+        iDataPersonList.add(new Person("Jim", localDate1,"USA",1));
+        iDataPersonList.add(new Person("Tim",localDate,"Australia",2));
+        iDataPersonList.add(new Person("Simon",localDate2,"Danmark",3));
+        iDataPersonList.add(new Person("JernHört",localDate3,"Sweden",4));
+        new ObjectMapper().writeValue(new File("savefiles\\personFile.json"),iDataPersonList);
 
     }
 

@@ -4,7 +4,6 @@ import Factory.DataManagementFactory;
 import Intefaces.*;
 import domain.credits.*;
 
-import java.time.LocalDate;
 import java.util.*;
 
 public class Catalog {
@@ -118,7 +117,7 @@ public class Catalog {
 
     }
 
-    public boolean opretProgram(String programNavn, LocalDate udgivelssdato, String programtype, String genre, double længde) {
+    public boolean opretProgram(String programNavn, Date udgivelssdato, String programtype, String genre, double længde) {
        ProgramType programTypetemp = null;
         if(ProgramType.DOKUMENTAR.toString().equalsIgnoreCase(programtype)){
             programTypetemp = ProgramType.DOKUMENTAR;

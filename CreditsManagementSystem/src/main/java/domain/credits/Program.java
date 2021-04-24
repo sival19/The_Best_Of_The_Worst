@@ -3,7 +3,8 @@ package domain.credits;
 import Intefaces.IDataProgram;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Program implements IDataProgram{
@@ -12,7 +13,7 @@ public class Program implements IDataProgram{
 
     private int produktionsID;
 
-    private LocalDate udgivelsesDato;
+    private Date udgivelsesDato;
 
     private ProgramType programType;
 
@@ -25,7 +26,7 @@ public class Program implements IDataProgram{
     private String imagePath;
 
 
-    public Program(String programNavn, int produktionsID, LocalDate udgivelsesDato, ProgramType programType, Genre genre, double længde, List<Credit> credits) {
+    public Program(String programNavn, int produktionsID, Date udgivelsesDato, ProgramType programType, Genre genre, double længde, List<Credit> credits) {
         this.programNavn = programNavn;
         this.produktionsID = produktionsID;
         this.udgivelsesDato = udgivelsesDato;
@@ -61,11 +62,11 @@ public class Program implements IDataProgram{
         this.produktionsID = produktionsID;
     }
 
-    public LocalDate getUdgivelsesDato() {
+    public Date getUdgivelsesDato() {
         return udgivelsesDato;
     }
 
-    public void setUdgivelsesDato(LocalDate udgivelsesDato) {
+    public void setUdgivelsesDato(Date udgivelsesDato) {
         this.udgivelsesDato = udgivelsesDato;
     }
 
@@ -110,7 +111,8 @@ public class Program implements IDataProgram{
 
     @Override
     public String toString() {
-        return   programNavn + " " +udgivelsesDato;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
+        return   programNavn + " " + simpleDateFormat.format(udgivelsesDato) ;
     }
 
     @JsonIgnore
@@ -122,4 +124,6 @@ public class Program implements IDataProgram{
         }
         return stringBuilder.toString();
     }
+
+
 }

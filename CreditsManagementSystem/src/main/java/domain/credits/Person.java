@@ -1,8 +1,8 @@
 package domain.credits;
 
 import Intefaces.IDataPerson;
-import javafx.scene.image.Image;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Person implements IDataPerson {
@@ -68,11 +68,9 @@ public class Person implements IDataPerson {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "navn='" + navn + '\'' +
-                ", foedselsdato=" + foedselsdato +
-                ", nationalitet='" + nationalitet + '\'' +
-                ", personID=" + personID +
-                '}';
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return navn +  ", "+ simpleDateFormat.format(foedselsdato) +
+                ", " +nationalitet +
+                ", personID=" + personID ;
     }
 }
