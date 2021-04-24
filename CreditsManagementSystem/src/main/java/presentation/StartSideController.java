@@ -7,11 +7,12 @@ import domain.creditManagement.CreditsManagementSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -65,6 +66,19 @@ public class StartSideController implements Initializable {
         programsEmptyChecker();
     }
 
+
+//    public void searchHandler(KeyEvent keyEvent) {
+//        observableList.removeAll(searchResultList);
+//        if (searchField.getText().equals("")) {
+//            searchResultView.setStyle("-fx-background-color: transparent");
+//
+//        } else {
+//            searchResultView.setDisable(false);
+//            searchResultView.setStyle("-fx-background-color: white");
+//            searchResultList = new ArrayList<>();
+
+            // Search for a person by name
+
     void showBrugerOptions(){
         minSideBt.setVisible(creditsManagementSystem.isAdmin() || creditsManagementSystem.isProducer());
     }
@@ -81,11 +95,21 @@ public class StartSideController implements Initializable {
                     searchResultList.add(iDataPerson);
                 }
             }
+
+            // Search for a person by ID
+            for (IDataPerson iDataPerson : creditsManagementSystem.getPersons()) {
+                if (searchField.getText().equals(String.valueOf(iDataPerson.getPersonID()))) {
+                    searchResultList.add((iDataPerson));
+                }
+            }
+
+            // Search for a program by name
             for (IDataProgram iDataProgram : creditsManagementSystem.getPrograms()) {
                 if (iDataProgram.getProgramNavn().toLowerCase().contains(searchField.getText().toLowerCase())) {
                     searchResultList.add(iDataProgram);
                 }
             }
+            // Search for a role by role type
             for (IDataRolle iDataRolle : creditsManagementSystem.getRoller()) {
                 if (iDataRolle.getRolletype().toLowerCase().contains(searchField.getText().toLowerCase())) {
                     searchResultList.add(iDataRolle);
@@ -93,11 +117,7 @@ public class StartSideController implements Initializable {
             }
             observableList = FXCollections.observableList(searchResultList);
             searchResultView.setItems(observableList);
-
-
         }
-
-
     }
 
 
@@ -112,15 +132,21 @@ public class StartSideController implements Initializable {
 
             } else if (iCatalogObject instanceof IDataPerson) {
                 creditsManagementSystem.setPerson((IDataPerson) iCatalogObject);
+
+                App.getStage().setScene(new Scene(loadFXML("sePerson")));
+
                 //TODO SWITCH TO sePerson.FXML
             } else if (iCatalogObject instanceof IDataRolle) {
                 creditsManagementSystem.setRolle((IDataRolle) iCatalogObject);
                 App.getStage().setScene(new Scene(loadFXML("seRolle")));
 
             }
+
+        } else if (mouseEvent.getSource() == programImage1) {
         }
         //TODO CHANGE FROM getText to react on image
         else if (mouseEvent.getSource() == programImage1) {
+
             for (IDataProgram iDataProgram : programs) {
                 if (iDataProgram.getProgramNavn().equals(program1Txt.getText())) {
                     creditsManagementSystem.setProgram(iDataProgram);
@@ -204,6 +230,7 @@ public class StartSideController implements Initializable {
         }
     }
 
+
     public void nextHandler(MouseEvent actionEvent) {
         try {
             if (actionEvent.getSource() == nextBtRight) {
@@ -216,6 +243,7 @@ public class StartSideController implements Initializable {
             e.printStackTrace();
         }
     }
+
 
 
     public void loginHandler(ActionEvent actionEvent) {
@@ -238,6 +266,7 @@ public class StartSideController implements Initializable {
             e.printStackTrace();
         }
     }
+
 
 
     public void opretBrugerHandler(ActionEvent event) {

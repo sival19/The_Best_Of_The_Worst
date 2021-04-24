@@ -1,10 +1,9 @@
 package presentation;
 
 import Factory.CreditManagementSystemFactory;
-import Intefaces.*;
-import domain.creditManagement.Catalog;
-import domain.creditManagement.CatalogObject;
-import domain.creditManagement.CreditsManagementSystem;
+import Intefaces.ICreditsManagementSystem;
+import Intefaces.IDataPerson;
+import Intefaces.IDataRolle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,13 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.text.TextFlow;
+
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,14 +28,12 @@ public class CreditsController implements Initializable {
     public TextField personID;
     public TextField rolletype;
     public TextArea beskrivelse;
-
+    ICreditsManagementSystem creditsManagementSystem;
     private IDataPerson iDataPerson;
     private IDataRolle iDataRolle;
 
-    ICreditsManagementSystem creditsManagementSystem;
-
-
     @FXML
+
     void opretCreditHandler(ActionEvent actionEvent){
         if(personID.getText().equals("") || rolletype.getText().equals("") || beskrivelse.getText().equals("")){
             label.setText("udfyld felterne");
@@ -52,13 +45,14 @@ public class CreditsController implements Initializable {
 
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
 
     }
 
-    private void seProgram(){
+    private void seProgram() {
 
     }
 
