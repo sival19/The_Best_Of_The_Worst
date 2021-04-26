@@ -2,12 +2,13 @@ package domain.credits;
 
 import Intefaces.IDataProgram;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import domain.creditManagement.CatalogObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class Program implements IDataProgram{
+public class Program extends CatalogObject implements IDataProgram{
 
     private String programNavn;
 
@@ -104,6 +105,11 @@ public class Program implements IDataProgram{
 
     @Override
     public boolean opretCredit(Person person, Rolle rolle, String beskrivelse) {
+        for(Credit credit1: credits){
+            if(credit1.getPerson()==person && credit1.getRolle()== rolle){
+                return false;
+            }
+        }
         Credit credit = new Credit(person,rolle,beskrivelse);
         credits.add(credit);
         return true;

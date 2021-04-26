@@ -1,9 +1,8 @@
 package presentation;
 
-import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
-import Intefaces.IDataPerson;
-import Intefaces.IDataRolle;
+import Intefaces.IHub;
+import hub.Hub;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,13 +27,19 @@ public class CreditsController implements Initializable {
     public TextField personID;
     public TextField rolletype;
     public TextArea beskrivelse;
-    ICreditsManagementSystem creditsManagementSystem;
-    private IDataPerson iDataPerson;
-    private IDataRolle iDataRolle;
+    private ICreditsManagementSystem creditsManagementSystem;
+    private IHub hub;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        hub = new Hub();
+        creditsManagementSystem = hub.getCreditManagementSystem();
+
+    }
+
 
     @FXML
-
-    void opretCreditHandler(ActionEvent actionEvent){
+   public void opretCreditHandler(ActionEvent actionEvent){
         if(personID.getText().equals("") || rolletype.getText().equals("") || beskrivelse.getText().equals("")){
             label.setText("udfyld felterne");
         }
@@ -45,16 +50,6 @@ public class CreditsController implements Initializable {
 
     }
 
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
-
-    }
-
-    private void seProgram() {
-
-    }
 
     public void toStartScreen(ActionEvent event) {
         try {

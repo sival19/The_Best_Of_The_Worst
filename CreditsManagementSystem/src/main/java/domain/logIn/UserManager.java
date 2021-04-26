@@ -1,15 +1,21 @@
 package domain.logIn;
 
-import Factory.DataManagementFactory;
+import Intefaces.IDataBruger;
 import Intefaces.IDataManager;
+import Intefaces.IHub;
+import hub.Hub;
+
+import java.util.*;
 
 public class UserManager {
 
     private Bruger bruger;
     private IDataManager fileManager;
+    IHub hub;
 
     public UserManager() {
-        fileManager = DataManagementFactory.createDataManager("file");
+        hub = new Hub();
+        fileManager = hub.getDataManager("file");
         bruger = new Bruger();
         bruger.setRettighed(Rettighed.SEER);
     }
@@ -18,6 +24,17 @@ public class UserManager {
     public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed){
         String result = "";
         Rettighed brugerRettighed = null;
+
+        Map<String,IDataBruger> brugerMap = fileManager.loadbrugere();
+        int indeks;
+        if(brugerMap!=null){
+           indeks = brugerMap.size()+1;
+        }
+        else {
+            indeks = 1;
+        }
+
+
 
         if(rettighed.equals("Administrator")){
             brugerRettighed = Rettighed.ADMINISTRATOR;
@@ -29,11 +46,11 @@ public class UserManager {
             result = "Bruger eksisterer";
         }
 
-        else if(!fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,1))){
+        else if(!fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,indeks))){
             result = "Kunne ikke gemmes";
         }
 
-        else if(fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,1))){
+        else if(fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,indeks))){
             result = "Kunne gemmes";
         }
 

@@ -1,7 +1,11 @@
 package persistancy.file;
 
 import Intefaces.*;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import domain.credits.*;
 
@@ -13,19 +17,40 @@ public class FileManager implements IDataManager {
     File personFile;
     File programFile;
     File rolleFile;
+    private  static FileManager fileManager;
 
-    public FileManager() {
+    private FileManager() {
+        isSaveFileFolderCheck();
         brugerFile = new File("saveFiles\\brugerFile.json");
         personFile = new File("saveFiles\\personFile.json");
         programFile = new File("saveFiles\\programFile.json");
         rolleFile = new File("saveFiles\\rolleFile.json");
+
+    }
+
+    public static FileManager getFileManager() {
+        if(fileManager== null){
+            fileManager = new FileManager();
+        }
+        return fileManager;
+    }
+
+    void isSaveFileFolderCheck(){
+        File file = new File("saveFiles");
+        if(!file.exists()){
+            file.mkdir();
+        }
     }
 
     @Override
     public boolean saveBruger(IDataBruger iDatabruger) {
         ObjectMapper objectMapper = new ObjectMapper();
+        Map<String, IDataBruger> brugerMap = new HashMap<>();
         try {
-            Map<String, IDataBruger> brugerMap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IDataBruger>>() {});
+            if(brugerFile.length()!=0){
+                brugerMap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IDataBruger>>() {});
+            }
+
             brugerMap.put(iDatabruger.getBrugernavn(),iDatabruger);
             objectMapper.writeValue(brugerFile,brugerMap);
         } catch (IOException e) {
@@ -39,14 +64,48 @@ public class FileManager implements IDataManager {
     public IDataBruger loadBruger(String brugerNavn) {
         ObjectMapper objectMapper = new ObjectMapper();
         IDataBruger iBruger = null;
+        Map<String, IDataBruger> brugerMap = null;
         try {
-            Map<String, IDataBruger> brugerMap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IDataBruger>>(){});
-            iBruger = brugerMap.get(brugerNavn);
-            objectMapper.writeValue(brugerFile,brugerMap);
+            if(brugerFile.length() != 0){
+                brugerMap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IDataBruger>>(){});
+                iBruger = brugerMap.get(brugerNavn);
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         return iBruger;
+    }
+
+    @Override
+    public Map<String,IDataBruger> loadbrugere() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String,IDataBruger> iDataBrugerMap = null;
+        try {
+            if(brugerFile.length() != 0){
+                iDataBrugerMap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IDataBruger>>() {
+                });
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return iDataBrugerMap;
+    }
+
+    @Override
+    public boolean updateBruger(String key, IDataBruger iDataBruger) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            Map<String , IDataBruger> iDataBrugermap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IDataBruger>>() {});
+            iDataBrugermap.replace(key,iDataBruger);
+            objectMapper.writeValue(brugerFile,iDataBrugermap);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override

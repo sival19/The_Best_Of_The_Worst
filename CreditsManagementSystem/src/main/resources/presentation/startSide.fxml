@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -63,11 +64,24 @@
                   <ImageView fx:id="programImage3" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#catalogHandler" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="170.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
 
-                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="program1Txt" text="Label" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="program2Txt" text="Label" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="program3Txt" text="Label" />
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </children>
@@ -81,27 +95,21 @@
             <ListView fx:id="searchResultView" onMouseClicked="#catalogHandler" prefHeight="262.0" prefWidth="174.0" />
          </children>
       </VBox>
-      <Button fx:id="opret" layoutX="6.0" layoutY="717.0" mnemonicParsing="false" onAction="#opretHandler" text="Opret">
-         <effect>
-            <InnerShadow />
-         </effect></Button>
       <ImageView fx:id="nextBtLeft" fitHeight="89.0" fitWidth="56.0" layoutX="258.0" layoutY="338.0" onMouseClicked="#nextHandler">
          <image>
             <Image url="@previous.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="nextBtRight" fitHeight="89.0" fitWidth="56.0" layoutX="900.0" layoutY="338.0" onMouseClicked="#nextHandler">
+      <ImageView fx:id="nextBtRight" fitHeight="89.0" fitWidth="56.0" layoutX="947.0" layoutY="338.0" onMouseClicked="#nextHandler">
          <image>
             <Image url="@next.png" />
          </image>
       </ImageView>
-      <TextField fx:id="program1Txt" disable="true" layoutX="239.0" layoutY="512.0" visible="false" />
-      <TextField fx:id="program2Txt" disable="true" layoutX="416.0" layoutY="512.0" visible="false" />
-      <TextField fx:id="program3Txt" disable="true" layoutX="590.0" layoutY="512.0" visible="false" />
       <Button fx:id="minSideBt" layoutX="280.0" layoutY="1.0" mnemonicParsing="false" onAction="#minSideHandler" text="Min Side">
          <effect>
             <InnerShadow />
          </effect>
       </Button>
+      <HBox layoutX="340.0" layoutY="486.0" prefHeight="53.0" prefWidth="586.0" />
    </children>
 </AnchorPane>

@@ -1,25 +1,20 @@
 package presentation;
 
 
-import Factory.CreditManagementSystemFactory;
 import Intefaces.*;
-import domain.creditManagement.CreditsManagementSystem;
+import hub.Hub;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -38,25 +33,25 @@ public class StartSideController implements Initializable {
     public PasswordField adgangskodeField;
     public Text loginTxt;
     public ImageView programImage1, programImage2, programImage3, nextBtRight, nextBtLeft;
-    public TextField program1Txt, program2Txt, program3Txt;
+    public Label program1Txt, program2Txt, program3Txt;
     public ListView<ICatalogObject> searchResultView;
     public AnchorPane anchorpane;
-    public Button opretCredit, loginBt, opretBrugerBt;
+    public Button  loginBt, opretBrugerBt;
     public Button opret;
     public Button minSideBt;
-    List<ICatalogObject> searchResultList;
-    List<IDataProgram> programs;
-    int circularCount;
+    private List<ICatalogObject> searchResultList;
+    private List<IDataProgram> programs;
+    private int circularCount;
     private ICreditsManagementSystem creditsManagementSystem;
     private ObservableList<ICatalogObject> observableList;
+    private IHub hub;
 
-    public String login(String brugernavn, String password) {
-        return creditsManagementSystem.login(brugernavn, password);
-    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
+        hub = new Hub();
+        creditsManagementSystem = hub.getCreditManagementSystem();
         searchResultView.setVisible(false);
         searchResultList = new ArrayList<>();
         observableList = FXCollections.observableArrayList();
@@ -64,22 +59,14 @@ public class StartSideController implements Initializable {
         circularCount = -1;
         showBrugerOptions();
         programsEmptyChecker();
+        nextBtRight.setX(programImage3.getX()+2);
+        nextBtLeft.setX(programImage1.getX()-5);
     }
 
-
-//    public void searchHandler(KeyEvent keyEvent) {
-//        observableList.removeAll(searchResultList);
-//        if (searchField.getText().equals("")) {
-//            searchResultView.setStyle("-fx-background-color: transparent");
-//
-//        } else {
-//            searchResultView.setDisable(false);
-//            searchResultView.setStyle("-fx-background-color: white");
-//            searchResultList = new ArrayList<>();
-
-            // Search for a person by name
-
-    void showBrugerOptions(){
+    public String login(String brugernavn, String password) {
+        return creditsManagementSystem.login(brugernavn, password);
+    }
+   private void showBrugerOptions(){
         minSideBt.setVisible(creditsManagementSystem.isAdmin() || creditsManagementSystem.isProducer());
     }
 
@@ -89,32 +76,7 @@ public class StartSideController implements Initializable {
             searchResultView.setVisible(false);
         } else {
             searchResultView.setVisible(true);
-            searchResultList = new ArrayList<>();
-            for (IDataPerson iDataPerson : creditsManagementSystem.getPersons()) {
-                if (iDataPerson.getNavn().toLowerCase().contains(searchField.getText().toLowerCase())) {
-                    searchResultList.add(iDataPerson);
-                }
-            }
-
-            // Search for a person by ID
-            for (IDataPerson iDataPerson : creditsManagementSystem.getPersons()) {
-                if (searchField.getText().equals(String.valueOf(iDataPerson.getPersonID()))) {
-                    searchResultList.add((iDataPerson));
-                }
-            }
-
-            // Search for a program by name
-            for (IDataProgram iDataProgram : creditsManagementSystem.getPrograms()) {
-                if (iDataProgram.getProgramNavn().toLowerCase().contains(searchField.getText().toLowerCase())) {
-                    searchResultList.add(iDataProgram);
-                }
-            }
-            // Search for a role by role type
-            for (IDataRolle iDataRolle : creditsManagementSystem.getRoller()) {
-                if (iDataRolle.getRolletype().toLowerCase().contains(searchField.getText().toLowerCase())) {
-                    searchResultList.add(iDataRolle);
-                }
-            }
+            searchResultList = creditsManagementSystem.søgCredit(searchField.getText());
             observableList = FXCollections.observableList(searchResultList);
             searchResultView.setItems(observableList);
         }
@@ -143,6 +105,8 @@ public class StartSideController implements Initializable {
             }
 
         }
+//        else if (mouseEvent.getSource() == programImage1) {
+//        }
         //TODO CHANGE FROM getText to react on image
         else if (mouseEvent.getSource() == programImage1) {
 
@@ -166,7 +130,7 @@ public class StartSideController implements Initializable {
                 if (iDataProgram.getProgramNavn().equals(program3Txt.getText())) {
                     creditsManagementSystem.setProgram(iDataProgram);
                     System.out.println(iDataProgram);
-                    App.getStage().setScene(new Scene(loadFXML("seprogram")));
+                    App.getStage().setScene(new Scene(loadFXML("seProgram")));
                 }
             }
         }
@@ -195,27 +159,47 @@ public class StartSideController implements Initializable {
             circular1 = circularCount % programs.size();
         }
 
+        IDataProgram program1 = programs.get(circular1);
+        IDataProgram program2 = programs.get(circular2);
+        IDataProgram program3 = programs.get(circular3);
+        String imagePath1 = null;
+        String imagePath2 = null;
+        String imagePath3 = null;
+        if(program1.getImagePath()!=null){
+            imagePath1 = StartSideController.class.getResource(program1.getImagePath()).toURI().toString();
+            programImage1.setImage(new Image(imagePath1));
 
-        programImage1.setImage(new Image(StartSideController.class.getResource(programs.get(circular1).getImagePath()).toURI().toString()));
-        programImage2.setImage(new Image(StartSideController.class.getResource(programs.get(circular2).getImagePath()).toURI().toString()));
-        programImage3.setImage(new Image(StartSideController.class.getResource(programs.get(circular3).getImagePath()).toURI().toString()));
-        programImage1.setPreserveRatio(true);
-        programImage1.setFitHeight(200);
-        programImage1.setFitWidth(200);
-        programImage2.setPreserveRatio(true);
-        programImage2.setFitHeight(200);
-        programImage2.setFitWidth(200);
-        programImage3.setPreserveRatio(true);
-        programImage3.setFitHeight(200);
-        programImage3.setFitWidth(200);
+        }
+        if(program2.getImagePath()!=null){
+            imagePath2 = StartSideController.class.getResource(program2.getImagePath()).toURI().toString();
+            programImage2.setImage(new Image(imagePath2));
 
-        program1Txt.setText(programs.get(circular1).getProgramNavn());
-        program2Txt.setText(programs.get(circular2).getProgramNavn());
-        program3Txt.setText(programs.get(circular3).getProgramNavn());
+        }
+        if(program3.getImagePath()!=null){
+            imagePath3 = StartSideController.class.getResource(program3.getImagePath()).toURI().toString();
+            programImage3.setImage(new Image(imagePath3));
+        }
+
+
+            programImage1.setPreserveRatio(false);
+            programImage1.setFitHeight(200);
+            programImage1.setFitWidth(200);
+            programImage2.setPreserveRatio(false);
+            programImage2.setFitHeight(200);
+            programImage2.setFitWidth(200);
+            programImage3.setPreserveRatio(false);
+            programImage3.setFitHeight(200);
+            programImage3.setFitWidth(200);
+
+
+            program1Txt.setText(programs.get(circular1).getProgramNavn());
+            program2Txt.setText(programs.get(circular2).getProgramNavn());
+            program3Txt.setText(programs.get(circular3).getProgramNavn());
+
 
     }
 
-    public void programsEmptyChecker() {
+    private void programsEmptyChecker() {
 
         if (programs.size() != 0) {
             try {
@@ -272,14 +256,6 @@ public class StartSideController implements Initializable {
         try {
             App.getStage().setScene(new Scene(loadFXML("opretBruger")));
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void opretHandler(ActionEvent event) {
-        try{
-            App.getStage().setScene(new Scene(loadFXML("opret")));
-        } catch (IOException e){
             e.printStackTrace();
         }
     }

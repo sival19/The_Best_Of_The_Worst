@@ -17,7 +17,7 @@
             <Image url="@bckgrnd.png" />
          </image>
       </ImageView>
-      <Button fx:id="backToStart" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#toStartScreen" text="Tilabge">
+      <Button fx:id="backToStart" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#toStartScreen" text="Tilbage">
          <effect>
             <InnerShadow />
          </effect></Button>

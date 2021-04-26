@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="764.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.minSideController">
+<AnchorPane prefHeight="764.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.MinSideController">
     <children>
         <ImageView fx:id="baggrund" fitHeight="764.0" fitWidth="1024.0">
             <image>
@@ -20,35 +20,35 @@
             <effect>
                 <InnerShadow />
             </effect></Button>
-      <VBox layoutX="422.0" layoutY="157.0" prefHeight="350.0" prefWidth="179.0" spacing="10.0">
-         <children>
-            <Label fx:id="brugerIDTxt" text="Label" />
-            <Label fx:id="brugerNavnTxt" text="Label" />
-            <Label fx:id="adgangskodeTxt" text="Label" />
-            <Label fx:id="emailTxt" text="Label" />
-            <Label fx:id="rettighedTxt" text="Label" />
-            <TextArea fx:id="produktioner" prefHeight="211.0" prefWidth="100.0" />
-         </children>
-      </VBox>
-      <Button fx:id="opretBrugerBT" layoutX="33.0" layoutY="167.0" mnemonicParsing="false" onAction="#opretHandler" prefHeight="26.0" prefWidth="96.0" text="Opret Bruger">
-         <effect>
-            <InnerShadow />
-         </effect>
-      </Button>
-      <Button fx:id="opretProgramBT" layoutX="33.0" layoutY="217.0" mnemonicParsing="false" onAction="#opretHandler" text="Opret Program">
-         <effect>
-            <InnerShadow />
-         </effect>
-      </Button>
-      <Button fx:id="opretPersonBT" layoutX="33.0" layoutY="263.0" mnemonicParsing="false" onAction="#opretHandler" prefHeight="26.0" prefWidth="96.0" text="Opret Person">
-         <effect>
-            <InnerShadow />
-         </effect>
-      </Button>
-      <Button fx:id="opretRolleBT" layoutX="32.0" layoutY="306.0" mnemonicParsing="false" onAction="#opretHandler" prefHeight="26.0" prefWidth="96.0" text="Opret Rolle">
-         <effect>
-            <InnerShadow />
-         </effect>
-      </Button>
+        <VBox layoutX="422.0" layoutY="157.0" prefHeight="350.0" prefWidth="179.0" spacing="10.0">
+            <children>
+                <Label fx:id="brugerIDTxt" text="Label" />
+                <Label fx:id="brugerNavnTxt" text="Label" />
+                <Label fx:id="adgangskodeTxt" text="Label" />
+                <Label fx:id="emailTxt" text="Label" />
+                <Label fx:id="rettighedTxt" text="Label" />
+                <TextArea fx:id="produktioner" prefHeight="211.0" prefWidth="100.0" />
+            </children>
+        </VBox>
+        <Button fx:id="opretBrugerBT" layoutX="33.0" layoutY="167.0" mnemonicParsing="false" onAction="#opretHandler" prefHeight="26.0" prefWidth="96.0" text="Opret Bruger">
+            <effect>
+                <InnerShadow />
+            </effect>
+        </Button>
+        <Button fx:id="opretProgramBT" layoutX="33.0" layoutY="217.0" mnemonicParsing="false" onAction="#opretHandler" text="Opret Program">
+            <effect>
+                <InnerShadow />
+            </effect>
+        </Button>
+        <Button fx:id="opretPersonBT" layoutX="33.0" layoutY="263.0" mnemonicParsing="false" onAction="#opretHandler" prefHeight="26.0" prefWidth="96.0" text="Opret Person">
+            <effect>
+                <InnerShadow />
+            </effect>
+        </Button>
+        <Button fx:id="opretRolleBT" layoutX="32.0" layoutY="306.0" mnemonicParsing="false" onAction="#opretHandler" prefHeight="26.0" prefWidth="96.0" text="Opret Rolle">
+            <effect>
+                <InnerShadow />
+            </effect>
+        </Button>
     </children>
 </AnchorPane>

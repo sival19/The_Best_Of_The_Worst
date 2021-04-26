@@ -1,20 +1,20 @@
 package presentation;
 
-import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
+import Intefaces.IHub;
+import hub.Hub;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class opretProgramController implements Initializable {
+public class OpretProgramController implements Initializable {
     public Button opretBt;
 
     public RadioButton dokumentarRdBt, filmRdBt, kortFilmRdBt, serieRdBt;
@@ -28,13 +28,15 @@ public class opretProgramController implements Initializable {
     public TextField programnavnField;
     public TextField monthField, yrField, lengthField;
 
-    public ICreditsManagementSystem creditsManagementSystem;
+    private ICreditsManagementSystem creditsManagementSystem;
     public Label resultatTxt;
+    private IHub hub;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        hub = new Hub();
 
-        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
+        creditsManagementSystem = hub.getCreditManagementSystem();
         toggleGroupProgram = new ToggleGroup();
         toggleGroupGenre = new ToggleGroup();
         dokumentarRdBt.setToggleGroup(toggleGroupProgram); filmRdBt.setToggleGroup(toggleGroupProgram);
@@ -58,7 +60,7 @@ public class opretProgramController implements Initializable {
     }
 
     public String opretProgram(String programnavn, String yr, String mth, String programtype, String genre, double længde){
-       return creditsManagementSystem.opretProgram(programnavn,yr,mth, programtype,genre, længde);
+        return creditsManagementSystem.opretProgram(programnavn,yr,mth, programtype,genre, længde);
     }
 
     public void opretProgramHandler(ActionEvent actionEvent) {
@@ -70,7 +72,7 @@ public class opretProgramController implements Initializable {
 
     public void backToMinsideHandler(ActionEvent actionEvent) {
         try {
-            App.getStage().setScene(new Scene(loadFXML("minSide")));
+            App.getStage().setScene(new Scene(loadFXML("minside")));
         } catch (IOException e) {
             e.printStackTrace();
         }

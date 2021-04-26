@@ -1,11 +1,10 @@
 package presentation;
 
 
-import Factory.CreditManagementSystemFactory;
 import Intefaces.ICreditsManagementSystem;
-import Intefaces.IDataBruger;
 import Intefaces.IDataProgram;
-import domain.creditManagement.CreditsManagementSystem;
+import Intefaces.IHub;
+import hub.Hub;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,18 +12,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SeProgramController implements Initializable {
@@ -37,35 +35,36 @@ public class SeProgramController implements Initializable {
 
     public Button opretCreditBT;
     private IDataProgram iDataProgram;
-    private IDataBruger iDataBruger;
-    ICreditsManagementSystem creditsManagementSystem;
-
-
-
+    private ICreditsManagementSystem creditsManagementSystem;
+    private IHub hub;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        creditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
-        iDataBruger = creditsManagementSystem.getBruger();
+        hub = new Hub();
+        creditsManagementSystem = hub.getCreditManagementSystem();
         iDataProgram = creditsManagementSystem.getProgram();
+        opretCreditBT.setVisible(false);
         seProgram();
-
-
+        showBrugerOptions();
     }
     private void seProgram(){
         programNavn.setText(iDataProgram.getProgramNavn());
         programDato.setText(iDataProgram.getUdgivelsesDato().toString());
         programGenre.setText(iDataProgram.getGenre().toString());
         try {
-            programImage.setImage(new Image(String.valueOf(StartSideController.class.getResource(iDataProgram.getImagePath()).toURI().toURL())));
+            if(iDataProgram.getImagePath()!=null){
+                String imagepath = String.valueOf(StartSideController.class.getResource(iDataProgram.getImagePath()).toURI().toURL());
+                if(imagepath!=null){
+                    programImage.setImage(new Image(imagepath));
+                }
+            }
+
         } catch (MalformedURLException | URISyntaxException e) {
             e.printStackTrace();
         }
-        creditList.setText(iDataProgram.getCreditListString());
+        creditList.setText("Credits: " + iDataProgram.getCreditListString());
 
     }
-
-
 
 
 
@@ -85,5 +84,23 @@ public class SeProgramController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void showBrugerOptions(){
+        List<Integer> produktionsIDer = creditsManagementSystem.getBruger().getProduktionsIDer();
+        System.out.println(produktionsIDer);
+        if(produktionsIDer!= null){
+            for(Integer produktionsID: produktionsIDer){
+                if(produktionsID == creditsManagementSystem.getProgram().getProduktionsID()){
+                    opretCreditBT.setVisible(true);
+                }
+            }
+        }
+
+        if(creditsManagementSystem.isAdmin()){
+            opretCreditBT.setVisible(true);
+        }
+
+
     }
 }

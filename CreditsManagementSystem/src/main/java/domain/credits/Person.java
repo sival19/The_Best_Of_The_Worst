@@ -1,11 +1,12 @@
 package domain.credits;
 
 import Intefaces.IDataPerson;
+import domain.creditManagement.CatalogObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Person implements IDataPerson {
+public class Person extends CatalogObject implements IDataPerson {
 
     private String navn;
 

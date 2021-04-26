@@ -19,11 +19,11 @@
          <effect>
             <InnerShadow />
          </effect></Button>
-      <Button fx:id="opretButton" layoutX="435.0" layoutY="279.0" mnemonicParsing="false" onAction="#opretPersonHandler" text="Opret Person">
+      <Button fx:id="opretButton" layoutX="492.0" layoutY="274.0" mnemonicParsing="false" onAction="#opretPersonHandler" text="Opret Person">
          <effect>
             <InnerShadow />
          </effect></Button>
-      <TextField fx:id="navn" layoutX="435.0" layoutY="106.0" prefHeight="26.0" prefWidth="183.0">
+      <TextField fx:id="navn" layoutX="435.0" layoutY="106.0" prefHeight="26.0" prefWidth="200.0">
          <effect>
             <InnerShadow />
          </effect></TextField>
@@ -49,5 +49,6 @@
             <InnerShadow />
          </effect>
       </TextField>
+      <Label fx:id="resultLbl" layoutX="521.0" layoutY="249.0" text="Label" />
    </children>
 </AnchorPane>

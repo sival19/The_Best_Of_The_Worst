@@ -1,23 +1,28 @@
 package domain.creditManagement;
 
-import Factory.DataManagementFactory;
 import Intefaces.*;
 import domain.credits.*;
+import hub.Hub;
 
 import java.util.*;
 
 public class Catalog {
 
-    Map<String, Program> programmer;
-    Map<String, Rolle> roller;
-    Map<String, Person> personer;
+    private Map<String, Program> programmer;
+    private Map<String, Rolle> roller;
+    private Map<String, Person> personer;
+    private Program program;
+    private Person person;
+    private Rolle rolle;
     IDataManager iFileManager;
+    IHub hub;
 
     public Catalog() {
+        hub = new Hub();
         personer = new HashMap<>();
         roller = new HashMap<>();
         programmer = new HashMap<>();
-        iFileManager = DataManagementFactory.createDataManager("file");
+        iFileManager = hub.getDataManager("file");
 
         List<IDataPerson> tempPers =  iFileManager.loadPersoner();
         List<IDataProgram> tempPro = iFileManager.loadProgrammer();
@@ -79,12 +84,12 @@ public class Catalog {
     public String opretCredit(String personID, String rolletype, String produktionsID, String beskrivelse ){
         Program program = programmer.get(produktionsID);
         Person person = personer.get(personID);
-        Rolle rolle = roller.get(rolletype);
+
+        Rolle rolle = roller.get(rolletype.toLowerCase());
         System.out.println(program);
         System.out.println(person);
         System.out.println(rolle);
 
-        StringBuilder stringBuilder = new StringBuilder();
         if(program == null){
             return "Program: " + produktionsID + " Findes ikke";
         }
@@ -94,29 +99,59 @@ public class Catalog {
         else if(rolle == null){
             return "Rolle: " + rolletype + " Findes ikke";        }
 
-        program.opretCredit(person,rolle,beskrivelse);
-        programmer.replace(String.valueOf(program.getProduktionsID()),program);
-        iFileManager.updateCatalogObject(String.valueOf(program.getProduktionsID()),program);
-        List<IDataProgram> programList =iFileManager.loadProgrammer();
-        System.out.println(programList  );
+       else if( program.opretCredit(person,rolle,beskrivelse)){
+           programmer.replace(String.valueOf(program.getProduktionsID()),program);
+           iFileManager.updateCatalogObject(String.valueOf(program.getProduktionsID()),program);
+           List<IDataProgram> programList =iFileManager.loadProgrammer();
+           System.out.println(programList  );
 
-        return "Credit er oprettet";
+           return "Credit er oprettet";
+       }
+       else {
+           return "Credit eksister allerede";
+       }
 
 
-    }
-
-    public void addToList(Person person) {
-
-    }
-
-    public void addToList(Program program) {
 
     }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+
+    public Rolle getRolle() {
+        return rolle;
+    }
+
+
+    public void setRolle(Rolle rolle) {
+        this.rolle = rolle;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
 
     public String opretPerson(String navn, String nationalitet, Date fødselsdato) {
         String result = "";
-        System.out.println(personer.size()+1);
-        Person person = new Person(navn, fødselsdato, nationalitet, personer.size()+1);
+        int indeks;
+        if(personer!=null){
+            indeks = personer.size()+1;
+        }
+        else {
+            indeks = 1;
+        }
+        Person person = new Person(navn, fødselsdato, nationalitet, indeks);
         boolean saveSucces= iFileManager.saveCatalogObject(person);
 
         if(!saveSucces){
@@ -127,7 +162,6 @@ public class Catalog {
             result = "Kunne gemmes";
             personer.put(String.valueOf(person.getPersonID()),person);
         }
-        System.out.println(result);
 
         return result;
     }
@@ -192,7 +226,14 @@ public class Catalog {
             genretemp = Genre.THRILLER;
 
         }
-        Program program = new Program(programNavn, programmer.size()+1, udgivelssdato,programTypetemp,genretemp,længde, new ArrayList<Credit>());
+        int indeks;
+        if(programmer!=null){
+            indeks = programmer.size()+1;
+        }
+        else {
+            indeks= 1;
+        }
+        Program program = new Program(programNavn, indeks, udgivelssdato,programTypetemp,genretemp,længde, new ArrayList<Credit>());
         programmer.put(String.valueOf(program.getProduktionsID()),program);
 
         return iFileManager.saveCatalogObject(program);
@@ -215,7 +256,34 @@ public class Catalog {
 
     }
 
-    public void søg(String søgeord) {
+    public List<CatalogObject> søg(String søgeord) {
+        ArrayList<CatalogObject> catalogObjects = new ArrayList<>();
+        for (Person person : personer.values()) {
+            if (person.getNavn().toLowerCase().contains(søgeord.toLowerCase())) {
+                catalogObjects.add(person);
+            }
+        }
+
+        // Search for a person by ID
+        for (Person person : personer.values()) {
+            if (søgeord.equals(String.valueOf(person.getPersonID()))) {
+                catalogObjects.add((person));
+            }
+        }
+
+        // Search for a program by name
+        for (Program program : programmer.values()) {
+            if (program.getProgramNavn().toLowerCase().contains(søgeord.toLowerCase())) {
+                catalogObjects.add(program);
+            }
+        }
+        // Search for a role by role type
+        for (Rolle rolle : roller.values()) {
+            if (rolle.getRolletype().toLowerCase().contains(søgeord.toLowerCase())) {
+                catalogObjects.add(rolle);
+            }
+        }
+        return catalogObjects;
 
     }
 
@@ -225,6 +293,23 @@ public class Catalog {
     public Rolle getRolle(String rolleType){
         return roller.get(String.valueOf(rolleType));
     }
+    public String opretRolle(String rolletype){
+        int indeks;
+        if(roller!=null){
+            indeks = roller.size()+1;
+        }
+        else {
+            indeks = 1;
+        }
+
+        Rolle rolle = new Rolle(rolletype.toLowerCase(), indeks);
+        if(iFileManager.saveCatalogObject(rolle)){
+            roller.put(rolletype,rolle);
+            return "Rolle er oprettet";
+        }
+        return "Rolle er ikke oprettet";
+    }
+
     public Program getProgram(int produktionID){
         return programmer.get(String.valueOf(produktionID));
     }

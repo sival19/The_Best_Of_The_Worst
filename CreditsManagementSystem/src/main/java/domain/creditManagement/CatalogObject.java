@@ -1,4 +1,6 @@
 package domain.creditManagement;
 
-public class CatalogObject {
+import Intefaces.ICatalogObject;
+
+public class CatalogObject implements ICatalogObject {
 }

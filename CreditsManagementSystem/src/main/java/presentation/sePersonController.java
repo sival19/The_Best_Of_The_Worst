@@ -1,17 +1,16 @@
 package presentation;
 
-import Factory.CreditManagementSystemFactory;
-import Intefaces.ICreditsManagementSystem;
-import Intefaces.IDataPerson;
-import javafx.fxml.FXMLLoader;
+
+import Intefaces.*;
+
+import hub.Hub;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -19,39 +18,62 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class sePersonController implements Initializable {
+import static presentation.App.loadFXML;
 
-    public Button backToStart;
-    public Label personNavn;
-    public Label personFoedselsdato;
-    public Label personNationalitet;
+public class SePersonController implements Initializable {
+    public Label personID;
+    public Label personnavnTxt;
+    public Label fødselsdatoTxt;
+    public Label nationalitetTxt;
     public ImageView personImage;
-    public TextArea personTextArea;
-    ICreditsManagementSystem iCreditsManagementSystem;
+    public Text creditList;
+    private ICreditsManagementSystem iCreditsManagementSystem;
+    private IHub hub;
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        iCreditsManagementSystem = CreditManagementSystemFactory.getCreditManagementSystem();
+    public void initialize(URL location, ResourceBundle resources) {
+        hub = new Hub();
+        iCreditsManagementSystem = hub.getCreditManagementSystem();
         IDataPerson person = iCreditsManagementSystem.getPerson();
-        personNavn.setText(person.getNavn());
-        personFoedselsdato.setText(person.getFoedselsdato().toString());
-        personNationalitet.setText(person.getNationalitet());
+        sePerson();
 
-        try {
-            personImage.setImage(new Image(String.valueOf(StartSideController.class.getResource(person.getImagePath()).toURI().toURL())));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
     }
 
-    public void backtoStartSideHandler() throws IOException {
+    private void sePerson(){
+        IDataPerson person = iCreditsManagementSystem.getPerson();
+        personnavnTxt.setText(person.getNavn());
+        personID.setText(String.valueOf(person.getPersonID()));
+        nationalitetTxt.setText(person.getNationalitet());
+        fødselsdatoTxt.setText(person.getFoedselsdato().toString());
+        try {
+            if(person.getImagePath()!=null){
+                String imagepath = String.valueOf(StartSideController.class.getResource(person.getImagePath()).toURI().toURL());
+                if(imagepath!=null){
+                    personImage.setImage(new Image(imagepath));
+                }
+            }
+
+        } catch (MalformedURLException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        StringBuilder  stringBuilder = new StringBuilder();
+
+        for (IDataProgram iDataProgram : iCreditsManagementSystem.getPrograms()) {
+            for (IDataCredit iDataCredit : iDataProgram.getCredits()) {
+                if (iDataCredit.getPerson().getPersonID() == person.getPersonID()) {
+                    stringBuilder.append(iDataCredit);
+                }
+            }
+        }
+
+        creditList.setText("Credits: " + stringBuilder);
+
+    }
+
+    public void backtoStartSideHandler(ActionEvent event) throws IOException {
         App.getStage().setScene(new Scene(loadFXML("startSide")));
     }
 }
+
