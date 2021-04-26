@@ -66,17 +66,6 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="program1Txt" text="Label" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Label fx:id="program2Txt" text="Label" />
-                     </children>
-                  </HBox>
-
 
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>

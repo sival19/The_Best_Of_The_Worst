@@ -328,13 +328,14 @@ public class Catalog {
 
     public static void main(String[] args) {
         Catalog catalog = new Catalog();
-        catalog.programmer.get("0").setImagePath("piratesnew.png");
-        catalog.programmer.get("1").setImagePath("ted.jpg");
-        catalog.programmer.get("2").setImagePath("twighlight.jpg");
-        catalog.iFileManager.updateCatalogObject("0",catalog.programmer.get("0"));
+        catalog.programmer.get("1").setImagePath("piratesnew.png");
+        catalog.programmer.get("2").setImagePath("ted.jpg");
+        catalog.programmer.get("3").setImagePath("twighlight.jpg");
+        catalog.programmer.get("4").setImagePath("househusband.jpg");
         catalog.iFileManager.updateCatalogObject("1",catalog.programmer.get("1"));
         catalog.iFileManager.updateCatalogObject("2",catalog.programmer.get("2"));
-
+        catalog.iFileManager.updateCatalogObject("3",catalog.programmer.get("3"));
+        catalog.iFileManager.updateCatalogObject("4",catalog.programmer.get("4"));
 
         System.out.println(catalog.iFileManager.loadProgrammer());
     }
