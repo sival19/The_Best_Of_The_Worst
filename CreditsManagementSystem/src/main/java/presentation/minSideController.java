@@ -33,9 +33,9 @@ public class minSideController implements Initializable {
     IDataBruger iDataBruger;
 
     public void toStartScreen(ActionEvent actionEvent) {
-        try{
+        try {
             App.getStage().setScene(new Scene(loadFXML("startSide")));
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -52,24 +52,22 @@ public class minSideController implements Initializable {
         showBrugerOptions();
     }
 
-    void showBrugerOptions(){
+    void showBrugerOptions() {
 
-        if(iDataBruger.getRettighed().toString().equalsIgnoreCase("Producer")){
+        if (iDataBruger.getRettighed().toString().equalsIgnoreCase("Producer")) {
             opretBrugerBT.setVisible(false);
             opretProgramBT.setVisible(true);
             produktioner.setVisible(true);
             opretPersonBT.setVisible(true);
             opretRolleBT.setVisible(true);
 
-        }
-        else if(iDataBruger.getRettighed().toString().equalsIgnoreCase("Administrator")){
+        } else if (iDataBruger.getRettighed().toString().equalsIgnoreCase("Administrator")) {
             opretPersonBT.setVisible(false);
             opretRolleBT.setVisible(false);
             opretProgramBT.setVisible(false);
             produktioner.setVisible(false);
             opretBrugerBT.setVisible(true);
-        }
-        else {
+        } else {
             opretPersonBT.setVisible(false);
             opretRolleBT.setVisible(false);
             opretProgramBT.setVisible(false);
@@ -79,21 +77,19 @@ public class minSideController implements Initializable {
     }
 
     public void opretHandler(ActionEvent actionEvent) {
-        if(actionEvent.getSource()==opretBrugerBT){
+        if (actionEvent.getSource() == opretBrugerBT) {
             try {
                 App.getStage().setScene(new Scene(loadFXML("opretBruger")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else if(actionEvent.getSource()==opretPersonBT){
+        } else if (actionEvent.getSource() == opretPersonBT) {
             try {
                 App.getStage().setScene(new Scene(loadFXML("opretPerson")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else if(actionEvent.getSource()==opretProgramBT){
+        } else if (actionEvent.getSource() == opretProgramBT) {
             try {
                 App.getStage().setScene(new Scene(loadFXML("opretProgram")));
             } catch (IOException e) {
