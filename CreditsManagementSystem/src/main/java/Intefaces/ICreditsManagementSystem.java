@@ -11,9 +11,12 @@ public interface ICreditsManagementSystem {
     String login(String brugernavn, String adgangskode);
     String opretCredit(String produktionsID, String rolletype, String personID, String beskrivelse);
     String opretPerson(String navn, String nationalitet, String fødselsdato);
+
+    String opretRolle(String rolletype);
     List<IDataProgram> getPrograms();
     List<IDataPerson> getPersons();
     List<IDataRolle> getRoller();
+    List<ICatalogObject> søgCredit(String søgeord);
 
 
     IDataProgram getProgram();

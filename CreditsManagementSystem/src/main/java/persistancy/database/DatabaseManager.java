@@ -4,14 +4,22 @@ import Intefaces.*;
 import domain.creditManagement.CatalogObject;
 
 import java.util.List;
+import java.util.Map;
 
 public class DatabaseManager implements IDataManager {
 
-    public DatabaseManager() {
+    private static DatabaseManager databaseManager;
+
+    private DatabaseManager() {
 
     }
 
-
+    public static DatabaseManager getDatabase(){
+        if(databaseManager == null){
+            databaseManager = new DatabaseManager();
+        }
+        return databaseManager;
+    }
     @Override
     public IDataBruger loadBruger(String brugerNavn) {
         return null;
@@ -38,12 +46,22 @@ public class DatabaseManager implements IDataManager {
     }
 
     @Override
+    public Map<String, IDataBruger> loadbrugere() {
+        return null;
+    }
+
+    @Override
     public boolean saveCatalogObject(ICatalogObject catalogObject) {
         return false;
     }
 
     @Override
     public boolean updateCatalogObject(String key, ICatalogObject catalogObject) {
+        return false;
+    }
+
+    @Override
+    public boolean updateBruger(String key, IDataBruger iDataBruger) {
         return false;
     }
 }

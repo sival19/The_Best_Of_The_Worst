@@ -19,7 +19,6 @@ public class Credit implements IDataCredit {
     public Credit() {
     }
 
-    ;
 
     public Person getPerson() {
         return person;
@@ -47,8 +46,8 @@ public class Credit implements IDataCredit {
 
     @Override
     public String toString() {
-        return rolle.getRolletype() + "\n" +
-                person.getNavn() + "\n" +
-                beskrivelse;
+        return person.getNavn() + ", " +
+                rolle.getRolletype() +": "+
+                beskrivelse + "\n";
     }
 }

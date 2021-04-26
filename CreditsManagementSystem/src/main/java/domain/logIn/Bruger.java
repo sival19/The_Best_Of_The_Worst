@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bruger implements IDataBruger{
@@ -19,7 +20,7 @@ public class Bruger implements IDataBruger{
 
     private int brugerID;
 
-    private List<Integer> produktioner;
+    private List<Integer> produktionIDer;
 
     public Bruger(String brugernavn, String adgangskode, String email, Rettighed rettighed, int brugerID) {
         this.brugernavn = brugernavn;
@@ -58,6 +59,21 @@ public class Bruger implements IDataBruger{
     @Override
     public Rettighed getRettighed() {
         return rettighed;
+    }
+
+    @Override
+    public List<Integer> getProduktionsIDer() {
+        return produktionIDer;
+    }
+
+    @Override
+    public void setProduktionsIDer(List<Integer> produktionsIDer) {
+        this.produktionIDer = produktionsIDer;
+    }
+
+    @Override
+    public void addProduktionIDer(int produktionsID) {
+        this.produktionIDer.add(produktionsID);
     }
 
     public void setRettighed(Rettighed rettighed) {

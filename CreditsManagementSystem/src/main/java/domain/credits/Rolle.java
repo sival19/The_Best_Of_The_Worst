@@ -1,9 +1,10 @@
 package domain.credits;
 
 import Intefaces.IDataRolle;
+import domain.creditManagement.CatalogObject;
 import javafx.scene.image.Image;
 
-public class Rolle implements IDataRolle {
+public class Rolle extends CatalogObject implements IDataRolle {
 
     private String rolletype;
 

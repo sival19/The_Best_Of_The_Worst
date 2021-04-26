@@ -1,14 +1,15 @@
 package domain.creditManagement;
 
-import Factory.DataManagementFactory;
 import Intefaces.*;
+import domain.credits.Person;
+import domain.credits.Program;
 import domain.credits.ProgramType;
 import domain.credits.Rolle;
 import domain.logIn.UserManager;
+import hub.Hub;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,18 +18,24 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     private UserManager userManager;
     private Catalog catalog;
     private IDataManager iFileManager;
-    private IDataProgram program;
-    private IDataPerson person;
-    private IDataRolle rolle;
     private static CreditsManagementSystem creditsManagementSystem;
+    IHub hub;
 
 
 
-    public CreditsManagementSystem() {
+    private CreditsManagementSystem() {
+        hub = new Hub();
         userManager = new UserManager();
         catalog = new Catalog();
-        iFileManager = DataManagementFactory.createDataManager("file");
+        iFileManager = hub.getDataManager("file");
 
+    }
+
+    public static ICreditsManagementSystem getCreditManagementSystem(){
+        if(creditsManagementSystem == null){
+            creditsManagementSystem = new CreditsManagementSystem();
+        }
+        return creditsManagementSystem;
     }
 
 
@@ -49,32 +56,32 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
 
     @Override
     public IDataProgram getProgram() {
-        return program;
+        return catalog.getProgram();
     }
 
     @Override
     public IDataPerson getPerson() {
-        return person;
+        return catalog.getPerson();
     }
 
     @Override
     public IDataRolle getRolle() {
-        return rolle;
+        return catalog.getRolle();
     }
 
     @Override
     public void setRolle(IDataRolle iDataRolle) {
-        rolle = iDataRolle;
+        catalog.setRolle((Rolle) iDataRolle);
     }
 
     @Override
     public void setProgram(IDataProgram iDataProgram) {
-        program = iDataProgram;
+        catalog.setProgram((Program) iDataProgram);
     }
 
     @Override
     public void setPerson(IDataPerson iDataPerson) {
-        person = iDataPerson;
+        catalog.setPerson((Person) iDataPerson);
     }
 
     @Override
@@ -99,8 +106,10 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
         return catalog.opretPerson(navn, nationalitet, date);
     }
 
+
+
     public String opretRolle(String rolletype) {
-        return null;
+        return catalog.opretRolle(rolletype);
     }
 
     public String opretProgram(String programNavn, int produktionsID, Date udgivelsesDato, ProgramType programType, String genre, double længde) {
@@ -119,8 +128,9 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
         return null;
     }
 
-    public String søgCredit(String søgeord) {
-        return null;
+    @Override
+    public List<ICatalogObject> søgCredit(String søgeord) {
+        return new ArrayList<>(catalog.søg(søgeord));
     }
 
     @Override
@@ -154,6 +164,11 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
         }
         System.out.println(date);
         if(catalog.opretProgram(programnavn,date,programtype,genre,længde)) {
+            List<Integer> produktionsIDer = new ArrayList<>();
+            produktionsIDer.add(catalog.getProgrammer().size());
+            userManager.getBruger().setProduktionsIDer(produktionsIDer);
+            System.out.println(catalog.getProgrammer().size());
+            iFileManager.updateBruger(userManager.getBruger().getBrugernavn(), userManager.getBruger());
             return "Program er oprettet";
         }
         return "Program er ikke oprettet";

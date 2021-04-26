@@ -64,7 +64,6 @@
                   <ImageView fx:id="programImage3" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#catalogHandler" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="170.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -78,10 +77,22 @@
                      </children>
                   </HBox>
 
+
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="program1Txt" text="Label" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="program2Txt" text="Label" />
+                     </children>
+                  </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Label fx:id="program3Txt" text="Label" />
-                     </children></HBox>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </children>
@@ -95,16 +106,12 @@
             <ListView fx:id="searchResultView" onMouseClicked="#catalogHandler" prefHeight="262.0" prefWidth="174.0" />
          </children>
       </VBox>
-      <Button fx:id="opret" layoutX="6.0" layoutY="717.0" mnemonicParsing="false" onAction="#opretHandler" text="Opret">
-         <effect>
-            <InnerShadow />
-         </effect></Button>
       <ImageView fx:id="nextBtLeft" fitHeight="89.0" fitWidth="56.0" layoutX="258.0" layoutY="338.0" onMouseClicked="#nextHandler">
          <image>
             <Image url="@previous.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="nextBtRight" fitHeight="89.0" fitWidth="56.0" layoutX="900.0" layoutY="338.0" onMouseClicked="#nextHandler">
+      <ImageView fx:id="nextBtRight" fitHeight="89.0" fitWidth="56.0" layoutX="947.0" layoutY="338.0" onMouseClicked="#nextHandler">
          <image>
             <Image url="@next.png" />
          </image>
@@ -114,6 +121,6 @@
             <InnerShadow />
          </effect>
       </Button>
-      <HBox layoutX="465.0" layoutY="499.0" prefHeight="100.0" prefWidth="200.0" />
+      <HBox layoutX="340.0" layoutY="486.0" prefHeight="53.0" prefWidth="586.0" />
    </children>
 </AnchorPane>
