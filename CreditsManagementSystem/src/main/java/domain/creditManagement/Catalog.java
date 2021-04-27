@@ -144,6 +144,7 @@ public class Catalog {
 
     public String opretPerson(String navn, String nationalitet, Date fødselsdato) {
         String result = "";
+        String confirmation;
         int indeks;
         if(personer!=null){
             indeks = personer.size()+1;
@@ -154,6 +155,12 @@ public class Catalog {
         Person person = new Person(navn, fødselsdato, nationalitet, indeks);
         boolean saveSucces= iFileManager.saveCatalogObject(person);
 
+        if(isPerson(indeks)){
+            confirmation = "Person oprettet";
+        } else {
+            confirmation = "Person eksisterer allerede";
+        }
+
         if(!saveSucces){
             result = "Kunne ikke gemmes";
         }
@@ -162,6 +169,9 @@ public class Catalog {
             result = "Kunne gemmes";
             personer.put(String.valueOf(person.getPersonID()),person);
         }
+
+        System.out.println(result);
+        System.out.println(confirmation);
 
         return result;
     }
