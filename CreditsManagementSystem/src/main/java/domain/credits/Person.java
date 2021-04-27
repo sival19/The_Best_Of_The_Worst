@@ -25,7 +25,8 @@ public class Person extends CatalogObject implements IDataPerson {
         this.personID = personID;
     }
 
-    public Person(){}
+    public Person() {
+    }
 
     public String getImagePath() {
         return imagePath;
@@ -70,8 +71,8 @@ public class Person extends CatalogObject implements IDataPerson {
     @Override
     public String toString() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return navn +  ", "+ simpleDateFormat.format(foedselsdato) +
-                ", " +nationalitet +
-                ", personID=" + personID + "blab" ;
+        return navn + ", " + simpleDateFormat.format(foedselsdato) +
+                ", " + nationalitet +
+                ", personID=" + personID;
     }
 }
