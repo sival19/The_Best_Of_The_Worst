@@ -72,6 +72,6 @@ public class Person extends CatalogObject implements IDataPerson {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return navn +  ", "+ simpleDateFormat.format(foedselsdato) +
                 ", " +nationalitet +
-                ", personID=" + personID ;
+                ", personID=" + personID + "blab" ;
     }
 }
