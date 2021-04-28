@@ -2,24 +2,27 @@ package persistancy.database;
 
 import Intefaces.*;
 import domain.creditManagement.CatalogObject;
+import domain.credits.Rolle;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
 public class DatabaseManager implements IDataManager {
 
-    private static DatabaseManager databaseManager;
+    private DatabaseConnector databaseConnector;
 
-    private DatabaseManager() {
+
+    public DatabaseManager() {
+
+        databaseConnector = DatabaseConnector.getInstance();
 
     }
 
-    public static DatabaseManager getDatabase(){
-        if(databaseManager == null){
-            databaseManager = new DatabaseManager();
-        }
-        return databaseManager;
-    }
     @Override
     public IDataBruger loadBruger(String brugerNavn) {
         return null;
@@ -52,7 +55,31 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public boolean saveCatalogObject(ICatalogObject catalogObject) {
-        return false;
+
+        //prepare a statement
+        PreparedStatement stmt = null;
+        try {
+            //statement itself
+            stmt = databaseConnector.getConnection().prepareStatement("INSERT INTO rolle(rolletype) VALUES (?)");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        try {
+            stmt.setString(1,"producer");
+
+            //excecute statement
+            stmt.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        //use the prepared statememnt
+        DatabaseManager hola = new DatabaseManager();
+        hola.saveCatalogObject(new Rolle("producer",1));
     }
 
     @Override

@@ -20,7 +20,7 @@ public class Hub implements IHub {
             iDataManager= FileManager.getFileManager();
         }
         else if(type.equalsIgnoreCase("Database")){
-            iDataManager = DatabaseManager.getDatabase();
+            iDataManager = new DatabaseManager();
         }
         return iDataManager;
     }
