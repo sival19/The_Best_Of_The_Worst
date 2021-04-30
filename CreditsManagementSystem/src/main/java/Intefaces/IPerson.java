@@ -6,7 +6,7 @@ import domain.credits.Person;
 import java.util.Date;
 
 @JsonDeserialize(as = Person.class)
-public interface IDataPerson extends ICatalogObject {
+public interface IPerson extends ICatalogObject {
     public String getNavn();
 
     public void setNavn(String navn);

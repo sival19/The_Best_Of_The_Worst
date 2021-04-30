@@ -40,48 +40,48 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
 
 
     @Override
-    public List<IDataProgram> getPrograms() {
+    public List<IProgram> getPrograms() {
         return new ArrayList<>(catalog.getProgrammer().values());
     }
 
     @Override
-    public List<IDataPerson> getPersons() {
+    public List<IPerson> getPersons() {
         return new ArrayList<>(catalog.getPersoner().values());
     }
 
     @Override
-    public List<IDataRolle> getRoller() {
+    public List<IRolle> getRoller() {
         return new ArrayList<>(catalog.getRoller().values());
     }
 
     @Override
-    public IDataProgram getProgram() {
+    public IProgram getProgram() {
         return catalog.getProgram();
     }
 
     @Override
-    public IDataPerson getPerson() {
+    public IPerson getPerson() {
         return catalog.getPerson();
     }
 
     @Override
-    public IDataRolle getRolle() {
+    public IRolle getRolle() {
         return catalog.getRolle();
     }
 
     @Override
-    public void setRolle(IDataRolle iDataRolle) {
-        catalog.setRolle((Rolle) iDataRolle);
+    public void setRolle(IRolle iRolle) {
+        catalog.setRolle((Rolle) iRolle);
     }
 
     @Override
-    public void setProgram(IDataProgram iDataProgram) {
-        catalog.setProgram((Program) iDataProgram);
+    public void setProgram(IProgram iProgram) {
+        catalog.setProgram((Program) iProgram);
     }
 
     @Override
-    public void setPerson(IDataPerson iDataPerson) {
-        catalog.setPerson((Person) iDataPerson);
+    public void setPerson(IPerson iPerson) {
+        catalog.setPerson((Person) iPerson);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     }
 
     @Override
-    public IDataBruger getBruger() {
+    public IBruger getBruger() {
         return userManager.getBruger();
     }
 

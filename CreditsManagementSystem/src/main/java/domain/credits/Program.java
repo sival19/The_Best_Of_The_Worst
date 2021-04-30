@@ -1,6 +1,6 @@
 package domain.credits;
 
-import Intefaces.IDataProgram;
+import Intefaces.IProgram;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import domain.creditManagement.CatalogObject;
 
@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class Program extends CatalogObject implements IDataProgram{
+public class Program extends CatalogObject implements IProgram {
 
     private String programNavn;
 

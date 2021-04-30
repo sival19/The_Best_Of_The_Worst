@@ -1,6 +1,6 @@
 package domain.logIn;
 
-import Intefaces.IDataBruger;
+import Intefaces.IBruger;
 import Intefaces.IDataManager;
 import Intefaces.IHub;
 import hub.Hub;
@@ -25,7 +25,7 @@ public class UserManager {
         String result = "";
         Rettighed brugerRettighed = null;
 
-        Map<String,IDataBruger> brugerMap = fileManager.loadbrugere();
+        Map<String, IBruger> brugerMap = fileManager.loadbrugere();
         int indeks;
         if(brugerMap!=null){
            indeks = brugerMap.size()+1;

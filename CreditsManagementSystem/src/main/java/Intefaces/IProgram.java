@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @JsonDeserialize(as = Program.class)
-public interface IDataProgram extends ICatalogObject {
+public interface IProgram extends ICatalogObject {
     public String getProgramNavn();
 
     public void setProgramNavn(String programNavn);

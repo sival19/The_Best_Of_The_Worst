@@ -35,13 +35,13 @@ public class SePersonController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         hub = new Hub();
         iCreditsManagementSystem = hub.getCreditManagementSystem();
-        IDataPerson person = iCreditsManagementSystem.getPerson();
+        IPerson person = iCreditsManagementSystem.getPerson();
         sePerson();
 
     }
 
     private void sePerson(){
-        IDataPerson person = iCreditsManagementSystem.getPerson();
+        IPerson person = iCreditsManagementSystem.getPerson();
         personnavnTxt.setText(person.getNavn());
         personID.setText(String.valueOf(person.getPersonID()));
         nationalitetTxt.setText(person.getNationalitet());
@@ -60,10 +60,10 @@ public class SePersonController implements Initializable {
 
         StringBuilder  stringBuilder = new StringBuilder();
 
-        for (IDataProgram iDataProgram : iCreditsManagementSystem.getPrograms()) {
-            for (IDataCredit iDataCredit : iDataProgram.getCredits()) {
-                if (iDataCredit.getPerson().getPersonID() == person.getPersonID()) {
-                    stringBuilder.append(iDataCredit);
+        for (IProgram iProgram : iCreditsManagementSystem.getPrograms()) {
+            for (ICredit iCredit : iProgram.getCredits()) {
+                if (iCredit.getPerson().getPersonID() == person.getPersonID()) {
+                    stringBuilder.append(iCredit);
                 }
             }
         }

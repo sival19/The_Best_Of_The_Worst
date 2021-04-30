@@ -7,7 +7,7 @@ import domain.credits.Rolle;
 import domain.logIn.Bruger;
 
 @JsonDeserialize(as = Credit.class)
-public interface IDataCredit extends ICatalogObject{
+public interface ICredit extends ICatalogObject{
 
     public Person getPerson();
 

@@ -2,7 +2,7 @@ package presentation;
 
 
 import Intefaces.ICreditsManagementSystem;
-import Intefaces.IDataProgram;
+import Intefaces.IProgram;
 import Intefaces.IHub;
 import hub.Hub;
 import javafx.event.ActionEvent;
@@ -34,7 +34,7 @@ public class SeProgramController implements Initializable {
     public Button backBt;
 
     public Button opretCreditBT;
-    private IDataProgram iDataProgram;
+    private IProgram iProgram;
     private ICreditsManagementSystem creditsManagementSystem;
     private IHub hub;
 
@@ -42,18 +42,18 @@ public class SeProgramController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         hub = new Hub();
         creditsManagementSystem = hub.getCreditManagementSystem();
-        iDataProgram = creditsManagementSystem.getProgram();
+        iProgram = creditsManagementSystem.getProgram();
         opretCreditBT.setVisible(false);
         seProgram();
         showBrugerOptions();
     }
     private void seProgram(){
-        programNavn.setText(iDataProgram.getProgramNavn());
-        programDato.setText(iDataProgram.getUdgivelsesDato().toString());
-        programGenre.setText(iDataProgram.getGenre().toString());
+        programNavn.setText(iProgram.getProgramNavn());
+        programDato.setText(iProgram.getUdgivelsesDato().toString());
+        programGenre.setText(iProgram.getGenre().toString());
         try {
-            if(iDataProgram.getImagePath()!=null){
-                String imagepath = String.valueOf(StartSideController.class.getResource(iDataProgram.getImagePath()).toURI().toURL());
+            if(iProgram.getImagePath()!=null){
+                String imagepath = String.valueOf(StartSideController.class.getResource(iProgram.getImagePath()).toURI().toURL());
                 if(imagepath!=null){
                     programImage.setImage(new Image(imagepath));
                 }
@@ -62,7 +62,7 @@ public class SeProgramController implements Initializable {
         } catch (MalformedURLException | URISyntaxException e) {
             e.printStackTrace();
         }
-        creditList.setText("Credits: " + iDataProgram.getCreditListString());
+        creditList.setText("Credits: " + iProgram.getCreditListString());
 
     }
 

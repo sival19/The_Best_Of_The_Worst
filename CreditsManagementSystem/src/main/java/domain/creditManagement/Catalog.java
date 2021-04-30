@@ -24,9 +24,9 @@ public class Catalog {
         programmer = new HashMap<>();
         iFileManager = hub.getDataManager("file");
 
-        List<IDataPerson> tempPers =  iFileManager.loadPersoner();
-        List<IDataProgram> tempPro = iFileManager.loadProgrammer();
-        List<IDataRolle> tempRol = iFileManager.loadRoller();
+        List<IPerson> tempPers =  iFileManager.loadPersoner();
+        List<IProgram> tempPro = iFileManager.loadProgrammer();
+        List<IRolle> tempRol = iFileManager.loadRoller();
 
         fillCatalog(tempPers,tempPro,tempRol);
         System.out.println(getProgrammer());
@@ -35,12 +35,12 @@ public class Catalog {
 
     }
 
-    private void fillCatalog(List<IDataPerson> personer, List<IDataProgram> programs, List<IDataRolle> roller){
+    private void fillCatalog(List<IPerson> personer, List<IProgram> programs, List<IRolle> roller){
         if(personer!= null){
-            for(IDataPerson iDataPerson: personer){
-                Person person = new Person(iDataPerson.getNavn(),iDataPerson.getFoedselsdato(),iDataPerson.getNationalitet(),iDataPerson.getPersonID());
-                if(iDataPerson.getImagePath()!= null) {
-                    person.setImagePath(iDataPerson.getImagePath());
+            for(IPerson iPerson : personer){
+                Person person = new Person(iPerson.getNavn(), iPerson.getFoedselsdato(), iPerson.getNationalitet(), iPerson.getPersonID());
+                if(iPerson.getImagePath()!= null) {
+                    person.setImagePath(iPerson.getImagePath());
                 }
                 else{
                     person.setImagePath("defaultMovieImage.jpg");
@@ -51,10 +51,10 @@ public class Catalog {
         }
 
         if(programs!= null){
-            for(IDataProgram iDataProgram: programs){
-                Program program = new Program(iDataProgram.getProgramNavn(),iDataProgram.getProduktionsID(),iDataProgram.getUdgivelsesDato(),iDataProgram.getProgramType(),iDataProgram.getGenre(),iDataProgram.getLængde(),iDataProgram.getCredits());
-                if(iDataProgram.getImagePath()!= null) {
-                    program.setImagePath(iDataProgram.getImagePath());
+            for(IProgram iProgram : programs){
+                Program program = new Program(iProgram.getProgramNavn(), iProgram.getProduktionsID(), iProgram.getUdgivelsesDato(), iProgram.getProgramType(), iProgram.getGenre(), iProgram.getLængde(), iProgram.getCredits());
+                if(iProgram.getImagePath()!= null) {
+                    program.setImagePath(iProgram.getImagePath());
                 }
                 else{
                     program.setImagePath("defaultMovieImage.jpg");
@@ -66,10 +66,10 @@ public class Catalog {
 
 
         if(roller!=null){
-            for(IDataRolle iDataRolle: roller){
-                Rolle rolle = new Rolle(iDataRolle.getRolletype(),iDataRolle.getRolleID());
-                if(iDataRolle.getImagePath()!= null) {
-                    rolle.setImagePath(iDataRolle.getImagePath());
+            for(IRolle iRolle : roller){
+                Rolle rolle = new Rolle(iRolle.getRolletype(), iRolle.getRolleID());
+                if(iRolle.getImagePath()!= null) {
+                    rolle.setImagePath(iRolle.getImagePath());
                 }
                 else{
                     rolle.setImagePath("defaultMovieImage.jpg");
@@ -102,7 +102,7 @@ public class Catalog {
        else if( program.opretCredit(person,rolle,beskrivelse)){
            programmer.replace(String.valueOf(program.getProduktionsID()),program);
            iFileManager.updateCatalogObject(String.valueOf(program.getProduktionsID()),program);
-           List<IDataProgram> programList =iFileManager.loadProgrammer();
+           List<IProgram> programList =iFileManager.loadProgrammer();
            System.out.println(programList  );
 
            return "Credit er oprettet";

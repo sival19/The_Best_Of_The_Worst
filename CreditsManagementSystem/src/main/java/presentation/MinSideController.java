@@ -1,7 +1,7 @@
 package presentation;
 
 import Intefaces.ICreditsManagementSystem;
-import Intefaces.IDataBruger;
+import Intefaces.IBruger;
 import Intefaces.IHub;
 import hub.Hub;
 import javafx.event.ActionEvent;
@@ -29,7 +29,7 @@ public class MinSideController implements Initializable {
     public Button opretPersonBT;
     public Button opretRolleBT;
     private ICreditsManagementSystem iCreditsManagementSystem;
-    private IDataBruger iDataBruger;
+    private IBruger iBruger;
     private IHub hub;
 
     public void toStartScreen(ActionEvent actionEvent) {
@@ -44,19 +44,19 @@ public class MinSideController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         hub = new Hub();
         iCreditsManagementSystem = hub.getCreditManagementSystem();
-        iDataBruger = iCreditsManagementSystem.getBruger();
-        brugerIDTxt.setText(String.valueOf(iDataBruger.getBrugerID()));
-        brugerNavnTxt.setText(iDataBruger.getBrugernavn());
-        adgangskodeTxt.setText(iDataBruger.getAdgangskode());
-        emailTxt.setText(iDataBruger.getEmail());
-        rettighedTxt.setText(iDataBruger.getRettighed().toString());
+        iBruger = iCreditsManagementSystem.getBruger();
+        brugerIDTxt.setText(String.valueOf(iBruger.getBrugerID()));
+        brugerNavnTxt.setText(iBruger.getBrugernavn());
+        adgangskodeTxt.setText(iBruger.getAdgangskode());
+        emailTxt.setText(iBruger.getEmail());
+        rettighedTxt.setText(iBruger.getRettighed().toString());
         showBrugerOptions();
     }
 
 
     private void showBrugerOptions(){
 
-        if(iDataBruger.getRettighed().toString().equalsIgnoreCase("Producer")){
+        if(iBruger.getRettighed().toString().equalsIgnoreCase("Producer")){
             opretBrugerBT.setVisible(false);
             opretProgramBT.setVisible(true);
             produktioner.setVisible(true);
@@ -64,7 +64,7 @@ public class MinSideController implements Initializable {
             opretRolleBT.setVisible(true);
 
         }
-        else if(iDataBruger.getRettighed().toString().equalsIgnoreCase("Administrator")){
+        else if(iBruger.getRettighed().toString().equalsIgnoreCase("Administrator")){
             opretPersonBT.setVisible(false);
             opretRolleBT.setVisible(false);
             opretProgramBT.setVisible(false);

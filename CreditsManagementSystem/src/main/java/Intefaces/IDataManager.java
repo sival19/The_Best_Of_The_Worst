@@ -5,13 +5,13 @@ import java.util.Map;
 
 public interface IDataManager {
 
-    IDataBruger loadBruger(String brugerNavn);
-    boolean saveBruger(IDataBruger bruger);
-    List<IDataPerson> loadPersoner();
-    List<IDataProgram> loadProgrammer();
-    List<IDataRolle> loadRoller();
-    Map<String,IDataBruger> loadbrugere();
+    IBruger loadBruger(String brugerNavn);
+    boolean saveBruger(IBruger bruger);
+    List<IPerson> loadPersoner();
+    List<IProgram> loadProgrammer();
+    List<IRolle> loadRoller();
+    Map<String, IBruger> loadbrugere();
     boolean saveCatalogObject(ICatalogObject catalogObject);
     boolean updateCatalogObject(String key, ICatalogObject catalogObject);
-    boolean updateBruger(String key, IDataBruger iDataBruger);
+    boolean updateBruger(String key, IBruger iBruger);
 }

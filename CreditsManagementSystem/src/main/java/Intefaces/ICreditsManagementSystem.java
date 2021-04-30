@@ -5,7 +5,7 @@ import java.util.List;
 public interface ICreditsManagementSystem {
     boolean isAdmin();
     boolean isProducer();
-    IDataBruger getBruger();
+    IBruger getBruger();
     String opretBruger(String brugernavn, String adgangskode, String email, String rettigheder);
     String opretProgram(String programnavn, String yr,String mth, String programtype, String genre, double længde );
     String login(String brugernavn, String adgangskode);
@@ -13,20 +13,20 @@ public interface ICreditsManagementSystem {
     String opretPerson(String navn, String nationalitet, String fødselsdato);
 
     String opretRolle(String rolletype);
-    List<IDataProgram> getPrograms();
-    List<IDataPerson> getPersons();
-    List<IDataRolle> getRoller();
+    List<IProgram> getPrograms();
+    List<IPerson> getPersons();
+    List<IRolle> getRoller();
     List<ICatalogObject> søgCredit(String søgeord);
 
 
-    IDataProgram getProgram();
-    IDataPerson getPerson();
+    IProgram getProgram();
+    IPerson getPerson();
 
-    IDataRolle getRolle();
+    IRolle getRolle();
 
-    void setRolle(IDataRolle iDataRolle);
-    void setProgram(IDataProgram iDataProgram);
-    void setPerson(IDataPerson iDataPerson);
+    void setRolle(IRolle iRolle);
+    void setProgram(IProgram iProgram);
+    void setPerson(IPerson iPerson);
 
     String getBrugerrettighed();
 

@@ -5,7 +5,7 @@ import domain.credits.Rolle;
 import domain.logIn.Bruger;
 
 @JsonDeserialize(as = Rolle.class)
-public interface IDataRolle extends ICatalogObject{
+public interface IRolle extends ICatalogObject{
 
     public String getRolletype();
 

@@ -11,7 +11,7 @@ import domain.logIn.Rettighed;
 import java.util.List;
 
 @JsonDeserialize(as = Bruger.class)
-public interface IDataBruger {
+public interface IBruger {
     String getBrugernavn();
     String getAdgangskode();
     String getEmail();

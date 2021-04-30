@@ -1,14 +1,11 @@
 package domain.logIn;
 
-import Intefaces.IDataBruger;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import Intefaces.IBruger;
 
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Bruger implements IDataBruger{
+public class Bruger implements IBruger {
 
     private String brugernavn;
 

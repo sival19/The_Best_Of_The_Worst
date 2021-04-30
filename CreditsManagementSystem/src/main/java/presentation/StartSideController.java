@@ -40,7 +40,7 @@ public class StartSideController implements Initializable {
     public Button opret;
     public Button minSideBt;
     private List<ICatalogObject> searchResultList;
-    private List<IDataProgram> programs;
+    private List<IProgram> programs;
     private int circularCount;
     private ICreditsManagementSystem creditsManagementSystem;
     private ObservableList<ICatalogObject> observableList;
@@ -88,18 +88,18 @@ public class StartSideController implements Initializable {
         if (mouseEvent.getSource() == searchResultView) {
             ICatalogObject iCatalogObject = searchResultView.getFocusModel().getFocusedItem();
             System.out.println(searchResultView.getFocusModel().getFocusedItem());
-            if (iCatalogObject instanceof IDataProgram) {
-                creditsManagementSystem.setProgram((IDataProgram) iCatalogObject);
+            if (iCatalogObject instanceof IProgram) {
+                creditsManagementSystem.setProgram((IProgram) iCatalogObject);
                 App.getStage().setScene(new Scene(loadFXML("seProgram")));
 
-            } else if (iCatalogObject instanceof IDataPerson) {
-                creditsManagementSystem.setPerson((IDataPerson) iCatalogObject);
+            } else if (iCatalogObject instanceof IPerson) {
+                creditsManagementSystem.setPerson((IPerson) iCatalogObject);
 
                 App.getStage().setScene(new Scene(loadFXML("sePerson")));
 
                 //TODO SWITCH TO sePerson.FXML
-            } else if (iCatalogObject instanceof IDataRolle) {
-                creditsManagementSystem.setRolle((IDataRolle) iCatalogObject);
+            } else if (iCatalogObject instanceof IRolle) {
+                creditsManagementSystem.setRolle((IRolle) iCatalogObject);
                 App.getStage().setScene(new Scene(loadFXML("seRolle")));
 
             }
@@ -110,26 +110,26 @@ public class StartSideController implements Initializable {
         //TODO CHANGE FROM getText to react on image
         else if (mouseEvent.getSource() == programImage1) {
 
-            for (IDataProgram iDataProgram : programs) {
-                if (iDataProgram.getProgramNavn().equals(program1Txt.getText())) {
-                    creditsManagementSystem.setProgram(iDataProgram);
-                    System.out.println(iDataProgram);
+            for (IProgram iProgram : programs) {
+                if (iProgram.getProgramNavn().equals(program1Txt.getText())) {
+                    creditsManagementSystem.setProgram(iProgram);
+                    System.out.println(iProgram);
                     App.getStage().setScene(new Scene(loadFXML("seProgram")));
                 }
             }
         } else if (mouseEvent.getSource() == programImage2) {
-            for (IDataProgram iDataProgram : programs) {
-                if (iDataProgram.getProgramNavn().equals(program2Txt.getText())) {
-                    creditsManagementSystem.setProgram(iDataProgram);
-                    System.out.println(iDataProgram);
+            for (IProgram iProgram : programs) {
+                if (iProgram.getProgramNavn().equals(program2Txt.getText())) {
+                    creditsManagementSystem.setProgram(iProgram);
+                    System.out.println(iProgram);
                     App.getStage().setScene(new Scene(loadFXML("seProgram")));
                 }
             }
         } else if (mouseEvent.getSource() == programImage3) {
-            for (IDataProgram iDataProgram : programs) {
-                if (iDataProgram.getProgramNavn().equals(program3Txt.getText())) {
-                    creditsManagementSystem.setProgram(iDataProgram);
-                    System.out.println(iDataProgram);
+            for (IProgram iProgram : programs) {
+                if (iProgram.getProgramNavn().equals(program3Txt.getText())) {
+                    creditsManagementSystem.setProgram(iProgram);
+                    System.out.println(iProgram);
                     App.getStage().setScene(new Scene(loadFXML("seProgram")));
                 }
             }
@@ -159,9 +159,9 @@ public class StartSideController implements Initializable {
             circular1 = circularCount % programs.size();
         }
 
-        IDataProgram program1 = programs.get(circular1);
-        IDataProgram program2 = programs.get(circular2);
-        IDataProgram program3 = programs.get(circular3);
+        IProgram program1 = programs.get(circular1);
+        IProgram program2 = programs.get(circular2);
+        IProgram program3 = programs.get(circular3);
         String imagePath1 = null;
         String imagePath2 = null;
         String imagePath3 = null;

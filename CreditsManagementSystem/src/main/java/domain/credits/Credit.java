@@ -1,8 +1,8 @@
 package domain.credits;
 
-import Intefaces.IDataCredit;
+import Intefaces.ICredit;
 
-public class Credit implements IDataCredit {
+public class Credit implements ICredit {
 
     private Person person;
 

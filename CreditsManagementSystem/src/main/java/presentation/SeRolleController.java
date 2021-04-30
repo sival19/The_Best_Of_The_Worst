@@ -37,7 +37,7 @@ public class SeRolleController implements Initializable {
 
 
     private void seRolle(){
-        IDataRolle rolle = iCreditsManagementSystem.getRolle();
+        IRolle rolle = iCreditsManagementSystem.getRolle();
         rolleNavnTxt.setText(rolle.getRolletype());
 
         if(rolleImage.getImage()!=null){
@@ -50,10 +50,10 @@ public class SeRolleController implements Initializable {
         }
 
         StringBuilder stringBuilder = new StringBuilder();
-        for (IDataProgram iDataProgram : iCreditsManagementSystem.getPrograms()) {
-            for (IDataCredit iDataCredit : iDataProgram.getCredits()) {
-                if (iDataCredit.getRolle().getRolletype().equalsIgnoreCase(rolle.getRolletype())) {
-                    stringBuilder.append(iDataCredit);
+        for (IProgram iProgram : iCreditsManagementSystem.getPrograms()) {
+            for (ICredit iCredit : iProgram.getCredits()) {
+                if (iCredit.getRolle().getRolletype().equalsIgnoreCase(rolle.getRolletype())) {
+                    stringBuilder.append(iCredit);
                 }
             }
         }

@@ -1,13 +1,9 @@
 package persistancy.database;
 
 import Intefaces.*;
-import domain.creditManagement.CatalogObject;
 import domain.credits.Rolle;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -24,32 +20,32 @@ public class DatabaseManager implements IDataManager {
     }
 
     @Override
-    public IDataBruger loadBruger(String brugerNavn) {
+    public IBruger loadBruger(String brugerNavn) {
         return null;
     }
 
     @Override
-    public boolean saveBruger(IDataBruger bruger) {
+    public boolean saveBruger(IBruger bruger) {
         return false;
     }
 
     @Override
-    public List<IDataPerson> loadPersoner() {
+    public List<IPerson> loadPersoner() {
         return null;
     }
 
     @Override
-    public List<IDataProgram> loadProgrammer() {
+    public List<IProgram> loadProgrammer() {
         return null;
     }
 
     @Override
-    public List<IDataRolle> loadRoller() {
+    public List<IRolle> loadRoller() {
         return null;
     }
 
     @Override
-    public Map<String, IDataBruger> loadbrugere() {
+    public Map<String, IBruger> loadbrugere() {
         return null;
     }
 
@@ -88,7 +84,7 @@ public class DatabaseManager implements IDataManager {
     }
 
     @Override
-    public boolean updateBruger(String key, IDataBruger iDataBruger) {
+    public boolean updateBruger(String key, IBruger iBruger) {
         return false;
     }
 }
