@@ -1,8 +1,7 @@
 package presentation;
 
 import Intefaces.ICreditsManagementSystem;
-import Intefaces.IHub;
-import hub.Hub;
+import domain.creditManagement.CreditsManagementSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,13 +29,10 @@ public class OpretProgramController implements Initializable {
 
     private ICreditsManagementSystem creditsManagementSystem;
     public Label resultatTxt;
-    private IHub hub;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        hub = new Hub();
-
-        creditsManagementSystem = hub.getCreditManagementSystem();
+        creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
         toggleGroupProgram = new ToggleGroup();
         toggleGroupGenre = new ToggleGroup();
         dokumentarRdBt.setToggleGroup(toggleGroupProgram); filmRdBt.setToggleGroup(toggleGroupProgram);
@@ -64,10 +60,16 @@ public class OpretProgramController implements Initializable {
     }
 
     public void opretProgramHandler(ActionEvent actionEvent) {
+        if(programnavnField.getText().equals("")|| yrField.getText().equals("")|| monthField.getText().equals("") || toggleGroupProgram.getSelectedToggle() == null || toggleGroupGenre.getSelectedToggle() == null){
+            resultatTxt.setText("Udfyld fylterne og vælg en knap");
+        }
+        else {
+            resultatTxt.setText(opretProgram(programnavnField.getText(),yrField.getText(), monthField.getText(),
+                    toggleGroupProgram.getSelectedToggle().getUserData().toString(),toggleGroupGenre.getSelectedToggle().getUserData().toString(),
+                    Double.parseDouble(lengthField.getText())));
+        }
 
-        resultatTxt.setText(opretProgram(programnavnField.getText(),yrField.getText(), monthField.getText(),
-                toggleGroupProgram.getSelectedToggle().getUserData().toString(),toggleGroupGenre.getSelectedToggle().getUserData().toString(),
-                Double.parseDouble(lengthField.getText())));
+
     }
 
     public void backToMinsideHandler(ActionEvent actionEvent) {

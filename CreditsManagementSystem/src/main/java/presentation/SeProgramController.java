@@ -3,8 +3,7 @@ package presentation;
 
 import Intefaces.ICreditsManagementSystem;
 import Intefaces.IProgram;
-import Intefaces.IHub;
-import hub.Hub;
+import domain.creditManagement.CreditsManagementSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,12 +35,11 @@ public class SeProgramController implements Initializable {
     public Button opretCreditBT;
     private IProgram iProgram;
     private ICreditsManagementSystem creditsManagementSystem;
-    private IHub hub;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        hub = new Hub();
-        creditsManagementSystem = hub.getCreditManagementSystem();
+        creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
         iProgram = creditsManagementSystem.getProgram();
         opretCreditBT.setVisible(false);
         seProgram();

@@ -1,8 +1,7 @@
 package presentation;
 
 import Intefaces.ICreditsManagementSystem;
-import Intefaces.IHub;
-import hub.Hub;
+import domain.creditManagement.CreditsManagementSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -18,14 +17,13 @@ public class OpretPersonController {
 
     public Button tilbage;
     public Button opretButton;
-    public Label label;
     public TextField navn;
     public TextField nationalitet;
     public TextField yearField;
     public TextField monthField;
     public TextField dayField;
+    public Label resultLbl;
     private ICreditsManagementSystem creditsManagementSystem;
-    private IHub hub;
 
     public void toPreviousScene(ActionEvent event) {
         try {
@@ -36,16 +34,15 @@ public class OpretPersonController {
     }
 
     public void initialize(){
-        hub = new Hub();
-        creditsManagementSystem = hub.getCreditManagementSystem();
+        creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
     }
 
     @FXML
     public void opretPersonHandler(ActionEvent event){
         if(navn.getText().equals("")|| nationalitet.getText().equals("")||yearField.getText().equals("") || monthField.getText().equals("") || dayField.getText().equals("")){
-            label.setText("udfyld felterne");
+            resultLbl.setText("udfyld felterne");
         } else{
-            String returnAnswer = creditsManagementSystem.opretPerson(navn.getText(), nationalitet.getText(),   yearField.getText() + "-" + monthField.getText() + "-" +dayField.getText());
+            resultLbl.setText(creditsManagementSystem.opretPerson(navn.getText(), nationalitet.getText(),   yearField.getText() + "-" + monthField.getText() + "-" +dayField.getText()));
         }
     }
 

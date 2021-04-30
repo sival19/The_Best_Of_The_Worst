@@ -1,8 +1,7 @@
 package presentation;
 
 import Intefaces.ICreditsManagementSystem;
-import Intefaces.IHub;
-import hub.Hub;
+import domain.creditManagement.CreditsManagementSystem;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -18,17 +17,16 @@ public class UserController {
     public Button opretBt;
     public TextField username, password, eMail;
     public RadioButton admin, producer;
+    public Label resultLbl;
     private ICreditsManagementSystem creditsManagementSystem;
     ToggleGroup toggleGroup;
     private String rights;
-    private IHub hub;
 
     public void initialize(){
-        hub = new Hub();
         toggleGroup = new ToggleGroup();
         admin.setToggleGroup(toggleGroup);
         producer.setToggleGroup(toggleGroup);
-        creditsManagementSystem = hub.getCreditManagementSystem();
+        creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
 
     }
 
@@ -53,6 +51,6 @@ public class UserController {
         } else if(producer.isSelected())  {
             rights = "Producer";
         }
-        System.out.println(opretBruger(username.getText(), password.getText(), eMail.getText(), rights));
+        resultLbl.setText(opretBruger(username.getText(), password.getText(), eMail.getText(), rights));
     }
 }

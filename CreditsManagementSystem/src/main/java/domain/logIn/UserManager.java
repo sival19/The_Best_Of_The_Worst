@@ -2,8 +2,7 @@ package domain.logIn;
 
 import Intefaces.IBruger;
 import Intefaces.IDataManager;
-import Intefaces.IHub;
-import hub.Hub;
+import persistancy.file.FileManager;
 
 import java.util.*;
 
@@ -11,11 +10,9 @@ public class UserManager {
 
     private Bruger bruger;
     private IDataManager fileManager;
-    IHub hub;
 
     public UserManager() {
-        hub = new Hub();
-        fileManager = hub.getDataManager("file");
+        fileManager = FileManager.getFileManager();
         bruger = new Bruger();
         bruger.setRettighed(Rettighed.SEER);
     }

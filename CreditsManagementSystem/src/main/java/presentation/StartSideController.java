@@ -2,7 +2,7 @@ package presentation;
 
 
 import Intefaces.*;
-import hub.Hub;
+import domain.creditManagement.CreditsManagementSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,21 +37,19 @@ public class StartSideController implements Initializable {
     public ListView<ICatalogObject> searchResultView;
     public AnchorPane anchorpane;
     public Button  loginBt, opretBrugerBt;
-    public Button opret;
     public Button minSideBt;
     private List<ICatalogObject> searchResultList;
     private List<IProgram> programs;
     private int circularCount;
     private ICreditsManagementSystem creditsManagementSystem;
     private ObservableList<ICatalogObject> observableList;
-    private IHub hub;
+
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        hub = new Hub();
-        creditsManagementSystem = hub.getCreditManagementSystem();
+        creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
         searchResultView.setVisible(false);
         searchResultList = new ArrayList<>();
         observableList = FXCollections.observableArrayList();

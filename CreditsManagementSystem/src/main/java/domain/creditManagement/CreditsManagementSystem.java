@@ -6,7 +6,7 @@ import domain.credits.Program;
 import domain.credits.ProgramType;
 import domain.credits.Rolle;
 import domain.logIn.UserManager;
-import hub.Hub;
+import persistancy.file.FileManager;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,15 +19,13 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     private Catalog catalog;
     private IDataManager iFileManager;
     private static CreditsManagementSystem creditsManagementSystem;
-    IHub hub;
 
 
 
     private CreditsManagementSystem() {
-        hub = new Hub();
         userManager = new UserManager();
         catalog = new Catalog();
-        iFileManager = hub.getDataManager("file");
+        iFileManager = FileManager.getFileManager();
 
     }
 
@@ -112,9 +110,6 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
         return catalog.opretRolle(rolletype);
     }
 
-    public String opretProgram(String programNavn, int produktionsID, Date udgivelsesDato, ProgramType programType, String genre, double længde) {
-        return null;
-    }
 
     public String seProgram(int produktionsID) {
         return null;

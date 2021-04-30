@@ -1,8 +1,7 @@
 package presentation;
 
 import Intefaces.ICreditsManagementSystem;
-import Intefaces.IHub;
-import hub.Hub;
+import domain.creditManagement.CreditsManagementSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,13 +24,11 @@ public class OpretRolleController implements Initializable {
     public TextField rolletypefield;
     public Label label;
     public Label resultatLbl;
-    private IHub hub;
     private ICreditsManagementSystem iCreditsManagementSystem;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        hub = new Hub();
-        iCreditsManagementSystem = hub.getCreditManagementSystem();
+        iCreditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
 
     }
 

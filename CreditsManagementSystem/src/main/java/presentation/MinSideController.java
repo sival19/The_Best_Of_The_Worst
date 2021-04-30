@@ -2,8 +2,7 @@ package presentation;
 
 import Intefaces.ICreditsManagementSystem;
 import Intefaces.IBruger;
-import Intefaces.IHub;
-import hub.Hub;
+import domain.creditManagement.CreditsManagementSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -30,7 +29,6 @@ public class MinSideController implements Initializable {
     public Button opretRolleBT;
     private ICreditsManagementSystem iCreditsManagementSystem;
     private IBruger iBruger;
-    private IHub hub;
 
     public void toStartScreen(ActionEvent actionEvent) {
         try{
@@ -42,8 +40,7 @@ public class MinSideController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        hub = new Hub();
-        iCreditsManagementSystem = hub.getCreditManagementSystem();
+        iCreditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
         iBruger = iCreditsManagementSystem.getBruger();
         brugerIDTxt.setText(String.valueOf(iBruger.getBrugerID()));
         brugerNavnTxt.setText(iBruger.getBrugernavn());

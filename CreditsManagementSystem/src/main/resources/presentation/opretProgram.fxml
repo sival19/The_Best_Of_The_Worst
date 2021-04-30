@@ -69,6 +69,6 @@
                 </HBox>
             </children>
         </VBox>
-        <Label fx:id="resultatTxt" layoutX="525.0" layoutY="209.0" prefHeight="0.0" prefWidth="28.0" text="Label" />
+        <Label fx:id="resultatTxt" layoutX="525.0" layoutY="209.0" prefHeight="18.0" prefWidth="290.0" />
     </children>
 </AnchorPane>

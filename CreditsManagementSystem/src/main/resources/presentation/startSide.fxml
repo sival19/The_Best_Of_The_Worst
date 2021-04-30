@@ -105,7 +105,7 @@
             <Image url="@next.png" />
          </image>
       </ImageView>
-      <Button fx:id="minSideBt" layoutX="280.0" layoutY="1.0" mnemonicParsing="false" onAction="#minSideHandler" text="Min Side">
+      <Button fx:id="minSideBt" layoutX="202.0" layoutY="36.0" mnemonicParsing="false" onAction="#minSideHandler" text="Min Side">
          <effect>
             <InnerShadow />
          </effect>

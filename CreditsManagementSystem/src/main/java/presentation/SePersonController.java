@@ -3,7 +3,7 @@ package presentation;
 
 import Intefaces.*;
 
-import hub.Hub;
+import domain.creditManagement.CreditsManagementSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -28,13 +28,11 @@ public class SePersonController implements Initializable {
     public ImageView personImage;
     public Text creditList;
     private ICreditsManagementSystem iCreditsManagementSystem;
-    private IHub hub;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        hub = new Hub();
-        iCreditsManagementSystem = hub.getCreditManagementSystem();
+        iCreditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
         IPerson person = iCreditsManagementSystem.getPerson();
         sePerson();
 

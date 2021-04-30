@@ -14,9 +14,7 @@ public class DatabaseManager implements IDataManager {
 
 
     public DatabaseManager() {
-
         databaseConnector = DatabaseConnector.getInstance();
-
     }
 
     @Override

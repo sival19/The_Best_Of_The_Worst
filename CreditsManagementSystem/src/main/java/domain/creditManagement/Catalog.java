@@ -2,7 +2,7 @@ package domain.creditManagement;
 
 import Intefaces.*;
 import domain.credits.*;
-import hub.Hub;
+import persistancy.file.FileManager;
 
 import java.util.*;
 
@@ -15,14 +15,12 @@ public class Catalog {
     private Person person;
     private Rolle rolle;
     IDataManager iFileManager;
-    IHub hub;
 
     public Catalog() {
-        hub = new Hub();
         personer = new HashMap<>();
         roller = new HashMap<>();
         programmer = new HashMap<>();
-        iFileManager = hub.getDataManager("file");
+        iFileManager = FileManager.getFileManager();
 
         List<IPerson> tempPers =  iFileManager.loadPersoner();
         List<IProgram> tempPro = iFileManager.loadProgrammer();
@@ -166,7 +164,7 @@ public class Catalog {
         }
 
         else if(saveSucces){
-            result = "Kunne gemmes";
+            result = "Person oprettet";
             personer.put(String.valueOf(person.getPersonID()),person);
         }
 
@@ -250,7 +248,7 @@ public class Catalog {
 
     }
     public boolean isPerson(int personID) {
-        if(iFileManager.loadPersoner().size()>= personID){
+        if(personer.size()>= personID){
             return true;
         } else{
             return false;
