@@ -6,12 +6,12 @@ public enum ProgramType {
     DOKUMENTAR("Dokumentar"),
     KORTFILM("KortFilm");
 
-    private String programTypeOrd;
+    private String programTypeWord;
 
-    ProgramType(String programTypeOrd){ this.programTypeOrd = programTypeOrd;}
+    ProgramType(String programTypeWord){ this.programTypeWord = programTypeWord;}
 
     @Override
     public String toString() {
-        return programTypeOrd;
+        return programTypeWord;
     }
 }

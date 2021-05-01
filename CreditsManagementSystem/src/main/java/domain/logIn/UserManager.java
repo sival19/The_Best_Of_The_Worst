@@ -69,7 +69,6 @@ public class UserManager {
         else if (bruger.getAdgangskode().equals(adgangskode)){
             this.bruger = bruger;
             result = "Velkommen!";
-            this.bruger = bruger;
         }
         System.out.println(this.bruger.getRettighed());
         return result;

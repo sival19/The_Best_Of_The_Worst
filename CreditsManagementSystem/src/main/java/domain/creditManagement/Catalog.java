@@ -318,9 +318,6 @@ public class Catalog {
         return "Rolle er ikke oprettet";
     }
 
-    public Program getProgram(int produktionID){
-        return programmer.get(String.valueOf(produktionID));
-    }
 
     public Map<String, Program> getProgrammer() {
         return programmer;

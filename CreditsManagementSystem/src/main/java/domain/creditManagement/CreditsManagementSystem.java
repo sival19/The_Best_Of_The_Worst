@@ -111,17 +111,7 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     }
 
 
-    public String seProgram(int produktionsID) {
-        return null;
-    }
 
-    public String sePerson(int personID) {
-        return null;
-    }
-
-    public String seRolle(Rolle rolletype) {
-        return null;
-    }
 
     @Override
     public List<ICatalogObject> søgCredit(String søgeord) {
