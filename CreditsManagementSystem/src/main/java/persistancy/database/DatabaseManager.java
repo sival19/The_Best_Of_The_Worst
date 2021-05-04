@@ -51,9 +51,12 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public boolean saveCatalogObject(ICatalogObject catalogObject) {
-        AbstractMapper abstractMapper = new RolleMapper(databaseConnector);
+        AbstractMapper abstractMapper = new RolleMapper();
 
         abstractMapper.putObject(catalogObject);
+
+
+
 
         return true;
     }
@@ -63,6 +66,9 @@ public class DatabaseManager implements IDataManager {
         //use the prepared statememnt
         DatabaseManager hola = new DatabaseManager();
         hola.saveCatalogObject(new Rolle("Hovedperson", 2));
+        RolleMapper rolleMapper = new RolleMapper();
+        Rolle rolle = (Rolle) rolleMapper.getObject(2);
+        System.out.println(rolle);
     }
 
     @Override
