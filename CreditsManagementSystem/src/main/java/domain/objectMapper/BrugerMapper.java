@@ -16,38 +16,56 @@ import java.util.List;
 public class BrugerMapper extends AbstractMapper {
     private DatabaseConnector databaseConnector;
 
-    public BrugerMapper(){
+    public BrugerMapper() {
         databaseConnector = DatabaseConnector.getInstance();
     }
 
-
-
     @Override
-    public Object getObject(int oid) {
-        Bruger bruger = new Bruger();
+    public List<Object> getAllObjects() {
+        List<Object> brugerList = new ArrayList<>();
 
         try {
-            PreparedStatement stmt = databaseConnector.getConnection().prepareStatement("SELECT * FROM bruger WHERE id = ? ");
-            stmt.setInt(1,oid);
+            PreparedStatement stmt = databaseConnector.getConnection().
+                    prepareStatement("SELECT * FROM bruger");
 
             ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
+                Bruger bruger = new Bruger();
                 bruger.setBrugerID(resultSet.getInt("id"));
                 bruger.setBrugernavn(resultSet.getString("brugernavn"));
                 bruger.setEmail(resultSet.getString("email"));
                 bruger.setAdgangskode(resultSet.getString("adgangskode"));
                 bruger.setRettighed(resultSet.getString("rettighed"));
+                brugerList.add(bruger);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
 
         }
 
+        return brugerList;
+    }
 
 
-        return bruger;
+    @Override
+    public Object getObject(Object oid) {
+        List<Object> brugernavn = new ArrayList<>();
+        try {
+            PreparedStatement stmt = databaseConnector.getConnection().
+                    prepareStatement("SELECT brugernavn FROM bruger WHERE brugernavn = ?");
+            stmt.setString(1,(String) oid);
 
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()) {
+                Bruger bruger = new Bruger();
+                bruger.setBrugernavn(resultSet.getString(1));
+                brugernavn.add(bruger.getBrugernavn());
 
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return brugernavn;
     }
 
 
@@ -60,7 +78,7 @@ public class BrugerMapper extends AbstractMapper {
             stmt.setString(1, bruger.getBrugernavn());
             stmt.setString(2, bruger.getEmail());
             stmt.setString(3, bruger.getAdgangskode());
-            stmt.setString(4,bruger.getRettighed().toString());
+            stmt.setString(4, bruger.getRettighed().toString());
             stmt.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

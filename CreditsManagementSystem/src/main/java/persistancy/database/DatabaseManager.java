@@ -33,7 +33,7 @@ public class DatabaseManager implements IDataManager {
     public IBruger loadBruger(String brugerNavn) {
         BrugerMapper hola = new BrugerMapper();
 
-        hola.getObject(1);
+        hola.getObject(brugerNavn);
         return null;
     }
 
