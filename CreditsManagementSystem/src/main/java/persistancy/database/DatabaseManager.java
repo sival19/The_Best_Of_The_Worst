@@ -2,6 +2,7 @@ package persistancy.database;
 
 import Intefaces.*;
 import domain.credits.Rolle;
+import domain.objectMapper.RolleMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -50,23 +51,10 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public boolean saveCatalogObject(ICatalogObject catalogObject) {
+        AbstractMapper abstractMapper = new RolleMapper(databaseConnector);
 
-        //prepare a statement
-        PreparedStatement stmt = null;
-        try {
-            //statement itself
-            stmt = databaseConnector.getConnection().prepareStatement("INSERT INTO rolle(rolletype) VALUES (?)");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        try {
-            stmt.setString(1,"producer");
+        abstractMapper.putObject(catalogObject);
 
-            //excecute statement
-            stmt.execute();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         return true;
     }
 
@@ -74,7 +62,7 @@ public class DatabaseManager implements IDataManager {
 
         //use the prepared statememnt
         DatabaseManager hola = new DatabaseManager();
-        hola.saveCatalogObject(new Rolle("producer",1));
+        hola.saveCatalogObject(new Rolle("Hovedperson", 2));
     }
 
     @Override

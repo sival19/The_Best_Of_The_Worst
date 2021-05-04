@@ -1,7 +1,7 @@
 package persistancy.database;
 
-import org.postgresql.core.Oid;
+import Intefaces.IMapper;
 
-public abstract class AbstractMapper implements IMapper{
+public abstract class AbstractMapper implements IMapper {
 
 }
