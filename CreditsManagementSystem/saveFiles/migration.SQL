@@ -5,11 +5,11 @@ create table program
 (
     id             serial primary key,
     program_navn   varchar(50) not null,
-    udgivelsesdato date        not null,
+    udgivelsesdato varchar(50) not null,
     programtype    varchar(50) not null,
     genre          varchar(50) not null,
     laengde        real        not null,
-    image_path     varchar(50) not null
+    image_path     varchar(50)
 );
 
 

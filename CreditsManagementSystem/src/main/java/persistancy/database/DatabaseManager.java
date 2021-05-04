@@ -1,10 +1,13 @@
 package persistancy.database;
 
 import Intefaces.*;
-import domain.credits.Rolle;
+import domain.credits.*;
+import domain.objectMapper.ProgramMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -48,33 +51,20 @@ public class DatabaseManager implements IDataManager {
         return null;
     }
 
+
+
     @Override
     public boolean saveCatalogObject(ICatalogObject catalogObject) {
-
-        //prepare a statement
-        PreparedStatement stmt = null;
-        try {
-            //statement itself
-            stmt = databaseConnector.getConnection().prepareStatement("INSERT INTO rolle(rolletype) VALUES (?)");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        try {
-            stmt.setString(1,"producer");
-
-            //excecute statement
-            stmt.execute();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return true;
+        iMapper  = new ProgramMapper();
+        iMapper.putObject(catalogObject);
+        return false;
     }
 
     public static void main(String[] args) {
-
+        Program program = new Program("Danmark", 2, new Date(), ProgramType.DOKUMENTAR, Genre.ACTION, 2.20, new ArrayList<Credit>());
         //use the prepared statememnt
         DatabaseManager hola = new DatabaseManager();
-        hola.saveCatalogObject(new Rolle("producer",1));
+        hola.saveCatalogObject(program);
     }
 
     @Override
