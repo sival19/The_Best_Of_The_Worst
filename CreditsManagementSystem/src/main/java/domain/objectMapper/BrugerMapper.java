@@ -47,7 +47,7 @@ public class BrugerMapper extends AbstractMapper {
             stmt.setString(1, bruger.getBrugernavn());
             stmt.setString(2, bruger.getEmail());
             stmt.setString(3, bruger.getAdgangskode());
-            stmt.setString(4,bruger.getEmail());
+            stmt.setString(4,bruger.getRettighed().toString());
             stmt.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
