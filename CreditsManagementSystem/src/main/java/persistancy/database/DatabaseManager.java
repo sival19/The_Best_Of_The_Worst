@@ -65,9 +65,12 @@ public class DatabaseManager implements IDataManager {
 
         //use the prepared statememnt
         DatabaseManager hola = new DatabaseManager();
-        hola.saveCatalogObject(new Rolle("Hovedperson", 2));
+        Rolle rolle = new Rolle();
+        rolle.setRolletype("Hovedperson");
+        hola.saveCatalogObject(rolle);
+
         RolleMapper rolleMapper = new RolleMapper();
-        Rolle rolle = (Rolle) rolleMapper.getObject(2);
+        rolle = (Rolle) rolleMapper.getObject(2);
         System.out.println(rolle);
     }
 
