@@ -11,6 +11,7 @@ import java.util.Map;
 public class DatabaseManager implements IDataManager {
 
     private DatabaseConnector databaseConnector;
+    private IMapper iMapper;
 
 
     public DatabaseManager() {
