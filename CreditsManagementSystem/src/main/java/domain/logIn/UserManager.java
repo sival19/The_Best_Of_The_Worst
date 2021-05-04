@@ -2,17 +2,18 @@ package domain.logIn;
 
 import Intefaces.IBruger;
 import Intefaces.IDataManager;
-import persistancy.file.FileManager;
+import domain.creditManagement.CatalogObject;
+import persistancy.database.DatabaseManager;
 
 import java.util.*;
 
 public class UserManager {
 
     private Bruger bruger;
-    private IDataManager fileManager;
+    private IDataManager dataManager;
 
     public UserManager() {
-        fileManager = FileManager.getFileManager();
+        dataManager = DatabaseManager.getDataInstance();
         bruger = new Bruger();
         bruger.setRettighed(Rettighed.SEER);
     }
@@ -22,7 +23,8 @@ public class UserManager {
         String result = "";
         Rettighed brugerRettighed = null;
 
-        Map<String, IBruger> brugerMap = fileManager.loadbrugere();
+
+        Map<String, IBruger> brugerMap = dataManager.loadbrugere();
         int indeks;
         if(brugerMap!=null){
            indeks = brugerMap.size()+1;
@@ -42,12 +44,13 @@ public class UserManager {
         if(isBruger(brugernavn)){
             result = "Bruger eksisterer";
         }
+        boolean sucess = dataManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,indeks)) ;
 
-        else if(!fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,indeks))){
+        if(!sucess){
             result = "Kunne ikke gemmes";
         }
 
-        else if(fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,indeks))){
+        else if(sucess){
             result = "Kunne gemmes";
         }
 
@@ -58,7 +61,7 @@ public class UserManager {
 
     public String validereBruger(String brugernavn, String adgangskode) {
         String result = "";
-        Bruger bruger = (Bruger) fileManager.loadBruger(brugernavn);
+        Bruger bruger = (Bruger) dataManager.loadBruger(brugernavn);
 
         if(bruger == null){
             result = "Bruger eksisterer ikke";
@@ -79,7 +82,7 @@ public class UserManager {
     }
 
     public boolean isBruger(String brugernavn) {
-        return fileManager.loadBruger(brugernavn) != null;
+        return dataManager.loadBruger(brugernavn) != null;
     }
 
 //if admin true else false

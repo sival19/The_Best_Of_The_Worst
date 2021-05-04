@@ -15,20 +15,33 @@ public class DatabaseManager implements IDataManager {
 
     private DatabaseConnector databaseConnector;
     private IMapper iMapper;
+    private static DatabaseManager instance;
 
 
     public DatabaseManager() {
-        databaseConnector = DatabaseConnector.getInstance();
+
+    }
+
+    public static DatabaseManager getDataInstance(){
+        if (instance == null) {
+            instance = new DatabaseManager();
+        }
+        return instance;
     }
 
     @Override
     public IBruger loadBruger(String brugerNavn) {
+        BrugerMapper hola = new BrugerMapper();
+
+        hola.getObject(1);
         return null;
     }
 
     @Override
     public boolean saveBruger(IBruger bruger) {
-        return false;
+        BrugerMapper hola = new BrugerMapper();
+        hola.putObject(bruger);
+        return true;
     }
 
     @Override
@@ -54,32 +67,15 @@ public class DatabaseManager implements IDataManager {
     @Override
     public boolean saveCatalogObject(ICatalogObject catalogObject) {
 
-        //prepare a statement
-        PreparedStatement stmt = null;
-        try {
-            //statement itself
-            stmt = databaseConnector.getConnection().prepareStatement("INSERT INTO rolle(rolletype) VALUES (?)");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        try {
-            stmt.setString(1,"producer");
+        //use the prepared statememnt
 
-            //excecute statement
-            stmt.execute();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
         return true;
     }
 
     public static void main(String[] args) {
 
         //use the prepared statememnt
-//        Bruger bruger = new Bruger("hey", "sd", "adsa", Rettighed.ADMINISTRATOR, 1);
-        BrugerMapper hola = new BrugerMapper();
 
-        System.out.println(hola.getObject(1));
     }
 
     @Override
