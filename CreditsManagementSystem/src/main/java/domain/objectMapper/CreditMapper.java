@@ -1,7 +1,10 @@
 package domain.objectMapper;
 
+import domain.logIn.Bruger;
 import org.postgresql.core.Oid;
 import persistancy.database.AbstractMapper;
+
+import java.util.List;
 
 public class CreditMapper extends AbstractMapper {
     @Override
@@ -10,7 +13,8 @@ public class CreditMapper extends AbstractMapper {
     }
 
     @Override
-    public void putObject(int oid, Object object) {
+    public void putObject(Object object) {
 
     }
+
 }

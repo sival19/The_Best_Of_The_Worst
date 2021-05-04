@@ -10,7 +10,7 @@ public class ProgramMapper extends AbstractMapper {
     }
 
     @Override
-    public void putObject(int oid, Object object) {
+    public void putObject(Object object) {
 
     }
 }

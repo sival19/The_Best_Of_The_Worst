@@ -26,6 +26,7 @@ public class Bruger implements IBruger {
         this.rettighed = rettighed;
         this.brugerID = brugerID;
     }
+
     public Bruger(){}
 
     public String getBrugernavn() {

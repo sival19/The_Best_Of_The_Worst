@@ -2,6 +2,9 @@ package persistancy.database;
 
 import Intefaces.*;
 import domain.credits.Rolle;
+import domain.logIn.Bruger;
+import domain.logIn.Rettighed;
+import domain.objectMapper.BrugerMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -73,8 +76,9 @@ public class DatabaseManager implements IDataManager {
     public static void main(String[] args) {
 
         //use the prepared statememnt
-        DatabaseManager hola = new DatabaseManager();
-        hola.saveCatalogObject(new Rolle("producer",1));
+        Bruger bruger = new Bruger("hey", "sd", "adsa", Rettighed.ADMINISTRATOR, 1);
+        BrugerMapper hola = new BrugerMapper();
+        hola.putObject(bruger);
     }
 
     @Override
