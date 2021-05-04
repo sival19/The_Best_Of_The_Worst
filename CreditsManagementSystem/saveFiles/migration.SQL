@@ -44,6 +44,7 @@ create table bruger
 create table credit
 (
     id          serial primary key,
+    program_id  integer not null references program(id),
     person_id   integer not null references person (id),
     rolle_id    integer not null references rolle (id),
     beskrivelse text
