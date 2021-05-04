@@ -5,12 +5,12 @@ import persistancy.database.AbstractMapper;
 
 public class BrugerMapper extends AbstractMapper {
     @Override
-    public Object getObject(Oid oid) {
-        return null;
+    public Object getObject(int oid) {
+
     }
 
     @Override
-    public void putObject(Oid oid, Object object) {
+    public void putObject(int oid, Object object) {
 
     }
 }

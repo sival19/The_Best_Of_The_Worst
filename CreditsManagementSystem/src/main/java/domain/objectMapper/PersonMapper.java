@@ -5,12 +5,12 @@ import persistancy.database.AbstractMapper;
 
 public class PersonMapper extends AbstractMapper {
     @Override
-    public Object getObject(Oid oid) {
+    public Object getObject(int oid) {
         return null;
     }
 
     @Override
-    public void putObject(Oid oid, Object object) {
+    public void putObject(int oid, Object object) {
 
     }
 }
