@@ -68,6 +68,7 @@ public class Program extends CatalogObject implements IProgram {
     }
 
     public void setUdgivelsesDato(Date udgivelsesDato) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("");
         this.udgivelsesDato = udgivelsesDato;
     }
 
