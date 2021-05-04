@@ -1,5 +1,6 @@
 package domain.objectMapper;
 
+import domain.credits.Rolle;
 import domain.logIn.Bruger;
 import org.postgresql.core.Oid;
 import persistancy.database.AbstractMapper;
@@ -23,16 +24,28 @@ public class BrugerMapper extends AbstractMapper {
 
     @Override
     public Object getObject(int oid) {
+        Bruger bruger = new Bruger();
 
-        PreparedStatement stmt = null;
         try {
-            stmt = databaseConnector.getConnection().prepareStatement("SELECT * FROM bruger");
-            stmt.executeQuery();
+            PreparedStatement stmt = databaseConnector.getConnection().prepareStatement("SELECT * FROM bruger WHERE id = ? ");
+            stmt.setInt(1,oid);
+
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()){
+                bruger.setBrugerID(resultSet.getInt("id"));
+                bruger.setBrugernavn(resultSet.getString("brugernavn"));
+                bruger.setEmail(resultSet.getString("email"));
+                bruger.setAdgangskode(resultSet.getString("adgangskode"));
+                bruger.setRettighed(resultSet.getString("rettighed"));
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+
         }
 
-        return true;
+
+
+        return bruger;
 
 
     }

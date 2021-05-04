@@ -79,6 +79,31 @@ public class Bruger implements IBruger {
     }
 
     @Override
+    public String toString() {
+        return "Bruger{" +
+                "brugernavn='" + brugernavn + '\'' +
+                ", adgangskode='" + adgangskode + '\'' +
+                ", email='" + email + '\'' +
+                ", rettighed=" + rettighed +
+                ", brugerID=" + brugerID +
+                ", produktionIDer=" + produktionIDer +
+                '}';
+    }
+
+    public void setRettighed(String rettighed) {
+        if(rettighed.equalsIgnoreCase(Rettighed.ADMINISTRATOR.toString())){
+            this.rettighed = Rettighed.ADMINISTRATOR;
+        }
+        if (rettighed.equalsIgnoreCase(Rettighed.PRODUCER.toString())) {
+            this.rettighed = Rettighed.PRODUCER;
+        }
+        if (rettighed.equalsIgnoreCase(Rettighed.SEER.toString())){
+            this.rettighed = Rettighed.SEER;
+        }
+
+    }
+
+    @Override
     public int getBrugerID() {
         return brugerID;
     }

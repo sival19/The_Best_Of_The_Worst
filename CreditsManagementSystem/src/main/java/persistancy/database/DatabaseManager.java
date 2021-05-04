@@ -76,9 +76,10 @@ public class DatabaseManager implements IDataManager {
     public static void main(String[] args) {
 
         //use the prepared statememnt
-        Bruger bruger = new Bruger("hey", "sd", "adsa", Rettighed.ADMINISTRATOR, 1);
+//        Bruger bruger = new Bruger("hey", "sd", "adsa", Rettighed.ADMINISTRATOR, 1);
         BrugerMapper hola = new BrugerMapper();
-        hola.putObject(bruger);
+
+        System.out.println(hola.getObject(1));
     }
 
     @Override
