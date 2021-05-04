@@ -19,8 +19,8 @@ public class ProgramMapper extends AbstractMapper {
 
     @Override
     public Object getObject(int oid) {
-        // Program program = new Program();
-        // databaseConnector.getConnection().prepareStatement("SELECT program_navn ");
+        Program program = new Program();
+        PreparedStatement preparedStatement = databaseConnector.getConnection().prepareStatement("SELECT program_navn ");
         return null;
     }
 
