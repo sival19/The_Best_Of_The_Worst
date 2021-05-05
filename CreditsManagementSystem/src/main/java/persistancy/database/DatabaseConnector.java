@@ -13,7 +13,7 @@ public class DatabaseConnector {
     private int port = 5432;
     private String databaseName = "TV2";
     private String username = "postgres";
-    private String password = "1304";
+    private String password = "haleluja";
     private Connection connection = null;
 
     private DatabaseConnector(){

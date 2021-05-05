@@ -59,7 +59,7 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public List<IPerson> loadPersoner() {
-        IMapper iMapper = new PersonMapper();
+        iMapper = new PersonMapper();
         List<IPerson> personliste = new ArrayList<>();
         for (Object o:iMapper.getAllObjects()) {
             IPerson iPerson = (IPerson) o;
@@ -82,9 +82,9 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public List<IRolle> loadRoller() {
-        RolleMapper rolleMapper = new RolleMapper();
+        iMapper = new RolleMapper();
         List<IRolle> rolleList = new ArrayList<>();
-        for(Object object: rolleMapper.getAllObjects()){
+        for(Object object: iMapper.getAllObjects()){
             IRolle iRolle = (IRolle) object;
             rolleList.add(iRolle);
         }
@@ -93,9 +93,9 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public Map<String, IBruger> loadbrugere() {
-        BrugerMapper mapper = new BrugerMapper();
+        iMapper = new BrugerMapper();
         Map<String, IBruger> brugerMap = new HashMap<>();
-        for(Object object : mapper.getAllObjects()){
+        for(Object object : iMapper.getAllObjects()){
             IBruger bruger = (IBruger) object;
             brugerMap.put(bruger.getBrugernavn(), bruger);
 
@@ -113,6 +113,7 @@ public class DatabaseManager implements IDataManager {
         if(iCatalogObject instanceof IPerson){
             IPerson iPerson = (IPerson) iCatalogObject;
             iMapper = new PersonMapper();
+            return iMapper.putObject(iPerson);
 
         }
         else if(iCatalogObject instanceof IProgram){
@@ -124,8 +125,6 @@ public class DatabaseManager implements IDataManager {
             IRolle iRolle = (IRolle) iCatalogObject;
             iMapper = new RolleMapper();
             return iMapper.putObject(iRolle);
-
-
         }
 
         return false;
