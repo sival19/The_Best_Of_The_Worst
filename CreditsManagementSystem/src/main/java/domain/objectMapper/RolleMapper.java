@@ -18,6 +18,14 @@ public class RolleMapper extends AbstractMapper {
 
     @Override
     public void putObject(Object object) {
+        return true;
+    }
 
+    
+
+
+    @Override
+    public List<Object> getAllObjects() {
+        return null;
     }
 }

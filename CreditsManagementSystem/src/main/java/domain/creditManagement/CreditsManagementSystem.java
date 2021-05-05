@@ -3,10 +3,11 @@ package domain.creditManagement;
 import Intefaces.*;
 import domain.credits.Person;
 import domain.credits.Program;
-import domain.credits.ProgramType;
 import domain.credits.Rolle;
 import domain.logIn.UserManager;
+import persistancy.database.DatabaseManager;
 import persistancy.file.FileManager;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,7 +18,6 @@ import java.util.List;
 public class CreditsManagementSystem implements ICreditsManagementSystem {
     private UserManager userManager;
     private Catalog catalog;
-    private IDataManager iFileManager;
     private static CreditsManagementSystem creditsManagementSystem;
 
 
@@ -25,8 +25,6 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     private CreditsManagementSystem() {
         userManager = new UserManager();
         catalog = new Catalog();
-        iFileManager = FileManager.getFileManager();
-
     }
 
     public static ICreditsManagementSystem getCreditManagementSystem(){
@@ -100,6 +98,7 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         System.out.println(date);
         return catalog.opretPerson(navn, nationalitet, date);
     }
@@ -143,18 +142,18 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
         Date date = null;
         try {
-            date = simpleDateFormat.parse(yr + "-" +mth );
+            date = simpleDateFormat.parse(yr+"-"+mth);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        System.out.println(date);
         if(catalog.opretProgram(programnavn,date,programtype,genre,længde)) {
             List<Integer> produktionsIDer = new ArrayList<>();
             produktionsIDer.add(catalog.getProgrammer().size());
             userManager.getBruger().setProduktionsIDer(produktionsIDer);
-            System.out.println(catalog.getProgrammer().size());
-            iFileManager.updateBruger(userManager.getBruger().getBrugernavn(), userManager.getBruger());
+            userManager.updateBruger();
+
             return "Program er oprettet";
+
         }
         return "Program er ikke oprettet";
     }
@@ -163,4 +162,11 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
     public String login(String brugernavn, String adgangskode) {
         return userManager.validereBruger(brugernavn, adgangskode);
     }
+
+    public static void main(String[] args) {
+        CreditsManagementSystem creditsManagementSystem = new CreditsManagementSystem();
+        creditsManagementSystem.opretProgram("vild","2001","01","dokumentar","action",2.0);
+
+    }
 }
+

@@ -2,9 +2,11 @@ package domain.creditManagement;
 
 import Intefaces.*;
 import domain.credits.*;
+import persistancy.database.DatabaseManager;
 import persistancy.file.FileManager;
 
 import java.util.*;
+
 
 public class Catalog {
 
@@ -14,17 +16,17 @@ public class Catalog {
     private Program program;
     private Person person;
     private Rolle rolle;
-    IDataManager iFileManager;
+    IDataManager iDataManager;
 
     public Catalog() {
         personer = new HashMap<>();
         roller = new HashMap<>();
         programmer = new HashMap<>();
-        iFileManager = FileManager.getFileManager();
+        iDataManager = new DatabaseManager();
 
-        List<IPerson> tempPers =  iFileManager.loadPersoner();
-        List<IProgram> tempPro = iFileManager.loadProgrammer();
-        List<IRolle> tempRol = iFileManager.loadRoller();
+        List<IPerson> tempPers =  iDataManager.loadPersoner();
+        List<IProgram> tempPro = iDataManager.loadProgrammer();
+        List<IRolle> tempRol = iDataManager.loadRoller();
 
         fillCatalog(tempPers,tempPro,tempRol);
         System.out.println(getProgrammer());
@@ -99,8 +101,8 @@ public class Catalog {
 
        else if( program.opretCredit(person,rolle,beskrivelse)){
            programmer.replace(String.valueOf(program.getProduktionsID()),program);
-           iFileManager.updateCatalogObject(String.valueOf(program.getProduktionsID()),program);
-           List<IProgram> programList =iFileManager.loadProgrammer();
+           iDataManager.updateCatalogObject(String.valueOf(program.getProduktionsID()),program);
+           List<IProgram> programList = iDataManager.loadProgrammer();
            System.out.println(programList  );
 
            return "Credit er oprettet";
@@ -151,7 +153,7 @@ public class Catalog {
             indeks = 1;
         }
         Person person = new Person(navn, fødselsdato, nationalitet, indeks);
-        boolean saveSucces= iFileManager.saveCatalogObject(person);
+        boolean saveSucces= iDataManager.saveCatalogObject(person);
 
         if(isPerson(indeks)){
             confirmation = "Person oprettet";
@@ -176,64 +178,7 @@ public class Catalog {
 
 
     public boolean opretProgram(String programNavn, Date udgivelssdato, String programtype, String genre, double længde) {
-        ProgramType programTypetemp = null;
-        if(ProgramType.DOKUMENTAR.toString().equalsIgnoreCase(programtype)){
-            programTypetemp = ProgramType.DOKUMENTAR;
 
-        }
-        else if(ProgramType.FILM.toString().equalsIgnoreCase(programtype)){
-            programTypetemp = ProgramType.FILM;
-
-        }
-        else if(ProgramType.KORTFILM.toString().equalsIgnoreCase(programtype)){
-            programTypetemp = ProgramType.KORTFILM;
-
-        }
-        else if(ProgramType.SERIE.toString().equalsIgnoreCase(programtype)){
-            programTypetemp = ProgramType.SERIE;
-
-        }
-        Genre genretemp = null;
-        if(Genre.ACTION.toString().equalsIgnoreCase(genre)){
-            genretemp = Genre.ACTION;
-
-        }
-        else if(Genre.ADVENTURE.toString().equalsIgnoreCase(genre)){
-            genretemp = Genre.ADVENTURE;
-
-        }
-        else if(Genre.COMEDY.toString().equalsIgnoreCase(genre)){
-            genretemp = Genre.COMEDY;
-
-        }
-        else if(Genre.CRIME.toString().equalsIgnoreCase(genre)){
-            genretemp = Genre.CRIME;
-
-        }
-        else if(Genre.HORROR.toString().equalsIgnoreCase(genre)){
-            genretemp = Genre.HORROR;
-
-        }
-        else if(Genre.ROMANCE.toString().equalsIgnoreCase(genre)){
-            genretemp = Genre.ROMANCE;
-
-        }
-        else if(Genre.SCIFI.toString().equalsIgnoreCase(genre)){
-            genretemp = Genre.SCIFI;
-
-        }
-        else if(Genre.DRAMA.toString().equalsIgnoreCase(genre)){
-            genretemp = Genre.DRAMA;
-
-        }
-        else if(Genre.FANTASY.toString().equalsIgnoreCase(genre)){
-            genretemp = Genre.FANTASY;
-
-        }
-        else if(Genre.THRILLER.toString().equalsIgnoreCase(genre)){
-            genretemp = Genre.THRILLER;
-
-        }
         int indeks;
         if(programmer!=null){
             indeks = programmer.size()+1;
@@ -241,10 +186,19 @@ public class Catalog {
         else {
             indeks= 1;
         }
-        Program program = new Program(programNavn, indeks, udgivelssdato,programTypetemp,genretemp,længde, new ArrayList<Credit>());
+
+        Program program = new Program();
+        program.setProgramNavn(programNavn);
+        program.setUdgivelsesDato(udgivelssdato);
+        program.setProgramType(programtype);
+        program.setGenre(genre);
+        program.setLængde(længde);
+        program.setProduktionsID(indeks);
+        program.setCredits(new ArrayList<>());
+
         programmer.put(String.valueOf(program.getProduktionsID()),program);
 
-        return iFileManager.saveCatalogObject(program);
+        return iDataManager.saveCatalogObject(program);
 
     }
     public boolean isPerson(int personID) {
@@ -311,7 +265,7 @@ public class Catalog {
         }
 
         Rolle rolle = new Rolle(rolletype.toLowerCase(), indeks);
-        if(iFileManager.saveCatalogObject(rolle)){
+        if(iDataManager.saveCatalogObject(rolle)){
             roller.put(rolletype,rolle);
             return "Rolle er oprettet";
         }
@@ -337,11 +291,11 @@ public class Catalog {
         catalog.programmer.get("2").setImagePath("ted.jpg");
         catalog.programmer.get("3").setImagePath("twighlight.jpg");
         catalog.programmer.get("4").setImagePath("househusband.jpg");
-        catalog.iFileManager.updateCatalogObject("1",catalog.programmer.get("1"));
-        catalog.iFileManager.updateCatalogObject("2",catalog.programmer.get("2"));
-        catalog.iFileManager.updateCatalogObject("3",catalog.programmer.get("3"));
-        catalog.iFileManager.updateCatalogObject("4",catalog.programmer.get("4"));
+        catalog.iDataManager.updateCatalogObject("1",catalog.programmer.get("1"));
+        catalog.iDataManager.updateCatalogObject("2",catalog.programmer.get("2"));
+        catalog.iDataManager.updateCatalogObject("3",catalog.programmer.get("3"));
+        catalog.iDataManager.updateCatalogObject("4",catalog.programmer.get("4"));
 
-        System.out.println(catalog.iFileManager.loadProgrammer());
+        System.out.println(catalog.iDataManager.loadProgrammer());
     }
 }

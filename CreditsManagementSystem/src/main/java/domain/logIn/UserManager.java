@@ -2,6 +2,7 @@ package domain.logIn;
 
 import Intefaces.IBruger;
 import Intefaces.IDataManager;
+
 import domain.creditManagement.CatalogObject;
 import persistancy.database.DatabaseManager;
 
@@ -10,10 +11,12 @@ import java.util.*;
 public class UserManager {
 
     private Bruger bruger;
-    private IDataManager dataManager;
+
+    private IDataManager iDataManager;
 
     public UserManager() {
-        dataManager = DatabaseManager.getDataInstance();
+        iDataManager = new DatabaseManager();
+
         bruger = new Bruger();
         bruger.setRettighed(Rettighed.SEER);
     }
@@ -28,13 +31,17 @@ public class UserManager {
         Rettighed brugerRettighed = null;
 
 
-        Map<String, IBruger> brugerMap = dataManager.loadbrugere();
+        Map<String, IBruger> brugerMap = iDataManager.loadbrugere();
+
+
+
         int indeks;
         if (brugerMap != null) {
             indeks = brugerMap.size() + 1;
         } else {
             indeks = 1;
         }
+
 
 
         if (rettighed.equals("Administrator")) {
@@ -46,6 +53,7 @@ public class UserManager {
             result = "Bruger eksisterer";
         }
         boolean sucess = dataManager.saveBruger(new Bruger(brugernavn, adgangskode, email, brugerRettighed, indeks));
+
 
         if (!sucess) {
             result = "Kunne ikke gemmes";
@@ -60,7 +68,9 @@ public class UserManager {
 
     public String validereBruger(String brugernavn, String adgangskode) {
         String result = "";
-        Bruger bruger = (Bruger) dataManager.loadBruger(brugernavn);
+
+        Bruger bruger = (Bruger) iDataManager.loadBruger(brugernavn);
+
 
         if (bruger == null) {
             result = "Bruger eksisterer ikke";
@@ -79,7 +89,9 @@ public class UserManager {
     }
 
     public boolean isBruger(String brugernavn) {
-        return dataManager.loadBruger(brugernavn) != null;
+
+        return iDataManager.loadBruger(brugernavn) != null;
+
     }
 
     //if admin true else false
@@ -87,8 +99,15 @@ public class UserManager {
         return bruger.getRettighed() == Rettighed.ADMINISTRATOR;
     }
 
-    public boolean isProducer() {
+    public boolean isProducer(){
         return bruger.getRettighed() == Rettighed.PRODUCER;
     }
+
+    public boolean updateBruger(){
+        return iDataManager.updateBruger(bruger.getBrugernavn(), bruger);
+    }
+
+
+
 
 }

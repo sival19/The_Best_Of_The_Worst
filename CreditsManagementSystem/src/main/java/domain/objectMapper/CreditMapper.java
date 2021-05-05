@@ -19,7 +19,13 @@ public class CreditMapper extends AbstractMapper {
 
     @Override
     public void putObject(Object object) {
+        return false;
+    }
 
+
+    @Override
+    public List<Object> getAllObjects() {
+        return null;
     }
 
 }

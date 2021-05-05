@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.List;
+
 public class BrugerMapper extends AbstractMapper {
     private DatabaseConnector databaseConnector;
 
@@ -21,6 +23,7 @@ public class BrugerMapper extends AbstractMapper {
     }
 
     @Override
+
     public List<Object> getAllObjects() {
         List<Object> brugerList = new ArrayList<>();
 
@@ -84,7 +87,5 @@ public class BrugerMapper extends AbstractMapper {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-    }
 
 }
