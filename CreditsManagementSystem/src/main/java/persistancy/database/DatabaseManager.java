@@ -115,6 +115,10 @@ public class DatabaseManager implements IDataManager {
             return iMapper.putObject(iProgram);
         }
         else if(iCatalogObject instanceof IRolle){
+            IRolle iRolle = (IRolle) iCatalogObject;
+            iMapper = new RolleMapper();
+            return iMapper.putObject(iRolle);
+
 
         }
 
