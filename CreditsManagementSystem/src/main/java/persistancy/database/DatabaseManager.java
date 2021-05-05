@@ -8,6 +8,7 @@ import domain.objectMapper.BrugerMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,16 +32,17 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public IBruger loadBruger(String brugerNavn) {
-        BrugerMapper hola = new BrugerMapper();
+        BrugerMapper mapper = new BrugerMapper();
 
-        hola.getObject(brugerNavn);
-        return null;
+        IBruger bruger = (IBruger) mapper.getObject(brugerNavn);
+
+        return bruger;
     }
 
     @Override
     public boolean saveBruger(IBruger bruger) {
-        BrugerMapper hola = new BrugerMapper();
-        hola.putObject(bruger);
+        BrugerMapper mapper = new BrugerMapper();
+        mapper.putObject(bruger);
         return true;
     }
 
@@ -61,15 +63,22 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public Map<String, IBruger> loadbrugere() {
-        return null;
+        BrugerMapper mapper = new BrugerMapper();
+        Map<String, IBruger> brugerMap = new HashMap<>();
+        for(Object object : mapper.getAllObjects()){
+            IBruger bruger = (IBruger) object;
+            brugerMap.put(bruger.getBrugernavn(), bruger);
+
+        }
+        return brugerMap;
     }
 
     @Override
     public boolean saveCatalogObject(ICatalogObject catalogObject) {
 
+        return true;
         //use the prepared statememnt
 
-        return true;
     }
 
     public static void main(String[] args) {

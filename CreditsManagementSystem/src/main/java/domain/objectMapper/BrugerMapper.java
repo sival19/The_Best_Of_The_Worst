@@ -49,17 +49,18 @@ public class BrugerMapper extends AbstractMapper {
 
     @Override
     public Object getObject(Object oid) {
-        List<Object> brugernavn = new ArrayList<>();
+        Bruger brugernavn = new Bruger();
         try {
             PreparedStatement stmt = databaseConnector.getConnection().
-                    prepareStatement("SELECT brugernavn FROM bruger WHERE brugernavn = ?");
-            stmt.setString(1,(String) oid);
+                    prepareStatement("SELECT * FROM bruger WHERE brugernavn = ?");
+            stmt.setString(1, (String) oid);
 
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-                Bruger bruger = new Bruger();
-                bruger.setBrugernavn(resultSet.getString(1));
-                brugernavn.add(bruger.getBrugernavn());
+                brugernavn.setRettighed(resultSet.getString("rettighed"));
+                brugernavn.setBrugernavn(resultSet.getString("brugernavn"));
+                brugernavn.setAdgangskode(resultSet.getString("adgangskode"));
+
 
             }
         } catch (SQLException throwables) {
