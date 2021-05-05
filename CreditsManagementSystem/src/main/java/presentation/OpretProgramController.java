@@ -55,7 +55,7 @@ public class OpretProgramController implements Initializable {
 
     }
 
-    public String opretProgram(String programnavn, String yr, String mth, String programtype, String genre, double længde){
+        private String opretProgram(String programnavn, String yr, String mth, String programtype, String genre, double længde){
         return creditsManagementSystem.opretProgram(programnavn,yr,mth, programtype,genre, længde);
     }
 
