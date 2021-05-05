@@ -17,6 +17,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.List;
+
 public class ProgramMapper extends AbstractMapper {
     private DatabaseConnector databaseConnector;
     private PreparedStatement preparedStatement;
@@ -26,6 +28,7 @@ public class ProgramMapper extends AbstractMapper {
     }
 
     @Override
+
     public Object getObject(int oid) {
         Program program = new Program();
         List<Credit> creditList = new ArrayList<>();

@@ -7,14 +7,22 @@ import java.util.List;
 
 public class RolleMapper extends AbstractMapper {
     @Override
-    public Object getObject(int oid) {
+    public Object getObject(Object oid) {
         return null;
     }
 
     @Override
-    public boolean putObject(Object object) {
+    public List<Object> getAllObjects(){
+        return null;
+    }
+
+    @Override
+    public void putObject(Object object) {
         return true;
     }
+
+    
+
 
     @Override
     public List<Object> getAllObjects() {

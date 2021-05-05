@@ -1,11 +1,15 @@
 package persistancy.database;
 
 import Intefaces.*;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import domain.credits.*;
 import domain.objectMapper.PersonMapper;
 import domain.objectMapper.ProgramMapper;
-
+import domain.credits.Rolle;
+import domain.logIn.Bruger;
+import domain.logIn.Rettighed;
+import domain.objectMapper.BrugerMapper;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,20 +25,34 @@ public class DatabaseManager implements IDataManager {
 
     private DatabaseConnector databaseConnector;
     private IMapper iMapper;
+    private static DatabaseManager instance;
 
 
     public DatabaseManager() {
-        databaseConnector = DatabaseConnector.getInstance();
+
+    }
+
+    public static DatabaseManager getDataInstance(){
+        if (instance == null) {
+            instance = new DatabaseManager();
+        }
+        return instance;
     }
 
     @Override
     public IBruger loadBruger(String brugerNavn) {
-        return null;
+        BrugerMapper mapper = new BrugerMapper();
+
+        IBruger bruger = (IBruger) mapper.getObject(brugerNavn);
+
+        return bruger;
     }
 
     @Override
     public boolean saveBruger(IBruger bruger) {
-        return false;
+        BrugerMapper mapper = new BrugerMapper();
+        mapper.putObject(bruger);
+        return true;
     }
 
     @Override
@@ -60,12 +79,20 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public Map<String, IBruger> loadbrugere() {
-        return null;
+        BrugerMapper mapper = new BrugerMapper();
+        Map<String, IBruger> brugerMap = new HashMap<>();
+        for(Object object : mapper.getAllObjects()){
+            IBruger bruger = (IBruger) object;
+            brugerMap.put(bruger.getBrugernavn(), bruger);
+
+        }
+        return brugerMap;
     }
 
 
 
     @Override
+
     public boolean saveCatalogObject(ICatalogObject iCatalogObject) {
 
         iMapper = null;
@@ -84,6 +111,7 @@ public class DatabaseManager implements IDataManager {
         }
 
         return false;
+
     }
 
     public static void main(String[] args) {

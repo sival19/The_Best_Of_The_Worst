@@ -26,6 +26,7 @@ public class Bruger implements IBruger {
         this.rettighed = rettighed;
         this.brugerID = brugerID;
     }
+
     public Bruger(){}
 
     public String getBrugernavn() {
@@ -75,6 +76,30 @@ public class Bruger implements IBruger {
 
     public void setRettighed(Rettighed rettighed) {
         this.rettighed = rettighed;
+    }
+
+    @Override
+    public String toString() {
+        return 
+                "brugernavn: " + brugernavn + "\n" +
+                "adgangskode: " + adgangskode + "\n" +
+                "email: " + email + "\n" +
+                "rettighed: " + rettighed + "\n"+
+                "brugerID: " + brugerID + "\n"+
+                "produktionIDer: " + produktionIDer;
+    }
+
+    public void setRettighed(String rettighed) {
+        if(rettighed.equalsIgnoreCase(Rettighed.ADMINISTRATOR.toString())){
+            this.rettighed = Rettighed.ADMINISTRATOR;
+        }
+        if (rettighed.equalsIgnoreCase(Rettighed.PRODUCER.toString())) {
+            this.rettighed = Rettighed.PRODUCER;
+        }
+        if (rettighed.equalsIgnoreCase(Rettighed.SEER.toString())){
+            this.rettighed = Rettighed.SEER;
+        }
+
     }
 
     @Override

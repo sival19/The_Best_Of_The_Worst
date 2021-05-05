@@ -2,52 +2,62 @@ package domain.logIn;
 
 import Intefaces.IBruger;
 import Intefaces.IDataManager;
+
+import domain.creditManagement.CatalogObject;
 import persistancy.database.DatabaseManager;
-import persistancy.file.FileManager;
 
 import java.util.*;
 
 public class UserManager {
 
     private Bruger bruger;
+
     private IDataManager iDataManager;
 
     public UserManager() {
         iDataManager = new DatabaseManager();
+
         bruger = new Bruger();
         bruger.setRettighed(Rettighed.SEER);
     }
 
+    public static void main(String[] args) {
+        UserManager userManager = new UserManager();
+        userManager.opretBruger("33", "33", "sds", "Producer");
+    }
 
-    public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed){
+    public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed) {
         String result = "";
         Rettighed brugerRettighed = null;
 
+
         Map<String, IBruger> brugerMap = iDataManager.loadbrugere();
+
+
+
         int indeks;
-        if(brugerMap!=null){
-           indeks = brugerMap.size()+1;
-        }
-        else {
+        if (brugerMap != null) {
+            indeks = brugerMap.size() + 1;
+        } else {
             indeks = 1;
         }
 
 
-        if(rettighed.equals("Administrator")){
+
+        if (rettighed.equals("Administrator")) {
             brugerRettighed = Rettighed.ADMINISTRATOR;
-        }
-        else if(rettighed.equals("Producer")){
+        } else if (rettighed.equals("Producer")) {
             brugerRettighed = Rettighed.PRODUCER;
         }
-        if(isBruger(brugernavn)){
+        if (isBruger(brugernavn)) {
             result = "Bruger eksisterer";
         }
+        boolean sucess = dataManager.saveBruger(new Bruger(brugernavn, adgangskode, email, brugerRettighed, indeks));
 
-        else if(!iDataManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,indeks))){
+
+        if (!sucess) {
             result = "Kunne ikke gemmes";
-        }
-
-        else if(iDataManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,indeks))){
+        } else if (sucess) {
             result = "Kunne gemmes";
         }
 
@@ -58,15 +68,15 @@ public class UserManager {
 
     public String validereBruger(String brugernavn, String adgangskode) {
         String result = "";
+
         Bruger bruger = (Bruger) iDataManager.loadBruger(brugernavn);
 
-        if(bruger == null){
+
+        if (bruger == null) {
             result = "Bruger eksisterer ikke";
-        }
-        else if (!bruger.getAdgangskode().equals(adgangskode)){
+        } else if (!bruger.getAdgangskode().equals(adgangskode)) {
             result = "Adgangskode er forkert";
-        }
-        else if (bruger.getAdgangskode().equals(adgangskode)){
+        } else if (bruger.getAdgangskode().equals(adgangskode)) {
             this.bruger = bruger;
             result = "Velkommen!";
         }
@@ -79,13 +89,16 @@ public class UserManager {
     }
 
     public boolean isBruger(String brugernavn) {
+
         return iDataManager.loadBruger(brugernavn) != null;
+
     }
 
-//if admin true else false
-    public boolean isAdmin(){
+    //if admin true else false
+    public boolean isAdmin() {
         return bruger.getRettighed() == Rettighed.ADMINISTRATOR;
     }
+
     public boolean isProducer(){
         return bruger.getRettighed() == Rettighed.PRODUCER;
     }
@@ -96,10 +109,5 @@ public class UserManager {
 
 
 
-
-    public static void main(String[] args) {
-        UserManager userManager = new UserManager();
-        userManager.opretBruger("33","33","sds","Producer");
-    }
 
 }
