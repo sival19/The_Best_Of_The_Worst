@@ -47,6 +47,7 @@ public class ProgramMapper extends AbstractMapper {
                 program.setProduktionsID(resultSet.getInt("id"));
                 program.setLængde(resultSet.getDouble("laengde"));
                 program.setImagePath(resultSet.getString("program_image_path"));
+                //adds a default empty credit list to programs
                 program.setCredits(creditList);
 
             }
@@ -57,7 +58,7 @@ public class ProgramMapper extends AbstractMapper {
 
             SimpleDateFormat simpleDateFormatPerson = new SimpleDateFormat("yyyy-MM-dd");
 
-            //To get credits
+            //To get credits if there
             while (resultSetCredits.next()){
                 Person person = new Person();
                 person.setPersonID(resultSetCredits.getInt("person_id"));
