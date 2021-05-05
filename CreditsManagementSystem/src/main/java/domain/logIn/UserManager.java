@@ -42,8 +42,6 @@ public class UserManager {
             indeks = 1;
         }
 
-
-
         if (rettighed.equals("Administrator")) {
             brugerRettighed = Rettighed.ADMINISTRATOR;
         } else if (rettighed.equals("Producer")) {
@@ -61,7 +59,6 @@ public class UserManager {
             result = "Kunne gemmes";
         }
 
-        System.out.println("hello");
         return result;
 
     }

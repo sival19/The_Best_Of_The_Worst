@@ -43,9 +43,9 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public IBruger loadBruger(String brugerNavn) {
-        BrugerMapper mapper = new BrugerMapper();
+         iMapper = new BrugerMapper();
 
-        IBruger bruger = (IBruger) mapper.getObject(brugerNavn);
+        IBruger bruger = (IBruger) iMapper.getObject(brugerNavn);
 
         return bruger;
     }

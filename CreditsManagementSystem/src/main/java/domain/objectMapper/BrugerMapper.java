@@ -26,9 +26,9 @@ public class BrugerMapper extends AbstractMapper {
 
     public List<Object> getAllObjects() {
         List<Object> brugerList = new ArrayList<>();
-        List<Integer> prodId = new ArrayList<>();
         Bruger bruger = new Bruger();
 
+        //lazy load without loading the relation 1-* program "pogram that bruger made"
         try {
             PreparedStatement stmt = databaseConnector.getConnection().
                     prepareStatement("SELECT * FROM bruger");
@@ -47,45 +47,42 @@ public class BrugerMapper extends AbstractMapper {
             throwables.printStackTrace();
 
         }
-        try {
-            PreparedStatement stmt = databaseConnector.getConnection().
-                    prepareStatement("SELECT id FROM program WHERE bruger_id = ? ");
-            stmt.setInt(1, bruger.getBrugerID());
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()){
-                prodId.add(resultSet.getInt("id"));
-            }
-            bruger.setProduktionsIDer(prodId);
-            brugerList.add(bruger);
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
         return brugerList;
     }
 
 
     @Override
     public Object getObject(Object oid) {
-        Bruger brugernavn = new Bruger();
+        Bruger bruger = new Bruger();
+        List<Integer> prodIdList = new ArrayList<>();
         try {
-            PreparedStatement stmt = databaseConnector.getConnection().
-                    prepareStatement("SELECT * FROM bruger WHERE brugernavn = ?");
-            stmt.setString(1, (String) oid);
+            //eager load brugere 1-* program
 
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                brugernavn.setRettighed(resultSet.getString("rettighed"));
-                brugernavn.setBrugernavn(resultSet.getString("brugernavn"));
-                brugernavn.setAdgangskode(resultSet.getString("adgangskode"));
+            //load bruger tabel først
+            PreparedStatement stmtBruger = databaseConnector.getConnection().prepareStatement("SELECT * FROM bruger WHERE brugernavn = ?");
+            stmtBruger.setString(1, (String) oid);
 
-
+            ResultSet resultSet = stmtBruger.executeQuery();
+            if (resultSet.next()) {
+                bruger.setRettighed(resultSet.getString("rettighed"));
+                bruger.setBrugernavn(resultSet.getString("brugernavn"));
+                bruger.setAdgangskode(resultSet.getString("adgangskode"));
             }
+
+            //load programID fra program tabel
+            PreparedStatement stmtProdID = databaseConnector.getConnection().prepareStatement("SELECT program.id FROM bruger, program WHERE brugernavn = ? AND bruger.id = program.bruger_id");
+            stmtProdID.setString(1, (String) oid);
+            ResultSet resultSetProdID = stmtProdID.executeQuery();
+
+            while (resultSetProdID.next()){
+                prodIdList.add(resultSetProdID.getInt("id"));
+            }
+
+            bruger.setProduktionsIDer(prodIdList);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return brugernavn;
+        return bruger;
     }
 
 
