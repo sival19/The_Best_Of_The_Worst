@@ -52,7 +52,7 @@ public class UserManager {
         if (isBruger(brugernavn)) {
             result = "Bruger eksisterer";
         }
-        boolean sucess = dataManager.saveBruger(new Bruger(brugernavn, adgangskode, email, brugerRettighed, indeks));
+        boolean sucess = iDataManager.saveBruger(new Bruger(brugernavn, adgangskode, email, brugerRettighed, indeks));
 
 
         if (!sucess) {

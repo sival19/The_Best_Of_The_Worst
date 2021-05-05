@@ -8,7 +8,7 @@ import java.util.List;
 public interface IMapper {
 
     Object getObject(Object oid);
-    void putObject(Object object);
+    boolean putObject(Object object);
     List<Object> getAllObjects();
 
 }

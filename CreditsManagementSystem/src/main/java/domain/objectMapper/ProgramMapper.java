@@ -28,15 +28,14 @@ public class ProgramMapper extends AbstractMapper {
     }
 
     @Override
-
-    public Object getObject(int oid) {
+    public Object getObject(Object oid) {
         Program program = new Program();
         List<Credit> creditList = new ArrayList<>();
         try {
             //The prepared statement is divided into, the first is for loading the program, the second for the credits.
             //it should be possible to load programs still, if credits are null
             PreparedStatement preparedStatement = databaseConnector.getConnection().prepareStatement("SELECT * FROM program pr where id = ?");
-            preparedStatement.setInt(1,oid);
+            preparedStatement.setInt(1,(int)oid);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             SimpleDateFormat simpleDateFormatProgram = new SimpleDateFormat("yyyy-MM");
@@ -56,7 +55,7 @@ public class ProgramMapper extends AbstractMapper {
             }
 
             PreparedStatement preparedStatementcredits = databaseConnector.getConnection().prepareStatement("SELECT * FROM person pe, rolle r, credit c WHERE c.program_id = ? and c.person_id = pe.id and c.rolle_id = r.id");
-            preparedStatementcredits.setInt(1,oid);
+            preparedStatementcredits.setInt(1,(int)oid);
             ResultSet resultSetCredits = preparedStatementcredits.executeQuery();
 
             SimpleDateFormat simpleDateFormatPerson = new SimpleDateFormat("yyyy-MM-dd");

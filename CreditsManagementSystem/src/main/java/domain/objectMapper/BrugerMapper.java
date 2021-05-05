@@ -74,7 +74,7 @@ public class BrugerMapper extends AbstractMapper {
 
 
     @Override
-    public void putObject(Object object) {
+    public boolean putObject(Object object) {
         Bruger bruger = (Bruger) object;
         try {
 
@@ -86,6 +86,8 @@ public class BrugerMapper extends AbstractMapper {
             stmt.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            return false;
         }
+        return true;
 
-}
+}}
