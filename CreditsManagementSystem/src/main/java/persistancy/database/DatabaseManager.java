@@ -10,6 +10,8 @@ import domain.credits.Rolle;
 import domain.logIn.Bruger;
 import domain.logIn.Rettighed;
 import domain.objectMapper.BrugerMapper;
+import domain.objectMapper.RolleMapper;
+
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -74,7 +76,13 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public List<IRolle> loadRoller() {
-        return null;
+        RolleMapper rolleMapper = new RolleMapper();
+        List<IRolle> rolleList = new ArrayList<>();
+        for(Object object: rolleMapper.getAllObjects()){
+            IRolle iRolle = (IRolle) object;
+            rolleList.add(iRolle);
+        }
+        return rolleList;
     }
 
     @Override
