@@ -6,6 +6,7 @@ import domain.objectMapper.RolleMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +42,14 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public List<IRolle> loadRoller() {
-        return null;
+        RolleMapper rolleMapper = new RolleMapper();
+        List<IRolle> rolleList = new ArrayList<>();
+        for(Object object: rolleMapper.getAllObjects() ){
+            IRolle iRolle = (IRolle) object;
+            rolleList.add(iRolle);
+        }
+
+        return rolleList;
     }
 
     @Override
@@ -54,9 +62,6 @@ public class DatabaseManager implements IDataManager {
         AbstractMapper abstractMapper = new RolleMapper();
 
         abstractMapper.putObject(catalogObject);
-
-
-
 
         return true;
     }

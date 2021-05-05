@@ -8,6 +8,8 @@ import persistancy.database.DatabaseConnector;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RolleMapper extends AbstractMapper {
     DatabaseConnector databaseConnector;
@@ -21,7 +23,8 @@ public class RolleMapper extends AbstractMapper {
     public Object getObject(int oid) {
         Rolle rolle = new Rolle();
         try {
-            preparedStatement = databaseConnector.getConnection().prepareStatement("SELECT * FROM rolle WHERE rolle.id = ?");
+            preparedStatement = databaseConnector.getConnection().
+                    prepareStatement("SELECT * FROM rolle WHERE rolle.id = ?");
             preparedStatement.setInt(1,oid);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -34,11 +37,29 @@ public class RolleMapper extends AbstractMapper {
             throwables.printStackTrace();
 
         }
-
-        System.out.println(rolle);
-
-
         return rolle;
+    }
+
+    @Override
+    public List<Object> getAllObjects() {
+        List<Object> rolleList = new ArrayList<>();
+        try {
+            preparedStatement = databaseConnector.getConnection().
+                    prepareStatement("SELECT * FROM rolle");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                Rolle rolle = new Rolle();
+                rolle.setRolletype(resultSet.getString("rolletype"));
+                rolle.setRolleID(resultSet.getInt("id"));
+                rolleList.add(rolle);
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+
+        }
+        return rolleList;
     }
 
     @Override
