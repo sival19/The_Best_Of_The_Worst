@@ -2,6 +2,7 @@ package domain.logIn;
 
 import Intefaces.IBruger;
 import Intefaces.IDataManager;
+import persistancy.database.DatabaseManager;
 import persistancy.file.FileManager;
 
 import java.util.*;
@@ -9,10 +10,10 @@ import java.util.*;
 public class UserManager {
 
     private Bruger bruger;
-    private IDataManager fileManager;
+    private IDataManager iDataManager;
 
     public UserManager() {
-        fileManager = FileManager.getFileManager();
+        iDataManager = new DatabaseManager();
         bruger = new Bruger();
         bruger.setRettighed(Rettighed.SEER);
     }
@@ -22,7 +23,7 @@ public class UserManager {
         String result = "";
         Rettighed brugerRettighed = null;
 
-        Map<String, IBruger> brugerMap = fileManager.loadbrugere();
+        Map<String, IBruger> brugerMap = iDataManager.loadbrugere();
         int indeks;
         if(brugerMap!=null){
            indeks = brugerMap.size()+1;
@@ -30,7 +31,6 @@ public class UserManager {
         else {
             indeks = 1;
         }
-
 
 
         if(rettighed.equals("Administrator")){
@@ -43,11 +43,11 @@ public class UserManager {
             result = "Bruger eksisterer";
         }
 
-        else if(!fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,indeks))){
+        else if(!iDataManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,indeks))){
             result = "Kunne ikke gemmes";
         }
 
-        else if(fileManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,indeks))){
+        else if(iDataManager.saveBruger(new Bruger(brugernavn,adgangskode,email,brugerRettighed,indeks))){
             result = "Kunne gemmes";
         }
 
@@ -58,7 +58,7 @@ public class UserManager {
 
     public String validereBruger(String brugernavn, String adgangskode) {
         String result = "";
-        Bruger bruger = (Bruger) fileManager.loadBruger(brugernavn);
+        Bruger bruger = (Bruger) iDataManager.loadBruger(brugernavn);
 
         if(bruger == null){
             result = "Bruger eksisterer ikke";
@@ -79,7 +79,7 @@ public class UserManager {
     }
 
     public boolean isBruger(String brugernavn) {
-        return fileManager.loadBruger(brugernavn) != null;
+        return iDataManager.loadBruger(brugernavn) != null;
     }
 
 //if admin true else false
@@ -89,6 +89,11 @@ public class UserManager {
     public boolean isProducer(){
         return bruger.getRettighed() == Rettighed.PRODUCER;
     }
+
+    public boolean updateBruger(){
+        return iDataManager.updateBruger(bruger.getBrugernavn(), bruger);
+    }
+
 
 
 

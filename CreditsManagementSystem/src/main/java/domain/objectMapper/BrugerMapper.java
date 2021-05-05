@@ -3,6 +3,8 @@ package domain.objectMapper;
 import org.postgresql.core.Oid;
 import persistancy.database.AbstractMapper;
 
+import java.util.List;
+
 public class BrugerMapper extends AbstractMapper {
     @Override
     public Object getObject(int oid) {
@@ -10,7 +12,12 @@ public class BrugerMapper extends AbstractMapper {
     }
 
     @Override
-    public void putObject(Object object) {
+    public boolean putObject(Object object) {
+        return false;
+    }
 
+    @Override
+    public List<Object> getAllObjects() {
+        return null;
     }
 }
