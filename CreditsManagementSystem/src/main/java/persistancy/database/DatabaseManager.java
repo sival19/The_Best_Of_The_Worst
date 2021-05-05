@@ -59,7 +59,13 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public List<IPerson> loadPersoner() {
-        return null;
+        IMapper iMapper = new PersonMapper();
+        List<IPerson> personliste = new ArrayList<>();
+        for (Object o:iMapper.getAllObjects()) {
+            IPerson iPerson = (IPerson) o;
+            personliste.add(iPerson);
+        }
+        return personliste;
     }
 
     @Override
