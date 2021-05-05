@@ -2,6 +2,7 @@ package domain.creditManagement;
 
 import Intefaces.*;
 import domain.credits.*;
+import persistancy.database.DatabaseManager;
 import persistancy.file.FileManager;
 
 import java.util.*;
@@ -14,17 +15,17 @@ public class Catalog {
     private Program program;
     private Person person;
     private Rolle rolle;
-    IDataManager iFileManager;
+    IDataManager iDataManager;
 
     public Catalog() {
         personer = new HashMap<>();
         roller = new HashMap<>();
         programmer = new HashMap<>();
-        iFileManager = FileManager.getFileManager();
+        iDataManager = new DatabaseManager();
 
-        List<IPerson> tempPers =  iFileManager.loadPersoner();
-        List<IProgram> tempPro = iFileManager.loadProgrammer();
-        List<IRolle> tempRol = iFileManager.loadRoller();
+        List<IPerson> tempPers =  iDataManager.loadPersoner();
+        List<IProgram> tempPro = iDataManager.loadProgrammer();
+        List<IRolle> tempRol = iDataManager.loadRoller();
 
         fillCatalog(tempPers,tempPro,tempRol);
         System.out.println(getProgrammer());
@@ -99,8 +100,8 @@ public class Catalog {
 
        else if( program.opretCredit(person,rolle,beskrivelse)){
            programmer.replace(String.valueOf(program.getProduktionsID()),program);
-           iFileManager.updateCatalogObject(String.valueOf(program.getProduktionsID()),program);
-           List<IProgram> programList =iFileManager.loadProgrammer();
+           iDataManager.updateCatalogObject(String.valueOf(program.getProduktionsID()),program);
+           List<IProgram> programList = iDataManager.loadProgrammer();
            System.out.println(programList  );
 
            return "Credit er oprettet";
@@ -151,7 +152,7 @@ public class Catalog {
             indeks = 1;
         }
         Person person = new Person(navn, fødselsdato, nationalitet, indeks);
-        boolean saveSucces= iFileManager.saveCatalogObject(person);
+        boolean saveSucces= iDataManager.saveCatalogObject(person);
 
         if(isPerson(indeks)){
             confirmation = "Person oprettet";
@@ -244,7 +245,7 @@ public class Catalog {
         Program program = new Program(programNavn, indeks, udgivelssdato,programTypetemp,genretemp,længde, new ArrayList<Credit>());
         programmer.put(String.valueOf(program.getProduktionsID()),program);
 
-        return iFileManager.saveCatalogObject(program);
+        return iDataManager.saveCatalogObject(program);
 
     }
     public boolean isPerson(int personID) {
@@ -301,6 +302,7 @@ public class Catalog {
     public Rolle getRolle(String rolleType){
         return roller.get(String.valueOf(rolleType));
     }
+
     public String opretRolle(String rolletype){
         int indeks;
         if(roller!=null){
@@ -311,7 +313,7 @@ public class Catalog {
         }
 
         Rolle rolle = new Rolle(rolletype.toLowerCase(), indeks);
-        if(iFileManager.saveCatalogObject(rolle)){
+        if(iDataManager.saveCatalogObject(rolle)){
             roller.put(rolletype,rolle);
             return "Rolle er oprettet";
         }
@@ -337,11 +339,11 @@ public class Catalog {
         catalog.programmer.get("2").setImagePath("ted.jpg");
         catalog.programmer.get("3").setImagePath("twighlight.jpg");
         catalog.programmer.get("4").setImagePath("househusband.jpg");
-        catalog.iFileManager.updateCatalogObject("1",catalog.programmer.get("1"));
-        catalog.iFileManager.updateCatalogObject("2",catalog.programmer.get("2"));
-        catalog.iFileManager.updateCatalogObject("3",catalog.programmer.get("3"));
-        catalog.iFileManager.updateCatalogObject("4",catalog.programmer.get("4"));
+        catalog.iDataManager.updateCatalogObject("1",catalog.programmer.get("1"));
+        catalog.iDataManager.updateCatalogObject("2",catalog.programmer.get("2"));
+        catalog.iDataManager.updateCatalogObject("3",catalog.programmer.get("3"));
+        catalog.iDataManager.updateCatalogObject("4",catalog.programmer.get("4"));
 
-        System.out.println(catalog.iFileManager.loadProgrammer());
+        System.out.println(catalog.iDataManager.loadProgrammer());
     }
 }
