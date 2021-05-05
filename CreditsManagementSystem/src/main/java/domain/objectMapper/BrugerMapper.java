@@ -26,6 +26,8 @@ public class BrugerMapper extends AbstractMapper {
 
     public List<Object> getAllObjects() {
         List<Object> brugerList = new ArrayList<>();
+        List<Integer> prodId = new ArrayList<>();
+        Bruger bruger = new Bruger();
 
         try {
             PreparedStatement stmt = databaseConnector.getConnection().
@@ -33,17 +35,31 @@ public class BrugerMapper extends AbstractMapper {
 
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-                Bruger bruger = new Bruger();
+
                 bruger.setBrugerID(resultSet.getInt("id"));
                 bruger.setBrugernavn(resultSet.getString("brugernavn"));
                 bruger.setEmail(resultSet.getString("email"));
                 bruger.setAdgangskode(resultSet.getString("adgangskode"));
                 bruger.setRettighed(resultSet.getString("rettighed"));
-                brugerList.add(bruger);
+
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
 
+        }
+        try {
+            PreparedStatement stmt = databaseConnector.getConnection().
+                    prepareStatement("SELECT id FROM program WHERE bruger_id = ? ");
+            stmt.setInt(1, bruger.getBrugerID());
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next()){
+                prodId.add(resultSet.getInt("id"));
+            }
+            bruger.setProduktionsIDer(prodId);
+            brugerList.add(bruger);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
 
         return brugerList;
