@@ -1,9 +1,12 @@
 package presentation;
 
 
+import Intefaces.ICredit;
 import Intefaces.ICreditsManagementSystem;
 import Intefaces.IProgram;
-import domain.creditManagement.CreditsManagementSystem;
+import domain.CreditsManagementSystem;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,16 +14,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import javafx.scene.text.Text;
-
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -29,7 +31,7 @@ public class SeProgramController implements Initializable {
     public Label programDato;
     public Label programGenre;
     public ImageView programImage;
-    public Text creditList;
+    public ListView<ICredit> creditList;
     public Button backBt;
 
     public Button opretCreditBT;
@@ -44,10 +46,13 @@ public class SeProgramController implements Initializable {
         opretCreditBT.setVisible(false);
         seProgram();
         showBrugerOptions();
+
+
     }
     private void seProgram(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
         programNavn.setText(iProgram.getProgramNavn());
-        programDato.setText(iProgram.getUdgivelsesDato().toString());
+        programDato.setText(simpleDateFormat.format(iProgram.getUdgivelsesDato()));
         programGenre.setText(iProgram.getGenre().toString());
         try {
             if(iProgram.getImagePath()!=null){
@@ -60,8 +65,7 @@ public class SeProgramController implements Initializable {
         } catch (MalformedURLException | URISyntaxException e) {
             e.printStackTrace();
         }
-        creditList.setText("Credits: " + iProgram.getCreditListString());
-
+        showCredits();
     }
 
 
@@ -98,6 +102,15 @@ public class SeProgramController implements Initializable {
         if(creditsManagementSystem.isAdmin()){
             opretCreditBT.setVisible(true);
         }
+
+
+    }
+
+
+    private void showCredits(){
+        List<ICredit> credits = iProgram.getCredits();
+        ObservableList<ICredit> observableList = FXCollections.observableList(credits);
+        creditList.setItems(observableList);
 
 
     }

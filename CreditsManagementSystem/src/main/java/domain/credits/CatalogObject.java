@@ -1,4 +1,4 @@
-package domain.creditManagement;
+package domain.credits;
 
 import Intefaces.ICatalogObject;
 

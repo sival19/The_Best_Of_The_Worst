@@ -1,9 +1,8 @@
 package domain.credits;
 
+import Intefaces.ICredit;
 import Intefaces.IProgram;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import domain.creditManagement.CatalogObject;
-
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,12 +22,12 @@ public class Program extends CatalogObject implements IProgram {
 
     private double længde;
 
-    private List<Credit> credits;
+    private List<ICredit> credits;
 
     private String imagePath;
 
 
-    public Program(String programNavn, int produktionsID, Date udgivelsesDato, ProgramType programType, Genre genre, double længde, List<Credit> credits) {
+    public Program(String programNavn, int produktionsID, Date udgivelsesDato, ProgramType programType, Genre genre, double længde, List<ICredit> credits) {
         this.programNavn = programNavn;
         this.produktionsID = produktionsID;
         this.udgivelsesDato = udgivelsesDato;
@@ -158,17 +157,17 @@ public class Program extends CatalogObject implements IProgram {
         this.længde = længde;
     }
 
-    public List<Credit> getCredits() {
+    public List<ICredit> getCredits() {
         return credits;
     }
 
-    public void setCredits(List<Credit> credits) {
+    public void setCredits(List<ICredit> credits) {
         this.credits = credits;
     }
 
     @Override
     public boolean opretCredit(Person person, Rolle rolle, String beskrivelse) {
-        for(Credit credit1: credits){
+        for(ICredit credit1: credits){
             if(credit1.getPerson()==person && credit1.getRolle()== rolle){
                 return false;
             }
@@ -188,7 +187,7 @@ public class Program extends CatalogObject implements IProgram {
     public String getCreditListString(){
         StringBuilder stringBuilder = new StringBuilder();
 //        stringBuilder.append("Credits: ");
-        for(Credit credit: credits){
+        for(ICredit credit: credits){
             stringBuilder.append(credit).append("\n");
         }
         return stringBuilder.toString();

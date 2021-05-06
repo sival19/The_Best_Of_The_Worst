@@ -1,7 +1,5 @@
 package domain.objectMapper;
 
-import domain.logIn.Bruger;
-import org.postgresql.core.Oid;
 import persistancy.database.AbstractMapper;
 
 import java.util.List;

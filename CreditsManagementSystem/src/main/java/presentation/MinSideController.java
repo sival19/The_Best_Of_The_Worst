@@ -1,8 +1,8 @@
 package presentation;
 
-import Intefaces.ICreditsManagementSystem;
 import Intefaces.IBruger;
-import domain.creditManagement.CreditsManagementSystem;
+import Intefaces.ICreditsManagementSystem;
+import domain.CreditsManagementSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;

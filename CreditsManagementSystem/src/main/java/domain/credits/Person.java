@@ -1,7 +1,6 @@
 package domain.credits;
 
 import Intefaces.IPerson;
-import domain.creditManagement.CatalogObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

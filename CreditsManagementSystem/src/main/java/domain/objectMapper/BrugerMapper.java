@@ -1,18 +1,13 @@
 package domain.objectMapper;
 
-import domain.credits.Rolle;
 import domain.logIn.Bruger;
-import org.postgresql.core.Oid;
 import persistancy.database.AbstractMapper;
 import persistancy.database.DatabaseConnector;
-import persistancy.database.DatabaseManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import java.util.List;
 
 public class BrugerMapper extends AbstractMapper {

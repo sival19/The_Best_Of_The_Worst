@@ -1,24 +1,20 @@
 package domain.objectMapper;
 
-import domain.creditManagement.CreditsManagementSystem;
+import Intefaces.ICredit;
+import domain.CreditsManagementSystem;
 import domain.credits.Credit;
 import domain.credits.Person;
 import domain.credits.Program;
 import domain.credits.Rolle;
-import domain.logIn.UserManager;
-import org.postgresql.core.Oid;
 import persistancy.database.AbstractMapper;
 import persistancy.database.DatabaseConnector;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
-
 import java.util.List;
 
 public class ProgramMapper extends AbstractMapper {
@@ -32,7 +28,7 @@ public class ProgramMapper extends AbstractMapper {
     @Override
     public Object getObject(Object oid) {
         Program program = new Program();
-        List<Credit> creditList = new ArrayList<>();
+        List<ICredit> creditList = new ArrayList<>();
         try {
             //The prepared statement is divided into, the first is for loading the program, the second for the credits.
             //it should be possible to load programs still, if credits are null
@@ -124,7 +120,7 @@ public class ProgramMapper extends AbstractMapper {
             //continue to get programs while the resultlist has a next row
             while (resultSet.next()){
                 Program program = new Program();
-                List<Credit> creditList = new ArrayList<>();
+                List<ICredit> creditList = new ArrayList<>();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
 
                 program.setProgramNavn(resultSet.getString("program_navn"));

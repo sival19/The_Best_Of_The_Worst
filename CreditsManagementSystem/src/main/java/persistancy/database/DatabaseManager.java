@@ -1,11 +1,10 @@
 package persistancy.database;
 
 import Intefaces.*;
-
-import domain.credits.*;
+import domain.credits.Program;
+import domain.objectMapper.BrugerMapper;
 import domain.objectMapper.PersonMapper;
 import domain.objectMapper.ProgramMapper;
-import domain.objectMapper.BrugerMapper;
 import domain.objectMapper.RolleMapper;
 
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.Map;
 
 public class DatabaseManager implements IDataManager {
 
-    private DatabaseConnector databaseConnector;
     private IMapper iMapper;
 
 
@@ -52,7 +50,7 @@ public class DatabaseManager implements IDataManager {
     @Override
     public List<IProgram> loadProgrammer() {
         iMapper = new ProgramMapper();
-        ArrayList<IProgram> arrayList = new ArrayList();
+        ArrayList<IProgram> arrayList = new ArrayList<>();
 
         for(Object object: iMapper.getAllObjects()){
             arrayList.add((IProgram) object);

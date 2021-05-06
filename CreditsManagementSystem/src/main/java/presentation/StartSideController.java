@@ -2,7 +2,7 @@ package presentation;
 
 
 import Intefaces.*;
-import domain.creditManagement.CreditsManagementSystem;
+import domain.CreditsManagementSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

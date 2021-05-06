@@ -3,7 +3,6 @@ package Intefaces;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import domain.credits.*;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -33,9 +32,9 @@ public interface IProgram extends ICatalogObject {
 
     public void setLængde(double længde);
 
-    public List<Credit> getCredits();
+    public List<ICredit> getCredits();
 
-    public void setCredits(List<Credit> credits);
+    public void setCredits(List<ICredit> credits);
 
     public boolean opretCredit(Person person, Rolle rolle, String beskrivelse);
 

@@ -1,7 +1,6 @@
-package domain.creditManagement;
+package domain.credits;
 
 import Intefaces.*;
-import domain.credits.*;
 import persistancy.database.DatabaseManager;
 
 import java.util.*;
@@ -9,12 +8,12 @@ import java.util.*;
 
 public class Catalog {
 
-    private Map<String, Program> programmer;
-    private Map<String, Rolle> roller;
-    private Map<String, Person> personer;
-    private Program program;
-    private Person person;
-    private Rolle rolle;
+    private Map<String, Program> programmer; //The program catalog
+    private Map<String, Rolle> roller; //the rolle catalog
+    private Map<String, Person> personer;//The person catalog
+    private Program program;//The current program clicked on
+    private Person person;//The current person clicked on
+    private Rolle rolle;//The current rolle clicked on
     IDataManager iDataManager;
 
     public Catalog() {
@@ -51,6 +50,9 @@ public class Catalog {
 
         if(programs!= null){
             for(IProgram iProgram : programs){
+                //Adding the list<ICredit> one by one to list called credits, so i can add to program constructor. The list are different types so have to do this
+
+
                 Program program = new Program(iProgram.getProgramNavn(), iProgram.getProduktionsID(), iProgram.getUdgivelsesDato(), iProgram.getProgramType(), iProgram.getGenre(), iProgram.getLængde(), iProgram.getCredits());
                 if(iProgram.getImagePath()!= null) {
                     program.setImagePath(iProgram.getImagePath());
@@ -193,7 +195,7 @@ public class Catalog {
         program.setGenre(genre);
         program.setLængde(længde);
         program.setProduktionsID(indeks);
-        program.setCredits(new ArrayList<>());
+        program.setCredits(new ArrayList<ICredit>());
 
         programmer.put(String.valueOf(program.getProduktionsID()),program);
 

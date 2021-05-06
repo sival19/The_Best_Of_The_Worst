@@ -2,7 +2,6 @@ package Intefaces;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import domain.credits.Rolle;
-import domain.logIn.Bruger;
 
 @JsonDeserialize(as = Rolle.class)
 public interface IRolle extends ICatalogObject{

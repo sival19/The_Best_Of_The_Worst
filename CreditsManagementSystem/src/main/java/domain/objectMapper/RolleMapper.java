@@ -1,7 +1,6 @@
 package domain.objectMapper;
 
 import domain.credits.Rolle;
-import org.postgresql.core.Oid;
 import persistancy.database.AbstractMapper;
 import persistancy.database.DatabaseConnector;
 

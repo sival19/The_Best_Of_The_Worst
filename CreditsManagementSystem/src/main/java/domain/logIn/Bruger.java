@@ -2,7 +2,6 @@ package domain.logIn;
 
 import Intefaces.IBruger;
 
-
 import java.util.List;
 
 public class Bruger implements IBruger {

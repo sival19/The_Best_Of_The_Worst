@@ -1,21 +1,28 @@
 package presentation;
 
 
-import Intefaces.*;
-
-import domain.creditManagement.CreditsManagementSystem;
+import Intefaces.ICredit;
+import Intefaces.ICreditsManagementSystem;
+import Intefaces.IPerson;
+import Intefaces.IProgram;
+import domain.CreditsManagementSystem;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static presentation.App.loadFXML;
@@ -26,24 +33,24 @@ public class SePersonController implements Initializable {
     public Label fødselsdatoTxt;
     public Label nationalitetTxt;
     public ImageView personImage;
-    public Text creditList;
+    public ListView<ICredit> creditList;
     private ICreditsManagementSystem iCreditsManagementSystem;
-
+    private IPerson person;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         iCreditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
-        IPerson person = iCreditsManagementSystem.getPerson();
+        person = iCreditsManagementSystem.getPerson();
         sePerson();
 
     }
 
     private void sePerson(){
-        IPerson person = iCreditsManagementSystem.getPerson();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         personnavnTxt.setText(person.getNavn());
         personID.setText(String.valueOf(person.getPersonID()));
         nationalitetTxt.setText(person.getNationalitet());
-        fødselsdatoTxt.setText(person.getFoedselsdato().toString());
+        fødselsdatoTxt.setText(simpleDateFormat.format(person.getFoedselsdato()));
         try {
             if(person.getImagePath()!=null){
                 String imagepath = String.valueOf(StartSideController.class.getResource(person.getImagePath()).toURI().toURL());
@@ -55,23 +62,27 @@ public class SePersonController implements Initializable {
         } catch (MalformedURLException | URISyntaxException e) {
             e.printStackTrace();
         }
-
-        StringBuilder  stringBuilder = new StringBuilder();
-
-        for (IProgram iProgram : iCreditsManagementSystem.getPrograms()) {
-            for (ICredit iCredit : iProgram.getCredits()) {
-                if (iCredit.getPerson().getPersonID() == person.getPersonID()) {
-                    stringBuilder.append(iCredit);
-                }
-            }
-        }
-
-        creditList.setText("Credits: " + stringBuilder);
+        seCredit();
 
     }
 
     public void backtoStartSideHandler(ActionEvent event) throws IOException {
         App.getStage().setScene(new Scene(loadFXML("startSide")));
+    }
+
+    void seCredit(){
+        List<ICredit> credits = new ArrayList<>();
+        for (IProgram iProgram : iCreditsManagementSystem.getPrograms()) {
+            for (ICredit iCredit : iProgram.getCredits()) {
+                if (iCredit.getPerson().getPersonID() == person.getPersonID()) {
+                    credits.add(iCredit);
+                }
+            }
+        }
+        ObservableList<ICredit> creditObservableList = FXCollections.observableList(credits);
+        creditList.setItems(creditObservableList);
+
+
     }
 }
 

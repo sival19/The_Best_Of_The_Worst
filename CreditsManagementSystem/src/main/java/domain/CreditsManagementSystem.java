@@ -1,11 +1,11 @@
-package domain.creditManagement;
+package domain;
 
 import Intefaces.*;
+import domain.credits.Catalog;
 import domain.credits.Person;
 import domain.credits.Program;
 import domain.credits.Rolle;
 import domain.logIn.UserManager;
-
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

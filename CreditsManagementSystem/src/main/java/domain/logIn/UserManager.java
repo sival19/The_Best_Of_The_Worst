@@ -2,11 +2,9 @@ package domain.logIn;
 
 import Intefaces.IBruger;
 import Intefaces.IDataManager;
-
-import domain.creditManagement.CatalogObject;
 import persistancy.database.DatabaseManager;
 
-import java.util.*;
+import java.util.Map;
 
 public class UserManager {
 

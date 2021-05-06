@@ -1,7 +1,6 @@
 package domain.credits;
 
 import Intefaces.IRolle;
-import domain.creditManagement.CatalogObject;
 
 public class Rolle extends CatalogObject implements IRolle {
 

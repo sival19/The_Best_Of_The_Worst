@@ -1,7 +1,7 @@
 package presentation;
 
 import Intefaces.ICreditsManagementSystem;
-import domain.creditManagement.CreditsManagementSystem;
+import domain.CreditsManagementSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
