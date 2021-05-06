@@ -27,6 +27,9 @@ public class UserController {
         admin.setToggleGroup(toggleGroup);
         producer.setToggleGroup(toggleGroup);
         creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
+        if(creditsManagementSystem.getBrugere().size()==0){
+            producer.setDisable(true);
+        }
 
     }
 

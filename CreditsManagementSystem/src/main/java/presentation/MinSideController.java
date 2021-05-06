@@ -62,9 +62,9 @@ public class MinSideController implements Initializable {
 
         }
         else if(iBruger.getRettighed().toString().equalsIgnoreCase("Administrator")){
-            opretPersonBT.setVisible(false);
-            opretRolleBT.setVisible(false);
-            opretProgramBT.setVisible(false);
+            opretPersonBT.setVisible(true);
+            opretRolleBT.setVisible(true);
+            opretProgramBT.setVisible(true);
             produktioner.setVisible(false);
             opretBrugerBT.setVisible(true);
         }

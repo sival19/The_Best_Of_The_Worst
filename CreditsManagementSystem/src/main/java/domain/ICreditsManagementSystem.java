@@ -8,6 +8,7 @@ public interface ICreditsManagementSystem {
     boolean isAdmin();
     boolean isProducer();
     IBruger getBruger();
+    List<IBruger> getBrugere();
     String opretBruger(String brugernavn, String adgangskode, String email, String rettigheder);
     String opretProgram(String programnavn, String yr,String mth, String programtype, String genre, double længde );
     String login(String brugernavn, String adgangskode);
@@ -23,8 +24,8 @@ public interface ICreditsManagementSystem {
 
     IProgram getProgram();
     IPerson getPerson();
-
     IRolle getRolle();
+
 
     void setRolle(IRolle iRolle);
     void setProgram(IProgram iProgram);

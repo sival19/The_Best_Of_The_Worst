@@ -80,12 +80,12 @@ public class Bruger implements IBruger {
     @Override
     public String toString() {
         return 
-                "brugernavn: " + brugernavn + "\n" +
-                "adgangskode: " + adgangskode + "\n" +
-                "email: " + email + "\n" +
-                "rettighed: " + rettighed + "\n"+
-                "brugerID: " + brugerID + "\n"+
-                "produktionIDer: " + produktionIDer;
+                "brugernavn: " + brugernavn +
+                ", adgangskode: " + adgangskode +
+                ", email: " + email +
+                ", rettighed: " + rettighed +
+                ", brugerID: " + brugerID +
+                ", produktionIDer: " + produktionIDer;
     }
 
     public void setRettighed(String rettighed) {

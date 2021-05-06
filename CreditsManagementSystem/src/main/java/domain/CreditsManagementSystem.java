@@ -129,6 +129,11 @@ public class CreditsManagementSystem implements ICreditsManagementSystem {
         return userManager.getBruger();
     }
 
+    @Override
+    public List<IBruger> getBrugere() {
+        return new ArrayList<>( userManager.getBrugere());
+    }
+
 
     @Override
     public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed) {

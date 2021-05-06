@@ -4,6 +4,8 @@ import Intefaces.IBruger;
 import persistancy.IDataManager;
 import persistancy.database.DatabaseManager;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class UserManager {
@@ -81,6 +83,10 @@ public class UserManager {
 
     public Bruger getBruger() {
         return bruger;
+    }
+
+    public Collection<IBruger> getBrugere(){
+        return iDataManager.loadbrugere().values();
     }
 
     public boolean isBruger(String brugernavn) {

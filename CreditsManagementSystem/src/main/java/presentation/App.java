@@ -1,5 +1,7 @@
 package presentation;
 
+import domain.CreditsManagementSystem;
+import domain.ICreditsManagementSystem;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,16 +23,18 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+
         scene = new Scene(loadFXML("startSide"));
         stage = primaryStage;
         try {
             stage.getIcons().add(new Image(String.valueOf(App.class.getResource("cm.jpg").toURI().toURL())));
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+                e.printStackTrace();
         }
         stage.setScene(scene);
         stage.setTitle("Credit Management System");
         stage.show();
+
     }
 
     static void setRoot(String fxml) throws IOException {

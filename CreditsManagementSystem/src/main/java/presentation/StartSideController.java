@@ -60,6 +60,10 @@ public class StartSideController implements Initializable {
         programsEmptyChecker();
         nextBtRight.setX(programImage3.getX()+2);
         nextBtLeft.setX(programImage1.getX()-5);
+        if(creditsManagementSystem.getBrugere().size()>0){
+            opretBrugerBt.setDisable(true);
+            opretBrugerBt.setVisible(false);
+        }
     }
 
     public String login(String brugernavn, String password) {
