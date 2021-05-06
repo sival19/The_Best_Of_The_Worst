@@ -24,16 +24,15 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public IBruger loadBruger(String brugerNavn) {
-         iMapper = new BrugerMapper();
+        iMapper = new BrugerMapper();
 
         return (IBruger) iMapper.getObject(brugerNavn);
     }
 
     @Override
     public boolean saveBruger(IBruger bruger) {
-        BrugerMapper mapper = new BrugerMapper();
-        mapper.putObject(bruger);
-        return true;
+        iMapper = new BrugerMapper();
+        return iMapper.putObject(bruger);
     }
 
     @Override
