@@ -89,18 +89,17 @@ public class FileManager implements IDataManager {
     }
 
     @Override
-    public boolean updateBruger(String key, IBruger iBruger) {
+    public void updateBruger(String key, IBruger iBruger) {
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             Map<String , IBruger> iDataBrugermap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IBruger>>() {});
             iDataBrugermap.replace(key, iBruger);
             objectMapper.writeValue(brugerFile,iDataBrugermap);
-            return true;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+
     }
 
     @Override

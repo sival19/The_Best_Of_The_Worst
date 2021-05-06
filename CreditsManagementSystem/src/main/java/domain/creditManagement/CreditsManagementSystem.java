@@ -5,8 +5,6 @@ import domain.credits.Person;
 import domain.credits.Program;
 import domain.credits.Rolle;
 import domain.logIn.UserManager;
-import persistancy.database.DatabaseManager;
-import persistancy.file.FileManager;
 
 
 import java.text.ParseException;

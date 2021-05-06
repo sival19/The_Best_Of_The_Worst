@@ -13,5 +13,5 @@ public interface IDataManager {
     Map<String, IBruger> loadbrugere();
     boolean saveCatalogObject(ICatalogObject catalogObject);
     boolean updateCatalogObject(String key, ICatalogObject catalogObject);
-    boolean updateBruger(String key, IBruger iBruger);
+    void updateBruger(String key, IBruger iBruger);
 }

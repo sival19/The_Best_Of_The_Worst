@@ -1,9 +1,11 @@
 package domain.objectMapper;
 
+import domain.creditManagement.CreditsManagementSystem;
 import domain.credits.Credit;
 import domain.credits.Person;
 import domain.credits.Program;
 import domain.credits.Rolle;
+import domain.logIn.UserManager;
 import org.postgresql.core.Oid;
 import persistancy.database.AbstractMapper;
 import persistancy.database.DatabaseConnector;
@@ -34,7 +36,7 @@ public class ProgramMapper extends AbstractMapper {
         try {
             //The prepared statement is divided into, the first is for loading the program, the second for the credits.
             //it should be possible to load programs still, if credits are null
-            PreparedStatement preparedStatement = databaseConnector.getConnection().prepareStatement("SELECT * FROM program pr where id = ?");
+             preparedStatement = databaseConnector.getConnection().prepareStatement("SELECT * FROM program pr where id = ?");
             preparedStatement.setInt(1,(int)oid);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -90,6 +92,7 @@ public class ProgramMapper extends AbstractMapper {
     @Override
     public boolean putObject(Object object)  {
         Program program = (Program) object;
+
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
             preparedStatement = databaseConnector.getConnection().prepareStatement("INSERT INTO program(program_navn, udgivelsesdato, programtype, genre, laengde, program_image_path,bruger_id) VALUES (?,?,?,?,?,?,?)");
@@ -99,7 +102,7 @@ public class ProgramMapper extends AbstractMapper {
             preparedStatement.setString(4,program.getGenre().toString());
             preparedStatement.setDouble(5, program.getLængde());
             preparedStatement.setString(6,program.getImagePath());
-            preparedStatement.setInt(7,1);
+            preparedStatement.setInt(7, CreditsManagementSystem.getCreditManagementSystem().getBruger().getBrugerID());
             preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

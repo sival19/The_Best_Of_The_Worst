@@ -100,8 +100,8 @@ public class UserManager {
         return bruger.getRettighed() == Rettighed.PRODUCER;
     }
 
-    public boolean updateBruger(){
-        return iDataManager.updateBruger(bruger.getBrugernavn(), bruger);
+    public void updateBruger(){
+        iDataManager.updateBruger(bruger.getBrugernavn(), bruger);
     }
 
 

@@ -2,23 +2,13 @@ package persistancy.database;
 
 import Intefaces.*;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import domain.credits.*;
 import domain.objectMapper.PersonMapper;
 import domain.objectMapper.ProgramMapper;
-import domain.credits.Rolle;
-import domain.logIn.Bruger;
-import domain.logIn.Rettighed;
 import domain.objectMapper.BrugerMapper;
 import domain.objectMapper.RolleMapper;
 
-import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,27 +17,18 @@ public class DatabaseManager implements IDataManager {
 
     private DatabaseConnector databaseConnector;
     private IMapper iMapper;
-    private static DatabaseManager instance;
 
 
     public DatabaseManager() {
 
     }
 
-    public static DatabaseManager getDataInstance(){
-        if (instance == null) {
-            instance = new DatabaseManager();
-        }
-        return instance;
-    }
 
     @Override
     public IBruger loadBruger(String brugerNavn) {
          iMapper = new BrugerMapper();
 
-        IBruger bruger = (IBruger) iMapper.getObject(brugerNavn);
-
-        return bruger;
+        return (IBruger) iMapper.getObject(brugerNavn);
     }
 
     @Override
@@ -106,7 +87,6 @@ public class DatabaseManager implements IDataManager {
 
 
     @Override
-
     public boolean saveCatalogObject(ICatalogObject iCatalogObject) {
 
         iMapper = null;
@@ -161,8 +141,8 @@ public class DatabaseManager implements IDataManager {
     }
 
     @Override
-    public boolean updateBruger(String key, IBruger iBruger) {
-        return false;
+    public void updateBruger(String key, IBruger iBruger) {
+
     }
 
 

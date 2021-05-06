@@ -3,7 +3,6 @@ package domain.creditManagement;
 import Intefaces.*;
 import domain.credits.*;
 import persistancy.database.DatabaseManager;
-import persistancy.file.FileManager;
 
 import java.util.*;
 

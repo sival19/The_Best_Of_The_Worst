@@ -67,6 +67,7 @@ public class BrugerMapper extends AbstractMapper {
                 bruger.setRettighed(resultSet.getString("rettighed"));
                 bruger.setBrugernavn(resultSet.getString("brugernavn"));
                 bruger.setAdgangskode(resultSet.getString("adgangskode"));
+                bruger.setBrugerID(resultSet.getInt("id"));
             }
 
             //load programID fra program tabel
