@@ -1,4 +1,6 @@
-package Intefaces;
+package domain;
+
+import Intefaces.*;
 
 import java.util.List;
 

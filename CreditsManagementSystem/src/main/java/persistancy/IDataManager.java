@@ -1,4 +1,6 @@
-package Intefaces;
+package persistancy;
+
+import Intefaces.*;
 
 import java.util.List;
 import java.util.Map;

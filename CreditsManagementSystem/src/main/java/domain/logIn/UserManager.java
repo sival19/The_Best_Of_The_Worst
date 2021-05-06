@@ -1,7 +1,7 @@
 package domain.logIn;
 
 import Intefaces.IBruger;
-import Intefaces.IDataManager;
+import persistancy.IDataManager;
 import persistancy.database.DatabaseManager;
 
 import java.util.Map;

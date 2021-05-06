@@ -6,13 +6,15 @@ import domain.credits.Person;
 import domain.credits.Rolle;
 
 @JsonDeserialize(as = Credit.class)
-public interface ICredit extends ICatalogObject{
+public interface ICredit {
 
-    public Person getPerson();
+    Person getPerson();
 
-    public void setPerson(Person person);
+    void setPerson(Person person);
 
-    public Rolle getRolle();
+    Rolle getRolle();
 
-    public void setRolle(Rolle rolle);
+    void setRolle(Rolle rolle);
+
+    String getBeskrivelse();
 }

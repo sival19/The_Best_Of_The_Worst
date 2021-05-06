@@ -2,10 +2,8 @@ package persistancy.database;
 
 import Intefaces.*;
 import domain.credits.Program;
-import domain.objectMapper.BrugerMapper;
-import domain.objectMapper.PersonMapper;
-import domain.objectMapper.ProgramMapper;
-import domain.objectMapper.RolleMapper;
+import domain.objectMapper.*;
+import persistancy.IDataManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,6 +102,7 @@ public class DatabaseManager implements IDataManager {
             return iMapper.putObject(iRolle);
         }
 
+
         return false;
 
     }
@@ -134,6 +133,13 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public boolean updateCatalogObject(String key, ICatalogObject catalogObject) {
+
+        if(catalogObject instanceof IProgram){
+            IProgram iProgram = (IProgram) catalogObject;
+            iMapper = new ProgramMapper();
+            return iMapper.updateObject(iProgram);
+        }
+
         return false;
     }
 

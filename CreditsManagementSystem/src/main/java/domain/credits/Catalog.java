@@ -1,6 +1,7 @@
 package domain.credits;
 
 import Intefaces.*;
+import persistancy.IDataManager;
 import persistancy.database.DatabaseManager;
 
 import java.util.*;
@@ -14,7 +15,7 @@ public class Catalog {
     private Program program;//The current program clicked on
     private Person person;//The current person clicked on
     private Rolle rolle;//The current rolle clicked on
-    IDataManager iDataManager;
+    private IDataManager iDataManager;
 
     public Catalog() {
         personer = new HashMap<>();

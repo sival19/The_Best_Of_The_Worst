@@ -2,7 +2,7 @@ package presentation;
 
 
 import Intefaces.ICredit;
-import Intefaces.ICreditsManagementSystem;
+import domain.ICreditsManagementSystem;
 import Intefaces.IPerson;
 import Intefaces.IProgram;
 import domain.CreditsManagementSystem;

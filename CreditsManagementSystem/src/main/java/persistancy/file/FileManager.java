@@ -3,6 +3,7 @@ package persistancy.file;
 import Intefaces.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import persistancy.IDataManager;
 
 import java.io.File;
 import java.io.IOException;

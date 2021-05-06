@@ -83,4 +83,9 @@ public class PersonMapper extends AbstractMapper {
         }
         return personList;
     }
+
+    @Override
+    public boolean updateObject(Object object) {
+        return false;
+    }
 }

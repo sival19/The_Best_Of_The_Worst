@@ -62,6 +62,11 @@ public class RolleMapper extends AbstractMapper {
     }
 
     @Override
+    public boolean updateObject(Object object) {
+        return false;
+    }
+
+    @Override
     public boolean putObject(Object object) {
         Rolle rolle = (Rolle) object;
 

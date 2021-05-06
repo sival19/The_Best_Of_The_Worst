@@ -45,6 +45,11 @@ public class BrugerMapper extends AbstractMapper {
         return brugerList;
     }
 
+    @Override
+    public boolean updateObject(Object object) {
+        return false;
+    }
+
 
     @Override
     public Object getObject(Object oid) {

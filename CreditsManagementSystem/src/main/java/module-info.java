@@ -10,4 +10,7 @@ module org.example {
     exports domain.logIn;
     exports domain.credits;
     opens presentation to javafx.fxml;
+    exports persistancy.database;
+    exports domain;
+    exports persistancy;
 }
