@@ -54,7 +54,7 @@ create table credit
 
 
 
-INSERT INTO public.rolle (rolletype, id) VALUES ('producer', 1);
+INSERT INTO public.rolle (rolletype) VALUES ('producer');
 SELECT * FROM rolle;
 
 

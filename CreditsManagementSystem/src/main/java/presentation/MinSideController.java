@@ -1,17 +1,23 @@
 package presentation;
 
 import Intefaces.IBruger;
+import Intefaces.IProgram;
 import domain.ICreditsManagementSystem;
 import domain.CreditsManagementSystem;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static presentation.App.loadFXML;
@@ -22,7 +28,7 @@ public class MinSideController implements Initializable {
     public Label adgangskodeTxt;
     public Label emailTxt;
     public Label rettighedTxt;
-    public TextArea produktioner;
+    public ListView<IProgram> produktioner;
     public Button opretProgramBT;
     public Button opretBrugerBT;
     public Button opretPersonBT;
@@ -48,6 +54,7 @@ public class MinSideController implements Initializable {
         emailTxt.setText(iBruger.getEmail());
         rettighedTxt.setText(iBruger.getRettighed().toString());
         showBrugerOptions();
+        showPrograms();
     }
 
 
@@ -109,4 +116,20 @@ public class MinSideController implements Initializable {
 
         }
     }
+
+    private void showPrograms(){
+        List<IProgram> iProgramList = new ArrayList<>();
+        for(IProgram iProgram: iCreditsManagementSystem.getPrograms()){
+            for(Integer id : iCreditsManagementSystem.getBruger().getProduktionsIDer()){
+                if(iProgram.getProduktionsID() == id){
+                    iProgramList.add(iProgram);
+                }
+            }
+        }
+
+        ObservableList<IProgram> observableList = FXCollections.observableList(iProgramList);
+        produktioner.setItems(observableList);
+
+    }
+
 }
