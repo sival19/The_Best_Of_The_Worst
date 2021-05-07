@@ -48,11 +48,10 @@ public class PersonMapper extends AbstractMapper {
         Person person = (Person) object;
         SimpleDateFormat bday = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            preparedStatement = databaseConnector.getConnection().prepareStatement("INSERT INTO Person(navn, foedselsdato, nationalitet, id) VALUES (?,?,?,?)");
+            preparedStatement = databaseConnector.getConnection().prepareStatement("INSERT INTO Person(navn, foedselsdato, nationalitet) VALUES (?,?,?)");
             preparedStatement.setString(1, person.getNavn());
             preparedStatement.setString(2, bday.format(person.getFoedselsdato()));
             preparedStatement.setString(3, person.getNationalitet());
-            preparedStatement.setInt(4, person.getPersonID());
             preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
