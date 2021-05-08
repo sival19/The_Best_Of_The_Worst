@@ -1,10 +1,11 @@
-package presentation;
+package presentation.controllers;
 
 import domain.ICreditsManagementSystem;
 import domain.CreditsManagementSystem;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import presentation.App;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package presentation;
+package presentation.controllers;
 
 import domain.ICreditsManagementSystem;
 import domain.CreditsManagementSystem;
@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import presentation.App;
 
 import java.io.IOException;
 

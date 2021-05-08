@@ -13,4 +13,6 @@ module org.example {
     exports persistancy.database;
     exports domain;
     exports persistancy;
+    exports presentation.controllers;
+    opens presentation.controllers to javafx.fxml;
 }

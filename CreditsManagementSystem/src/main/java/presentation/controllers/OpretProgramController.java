@@ -1,4 +1,4 @@
-package presentation;
+package presentation.controllers;
 
 import domain.ICreditsManagementSystem;
 import domain.CreditsManagementSystem;
@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import presentation.App;
 
 import java.io.IOException;
 import java.net.URL;
