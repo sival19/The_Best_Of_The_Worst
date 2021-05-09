@@ -15,10 +15,10 @@
    <children>
       <ImageView fitHeight="764.0" fitWidth="1024.0" layoutX="7.0">
          <image>
-            <Image url="@bckgrnd.png" />
+            <Image url="@../pictures/bckgrnd.png" />
          </image>
       </ImageView>
-      <Button fx:id="backToStart" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#toStartScreen" text="Tilbage">
+      <Button fx:id="backToStart" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#backScreen" text="Tilbage">
          <effect>
             <InnerShadow />
          </effect></Button>

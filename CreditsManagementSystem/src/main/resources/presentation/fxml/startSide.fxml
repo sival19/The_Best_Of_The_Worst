@@ -17,7 +17,7 @@
    <children>
       <ImageView fitHeight="764.0" fitWidth="1024.0">
          <image>
-            <Image url="@bckgrnd.png" />
+            <Image url="@../pictures/bckgrnd.png" />
          </image>
       </ImageView>
       <VBox alignment="TOP_CENTER" layoutX="792.0" layoutY="14.0" prefHeight="200.0" prefWidth="218.0">
@@ -97,12 +97,12 @@
       </VBox>
       <ImageView fx:id="nextBtLeft" fitHeight="89.0" fitWidth="56.0" layoutX="258.0" layoutY="338.0" onMouseClicked="#nextHandler">
          <image>
-            <Image url="@previous.png" />
+            <Image url="@../pictures/previous.png" />
          </image>
       </ImageView>
       <ImageView fx:id="nextBtRight" fitHeight="89.0" fitWidth="56.0" layoutX="947.0" layoutY="338.0" onMouseClicked="#nextHandler">
          <image>
-            <Image url="@next.png" />
+            <Image url="@../pictures/next.png" />
          </image>
       </ImageView>
       <Button fx:id="minSideBt" layoutX="202.0" layoutY="36.0" mnemonicParsing="false" onAction="#minSideHandler" text="Min Side">

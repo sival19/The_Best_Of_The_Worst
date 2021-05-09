@@ -57,7 +57,7 @@ public class SeProgramController implements Initializable {
         programGenre.setText(iProgram.getGenre().toString());
         try {
             if(iProgram.getImagePath()!=null){
-                String imagepath = String.valueOf(StartSideController.class.getResource(iProgram.getImagePath()).toURI().toURL());
+                String imagepath = String.valueOf(App.class.getResource("pictures/"+iProgram.getImagePath()).toURI().toURL());
                 if(imagepath!=null){
                     programImage.setImage(new Image(imagepath));
                 }
@@ -77,7 +77,7 @@ public class SeProgramController implements Initializable {
 
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/"+fxml + ".fxml"));
         return fxmlLoader.load();
     }
 

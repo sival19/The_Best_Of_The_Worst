@@ -1,5 +1,5 @@
 .button {
-    -fx-background-image: url("arrow.jpg");
+    -fx-background-image: url("../pictures/arrow.jpg");
 }
 
 .button:hover {

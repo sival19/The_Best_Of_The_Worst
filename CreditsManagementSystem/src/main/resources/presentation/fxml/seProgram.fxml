@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="764.0" fitWidth="1024.0">
          <image>
-            <Image url="@bckgrnd.png" />
+            <Image url="@../pictures/bckgrnd.png" />
          </image>
       </ImageView>
       <VBox layoutX="248.0" layoutY="95.0" prefHeight="590.0" prefWidth="369.0">
@@ -28,7 +28,7 @@
             <ListView fx:id="creditList" prefHeight="200.0" prefWidth="309.0" />
          </children>
       </VBox>
-      <Button fx:id="backBt" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" onAction="#backtoStartSideHandler" stylesheets="@arrowstyle.css" text="Back" />
+      <Button fx:id="backBt" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" onAction="#backtoStartSideHandler" stylesheets="@../css/arrowstyle.css" text="Back" />
       <Button fx:id="opretCreditBT" layoutX="50.0" layoutY="117.0" mnemonicParsing="false" onAction="#opretCreditHandler" prefHeight="26.0" prefWidth="118.0" text="Opret Credit" />
    </children>
 </AnchorPane>

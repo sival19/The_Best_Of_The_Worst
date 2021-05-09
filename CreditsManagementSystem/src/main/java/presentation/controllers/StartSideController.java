@@ -170,17 +170,17 @@ public class StartSideController implements Initializable {
         String imagePath2 = null;
         String imagePath3 = null;
         if(program1.getImagePath()!=null){
-            imagePath1 = StartSideController.class.getResource(program1.getImagePath()).toURI().toString();
+            imagePath1 = App.class.getResource("pictures/" +program1.getImagePath()).toURI().toString();
             programImage1.setImage(new Image(imagePath1));
 
         }
         if(program2.getImagePath()!=null){
-            imagePath2 = StartSideController.class.getResource(program2.getImagePath()).toURI().toString();
+            imagePath2 = App.class.getResource("pictures/" +program2.getImagePath()).toURI().toString();
             programImage2.setImage(new Image(imagePath2));
 
         }
         if(program3.getImagePath()!=null){
-            imagePath3 = StartSideController.class.getResource(program3.getImagePath()).toURI().toString();
+            imagePath3 = App.class.getResource("pictures/" +program3.getImagePath()).toURI().toString();
             programImage3.setImage(new Image(imagePath3));
         }
 

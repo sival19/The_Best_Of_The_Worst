@@ -26,7 +26,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("startSide"));
         stage = primaryStage;
         try {
-            stage.getIcons().add(new Image(String.valueOf(App.class.getResource("cm.jpg").toURI().toURL())));
+            stage.getIcons().add(new Image(String.valueOf(App.class.getResource("pictures/cm.jpg").toURI().toURL())));
         } catch (URISyntaxException e) {
                 e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class App extends Application {
     }
 
     public static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(StartSideController.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 }

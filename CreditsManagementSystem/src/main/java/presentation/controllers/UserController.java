@@ -38,9 +38,9 @@ public class UserController {
         return creditsManagementSystem.opretBruger(brugernavn, adgangskode, email, rettighed);
     }
 
-    public void toStartScreen(ActionEvent event) {
+    public void backScreen(ActionEvent event) {
         try {
-            App.getStage().setScene(new Scene(loadFXML("startSide")));
+            App.getStage().setScene(new Scene(loadFXML("minSide")));
         } catch (IOException e) {
             e.printStackTrace();
         }
