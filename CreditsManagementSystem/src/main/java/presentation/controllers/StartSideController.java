@@ -88,7 +88,6 @@ public class StartSideController implements Initializable {
 
 
     public void catalogHandler(MouseEvent mouseEvent) throws IOException {
-        CreditsController creditsController = new CreditsController();
         if (mouseEvent.getSource() == searchResultView) {
             ICatalogObject iCatalogObject = searchResultView.getFocusModel().getFocusedItem();
             System.out.println(searchResultView.getFocusModel().getFocusedItem());

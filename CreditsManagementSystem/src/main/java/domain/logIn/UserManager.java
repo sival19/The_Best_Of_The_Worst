@@ -16,7 +16,6 @@ public class UserManager {
 
     public UserManager() {
         iDataManager = new DatabaseManager();
-
         bruger = new Bruger();
         bruger.setRettighed(Rettighed.SEER);
     }
@@ -29,11 +28,7 @@ public class UserManager {
     public String opretBruger(String brugernavn, String adgangskode, String email, String rettighed) {
         String result = "";
         Rettighed brugerRettighed = null;
-
-
         Map<String, IBruger> brugerMap = iDataManager.loadbrugere();
-
-
 
         int indeks;
         if (brugerMap != null) {

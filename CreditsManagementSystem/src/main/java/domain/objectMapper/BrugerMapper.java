@@ -30,7 +30,6 @@ public class BrugerMapper extends AbstractMapper {
 
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
-
                 bruger.setBrugerID(resultSet.getInt("id"));
                 bruger.setBrugernavn(resultSet.getString("brugernavn"));
                 bruger.setEmail(resultSet.getString("email"));
@@ -69,19 +68,19 @@ public class BrugerMapper extends AbstractMapper {
                 bruger.setRettighed(resultSet.getString("rettighed"));
                 bruger.setBrugernavn(resultSet.getString("brugernavn"));
                 bruger.setAdgangskode(resultSet.getString("adgangskode"));
+                PreparedStatement stmtProdID = databaseConnector.getConnection().prepareStatement("SELECT program.id FROM bruger, program WHERE brugernavn = ? AND bruger.id = program.bruger_id");
+                stmtProdID.setString(1, (String) oid);
+                ResultSet resultSetProdID = stmtProdID.executeQuery();
 
+                while (resultSetProdID.next()){
+                    prodIdList.add(resultSetProdID.getInt("id"));
+                }
+
+                bruger.setProduktionsIDer(prodIdList);
             }
 
             //load programID fra program tabel
-            PreparedStatement stmtProdID = databaseConnector.getConnection().prepareStatement("SELECT program.id FROM bruger, program WHERE brugernavn = ? AND bruger.id = program.bruger_id");
-            stmtProdID.setString(1, (String) oid);
-            ResultSet resultSetProdID = stmtProdID.executeQuery();
 
-            while (resultSetProdID.next()){
-                prodIdList.add(resultSetProdID.getInt("id"));
-            }
-
-            bruger.setProduktionsIDer(prodIdList);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

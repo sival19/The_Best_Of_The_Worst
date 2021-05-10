@@ -20,7 +20,7 @@ public class UserController {
     public RadioButton admin, producer;
     public Label resultLbl;
     private ICreditsManagementSystem creditsManagementSystem;
-    ToggleGroup toggleGroup;
+    private ToggleGroup toggleGroup;
     private String rights;
 
     public void initialize(){
@@ -40,7 +40,12 @@ public class UserController {
 
     public void backScreen(ActionEvent event) {
         try {
-            App.getStage().setScene(new Scene(loadFXML("minSide")));
+            if (creditsManagementSystem.getBruger().getRettighed().toString().equals("Seer")){
+                App.getStage().setScene(new Scene(loadFXML("startSide")));
+
+            }
+            else App.getStage().setScene(new Scene(loadFXML("minSide")));
+
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -70,7 +70,6 @@ public class DatabaseManager implements IDataManager {
     @Override
     public Map<String, IBruger> loadbrugere() {
         iMapper = new BrugerMapper();
-        System.out.println(iMapper.getAllObjects());
         Map<String, IBruger> brugerMap = new HashMap<>();
         for(Object object : iMapper.getAllObjects()){
             IBruger bruger = (IBruger) object;
