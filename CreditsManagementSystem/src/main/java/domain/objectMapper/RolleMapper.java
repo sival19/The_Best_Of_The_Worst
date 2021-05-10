@@ -20,14 +20,15 @@ public class RolleMapper extends AbstractMapper {
 
     @Override
     public Object getObject(Object oid) {
-        Rolle rolle = new Rolle();
+        Rolle rolle = null;
         try {
             preparedStatement = databaseConnector.getConnection().
                     prepareStatement("SELECT * FROM rolle WHERE rolle.id = ?");
             preparedStatement.setInt(1,(int)oid);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            if (resultSet.next()){
+                rolle = new Rolle();
                 rolle.setRolletype(resultSet.getString("rolletype"));
                 rolle.setRolleID(resultSet.getInt("id"));
             }

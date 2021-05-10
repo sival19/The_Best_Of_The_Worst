@@ -68,7 +68,6 @@ public class UserManager {
 
         Bruger bruger = (Bruger) iDataManager.loadBruger(brugernavn);
 
-
         if (bruger == null) {
             result = "Bruger eksisterer ikke";
         } else if (!bruger.getAdgangskode().equals(adgangskode)) {

@@ -53,7 +53,7 @@ public class BrugerMapper extends AbstractMapper {
 
     @Override
     public Object getObject(Object oid) {
-        Bruger bruger = new Bruger();
+        Bruger bruger = null;
         List<Integer> prodIdList = new ArrayList<>();
         try {
             //eager load brugere 1-* program
@@ -64,10 +64,12 @@ public class BrugerMapper extends AbstractMapper {
 
             ResultSet resultSet = stmtBruger.executeQuery();
             if (resultSet.next()) {
+                bruger = new Bruger();
+                bruger.setBrugerID(resultSet.getInt("id"));
                 bruger.setRettighed(resultSet.getString("rettighed"));
                 bruger.setBrugernavn(resultSet.getString("brugernavn"));
                 bruger.setAdgangskode(resultSet.getString("adgangskode"));
-                bruger.setBrugerID(resultSet.getInt("id"));
+
             }
 
             //load programID fra program tabel

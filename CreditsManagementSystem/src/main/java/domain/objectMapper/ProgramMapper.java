@@ -28,7 +28,7 @@ public class ProgramMapper extends AbstractMapper {
 
     @Override
     public Object getObject(Object oid) {
-        Program program = new Program();
+        Program program = null;
         List<ICredit> creditList = new ArrayList<>();
         try {
             //The prepared statement is divided into, the first is for loading the program, the second for the credits.
@@ -41,6 +41,7 @@ public class ProgramMapper extends AbstractMapper {
 
             //if resultset not null
             if(resultSet.next()){
+                program = new Program();
                 program.setProgramNavn(resultSet.getString("program_navn"));
                 program.setUdgivelsesDato(simpleDateFormatProgram.parse(resultSet.getString("udgivelsesdato")));
                 program.setProgramType(resultSet.getString("programtype"));
