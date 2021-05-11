@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.effect.InnerShadow?>
 <AnchorPane prefHeight="764.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.OpretProgramController">
     <children>
         <ImageView fitHeight="764.0" fitWidth="1024.0">
@@ -45,7 +46,11 @@
                 <RadioButton fx:id="thrillerRdBt" mnemonicParsing="false" text="Thriller" />
             </children>
         </VBox>
-        <Button fx:id="backToStart" layoutX="14.0" layoutY="49.0" mnemonicParsing="false" onAction="#backToMinsideHandler" text="Tilbage" />
+        <Button fx:id="backToStart" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#backToMinsideHandler" text="Tilbage">
+        <effect>
+            <InnerShadow />
+        </effect>
+        </Button>
         <VBox layoutX="256.0" layoutY="175.0" prefHeight="117.0" prefWidth="262.0" spacing="20.0">
             <children>
                 <HBox prefHeight="42.0" prefWidth="200.0" spacing="16.0">

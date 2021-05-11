@@ -15,7 +15,7 @@
             <Image url="@../pictures/bckgrnd.png" />
          </image>
       </ImageView>
-      <Button fx:id="tilbage" layoutX="14.0" layoutY="56.0" mnemonicParsing="false" onAction="#toPreviousScene" text="Tilbage">
+      <Button fx:id="tilbage" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#toPreviousScene" text="Tilbage">
          <effect>
             <InnerShadow />
          </effect></Button>

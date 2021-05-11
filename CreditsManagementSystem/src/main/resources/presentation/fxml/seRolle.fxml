@@ -23,7 +23,7 @@
             <ListView fx:id="creditList" prefHeight="200.0" prefWidth="309.0" />
          </children>
       </VBox>
-      <Button fx:id="backBt" layoutY="57.0" mnemonicParsing="false" onAction="#backtoStartSideHandler" text="Tilbage">
+      <Button fx:id="backBt" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#backtoStartSideHandler" text="Tilbage">
          <effect>
             <InnerShadow />
          </effect></Button>
