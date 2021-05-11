@@ -44,6 +44,6 @@ public class Rolle extends CatalogObject implements IRolle {
 
     @Override
     public String toString() {
-        return   "rolletype: "+rolletype  + " rolleID: " + rolleID;
+        return   rolletype + " id: " + rolleID;
     }
 }
