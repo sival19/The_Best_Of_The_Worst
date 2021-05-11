@@ -34,7 +34,7 @@ public class PersonMapper extends AbstractMapper {
             if (resultSet.next()) {
                 person = new Person();
                 person.setPersonID(resultSet.getInt("id"));
-                person.setNavn(resultSet.getString("navn"));
+                person.setNavn(resultSet.getString("person_navn"));
                 person.setFoedselsdato(Date.valueOf(String.valueOf(resultSet.getDate("foedselsdato"))));
                 person.setNationalitet(resultSet.getString("nationalitet"));
             }
@@ -50,7 +50,7 @@ public class PersonMapper extends AbstractMapper {
         Person person = (Person) object;
         SimpleDateFormat bday = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            preparedStatement = databaseConnector.getConnection().prepareStatement("INSERT INTO Person(navn, foedselsdato, nationalitet) VALUES (?,?,?)");
+            preparedStatement = databaseConnector.getConnection().prepareStatement("INSERT INTO Person(person_navn, foedselsdato, nationalitet) VALUES (?,?,?)");
             preparedStatement.setString(1, person.getNavn());
             preparedStatement.setString(2, bday.format(person.getFoedselsdato()));
             preparedStatement.setString(3, person.getNationalitet());
@@ -74,7 +74,7 @@ public class PersonMapper extends AbstractMapper {
             while (resultSet.next()) {
                 Person person = new Person();
                 person.setPersonID(resultSet.getInt("id"));
-                person.setNavn(resultSet.getString("navn"));
+                person.setNavn(resultSet.getString("person_navn"));
                 person.setFoedselsdato(Date.valueOf(String.valueOf(resultSet.getDate("foedselsdato"))));
                 person.setNationalitet(resultSet.getString("nationalitet"));
                 personList.add(person);

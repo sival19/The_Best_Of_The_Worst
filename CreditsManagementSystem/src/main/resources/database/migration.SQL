@@ -27,7 +27,7 @@ create table program
 create table person
 (
     id           serial primary key,
-    navn         varchar(50) not null,
+    person_navn  varchar(50) not null,
     foedselsdato varchar(59) not null,
     nationalitet varchar(50) not null,
     person_image_path   varchar(50)
@@ -37,7 +37,7 @@ create table rolle
 (
     id        serial primary key,
     rolletype varchar(50),
-    rolle_image_path varchar
+    rolle_image_path varchar(50)
 
 
 );
