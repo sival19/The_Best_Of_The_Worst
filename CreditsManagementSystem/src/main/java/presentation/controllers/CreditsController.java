@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import Intefaces.IPerson;
 import Intefaces.IRolle;
 import domain.ICreditsManagementSystem;
 import domain.CreditsManagementSystem;
@@ -14,6 +15,7 @@ import presentation.App;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import static presentation.App.loadFXML;
@@ -23,10 +25,11 @@ public class CreditsController implements Initializable {
     public Button opretButton;
     public Button tilbage;
     public Label label;
-    public TextField personID;
+    public ComboBox personID;
     public ComboBox rolletype;
     public TextArea beskrivelse;
     private ICreditsManagementSystem creditsManagementSystem;
+    private HashMap<String, Integer> personmap;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,11 +42,11 @@ public class CreditsController implements Initializable {
 
     @FXML
    public void opretCreditHandler(ActionEvent actionEvent){
-        if(personID.getText().equals("") || rolletype.getValue().equals("") || beskrivelse.getText().equals("")){
+        if(personID.getValue().equals("") || rolletype.getValue().equals("") || beskrivelse.getText().equals("")){
             label.setText("udfyld felterne");
         }
         else{
-            String returnAnswer = creditsManagementSystem.opretCredit(String.valueOf(creditsManagementSystem.getProgram().getProduktionsID()),rolletype.getValue().toString(),personID.getText(),beskrivelse.getText());
+            String returnAnswer = creditsManagementSystem.opretCredit(String.valueOf(creditsManagementSystem.getProgram().getProduktionsID()),rolletype.getValue().toString(), personmap.get(personID.getValue()).toString(),beskrivelse.getText());
             label.setText(returnAnswer);
         }
 
@@ -61,9 +64,18 @@ public class CreditsController implements Initializable {
     @FXML
     public void seRoller(MouseEvent mouseEvent) {
         for (IRolle rolle: creditsManagementSystem.getRoller() ){
-            rolletype.getItems().add(rolle);
+            rolletype.getItems().add(rolle.getRolletype());
         }
 
 
+    }
+
+    public void sePersoner(MouseEvent mouseEvent) {
+        personmap = new HashMap<String, Integer>();
+
+        for (IPerson person: creditsManagementSystem.getPersons() ){
+            personID.getItems().add(person.getNavn());
+            personmap.put(person.getNavn(), person.getPersonID());
+        }
     }
 }
