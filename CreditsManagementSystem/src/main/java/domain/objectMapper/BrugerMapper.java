@@ -23,7 +23,7 @@ public class BrugerMapper extends AbstractMapper {
         List<Object> brugerList = new ArrayList<>();
         Bruger bruger = new Bruger();
 
-        //lazy load without loading the relation 1-* program "pogram that bruger made"
+        // Lazy load without loading the relation 1-* program "pogram that bruger made".
         try {
             PreparedStatement stmt = databaseConnector.getConnection().
                     prepareStatement("SELECT * FROM bruger");
@@ -55,9 +55,9 @@ public class BrugerMapper extends AbstractMapper {
         Bruger bruger = null;
         List<Integer> prodIdList = new ArrayList<>();
         try {
-            //eager load brugere 1-* program
+            // Eager load brugere 1-* program.
 
-            //load bruger tabel først
+            // Load bruger tabel først.
             PreparedStatement stmtBruger = databaseConnector.getConnection().prepareStatement("SELECT * FROM bruger WHERE brugernavn = ?");
             stmtBruger.setString(1, (String) oid);
 
@@ -72,14 +72,13 @@ public class BrugerMapper extends AbstractMapper {
                 stmtProdID.setString(1, (String) oid);
                 ResultSet resultSetProdID = stmtProdID.executeQuery();
 
-                while (resultSetProdID.next()){
+                while (resultSetProdID.next()) {
                     prodIdList.add(resultSetProdID.getInt("id"));
                 }
 
                 bruger.setProduktionsIDer(prodIdList);
             }
-
-            //load programID fra program tabel
+            // Load programID fra program tabel.
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -105,4 +104,5 @@ public class BrugerMapper extends AbstractMapper {
         }
         return true;
 
-}}
+    }
+}

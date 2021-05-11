@@ -62,7 +62,7 @@ public class OpretProgramController implements Initializable {
 
     public void opretProgramHandler(ActionEvent actionEvent) {
         if(programnavnField.getText().equals("")|| yrField.getText().equals("")|| monthField.getText().equals("") || toggleGroupProgram.getSelectedToggle() == null || toggleGroupGenre.getSelectedToggle() == null){
-            resultatTxt.setText("Udfyld fylterne og vælg en knap");
+            resultatTxt.setText("Udfyld felterne og vælg en knap");
         }
         else {
             resultatTxt.setText(opretProgram(programnavnField.getText(),yrField.getText(), monthField.getText(),

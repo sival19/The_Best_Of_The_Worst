@@ -26,21 +26,9 @@ public class CreditMapper extends AbstractMapper {
         databaseConnector = DatabaseConnector.getInstance();
     }
 
-    public static void main(String[] args) {
-
-        Credit Test = (Credit) new CreditMapper().getObject(1);
-
-//        new CreditMapper().putObject(Test);
-        System.out.println(Test);
-
-
-    }
-
-
-
 
     @Override
-    public Object getObject(Object oid) {// getter et programs fulde liste af credits
+    public Object getObject(Object oid) { // getter et programs fulde liste af credits
         IProgram iProgram = (IProgram) oid;
         List<ICredit> iCreditList = new ArrayList<>();
 
@@ -81,9 +69,11 @@ public class CreditMapper extends AbstractMapper {
     }
 
     @Override
-    public boolean putObject(Object object) {//adds a programs last credit. Gets called when a programs gets updated in the database. If the programs credits does not need updating, the mehtod returns false
+    // Adds a programs last credit. Gets called when a program gets updated in the database.
+    // If the program's credits does not need updating the method returns false.
+    public boolean putObject(Object object) {
         IProgram program = (Program) object;
-        ICredit credit = program.getCredits().get(program.getCredits().size()-1);
+        ICredit credit = program.getCredits().get(program.getCredits().size() - 1);
         try {
             preparedStatement = databaseConnector.getConnection().prepareStatement
                     ("INSERT INTO credit(person_id, rolle_id,beskrivelse, program_id) VALUES (?, ?, ?,?) ");
@@ -91,7 +81,7 @@ public class CreditMapper extends AbstractMapper {
             preparedStatement.setInt(1, credit.getPerson().getPersonID());
             preparedStatement.setInt(2, credit.getRolle().getRolleID());
             preparedStatement.setString(3, credit.getBeskrivelse());
-            preparedStatement.setInt(4,program.getProduktionsID());
+            preparedStatement.setInt(4, program.getProduktionsID());
 
             preparedStatement.execute();
 
