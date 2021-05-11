@@ -53,7 +53,7 @@ create table credit
 );
 
 
-
+INSERT INTO public.bruger (brugernavn, email, adgangskode, rettighed) VALUES ('admin', 'admin', 'admin', 'Administrator');
 INSERT INTO public.rolle (rolletype) VALUES ('producer');
 SELECT * FROM rolle;
 
