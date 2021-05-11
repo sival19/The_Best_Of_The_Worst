@@ -31,16 +31,17 @@ public class ProgramMapper extends AbstractMapper {
         Program program = null;
         List<ICredit> creditList = new ArrayList<>();
         try {
-            //The prepared statement is divided into, the first is for loading the program, the second for the credits.
-            //it should be possible to load programs still, if credits are null
+            // The prepared statement is divided:
+            // The first is for loading the program, the second for the credits.
+            // It should still be possible to load programs if credits are null.
             preparedStatement = databaseConnector.getConnection().prepareStatement("SELECT * FROM program pr where id = ?");
-            preparedStatement.setInt(1,(int)oid);
+            preparedStatement.setInt(1, (int) oid);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             SimpleDateFormat simpleDateFormatProgram = new SimpleDateFormat("yyyy-MM");
 
-            //if resultset not null
-            if(resultSet.next()){
+            // If resultset is not null.
+            if (resultSet.next()) {
                 program = new Program();
                 program.setProgramNavn(resultSet.getString("program_navn"));
                 program.setUdgivelsesDato(simpleDateFormatProgram.parse(resultSet.getString("udgivelsesdato")));
@@ -52,18 +53,11 @@ public class ProgramMapper extends AbstractMapper {
                 //adds a default empty credit list to programs
                 program.setCredits(creditList);
                 IMapper iMapper = new CreditMapper();
-                List<ICredit> iCreditList =(List<ICredit>)iMapper.getObject(program);
-                if(iCreditList!=null){
+                List<ICredit> iCreditList = (List<ICredit>) iMapper.getObject(program);
+                if (iCreditList != null) {
                     program.setCredits(iCreditList);
                 }
-
-
             }
-
-
-
-
-
         } catch (SQLException | ParseException throwables) {
             throwables.printStackTrace();
         }
@@ -71,25 +65,25 @@ public class ProgramMapper extends AbstractMapper {
     }
 
     @Override
-    public boolean putObject(Object object)  {
+    public boolean putObject(Object object) {
         Program program = (Program) object;
 
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
             preparedStatement = databaseConnector.getConnection().prepareStatement("INSERT INTO program(program_navn, udgivelsesdato, programtype, genre, laengde, program_image_path,bruger_id) VALUES (?,?,?,?,?,?,?)");
-            preparedStatement.setString(1,program.getProgramNavn());
+            preparedStatement.setString(1, program.getProgramNavn());
             preparedStatement.setString(2, simpleDateFormat.format(program.getUdgivelsesDato()));
             preparedStatement.setString(3, program.getProgramType().toString());
-            preparedStatement.setString(4,program.getGenre().toString());
+            preparedStatement.setString(4, program.getGenre().toString());
             preparedStatement.setDouble(5, program.getLængde());
-            preparedStatement.setString(6,program.getImagePath());
+            preparedStatement.setString(6, program.getImagePath());
             preparedStatement.setInt(7, CreditsManagementSystem.getCreditManagementSystem().getBruger().getBrugerID());
             preparedStatement.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             return false;
         }
-    return true;
+        return true;
 
     }
 
@@ -102,7 +96,7 @@ public class ProgramMapper extends AbstractMapper {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             //continue to get programs while the resultlist has a next row
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Program program = new Program();
                 List<ICredit> creditList = new ArrayList<>();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
@@ -118,8 +112,8 @@ public class ProgramMapper extends AbstractMapper {
 
                 //if there's credits to be added, then adds the credits too
                 IMapper iMapper = new CreditMapper();
-                List<ICredit> iCreditList =(List<ICredit>)iMapper.getObject(program);
-                if(iCreditList!=null){
+                List<ICredit> iCreditList = (List<ICredit>) iMapper.getObject(program);
+                if (iCreditList != null) {
                     program.setCredits(iCreditList);
                 }
                 programList.add(program);
@@ -139,12 +133,12 @@ public class ProgramMapper extends AbstractMapper {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
         try {
             preparedStatement = databaseConnector.getConnection().prepareStatement("UPDATE program SET program_navn = ?, udgivelsesdato = ?, programtype = ?, genre = ?,  laengde = ?, program_image_path = ? WHERE id = ?");
-            preparedStatement.setString(1,program.getProgramNavn());
-            preparedStatement.setString(2,simpleDateFormat.format(program.getUdgivelsesDato()));
+            preparedStatement.setString(1, program.getProgramNavn());
+            preparedStatement.setString(2, simpleDateFormat.format(program.getUdgivelsesDato()));
             preparedStatement.setString(3, program.getProgramType().toString());
             preparedStatement.setString(4, program.getGenre().toString());
-            preparedStatement.setDouble(5,program.getLængde());
-            preparedStatement.setString(6,program.getImagePath());
+            preparedStatement.setDouble(5, program.getLængde());
+            preparedStatement.setString(6, program.getImagePath());
 
             //updates the creditlist
             IMapper iMapper = new CreditMapper();

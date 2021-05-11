@@ -26,10 +26,11 @@ public class PersonMapper extends AbstractMapper {
         Person person = null;
         try {
             preparedStatement = databaseConnector.getConnection().prepareStatement("SELECT * from person WHERE person.id = ?");
-            preparedStatement.setInt(1, (int)oid);
+            preparedStatement.setInt(1, (int) oid);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            //if since we only want 1 row aka 1 person from the resultset. While loop will keep going to next person if person.id equals oid
+            // If since we only want one row aka one person from the resultset.
+            // While loop will keep going to next person if person.id equals oid.
             if (resultSet.next()) {
                 person = new Person();
                 person.setPersonID(resultSet.getInt("id"));
@@ -68,7 +69,8 @@ public class PersonMapper extends AbstractMapper {
             preparedStatement = databaseConnector.getConnection().prepareStatement("SELECT * from person");
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            //if since we only want 1 row aka 1 person from the resultset. While loop will keep going to next person if person.id equals oid
+            // If since we only want 1 row aka 1 person from the resultset.
+            // While loop will keep going to next person if person.id equals oid.
             while (resultSet.next()) {
                 person.setPersonID(resultSet.getInt("id"));
                 person.setNavn(resultSet.getString("navn"));
