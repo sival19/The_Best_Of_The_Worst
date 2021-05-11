@@ -4,7 +4,6 @@ import Intefaces.IPerson;
 import Intefaces.IRolle;
 import domain.ICreditsManagementSystem;
 import domain.CreditsManagementSystem;
-import domain.credits.Rolle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,8 +24,8 @@ public class CreditsController implements Initializable {
     public Button opretButton;
     public Button tilbage;
     public Label label;
-    public ComboBox personID;
-    public ComboBox rolletype;
+    public ComboBox<String> personID;
+    public ComboBox<String> rolletype;
     public TextArea beskrivelse;
     private ICreditsManagementSystem creditsManagementSystem;
     private HashMap<String, Integer> personmap;
@@ -71,7 +70,7 @@ public class CreditsController implements Initializable {
     }
 
     public void sePersoner(MouseEvent mouseEvent) {
-        personmap = new HashMap<String, Integer>();
+        personmap = new HashMap<>();
 
         for (IPerson person: creditsManagementSystem.getPersons() ){
             personID.getItems().add(person.getNavn());
