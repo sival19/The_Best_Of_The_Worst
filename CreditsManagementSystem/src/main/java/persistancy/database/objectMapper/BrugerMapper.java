@@ -1,7 +1,6 @@
-package domain.objectMapper;
+package persistancy.database.objectMapper;
 
 import domain.logIn.Bruger;
-import persistancy.database.AbstractMapper;
 import persistancy.database.DatabaseConnector;
 
 import java.sql.PreparedStatement;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BrugerMapper extends AbstractMapper {
+public class BrugerMapper implements IMapper {
     private DatabaseConnector databaseConnector;
 
     public BrugerMapper() {

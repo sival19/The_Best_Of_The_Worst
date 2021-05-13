@@ -45,7 +45,7 @@ public class UserManager {
         if (isBruger(brugernavn)) {
             result = "Bruger eksisterer";
         }
-        boolean sucess = iDataManager.saveBruger(new Bruger(brugernavn, adgangskode, email, brugerRettighed, indeks));
+        boolean sucess = iDataManager.saveObject(new Bruger(brugernavn, adgangskode, email, brugerRettighed, indeks));
 
 
         if (!sucess) {
@@ -84,9 +84,7 @@ public class UserManager {
     }
 
     public boolean isBruger(String brugernavn) {
-
         return iDataManager.loadBruger(brugernavn) != null;
-
     }
 
     //if admin true else false
@@ -99,7 +97,7 @@ public class UserManager {
     }
 
     public void updateBruger(){
-        iDataManager.updateBruger(bruger.getBrugernavn(), bruger);
+        iDataManager.updateObject(bruger.getBrugernavn(), bruger);
     }
 
 

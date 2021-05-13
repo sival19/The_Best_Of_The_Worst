@@ -2,7 +2,7 @@ package persistancy.database;
 
 import Intefaces.*;
 import domain.credits.Program;
-import domain.objectMapper.*;
+import persistancy.database.objectMapper.*;
 import persistancy.IDataManager;
 
 import java.util.ArrayList;
@@ -15,22 +15,11 @@ public class DatabaseManager implements IDataManager {
     private IMapper iMapper;
 
 
-    public DatabaseManager() {
-
-    }
-
-
     @Override
     public IBruger loadBruger(String brugerNavn) {
         iMapper = new BrugerMapper();
 
         return (IBruger) iMapper.getObject(brugerNavn);
-    }
-
-    @Override
-    public boolean saveBruger(IBruger bruger) {
-        iMapper = new BrugerMapper();
-        return iMapper.putObject(bruger);
     }
 
     @Override
@@ -82,24 +71,29 @@ public class DatabaseManager implements IDataManager {
 
 
     @Override
-    public boolean saveCatalogObject(ICatalogObject iCatalogObject) {
+    public boolean saveObject(Object object) {
 
         iMapper = null;
-        if(iCatalogObject instanceof IPerson){
-            IPerson iPerson = (IPerson) iCatalogObject;
+        if(object instanceof IPerson){
+            IPerson iPerson = (IPerson) object;
             iMapper = new PersonMapper();
             return iMapper.putObject(iPerson);
 
         }
-        else if(iCatalogObject instanceof IProgram){
-            IProgram iProgram = (IProgram) iCatalogObject;
+        else if(object instanceof IProgram){
+            IProgram iProgram = (IProgram) object;
             iMapper = new ProgramMapper();
             return iMapper.putObject(iProgram);
         }
-        else if(iCatalogObject instanceof IRolle){
-            IRolle iRolle = (IRolle) iCatalogObject;
+        else if(object instanceof IRolle){
+            IRolle iRolle = (IRolle) object;
             iMapper = new RolleMapper();
             return iMapper.putObject(iRolle);
+        }
+        else if(object instanceof IBruger){
+            IBruger iBruger = (IBruger) object;
+            iMapper = new BrugerMapper();
+            return iMapper.putObject(iBruger);
         }
 
 
@@ -132,10 +126,10 @@ public class DatabaseManager implements IDataManager {
     }
 
     @Override
-    public boolean updateCatalogObject(String key, ICatalogObject catalogObject) {
+    public boolean updateObject(String key, Object object) {
 
-        if(catalogObject instanceof IProgram){
-            IProgram iProgram = (IProgram) catalogObject;
+        if(object instanceof IProgram){
+            IProgram iProgram = (IProgram) object;
             iMapper = new ProgramMapper();
             return iMapper.updateObject(iProgram);
         }
@@ -143,10 +137,7 @@ public class DatabaseManager implements IDataManager {
         return false;
     }
 
-    @Override
-    public void updateBruger(String key, IBruger iBruger) {
 
-    }
 
 
 }

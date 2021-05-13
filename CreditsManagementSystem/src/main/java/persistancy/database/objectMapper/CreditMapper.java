@@ -1,4 +1,4 @@
-package domain.objectMapper;
+package persistancy.database.objectMapper;
 
 import Intefaces.ICredit;
 import Intefaces.IProgram;
@@ -6,7 +6,6 @@ import domain.credits.Credit;
 import domain.credits.Person;
 import domain.credits.Program;
 import domain.credits.Rolle;
-import persistancy.database.AbstractMapper;
 import persistancy.database.DatabaseConnector;
 
 import java.sql.PreparedStatement;
@@ -17,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreditMapper extends AbstractMapper {
+public class CreditMapper implements IMapper {
 
     private DatabaseConnector databaseConnector;
     private PreparedStatement preparedStatement;
@@ -47,7 +46,7 @@ public class CreditMapper extends AbstractMapper {
                 Person person = new Person();
                 person.setPersonID(resultSet.getInt("person_id"));
                 person.setNationalitet(resultSet.getString("nationalitet"));
-                person.setNavn(resultSet.getString("navn"));
+                person.setNavn(resultSet.getString("person_navn"));
                 try {
                     person.setFoedselsdato(simpleDateFormat.parse(resultSet.getString("foedselsdato")));
                 } catch (ParseException e) {

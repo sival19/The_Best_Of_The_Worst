@@ -47,7 +47,7 @@ public class SeRolleController implements Initializable {
 
         if(rolleImage.getImage()!=null){
             try {
-                rolleImage.setImage(new Image(SeRolleController.class.getResource(rolle.getImagePath()).toURI().toString()));
+                rolleImage.setImage(new Image(App.class.getResource("pictures/"+rolle.getImagePath()).toURI().toString()));
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }

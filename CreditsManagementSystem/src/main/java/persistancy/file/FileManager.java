@@ -42,23 +42,7 @@ public class FileManager implements IDataManager {
         }
     }
 
-    @Override
-    public boolean saveBruger(IBruger iDatabruger) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, IBruger> brugerMap = new HashMap<>();
-        try {
-            if(brugerFile.length()!=0){
-                brugerMap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IBruger>>() {});
-            }
 
-            brugerMap.put(iDatabruger.getBrugernavn(),iDatabruger);
-            objectMapper.writeValue(brugerFile,brugerMap);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public IBruger loadBruger(String brugerNavn) {
@@ -93,27 +77,17 @@ public class FileManager implements IDataManager {
         return iDataBrugerMap;
     }
 
-    @Override
-    public void updateBruger(String key, IBruger iBruger) {
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            Map<String , IBruger> iDataBrugermap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IBruger>>() {});
-            iDataBrugermap.replace(key, iBruger);
-            objectMapper.writeValue(brugerFile,iDataBrugermap);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     @Override
-    public boolean saveCatalogObject(ICatalogObject icatalogObject) {
+    public boolean saveObject(Object object) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            if(icatalogObject instanceof IPerson){
-                IPerson iPerson = (IPerson) icatalogObject;
+
+
+            if(object instanceof IPerson){
+                IPerson iPerson = (IPerson) object;
                 List<IPerson> iPersonList = new ArrayList<>();
                 if(personFile.length() != 0){
                     iPersonList = objectMapper.readValue(personFile, new TypeReference<List<IPerson>>(){});
@@ -122,8 +96,8 @@ public class FileManager implements IDataManager {
                 iPersonList.add(iPerson);
                 objectMapper.writeValue(personFile, iPersonList);
             }
-            else if(icatalogObject instanceof IProgram){
-                IProgram iProgram = (IProgram) icatalogObject;
+            else if(object instanceof IProgram){
+                IProgram iProgram = (IProgram) object;
                 List<IProgram> iProgramList = new ArrayList<>();
 
                 if(programFile.length() != 0){
@@ -134,8 +108,8 @@ public class FileManager implements IDataManager {
                 System.out.println(iProgramList);
                 objectMapper.writeValue(programFile, iProgramList);
             }
-            else if(icatalogObject instanceof IRolle){
-                IRolle iRolle = (IRolle) icatalogObject;
+            else if(object instanceof IRolle){
+                IRolle iRolle = (IRolle) object;
                 List<IRolle> iRolleList = new ArrayList<>();
 
                 if(rolleFile.length() != 0){
@@ -144,6 +118,16 @@ public class FileManager implements IDataManager {
 
                 iRolleList.add(iRolle);
                 objectMapper.writeValue(rolleFile, iRolleList);
+            }
+            else if(object instanceof IBruger){
+                Map<String,IBruger> brugerMap= new HashMap<>();
+                IBruger iBruger = (IBruger) object;
+                if(brugerFile.length()!=0){
+                    brugerMap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IBruger>>() {});
+                }
+
+                brugerMap.put(iBruger.getBrugernavn(),iBruger);
+                objectMapper.writeValue(brugerFile,brugerMap);
             }
 
         } catch (IOException e) {
@@ -154,12 +138,12 @@ public class FileManager implements IDataManager {
     }
 
     @Override
-    public boolean updateCatalogObject(String key, ICatalogObject icatalogObject) {
+    public boolean updateObject(String key, Object object) {
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            if(icatalogObject instanceof IPerson){
-                IPerson iPerson = (IPerson) icatalogObject;
+            if(object instanceof IPerson){
+                IPerson iPerson = (IPerson) object;
                 List<IPerson> iPersonList = objectMapper.readValue(personFile, new TypeReference<List<IPerson>>(){});
                 for(int i = 0; i< iPersonList.size(); i++){
                     if(iPersonList.get(i).getPersonID() == Integer.parseInt(key)){
@@ -168,8 +152,8 @@ public class FileManager implements IDataManager {
                 }
                 objectMapper.writeValue(personFile, iPersonList);
             }
-            else if(icatalogObject instanceof IProgram){
-                IProgram iProgram = (IProgram) icatalogObject;
+            else if(object instanceof IProgram){
+                IProgram iProgram = (IProgram) object;
                 List<IProgram> iProgramList = objectMapper.readValue(programFile, new TypeReference<List<IProgram>>(){});
                 for (int i = 0; i< iProgramList.size(); i++) {
                     if (iProgramList.get(i).getProduktionsID() == Integer.parseInt(key)) {
@@ -179,8 +163,8 @@ public class FileManager implements IDataManager {
                 System.out.println(iProgramList.size());
                 objectMapper.writeValue(programFile, iProgramList);
             }
-            else if(icatalogObject instanceof IRolle){
-                IRolle iRolle = (IRolle) icatalogObject;
+            else if(object instanceof IRolle){
+                IRolle iRolle = (IRolle) object;
                 List<IRolle> iRolleList = objectMapper.readValue(rolleFile, new TypeReference<List<IRolle>>(){});
                 for(int i = 0; i< iRolleList.size(); i++){
                     if(iRolleList.get(i).getRolleID() == Integer.parseInt(key)){
@@ -190,6 +174,14 @@ public class FileManager implements IDataManager {
                 objectMapper.writeValue(rolleFile, iRolleList);
             }
 
+            else if(object instanceof IBruger){
+                IBruger iBruger = (IBruger) object;
+
+                Map<String , IBruger> iDataBrugermap = objectMapper.readValue(brugerFile, new TypeReference<Map<String, IBruger>>() {});
+                iDataBrugermap.replace(key, iBruger);
+                objectMapper.writeValue(brugerFile,iDataBrugermap);
+
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

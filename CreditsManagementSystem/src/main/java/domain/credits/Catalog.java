@@ -103,7 +103,7 @@ public class Catalog {
 
        else if( program.opretCredit(person,rolle,beskrivelse)){
            programmer.replace(String.valueOf(program.getProduktionsID()),program);
-           iDataManager.updateCatalogObject(String.valueOf(program.getProduktionsID()),program);
+           iDataManager.updateObject(String.valueOf(program.getProduktionsID()),program);
            List<IProgram> programList = iDataManager.loadProgrammer();
            System.out.println(programList  );
 
@@ -148,32 +148,35 @@ public class Catalog {
         String result = "";
         String confirmation;
         int indeks;
+
         if(personer!=null){
             indeks = personer.size()+1;
         }
         else {
             indeks = 1;
         }
-        Person person = new Person(navn, fødselsdato, nationalitet, indeks);
-        boolean saveSucces= iDataManager.saveCatalogObject(person);
+        boolean saveSucces = false;
 
-        if(isPerson(indeks)){
-            confirmation = "Person oprettet";
+        if(!isPerson(indeks)){
+            Person person = new Person(navn, fødselsdato, nationalitet, indeks);
+            saveSucces= iDataManager.saveObject(person);
+
+            if(!saveSucces){
+                result = "Person oprettet\n" +
+                        "Kunne ikke gemmes";
+            }
+
+            else if(saveSucces){
+                result = "Person oprettet\n" +
+                        "Kunne gemmes";
+                personer.put(String.valueOf(person.getPersonID()),person);
+            }
         } else {
-            confirmation = "Person eksisterer allerede";
+            result = "Person eksisterer allerede";
         }
 
-        if(!saveSucces){
-            result = "Kunne ikke gemmes";
-        }
-
-        else if(saveSucces){
-            result = "Person oprettet";
-            personer.put(String.valueOf(person.getPersonID()),person);
-        }
 
         System.out.println(result);
-        System.out.println(confirmation);
 
         return result;
     }
@@ -200,11 +203,11 @@ public class Catalog {
 
         programmer.put(String.valueOf(program.getProduktionsID()),program);
 
-        return iDataManager.saveCatalogObject(program);
+        return iDataManager.saveObject(program);
 
     }
     public boolean isPerson(int personID) {
-        if(personer.size()>= personID){
+        if(personer.size()> personID){
             return true;
         } else{
             return false;
@@ -267,7 +270,7 @@ public class Catalog {
         }
 
         Rolle rolle = new Rolle(rolletype.toLowerCase(), indeks);
-        if(iDataManager.saveCatalogObject(rolle)){
+        if(iDataManager.saveObject(rolle)){
             roller.put(rolletype,rolle);
             return "Rolle er oprettet";
         }
@@ -293,10 +296,10 @@ public class Catalog {
         catalog.programmer.get("2").setImagePath("ted.jpg");
         catalog.programmer.get("3").setImagePath("twighlight.jpg");
         catalog.programmer.get("4").setImagePath("househusband.jpg");
-        catalog.iDataManager.updateCatalogObject("1",catalog.programmer.get("1"));
-        catalog.iDataManager.updateCatalogObject("2",catalog.programmer.get("2"));
-        catalog.iDataManager.updateCatalogObject("3",catalog.programmer.get("3"));
-        catalog.iDataManager.updateCatalogObject("4",catalog.programmer.get("4"));
+        catalog.iDataManager.updateObject("1",catalog.programmer.get("1"));
+        catalog.iDataManager.updateObject("2",catalog.programmer.get("2"));
+        catalog.iDataManager.updateObject("3",catalog.programmer.get("3"));
+        catalog.iDataManager.updateObject("4",catalog.programmer.get("4"));
 
         System.out.println(catalog.iDataManager.loadProgrammer());
     }

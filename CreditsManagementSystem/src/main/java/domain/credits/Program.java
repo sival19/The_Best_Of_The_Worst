@@ -3,8 +3,6 @@ package domain.credits;
 import Intefaces.ICredit;
 import Intefaces.IProgram;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import domain.objectMapper.CreditMapper;
-import persistancy.database.IMapper;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

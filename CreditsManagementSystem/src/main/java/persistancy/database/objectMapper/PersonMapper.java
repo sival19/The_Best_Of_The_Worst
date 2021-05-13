@@ -1,7 +1,6 @@
-package domain.objectMapper;
+package persistancy.database.objectMapper;
 
 import domain.credits.Person;
-import persistancy.database.AbstractMapper;
 import persistancy.database.DatabaseConnector;
 
 import java.sql.Date;
@@ -12,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonMapper extends AbstractMapper {
+public class PersonMapper implements IMapper {
     private DatabaseConnector databaseConnector;
     private PreparedStatement preparedStatement;
 

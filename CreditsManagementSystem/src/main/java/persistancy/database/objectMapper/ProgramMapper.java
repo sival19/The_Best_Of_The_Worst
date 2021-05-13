@@ -1,14 +1,9 @@
-package domain.objectMapper;
+package persistancy.database.objectMapper;
 
 import Intefaces.ICredit;
 import domain.CreditsManagementSystem;
-import domain.credits.Credit;
-import domain.credits.Person;
 import domain.credits.Program;
-import domain.credits.Rolle;
-import persistancy.database.AbstractMapper;
 import persistancy.database.DatabaseConnector;
-import persistancy.database.IMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProgramMapper extends AbstractMapper {
+public class ProgramMapper implements IMapper {
     private DatabaseConnector databaseConnector;
     private PreparedStatement preparedStatement;
 

@@ -54,7 +54,7 @@ public class SePersonController implements Initializable {
         fødselsdatoTxt.setText(simpleDateFormat.format(person.getFoedselsdato()));
         try {
             if(person.getImagePath()!=null){
-                String imagepath = String.valueOf(StartSideController.class.getResource(person.getImagePath()).toURI().toURL());
+                String imagepath = String.valueOf(App.class.getResource("pictures/"+ person.getImagePath()).toURI().toURL());
                 if(imagepath!=null){
                     personImage.setImage(new Image(imagepath));
                 }

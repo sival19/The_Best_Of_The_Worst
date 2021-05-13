@@ -15,4 +15,5 @@ module org.example {
     exports persistancy;
     exports presentation.controllers;
     opens presentation.controllers to javafx.fxml;
+    exports persistancy.database.objectMapper;
 }
