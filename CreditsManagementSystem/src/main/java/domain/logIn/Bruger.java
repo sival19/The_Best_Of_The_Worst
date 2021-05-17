@@ -32,6 +32,11 @@ public class Bruger implements IBruger {
         return brugernavn;
     }
 
+    @Override
+    public void setBrugerNavn(String brugerNavn) {
+        this.brugernavn = brugerNavn;
+    }
+
     public void setBrugernavn(String brugernavn) {
         this.brugernavn = brugernavn;
     }
@@ -68,10 +73,6 @@ public class Bruger implements IBruger {
         this.produktionIDer = produktionsIDer;
     }
 
-    @Override
-    public void addProduktionIDer(int produktionsID) {
-        this.produktionIDer.add(produktionsID);
-    }
 
     public void setRettighed(Rettighed rettighed) {
         this.rettighed = rettighed;

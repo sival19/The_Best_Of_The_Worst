@@ -1,12 +1,14 @@
 package domain.credits;
 
 import Intefaces.ICredit;
+import Intefaces.IPerson;
+import Intefaces.IRolle;
 
 public class Credit implements ICredit {
 
-    private Person person;
+    private IPerson person;
 
-    private Rolle rolle;
+    private IRolle rolle;
 
     private String beskrivelse;
 
@@ -20,19 +22,19 @@ public class Credit implements ICredit {
     }
 
 
-    public Person getPerson() {
+    public IPerson getPerson() {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(IPerson person) {
         this.person = person;
     }
 
-    public Rolle getRolle() {
+    public IRolle getRolle() {
         return rolle;
     }
 
-    public void setRolle(Rolle rolle) {
+    public void setRolle(IRolle rolle) {
         this.rolle = rolle;
     }
 

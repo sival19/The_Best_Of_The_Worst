@@ -14,7 +14,6 @@ public class DatabaseManager implements IDataManager {
 
     private IMapper iMapper;
 
-
     @Override
     public IBruger loadBruger(String brugerNavn) {
         iMapper = new BrugerMapper();
@@ -72,13 +71,11 @@ public class DatabaseManager implements IDataManager {
 
     @Override
     public boolean saveObject(Object object) {
-
         iMapper = null;
         if(object instanceof IPerson){
             IPerson iPerson = (IPerson) object;
             iMapper = new PersonMapper();
             return iMapper.putObject(iPerson);
-
         }
         else if(object instanceof IProgram){
             IProgram iProgram = (IProgram) object;
@@ -95,13 +92,11 @@ public class DatabaseManager implements IDataManager {
             iMapper = new BrugerMapper();
             return iMapper.putObject(iBruger);
         }
-
-
         return false;
 
     }
 
-    public static void main(String[] args) {
+    public  static void main(String[] args) {
         /*
         ProgramMapper programMapper = new ProgramMapper();
         Program program = new Program();

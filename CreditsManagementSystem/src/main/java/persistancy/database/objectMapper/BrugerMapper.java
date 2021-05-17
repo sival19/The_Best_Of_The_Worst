@@ -1,5 +1,6 @@
 package persistancy.database.objectMapper;
 
+import Intefaces.IBruger;
 import domain.logIn.Bruger;
 import persistancy.database.DatabaseConnector;
 
@@ -20,7 +21,7 @@ public class BrugerMapper implements IMapper {
 
     public List<Object> getAllObjects() {
         List<Object> brugerList = new ArrayList<>();
-        Bruger bruger = new Bruger();
+        IBruger bruger = new Bruger();
 
         // Lazy load without loading the relation 1-* program "pogram that bruger made".
         try {
@@ -30,7 +31,7 @@ public class BrugerMapper implements IMapper {
             ResultSet resultSet = stmt.executeQuery();
             while (resultSet.next()) {
                 bruger.setBrugerID(resultSet.getInt("id"));
-                bruger.setBrugernavn(resultSet.getString("brugernavn"));
+                bruger.setBrugerNavn(resultSet.getString("brugernavn"));
                 bruger.setEmail(resultSet.getString("email"));
                 bruger.setAdgangskode(resultSet.getString("adgangskode"));
                 bruger.setRettighed(resultSet.getString("rettighed"));
@@ -51,7 +52,7 @@ public class BrugerMapper implements IMapper {
 
     @Override
     public Object getObject(Object oid) {
-        Bruger bruger = null;
+        IBruger bruger = null;
         List<Integer> prodIdList = new ArrayList<>();
         try {
             // Eager load brugere 1-* program.
@@ -65,7 +66,7 @@ public class BrugerMapper implements IMapper {
                 bruger = new Bruger();
                 bruger.setBrugerID(resultSet.getInt("id"));
                 bruger.setRettighed(resultSet.getString("rettighed"));
-                bruger.setBrugernavn(resultSet.getString("brugernavn"));
+                bruger.setBrugerNavn(resultSet.getString("brugernavn"));
                 bruger.setAdgangskode(resultSet.getString("adgangskode"));
                 PreparedStatement stmtProdID = databaseConnector.getConnection().prepareStatement("SELECT program.id FROM bruger, program WHERE brugernavn = ? AND bruger.id = program.bruger_id");
                 stmtProdID.setString(1, (String) oid);
@@ -88,7 +89,7 @@ public class BrugerMapper implements IMapper {
 
     @Override
     public boolean putObject(Object object) {
-        Bruger bruger = (Bruger) object;
+        IBruger bruger = (IBruger) object;
         try {
 
             PreparedStatement stmt = databaseConnector.getConnection().prepareStatement("INSERT INTO bruger(brugernavn, email, adgangskode, rettighed) VALUES (?,?,?,?)");

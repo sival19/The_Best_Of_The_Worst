@@ -1,7 +1,9 @@
 package persistancy.database.objectMapper;
 
 import Intefaces.ICredit;
+import Intefaces.IPerson;
 import Intefaces.IProgram;
+import Intefaces.IRolle;
 import domain.credits.Credit;
 import domain.credits.Person;
 import domain.credits.Program;
@@ -33,32 +35,20 @@ public class CreditMapper implements IMapper {
 
         try {
             preparedStatement = databaseConnector.getConnection().prepareStatement
-                    ("SELECT * FROM credit, person, rolle WHERE program_id = ? AND person.id = credit.person_id AND rolle.id = credit.rolle_id");
+                    ("SELECT * FROM credit WHERE program_id = ?");
 
             preparedStatement.setInt(1, iProgram.getProduktionsID());
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-
-                // Formatter til date objekt
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                Person person = new Person();
-                person.setPersonID(resultSet.getInt("person_id"));
-                person.setNationalitet(resultSet.getString("nationalitet"));
-                person.setNavn(resultSet.getString("person_navn"));
-                try {
-                    person.setFoedselsdato(simpleDateFormat.parse(resultSet.getString("foedselsdato")));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                Rolle rolle = new Rolle();
-                rolle.setRolleID(resultSet.getInt("rolle_id"));
-                rolle.setRolletype(resultSet.getString("rolletype"));
-
-
-                iCreditList.add(new Credit(person, rolle, resultSet.getString("beskrivelse")));
+                IPerson person = (IPerson) new PersonMapper().getObject(resultSet.getInt("person_id"));
+                IRolle rolle = (IRolle) new RolleMapper().getObject(resultSet.getInt("rolle_id"));
+                ICredit credit = new Credit();
+                credit.setPerson(person);
+                credit.setRolle(rolle);
+                credit.setBeskrivelse(resultSet.getString("beskrivelse"));
+                iCreditList.add(credit);
 
             }
         } catch (SQLException throwables) {
@@ -95,7 +85,7 @@ public class CreditMapper implements IMapper {
     @Override
     public List<Object> getAllObjects() {
 
-        Credit credit = null;
+        ICredit credit = null;
         List<Object> creditList = new ArrayList<>();
 
         try {
@@ -105,7 +95,7 @@ public class CreditMapper implements IMapper {
             while (resultSet.next()) {
                 // Formatter til date objekt
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                Person person = new Person();
+                IPerson person = new Person();
                 person.setPersonID(resultSet.getInt("person_id"));
                 person.setNationalitet(resultSet.getString("nationalitet"));
                 person.setNavn(resultSet.getString("navn"));
@@ -115,12 +105,14 @@ public class CreditMapper implements IMapper {
                     e.printStackTrace();
                 }
 
-                Rolle rolle = new Rolle();
+                IRolle rolle = new Rolle();
                 rolle.setRolleID(resultSet.getInt("rolle_id"));
                 rolle.setRolletype(resultSet.getString("rolletype"));
 
 
-                credit = new Credit(person, rolle, resultSet.getString("beskrivelse"));
+                credit = new Credit();
+                credit.setPerson(person);
+                credit.setBeskrivelse(resultSet.getString("beskrivelse"));
             }
 
         } catch (SQLException throwables) {

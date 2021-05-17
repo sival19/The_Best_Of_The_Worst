@@ -138,7 +138,7 @@ public class FileManager implements IDataManager {
     }
 
     @Override
-    public boolean updateObject(String key, Object object) {
+    public boolean updateObject(String key, Object object   ) {
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {

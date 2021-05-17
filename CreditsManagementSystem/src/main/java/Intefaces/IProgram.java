@@ -22,11 +22,11 @@ public interface IProgram extends ICatalogObject {
 
     public ProgramType getProgramType();
 
-    public void setProgramType(ProgramType programType);
+    public void setProgramType(String programType);
 
     public Genre getGenre();
 
-    public void setGenre(Genre genre);
+    public void setGenre(String genre);
 
     public double getLængde();
 
@@ -41,7 +41,6 @@ public interface IProgram extends ICatalogObject {
     public String getImagePath();
 
     public void setImagePath(String imagePath);
-    public String getCreditListString();
 
 
     }

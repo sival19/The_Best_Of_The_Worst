@@ -1,5 +1,6 @@
 package persistancy.database.objectMapper;
 
+import Intefaces.IRolle;
 import domain.credits.Rolle;
 import persistancy.database.DatabaseConnector;
 
@@ -19,7 +20,7 @@ public class RolleMapper implements IMapper {
 
     @Override
     public Object getObject(Object oid) {
-        Rolle rolle = null;
+        IRolle rolle = null;
         try {
             preparedStatement = databaseConnector.getConnection().
                     prepareStatement("SELECT * FROM rolle WHERE rolle.id = ?");
@@ -48,7 +49,7 @@ public class RolleMapper implements IMapper {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
-                Rolle rolle = new Rolle();
+                IRolle rolle = new Rolle();
                 rolle.setRolletype(resultSet.getString("rolletype"));
                 rolle.setRolleID(resultSet.getInt("id"));
                 rolleList.add(rolle);
@@ -68,7 +69,7 @@ public class RolleMapper implements IMapper {
 
     @Override
     public boolean putObject(Object object) {
-        Rolle rolle = (Rolle) object;
+        IRolle rolle = (IRolle) object;
 
         try {
             preparedStatement = databaseConnector.getConnection().prepareStatement("INSERT INTO rolle(rolletype) VALUES (?)");

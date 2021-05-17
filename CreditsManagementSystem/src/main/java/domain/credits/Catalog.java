@@ -182,7 +182,8 @@ public class Catalog {
     }
 
 
-    public boolean opretProgram(String programNavn, Date udgivelssdato, String programtype, String genre, double længde) {
+    public boolean opretProgram(String programNavn, Date udgivelssdato,
+                                String programtype, String genre, double længde) {
 
         int indeks;
         if(programmer!=null){
@@ -200,9 +201,7 @@ public class Catalog {
         program.setLængde(længde);
         program.setProduktionsID(indeks);
         program.setCredits(new ArrayList<ICredit>());
-
         programmer.put(String.valueOf(program.getProduktionsID()),program);
-
         return iDataManager.saveObject(program);
 
     }

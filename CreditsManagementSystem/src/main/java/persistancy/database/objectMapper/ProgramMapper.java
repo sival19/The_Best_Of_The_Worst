@@ -1,6 +1,7 @@
 package persistancy.database.objectMapper;
 
 import Intefaces.ICredit;
+import Intefaces.IProgram;
 import domain.CreditsManagementSystem;
 import domain.credits.Program;
 import persistancy.database.DatabaseConnector;
@@ -23,7 +24,7 @@ public class ProgramMapper implements IMapper {
 
     @Override
     public Object getObject(Object oid) {
-        Program program = null;
+        IProgram program = null;
         List<ICredit> creditList = new ArrayList<>();
         try {
             // The prepared statement is divided:
@@ -61,7 +62,7 @@ public class ProgramMapper implements IMapper {
 
     @Override
     public boolean putObject(Object object) {
-        Program program = (Program) object;
+        IProgram program = (IProgram) object;
 
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
@@ -92,7 +93,7 @@ public class ProgramMapper implements IMapper {
 
             //continue to get programs while the resultlist has a next row
             while (resultSet.next()) {
-                Program program = new Program();
+                IProgram program = new Program();
                 List<ICredit> creditList = new ArrayList<>();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
 
@@ -124,7 +125,7 @@ public class ProgramMapper implements IMapper {
 
     @Override
     public boolean updateObject(Object object) {//updates every column instead of updating a precise one.
-        Program program = (Program) object;
+        IProgram program = (Program) object;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
         try {
             preparedStatement = databaseConnector.getConnection().prepareStatement("UPDATE program SET program_navn = ?, udgivelsesdato = ?, programtype = ?, genre = ?,  laengde = ?, program_image_path = ? WHERE id = ?");

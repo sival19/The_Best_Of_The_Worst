@@ -1,5 +1,7 @@
 package persistancy.database.objectMapper;
 
+import Intefaces.IPerson;
+import Intefaces.IProgram;
 import domain.credits.Person;
 import persistancy.database.DatabaseConnector;
 
@@ -22,7 +24,7 @@ public class PersonMapper implements IMapper {
 
     @Override
     public Object getObject(Object oid) {
-        Person person = null;
+        IPerson person = null;
         try {
             preparedStatement = databaseConnector.getConnection().prepareStatement("SELECT * from person WHERE person.id = ?");
             preparedStatement.setInt(1, (int) oid);
@@ -46,7 +48,7 @@ public class PersonMapper implements IMapper {
 
     @Override
     public boolean putObject(Object object) {
-        Person person = (Person) object;
+        IPerson person = (IPerson) object;
         SimpleDateFormat bday = new SimpleDateFormat("yyyy-MM-dd");
         try {
             preparedStatement = databaseConnector.getConnection().prepareStatement("INSERT INTO Person(person_navn, foedselsdato, nationalitet) VALUES (?,?,?)");
@@ -71,7 +73,7 @@ public class PersonMapper implements IMapper {
             // If since we only want 1 row aka 1 person from the resultset.
             // While loop will keep going to next person if person.id equals oid.
             while (resultSet.next()) {
-                Person person = new Person();
+                IPerson person = new Person();
                 person.setPersonID(resultSet.getInt("id"));
                 person.setNavn(resultSet.getString("person_navn"));
                 person.setFoedselsdato(Date.valueOf(String.valueOf(resultSet.getDate("foedselsdato"))));

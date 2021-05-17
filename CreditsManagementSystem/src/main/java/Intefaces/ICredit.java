@@ -8,13 +8,15 @@ import domain.credits.Rolle;
 @JsonDeserialize(as = Credit.class)
 public interface ICredit {
 
-    Person getPerson();
+    IPerson getPerson();
 
-    void setPerson(Person person);
+    void setPerson(IPerson person);
 
-    Rolle getRolle();
+    IRolle getRolle();
 
-    void setRolle(Rolle rolle);
+    void setRolle(IRolle rolle);
 
     String getBeskrivelse();
+    void setBeskrivelse(String beskrivelse);
+
 }
