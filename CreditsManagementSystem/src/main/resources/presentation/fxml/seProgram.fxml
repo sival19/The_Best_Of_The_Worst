@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.effect.InnerShadow?>
+<AnchorPane prefHeight="764.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.SeProgramController">
+   <children>
+      <ImageView fitHeight="764.0" fitWidth="1024.0">
+         <image>
+            <Image url="@../pictures/bckgrnd.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="248.0" layoutY="95.0" prefHeight="590.0" prefWidth="369.0">
+         <children>
+            <VBox prefHeight="63.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="programNavn" text="Label" />
+                  <Label fx:id="programDato" text="Label" />
+                  <Label fx:id="programGenre" text="Label" />
+               </children>
+            </VBox>
+            <ImageView fx:id="programImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ListView fx:id="creditList" prefHeight="200.0" prefWidth="309.0" />
+         </children>
+      </VBox>
+
+      <Button fx:id="tilbage" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#backtoStartSideHandler" stylesheets="@../css/arrowstyle.css" text="Tilbage" >
+         <effect>
+         <InnerShadow />
+      </effect></Button>
+      <Button fx:id="opretCreditBT" layoutX="50.0" layoutY="117.0" mnemonicParsing="false" onAction="#opretCreditHandler" prefHeight="26.0" prefWidth="118.0" text="Opret Credit" />
+   </children>
+</AnchorPane>
