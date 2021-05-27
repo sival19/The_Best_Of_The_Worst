@@ -34,7 +34,7 @@ public class StartSideController implements Initializable {
     public TextField brugernavnField, searchField;
     public PasswordField adgangskodeField;
     public Text loginTxt;
-    public ImageView programImage1, programImage2, programImage3, nextBtRight, nextBtLeft;
+    public ImageView programImage1, programImage2, programImage3, nextArrowRight, nextArrowLeft;
     public Label program1Txt, program2Txt, program3Txt;
     public ListView<ICatalogObject> searchResultView;
     public AnchorPane anchorpane;
@@ -57,8 +57,8 @@ public class StartSideController implements Initializable {
         circularCount = -1;
         showBrugerOptions();
         programsEmptyChecker();
-        nextBtRight.setX(programImage3.getX() + 2);
-        nextBtLeft.setX(programImage1.getX() - 5);
+        nextArrowRight.setX(programImage3.getX() + 2);
+        nextArrowLeft.setX(programImage1.getX() - 5);
         if (creditsManagementSystem.getBrugere().size() > 0) {
             opretBrugerBt.setDisable(true);
             opretBrugerBt.setVisible(false);
@@ -132,7 +132,7 @@ public class StartSideController implements Initializable {
     }
 
 
-    private void next3ProgramImages(boolean isDirectionRight) throws URISyntaxException, MalformedURLException {
+    private void next3ProgramImages(boolean isDirectionRight)  {
         int circular1;
         int circular2;
         int circular3;
@@ -160,27 +160,30 @@ public class StartSideController implements Initializable {
         String imagePath1 = null;
         String imagePath2 = null;
         String imagePath3 = null;
-        if (program1.getImagePath() != null) {
-            imagePath1 = App.class.getResource("pictures/" + program1.getImagePath()).toURI().toString();
-            programImage1.setImage(new Image(imagePath1));
+        try {
+            if (program1.getImagePath() != null) {
+                imagePath1 = App.class.getResource("pictures/" + program1.getImagePath()).toURI().toString();
+                programImage1.setImage(new Image(imagePath1));
 
-        } else {
-            programImage1.setImage(new Image(App.class.getResource("pictures/defaultMovieImage.jpg").toURI().toString()));
-        }
-        if (program2.getImagePath() != null) {
-            imagePath2 = App.class.getResource("pictures/" + program2.getImagePath()).toURI().toString();
-            programImage2.setImage(new Image(imagePath2));
+            } else {
+                programImage1.setImage(new Image(App.class.getResource("pictures/defaultMovieImage.jpg").toURI().toString()));
+            }
+            if (program2.getImagePath() != null) {
+                imagePath2 = App.class.getResource("pictures/" + program2.getImagePath()).toURI().toString();
+                programImage2.setImage(new Image(imagePath2));
 
-        } else {
-            programImage1.setImage(new Image(App.class.getResource("pictures/defaultMovieImage.jpg").toURI().toString()));
+            } else {
+                programImage1.setImage(new Image(App.class.getResource("pictures/defaultMovieImage.jpg").toURI().toString()));
+            }
+            if (program3.getImagePath() != null) {
+                imagePath3 = App.class.getResource("pictures/" + program3.getImagePath()).toURI().toString();
+                programImage3.setImage(new Image(imagePath3));
+            } else {
+                programImage1.setImage(new Image(App.class.getResource("pictures/defaultMovieImage.jpg").toURI().toString()));
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
-        if (program3.getImagePath() != null) {
-            imagePath3 = App.class.getResource("pictures/" + program3.getImagePath()).toURI().toString();
-            programImage3.setImage(new Image(imagePath3));
-        } else {
-            programImage1.setImage(new Image(App.class.getResource("pictures/defaultMovieImage.jpg").toURI().toString()));
-        }
-
 
         programImage1.setPreserveRatio(false);
         programImage1.setFitHeight(200);
@@ -203,29 +206,21 @@ public class StartSideController implements Initializable {
     private void programsEmptyChecker() {
 
         if (programs.size() != 0) {
-            try {
-                next3ProgramImages(true);
-            } catch (URISyntaxException | MalformedURLException e) {
-                e.printStackTrace();
-            }
+            next3ProgramImages(true);
         } else {
-            nextBtRight.setDisable(true);
-            nextBtRight.setStyle("-fx-background-color:transparent;");
+            nextArrowRight.setDisable(true);
+            nextArrowRight.setStyle("-fx-background-color:transparent;");
         }
     }
 
 
     public void nextHandler(MouseEvent actionEvent) {
-        try {
-            if (actionEvent.getSource() == nextBtRight) {
-                next3ProgramImages(true);
-            } else if (actionEvent.getSource() == nextBtLeft) {
-                next3ProgramImages(false);
-            }
-
-        } catch (URISyntaxException | MalformedURLException e) {
-            e.printStackTrace();
+        if (actionEvent.getSource() == nextArrowRight) {
+            next3ProgramImages(true);
+        } else if (actionEvent.getSource() == nextArrowLeft) {
+            next3ProgramImages(false);
         }
+
     }
 
 

@@ -15,9 +15,9 @@ public class DatabaseConnector {
     private static DatabaseConnector instance;
     private String url = "localhost";
     private int port = 5432;
-    private String databaseName = "TV2";
+    private String databaseName = "STPRO2";
     private String username = "postgres";
-    private String password = "haleluja";
+    private String password = "Naruto_939393";
     private Connection connection = null;
 
     private DatabaseConnector() {
