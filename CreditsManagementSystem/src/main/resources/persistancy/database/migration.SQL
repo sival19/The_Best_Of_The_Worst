@@ -104,6 +104,13 @@ INSERT INTO public.rolle (rolletype, rolle_image_path) VALUES ('line producer', 
 INSERT INTO public.rolle (rolletype, rolle_image_path) VALUES ('komponist', null);
 INSERT INTO public.rolle (rolletype, rolle_image_path) VALUES ('lyddesigner', null);
 INSERT INTO public.rolle (rolletype, rolle_image_path) VALUES ('stemme', null);
+INSERT INTO public.rolle (rolletype, rolle_image_path) VALUES ('manus', null);
+INSERT INTO public.rolle (rolletype, rolle_image_path) VALUES ('produktion', null);
+INSERT INTO public.rolle (rolletype, rolle_image_path) VALUES ('stills', null);
+INSERT INTO public.rolle (rolletype, rolle_image_path) VALUES ('skuespiller', null);
+INSERT INTO public.rolle (rolletype, rolle_image_path) VALUES ('foto', null);
+INSERT INTO public.rolle (rolletype, rolle_image_path) VALUES ('klip', null);
+INSERT INTO public.rolle (rolletype, rolle_image_path) VALUES ('special effects', null);
 
 --insert credits
 INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (1, 8, 5, '');
@@ -116,3 +123,30 @@ INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES 
 INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (1, 3, 4, '');
 INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (1, 2, 2, '');
 INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (1, 8, 1, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (3, 20, 1, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (3, 20, 11, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (3, 21, 12, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (3, 24, 12, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (3, 22, 13, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (3, 15, 14, 'Bjarne/Eigil');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (3, 23, 14, 'Svend');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (4, 20, 1, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (4, 20, 11, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (4, 21, 6, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (4, 24, 6, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (4, 25, 15, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (4, 22, 13, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (4, 26, 14, 'Torkild');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (4, 15, 14, 'Stefan');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (4, 23, 14, 'Arne');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (2, 9, 1, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (2, 20, 11, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (2, 11, 12, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (2, 12, 15, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (2, 9, 16, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (2, 16, 17, '');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (2, 13, 14, 'Harald');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (2, 14, 14, 'Arvid');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (2, 15, 14, 'Martin');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (2, 19, 14, 'Franz');
+INSERT INTO public.credit (program_id, person_id, rolle_id, beskrivelse) VALUES (2, 18, 14, 'Vuk');
