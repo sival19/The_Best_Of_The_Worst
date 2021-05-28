@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="764.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.SeRolleController">
+   <children>
+      <ImageView fitHeight="764.0" fitWidth="1024.0">
+         <image>
+            <Image url="@../pictures/bckgrnd.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="248.0" layoutY="96.0" prefHeight="435.0" prefWidth="398.0">
+         <children>
+            <Label fx:id="rolleNavnTxt" text="Label" />
+            <ImageView fx:id="rolleImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ListView fx:id="creditList" prefHeight="200.0" prefWidth="309.0" />
+         </children>
+      </VBox>
+      <Button fx:id="backBt" layoutX="14.0" layoutY="54.0" mnemonicParsing="false" onAction="#backtoStartSideHandler" text="Tilbage">
+         <effect>
+            <InnerShadow />
+         </effect></Button>
+   </children>
+</AnchorPane>
