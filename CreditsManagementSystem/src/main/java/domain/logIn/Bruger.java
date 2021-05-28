@@ -38,6 +38,7 @@ public class Bruger implements IBruger {
         this.brugernavn = brugerNavn;
     }
 
+
     public String getAdgangskode() {
         return adgangskode;
     }
