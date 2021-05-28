@@ -47,6 +47,7 @@ public class StartSideController implements Initializable {
     private ObservableList<ICatalogObject> observableList;
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         creditsManagementSystem = CreditsManagementSystem.getCreditManagementSystem();
