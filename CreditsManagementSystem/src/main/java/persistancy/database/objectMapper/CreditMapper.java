@@ -36,6 +36,10 @@ public class CreditMapper implements IMapper {
         try {
             preparedStatement = databaseConnector.getConnection().prepareStatement
                     ("SELECT * FROM credit WHERE program_id = ?");
+            // SELECT * FROM credit inner join person p on p.id = credit.person_id
+            // inner join program p2 on p2.id = credit.program_id
+            // inner join rolle r on r.id = credit.rolle_id
+            // WHERE program_id = ?;
 
             preparedStatement.setInt(1, iProgram.getProduktionsID());
 
@@ -91,6 +95,8 @@ public class CreditMapper implements IMapper {
             ResultSet resultSet = preparedStatement.executeQuery();
 
 
+            // While: Iterates through all the objectes which corrospond to oid.
+            // If: Only the first thing credit of the creditlist.
             while (resultSet.next()) {
                 // Formatter til date objekt
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -126,6 +132,4 @@ public class CreditMapper implements IMapper {
     public boolean updateObject(Object object) {
         return false;
     }
-
-
 }
